@@ -1,0 +1,96 @@
+# ==============================================================
+#  Lo que NO se respalda: 100+ GB de los 113 totales.
+#  Todo esto se regenera con un install. No lo vas a extrañar.
+# ==============================================================
+
+# --- Dependencias (se regeneran con npm/pnpm/yarn install) ---
+node_modules/
+.pnpm-store/
+bower_components/
+jspm_packages/
+vendor/
+
+# --- Builds y artefactos de compilación ---
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+.parcel-cache/
+target/
+*.o
+*.a
+*.so
+*.dylib
+*.class
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.tox/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# --- Cachés de herramientas ---
+.cache/
+.npm/
+.yarn-cache/
+.eslintcache
+.sass-cache/
+*.tsbuildinfo
+
+# --- Toolchains gigantes (se reinstalan) ---
+.rustup/
+.cargo/registry/
+.nvm/
+.bun/install/
+.deno/
+.gradle/
+.m2/
+
+# --- Runtime y sistema ---
+*.log
+*.pid
+*.seed
+*.lock.tmp
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# --- Telemetría y ruido de agentes ---
+telemetry/
+shell-snapshots/
+statsig/
+**/.claude/cache/
+mcp-needs-auth-cache.json
+
+# --- SECRETOS: nunca en claro. Van cifrados en 99-secretos/ ---
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+!*.pub
+.credentials.json
+auth.json
+oauth_creds.json
+id_rsa*
+id_ed25519*
+gonvra_server
+gonvra_vps
+.git-credentials
+.netrc
+
+# Nota: los .git anidados de repos de terceros se excluyen al copiar,
+# no acá. Ver 03-proyectos/REPOS-EXTERNOS.md para re-clonarlos.

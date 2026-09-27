@@ -1,0 +1,60 @@
+# ==============================================================
+#  Git LFS: archivos binarios grandes van a almacenamiento aparte.
+#  Sin esto, GitHub rechaza cualquier archivo de más de 100 MB.
+# ==============================================================
+
+# --- Video ---
+*.mp4  filter=lfs diff=lfs merge=lfs -text
+*.mov  filter=lfs diff=lfs merge=lfs -text
+*.mkv  filter=lfs diff=lfs merge=lfs -text
+*.avi  filter=lfs diff=lfs merge=lfs -text
+*.webm filter=lfs diff=lfs merge=lfs -text
+*.m4v  filter=lfs diff=lfs merge=lfs -text
+
+# --- Audio ---
+*.wav  filter=lfs diff=lfs merge=lfs -text
+*.aiff filter=lfs diff=lfs merge=lfs -text
+*.flac filter=lfs diff=lfs merge=lfs -text
+*.mp3  filter=lfs diff=lfs merge=lfs -text
+
+# --- Archivos comprimidos y paquetes ---
+*.tgz  filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.zip  filter=lfs diff=lfs merge=lfs -text
+*.7z   filter=lfs diff=lfs merge=lfs -text
+*.rar  filter=lfs diff=lfs merge=lfs -text
+
+# --- Imágenes pesadas y diseño (los PNG/JPG chicos van en git normal) ---
+*.psd  filter=lfs diff=lfs merge=lfs -text
+*.ai    filter=lfs diff=lfs merge=lfs -text
+*.tif  filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+
+# --- Modelos y binarios ---
+*.gguf filter=lfs diff=lfs merge=lfs -text
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+*.onnx filter=lfs diff=lfs merge=lfs -text
+
+# --- El paquete cifrado de secretos ---
+*.gpg  filter=lfs diff=lfs merge=lfs -text
+
+# --- Normalización de texto ---
+*.md   text eol=lf
+*.sh   text eol=lf
+*.ps1  text eol=crlf
+
+# --- Logs de sesión y bases de datos de agentes ---
+# Los .jsonl de historial llegan a 241 MB y los .sqlite a 235 MB. Sin esto,
+# GitHub rechaza el push (límite duro: 100 MB por archivo).
+*.jsonl  filter=lfs diff=lfs merge=lfs -text
+*.sqlite filter=lfs diff=lfs merge=lfs -text
+*.sqlite3 filter=lfs diff=lfs merge=lfs -text
+*.db     filter=lfs diff=lfs merge=lfs -text
+
+# --- Binarios crudos ---
+*.raw    filter=lfs diff=lfs merge=lfs -text
+*.bin    filter=lfs diff=lfs merge=lfs -text
+*.pack   filter=lfs diff=lfs merge=lfs -text
+*.iso    filter=lfs diff=lfs merge=lfs -text
+*.apk    filter=lfs diff=lfs merge=lfs -text
+*.dmg    filter=lfs diff=lfs merge=lfs -text

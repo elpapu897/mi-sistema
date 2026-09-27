@@ -1,0 +1,27 @@
+ic	01-segundo-cerebro	OBSIDIAN	El segundo cerebro: vault de Obsidian completo, con plugins y config
+ic	02-agentes/claude	.claude	Claude Code: settings, CLAUDE.md, 72 skills propias, plugins
+ic	02-agentes/agents-skills	.agents	Biblioteca canónica de 1125 skills (a esto apuntan los symlinks)
+ic	02-agentes/codex	.codex	Codex: config, prompts, plugins
+ic	02-agentes/gemini	.gemini	Gemini / Antigravity: config e historial
+ic	02-agentes/hermes	.hermes	Hermes: config, SOUL.md, memorias, 35 skills
+ic	02-agentes/kimi-code	.kimi-code	Kimi Code: config y sesiones
+ic	02-agentes/opencode	.opencode	OpenCode: package.json (el binario se reinstala)
+pr	03-proyectos/g	g	App Next.js propia
+pr	03-proyectos/claude-workspace	Claude	Workspace de proyectos de Claude (gonvra, mcp, experimentos)
+pr	03-proyectos/roblox-broll-edit	proyectos/roblox-broll-edit	Proyecto de edición Roblox
+pr	03-proyectos/skills-para-claude-ai	skills-para-claude-ai	Skills empaquetadas para Claude.ai
+pr	03-proyectos/Documents	Documents	Documentos (Codex)
+pr	03-proyectos/Documentos	Documentos	Documentos (Blackmagic / DaVinci)
+ng	04-negocio-gonvra/tiendas	tiendas	GONVRA: tiendas, auditorías, landings
+ng	04-negocio-gonvra/backups	GONVRA-BACKUPS	GONVRA: backups diarios del tema Shopify
+ng	04-negocio-gonvra/publicar	GONVRA-PUBLICAR	GONVRA: pipeline de publicación de videos
+md	05-media/planetamati-edit	planetamati-edit	Proyecto de video Planetamati (entregables + clips DNxHR)
+md	05-media/grabaciones-flexclip	Descargas/grabaciones-flexclip	Grabaciones de pantalla originales (FlexClip)
+md	05-media/Vídeos	Vídeos	Carpeta Vídeos
+md	05-media/Imágenes	Imágenes	Carpeta Imágenes
+md	05-media/Escritorio	Escritorio	Escritorio
+md	05-media/videos-sueltos	Vídeos/sueltos	Videos que estaban en la raíz del home (va DENTRO de Vídeos, por eso va después)
+hi	07-historial-agentes/claude/projects	.claude/projects	Historial de conversaciones de Claude Code + auto-memoria
+hi	07-historial-agentes/codex/sessions	.codex/sessions	Historial de Codex: sesiones
+hi	07-historial-agentes/codex/generated_images	.codex/generated_images	Historial de Codex: imágenes generadas
+hi	07-historial-agentes/codex/thread_history_1.sqlite	.codex/thread_history_1.sqlite	Historial de Codex: base de threads
