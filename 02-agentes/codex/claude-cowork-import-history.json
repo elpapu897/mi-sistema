@@ -1,0 +1,102 @@
+{
+  "accountSetupItems": [
+    {
+      "accountOrgDir": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73",
+      "importedAtMs": 1786595073223,
+      "itemType": "CONFIG"
+    },
+    {
+      "accountOrgDir": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73",
+      "importedAtMs": 1786595073223,
+      "itemType": "PLUGINS"
+    }
+  ],
+  "connectorCandidates": [
+    {
+      "importedAtMs": 1786595071574,
+      "lastSeenAtMs": 1786479075157,
+      "name": "autods",
+      "sessionCount": 2,
+      "source": "remoteMcpServersConfig"
+    },
+    {
+      "importedAtMs": 1786595071574,
+      "lastSeenAtMs": 1786479075157,
+      "name": "Canva",
+      "sessionCount": 4,
+      "source": "remoteMcpServersConfig"
+    },
+    {
+      "importedAtMs": 1786595071574,
+      "lastSeenAtMs": 1786479075157,
+      "name": "Facebook",
+      "sessionCount": 3,
+      "source": "remoteMcpServersConfig"
+    },
+    {
+      "importedAtMs": 1786595071574,
+      "lastSeenAtMs": 1786479075157,
+      "name": "Gmail",
+      "sessionCount": 5,
+      "source": "remoteMcpServersConfig"
+    },
+    {
+      "importedAtMs": 1786595071574,
+      "lastSeenAtMs": 1786479075157,
+      "name": "Google Drive",
+      "sessionCount": 5,
+      "source": "remoteMcpServersConfig"
+    },
+    {
+      "importedAtMs": 1786595071574,
+      "lastSeenAtMs": 1786479075157,
+      "name": "Shopify",
+      "sessionCount": 5,
+      "source": "remoteMcpServersConfig"
+    }
+  ],
+  "projects": [],
+  "records": [
+    {
+      "contentSha256": "82a897e708dfe1c6cc64b45a6e114bb08113b5d274f413c7f1e722fb7ac8e902",
+      "importedAtMs": 1786595071572,
+      "importedThreadId": "019ff95d-530e-7b23-a08f-ff3a1cb78306",
+      "projectRoot": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/projectless-spaces/account",
+      "sourceId": "local_a90cdeba-fc19-4982-b57a-58168464eaa2",
+      "sourcePath": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/local_a90cdeba-fc19-4982-b57a-58168464eaa2/.claude/projects/-home-matiigonzz--config-Claude-local-agent-mode-sessions-9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8-5270af8c-72a5-4016-a0bc-dfc52fecfc73-local-a90cdeba-fc19-4982-b57a-58168464eaa2-outputs/040c2272-5599-42ca-960d-2a25314a900f.jsonl"
+    },
+    {
+      "contentSha256": "1aec0588cc7eeb61067941134a79cf61858a318425aad2336bc5ad758e24f237",
+      "importedAtMs": 1786595071572,
+      "importedThreadId": "019ff95d-530e-7b23-a08f-fe45ba7c3559",
+      "projectRoot": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/projectless-spaces/account",
+      "sourceId": "local_34c57af5-9ae9-471d-8270-016162bb206e",
+      "sourcePath": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/local_34c57af5-9ae9-471d-8270-016162bb206e/.claude/projects/-home-matiigonzz--config-Claude-local-agent-mode-sessions-9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8-5270af8c-72a5-4016-a0bc-dfc52fecfc73-local-34c57af5-9ae9-471d-8270-016162bb206e-outputs/d73c6901-9596-4cfe-9baf-7da907d7eaec.jsonl"
+    },
+    {
+      "contentSha256": "7619d5d9424f426658f32cd4538ae066cd97f9a7af974c4658873672f9bd240a",
+      "importedAtMs": 1786595071572,
+      "importedThreadId": "019ff95d-5321-7e90-add6-9a89f1820ef8",
+      "projectRoot": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/projectless-spaces/account",
+      "sourceId": "local_cf22d3e7-ea81-48b8-9002-4375d1edcbb1",
+      "sourcePath": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/local_cf22d3e7-ea81-48b8-9002-4375d1edcbb1/.claude/projects/-home-matiigonzz--config-Claude-local-agent-mode-sessions-9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8-5270af8c-72a5-4016-a0bc-dfc52fecfc73-local-cf22d3e7-ea81-48b8-9002-4375d1edcbb1-outputs/47cd3a7f-a24b-419f-878a-d8b8376f1fc8.jsonl"
+    },
+    {
+      "contentSha256": "a4f96fb2fd4b7a192bd3cd7614760cdf8e5b0256b428387eeedbfa859a4ce8b7",
+      "importedAtMs": 1786595071572,
+      "importedThreadId": "019ff95d-5335-73f1-a76d-2414b1b5381e",
+      "projectRoot": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/projectless-spaces/account",
+      "sourceId": "local_fa4c3258-77a6-41ab-b9b7-a8a13b3e4709",
+      "sourcePath": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/local_fa4c3258-77a6-41ab-b9b7-a8a13b3e4709/.claude/projects/-home-matiigonzz--config-Claude-local-agent-mode-sessions-9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8-5270af8c-72a5-4016-a0bc-dfc52fecfc73-local-fa4c3258-77a6-41ab-b9b7-a8a13b3e4709-outputs/c295d44a-c44d-4165-977c-c301b0481edd.jsonl"
+    },
+    {
+      "contentSha256": "4c705054bbe8d3a55312331665b175e43bd5f2c4ac8d92a75c529d07956a128b",
+      "importedAtMs": 1786595071572,
+      "importedThreadId": "019ff95d-530f-7c50-8850-ffa6469e4714",
+      "projectRoot": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/projectless-spaces/account",
+      "sourceId": "local_f5fe5a1a-9f85-4bb7-a54e-0bbdb3ec3135",
+      "sourcePath": "/home/matiigonzz/.config/Claude/local-agent-mode-sessions/9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8/5270af8c-72a5-4016-a0bc-dfc52fecfc73/local_f5fe5a1a-9f85-4bb7-a54e-0bbdb3ec3135/.claude/projects/-home-matiigonzz--config-Claude-local-agent-mode-sessions-9b8aad42-d58c-4ef2-b548-29d1a6dd0ba8-5270af8c-72a5-4016-a0bc-dfc52fecfc73-local-f5fe5a1a-9f85-4bb7-a54e-0bbdb3ec3135-outputs/b488126b-58bd-4933-9914-c7eeff670211.jsonl"
+    }
+  ],
+  "version": 1
+}

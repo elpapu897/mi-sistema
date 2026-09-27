@@ -1,0 +1,23 @@
+{
+  "source": "cdn",
+  "checkedAt": "2026-08-05T01:23:50.324Z",
+  "latest": "0.32.0",
+  "manifest": {
+    "version": "0.32.0",
+    "publishedAt": "2026-08-04T07:41:09Z",
+    "rollout": [
+      {
+        "percent": 30,
+        "delaySeconds": 0
+      },
+      {
+        "percent": 30,
+        "delaySeconds": 43200
+      },
+      {
+        "percent": 40,
+        "delaySeconds": 86400
+      }
+    ]
+  }
+}

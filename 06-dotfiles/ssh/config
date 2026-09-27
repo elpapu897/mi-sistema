@@ -1,0 +1,6 @@
+
+Host gonvra-srv
+    HostName 47.85.84.11
+    User gonvra
+    IdentityFile ~/.ssh/gonvra_server
+    IdentitiesOnly yes

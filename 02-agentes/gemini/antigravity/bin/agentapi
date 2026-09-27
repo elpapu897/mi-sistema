@@ -1,0 +1,2 @@
+#!/bin/sh
+exec "/home/matiigonzz/Aplicaciones/antigravity/resources/bin/language_server" agentapi "$@"

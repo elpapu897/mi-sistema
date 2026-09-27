@@ -1,0 +1,973 @@
+{
+  "version": 1,
+  "installed": {
+    "honcho": {
+      "source": "official",
+      "identifier": "official/autonomous-ai-agents/honcho",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:c08c7ea06b072a18",
+      "install_path": "autonomous-ai-agents/honcho",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/autonomous-ai-agents/honcho",
+        "bundle_hash": "sha256:c08c7ea06b072a18a095a556baf5d5f622c01bd656cc7703f97ae6fdbf988a2d",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "dangerous",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "hermes_config_mod",
+            "severity": "critical",
+            "category": "persistence",
+            "file": "SKILL.md",
+            "line": 392,
+            "match": "Run `hermes honcho setup`. Ensure `memory.provider: honcho` is in `~/.hermes/config.yaml`.",
+            "description": "references Hermes configuration files directly"
+          }
+        ],
+        "rules": [
+          "hermes_config_mod"
+        ],
+        "scanned_at": "2026-08-15T00:34:06.010128+00:00",
+        "summary": "honcho: dangerous — 1 finding(s) in persistence",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:06.012937+00:00",
+      "updated_at": "2026-08-15T00:34:06.012949+00:00"
+    },
+    "antigravity-cli": {
+      "source": "official",
+      "identifier": "official/autonomous-ai-agents/antigravity-cli",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:7c5c9609254e7d2f",
+      "install_path": "autonomous-ai-agents/antigravity-cli",
+      "files": [
+        "SKILL.md",
+        "references/cli-docs.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/autonomous-ai-agents/antigravity-cli",
+        "bundle_hash": "sha256:7c5c9609254e7d2f077791f1a51340f4ade522ca9459a2fc06b38f8fbd457e90",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "dangerous",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "curl_pipe_shell",
+            "severity": "critical",
+            "category": "supply_chain",
+            "file": "references/cli-docs.md",
+            "line": 9,
+            "match": "- macOS/Linux: `curl -fsSL https://antigravity.google/cli/install.sh | bash`",
+            "description": "curl piped to shell (download-and-execute)"
+          }
+        ],
+        "rules": [
+          "curl_pipe_shell"
+        ],
+        "scanned_at": "2026-08-15T00:34:06.855531+00:00",
+        "summary": "antigravity-cli: dangerous — 1 finding(s) in supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:06.858572+00:00",
+      "updated_at": "2026-08-15T00:34:06.858578+00:00"
+    },
+    "social-media-content-calendar": {
+      "source": "official",
+      "identifier": "official/creative/social-media-content-calendar",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:d970ca59b30cbc82",
+      "install_path": "creative/social-media-content-calendar",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/creative/social-media-content-calendar",
+        "bundle_hash": "sha256:d970ca59b30cbc82220a44a2fd9412de922b916c49c2146df029d62c9e82e476",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-08-15T00:34:07.542959+00:00",
+        "summary": "social-media-content-calendar: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:07.545175+00:00",
+      "updated_at": "2026-08-15T00:34:07.545183+00:00"
+    },
+    "meme-generation": {
+      "source": "official",
+      "identifier": "official/creative/meme-generation",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:34098ad84fa80b76",
+      "install_path": "creative/meme-generation",
+      "files": [
+        "EXAMPLES.md",
+        "SKILL.md",
+        "scripts/generate_meme.py",
+        "scripts/templates.json"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/creative/meme-generation",
+        "bundle_hash": "sha256:34098ad84fa80b76c80b6867dee12fbfa6a27e287c18d36bbcc239ac5328f56c",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-08-15T00:34:08.258132+00:00",
+        "summary": "meme-generation: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:08.261416+00:00",
+      "updated_at": "2026-08-15T00:34:08.261423+00:00"
+    },
+    "baoyu-article-illustrator": {
+      "source": "official",
+      "identifier": "official/creative/baoyu-article-illustrator",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:15694c74d4ec835e",
+      "install_path": "creative/baoyu-article-illustrator",
+      "files": [
+        "PORT_NOTES.md",
+        "SKILL.md",
+        "prompts/system.md",
+        "references/prompt-construction.md",
+        "references/style-presets.md",
+        "references/styles.md",
+        "references/usage.md",
+        "references/workflow.md",
+        "references/palettes/macaron.md",
+        "references/palettes/mono-ink.md",
+        "references/palettes/neon.md",
+        "references/palettes/warm.md",
+        "references/styles/blueprint.md",
+        "references/styles/chalkboard.md",
+        "references/styles/editorial.md",
+        "references/styles/elegant.md",
+        "references/styles/fantasy-animation.md",
+        "references/styles/flat-doodle.md",
+        "references/styles/flat.md",
+        "references/styles/ink-notes.md",
+        "references/styles/intuition-machine.md",
+        "references/styles/minimal.md",
+        "references/styles/nature.md",
+        "references/styles/notion.md",
+        "references/styles/pixel-art.md",
+        "references/styles/playful.md",
+        "references/styles/retro.md",
+        "references/styles/scientific.md",
+        "references/styles/screen-print.md",
+        "references/styles/sketch-notes.md",
+        "references/styles/sketch.md",
+        "references/styles/vector-illustration.md",
+        "references/styles/vintage.md",
+        "references/styles/warm.md",
+        "references/styles/watercolor.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/creative/baoyu-article-illustrator",
+        "bundle_hash": "sha256:15694c74d4ec835eee2f5b4f47e74d56148803376cd54b7dea7d7ac212a32124",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-08-15T00:34:09.064038+00:00",
+        "summary": "baoyu-article-illustrator: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:09.067681+00:00",
+      "updated_at": "2026-08-15T00:34:09.067686+00:00"
+    },
+    "concept-diagrams": {
+      "source": "official",
+      "identifier": "official/creative/concept-diagrams",
+      "trust_level": "builtin",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:bf3682a001fd9095",
+      "install_path": "creative/concept-diagrams",
+      "files": [
+        "SKILL.md",
+        "examples/apartment-floor-plan-conversion.md",
+        "examples/automated-password-reset-flow.md",
+        "examples/autonomous-llm-research-agent-flow.md",
+        "examples/banana-journey-tree-to-smoothie.md",
+        "examples/commercial-aircraft-structure.md",
+        "examples/cpu-ooo-microarchitecture.md",
+        "examples/electricity-grid-flow.md",
+        "examples/feature-film-production-pipeline.md",
+        "examples/hospital-emergency-department-flow.md",
+        "examples/ml-benchmark-grouped-bar-chart.md",
+        "examples/place-order-uml-sequence.md",
+        "examples/smart-city-infrastructure.md",
+        "examples/smartphone-layer-anatomy.md",
+        "examples/sn2-reaction-mechanism.md",
+        "examples/wind-turbine-structure.md",
+        "references/dashboard-patterns.md",
+        "references/infrastructure-patterns.md",
+        "references/physical-shape-cookbook.md",
+        "templates/template.html"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/creative/concept-diagrams",
+        "bundle_hash": "sha256:bf3682a001fd90955cd1034fcf800e05db74d50b698f08cad08dc8c67b3fc543",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "caution",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "html_comment_injection",
+            "severity": "high",
+            "category": "injection",
+            "file": "examples/automated-password-reset-flow.md",
+            "line": 55,
+            "match": "<!-- D1 · Email in system?  diamond: center=(340,200) hw=100 hh=28 -->",
+            "description": "hidden instructions in HTML comments"
+          },
+          {
+            "pattern_id": "html_comment_injection",
+            "severity": "high",
+            "category": "injection",
+            "file": "examples/automated-password-reset-flow.md",
+            "line": 90,
+            "match": "<!-- ── Center Yes branch: system generates & sends token ── -->",
+            "description": "hidden instructions in HTML comments"
+          },
+          {
+            "pattern_id": "uv_run",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "examples/autonomous-llm-research-agent-flow.md",
+            "line": 101,
+            "match": "<text class=\"ts\" x=\"310\" y=\"392\" text-anchor=\"middle\" dominant-baseline=\"central\">uv run train.py (5 min budget)</text>",
+            "description": "uv run (may auto-install unpinned dependencies)"
+          },
+          {
+            "pattern_id": "html_comment_injection",
+            "severity": "high",
+            "category": "injection",
+            "file": "examples/place-order-uml-sequence.md",
+            "line": 79,
+            "match": "<!-- :InventorySystem -->",
+            "description": "hidden instructions in HTML comments"
+          },
+          {
+            "pattern_id": "html_comment_injection",
+            "severity": "high",
+            "category": "injection",
+            "file": "examples/place-order-uml-sequence.md",
+            "line": 96,
+            "match": "<!-- InventorySystem: active from reserveItems → updateStockLevels end -->",
+            "description": "hidden instructions in HTML comments"
+          },
+          {
+            "pattern_id": "html_comment_injection",
+            "severity": "high",
+            "category": "injection",
+            "file": "examples/place-order-uml-sequence.md",
+            "line": 133,
+            "match": "<!-- ⑤ reserveItems(cartItems)  :OrderController → :InventorySystem -->",
+            "description": "hidden instructions in HTML comments"
+          },
+          {
+            "pattern_id": "html_comment_injection",
+            "severity": "high",
+            "category": "injection",
+            "file": "examples/place-order-uml-sequence.md",
+            "line": 137,
+            "match": "<!-- ⑥ « itemsReserved »  :InventorySystem → :OrderController (dashed return) -->",
+            "description": "hidden instructions in HTML comments"
+          },
+          {
+            "pattern_id": "html_comment_injection",
+            "severity": "high",
+            "category": "injection",
+            "file": "examples/place-order-uml-sequence.md",
+            "line": 165,
+            "match": "<!-- ⑨ updateStockLevels()  :OrderController → :InventorySystem -->",
+            "description": "hidden instructions in HTML comments"
+          },
+          {
+            "pattern_id": "html_comment_injection",
+            "severity": "high",
+            "category": "injection",
+            "file": "examples/place-order-uml-sequence.md",
+            "line": 195,
+            "match": "<!-- ⑬ « unavailable »  :InventorySystem → :OrderController (dashed return) -->",
+            "description": "hidden instructions in HTML comments"
+          }
+        ],
+        "rules": [
+          "html_comment_injection",
+          "uv_run"
+        ],
+        "scanned_at": "2026-08-15T00:34:09.967466+00:00",
+        "summary": "concept-diagrams: caution — 9 finding(s) in injection, supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:09.972385+00:00",
+      "updated_at": "2026-08-15T00:34:09.972391+00:00"
+    },
+    "creative-ideation": {
+      "source": "official",
+      "identifier": "official/creative/creative-ideation",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:7fe271b209c35bf2",
+      "install_path": "creative/creative-ideation",
+      "files": [
+        "SKILL.md",
+        "references/anti-slop.md",
+        "references/exercises.md",
+        "references/full-prompt-library.md",
+        "references/heuristics.md",
+        "references/method-catalog.md",
+        "references/methods/affinity-diagrams.md",
+        "references/methods/analogy-and-blending.md",
+        "references/methods/biomimicry.md",
+        "references/methods/chance-and-remix.md",
+        "references/methods/compression-progress.md",
+        "references/methods/creative-discipline.md",
+        "references/methods/defamiliarization.md",
+        "references/methods/derive-and-mapping.md",
+        "references/methods/first-principles.md",
+        "references/methods/jobs-to-be-done.md",
+        "references/methods/lateral-provocations.md",
+        "references/methods/leverage-points.md",
+        "references/methods/oblique-strategies.md",
+        "references/methods/oulipo.md",
+        "references/methods/pataphysics.md",
+        "references/methods/pattern-languages.md",
+        "references/methods/polya.md",
+        "references/methods/premortem-and-inversion.md",
+        "references/methods/scamper.md",
+        "references/methods/story-skeletons.md",
+        "references/methods/triz-principles.md",
+        "references/methods/volume-generation.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/creative/creative-ideation",
+        "bundle_hash": "sha256:7fe271b209c35bf2a87d8d1e490e375894a1d90df7897f9615859cb2f3badb96",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-08-15T00:34:10.873918+00:00",
+        "summary": "creative-ideation: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:10.877733+00:00",
+      "updated_at": "2026-08-15T00:34:10.877745+00:00"
+    },
+    "hyperframes": {
+      "source": "official",
+      "identifier": "official/creative/hyperframes",
+      "trust_level": "builtin",
+      "scan_verdict": "caution",
+      "content_hash": "sha256:720c9303ca2d80d7",
+      "install_path": "creative/hyperframes",
+      "files": [
+        "SKILL.md",
+        "references/cli.md",
+        "references/composition.md",
+        "references/features.md",
+        "references/gsap.md",
+        "references/troubleshooting.md",
+        "references/website-to-video.md",
+        "scripts/setup.sh"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/creative/hyperframes",
+        "bundle_hash": "sha256:720c9303ca2d80d7be72433d76c8983ee0f7fd3a4ab75bef8eb332f132f762c0",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "caution",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "SKILL.md",
+            "line": 65,
+            "match": "2. Installs the `hyperframes` CLI globally (`npm install -g hyperframes@>=0.4.2`).",
+            "description": "npm install without version pinning"
+          },
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "references/cli.md",
+            "line": 3,
+            "match": "Everything runs through `npx hyperframes` (or the globally-installed `hyperframes` after `npm install -g hyperframes`...",
+            "description": "npm install without version pinning"
+          },
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "references/troubleshooting.md",
+            "line": 20,
+            "match": "npm install -g hyperframes@latest",
+            "description": "npm install without version pinning"
+          },
+          {
+            "pattern_id": "sudo_usage",
+            "severity": "high",
+            "category": "privilege_escalation",
+            "file": "references/troubleshooting.md",
+            "line": 61,
+            "match": "| Ubuntu / Debian | `sudo apt-get install -y ffmpeg`    |",
+            "description": "uses sudo (privilege escalation)"
+          },
+          {
+            "pattern_id": "sudo_usage",
+            "severity": "high",
+            "category": "privilege_escalation",
+            "file": "references/troubleshooting.md",
+            "line": 62,
+            "match": "| Fedora / RHEL   | `sudo dnf install -y ffmpeg`        |",
+            "description": "uses sudo (privilege escalation)"
+          },
+          {
+            "pattern_id": "sudo_usage",
+            "severity": "high",
+            "category": "privilege_escalation",
+            "file": "references/troubleshooting.md",
+            "line": 63,
+            "match": "| Arch            | `sudo pacman -S ffmpeg`             |",
+            "description": "uses sudo (privilege escalation)"
+          },
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "scripts/setup.sh",
+            "line": 80,
+            "match": "if ! npm install -g \"hyperframes@latest\" >/dev/null 2>&1; then",
+            "description": "npm install without version pinning"
+          },
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "scripts/setup.sh",
+            "line": 81,
+            "match": "red \"✗ npm install -g hyperframes@latest failed.\"",
+            "description": "npm install without version pinning"
+          },
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "scripts/setup.sh",
+            "line": 82,
+            "match": "echo \"   Try: sudo npm install -g hyperframes@latest\"",
+            "description": "npm install without version pinning"
+          },
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "scripts/setup.sh",
+            "line": 97,
+            "match": "echo \"   Try 'npm install -g hyperframes@latest' or 'sudo npm install -g hyperframes@latest'.\"",
+            "description": "npm install without version pinning"
+          },
+          {
+            "pattern_id": "sudo_usage",
+            "severity": "high",
+            "category": "privilege_escalation",
+            "file": "scripts/setup.sh",
+            "line": 48,
+            "match": "Linux*)   echo \"   sudo apt-get install -y ffmpeg   # Debian/Ubuntu\"",
+            "description": "uses sudo (privilege escalation)"
+          },
+          {
+            "pattern_id": "sudo_usage",
+            "severity": "high",
+            "category": "privilege_escalation",
+            "file": "scripts/setup.sh",
+            "line": 49,
+            "match": "echo \"   sudo dnf install -y ffmpeg       # Fedora/RHEL\";;",
+            "description": "uses sudo (privilege escalation)"
+          },
+          {
+            "pattern_id": "sudo_usage",
+            "severity": "high",
+            "category": "privilege_escalation",
+            "file": "scripts/setup.sh",
+            "line": 82,
+            "match": "echo \"   Try: sudo npm install -g hyperframes@latest\"",
+            "description": "uses sudo (privilege escalation)"
+          },
+          {
+            "pattern_id": "sudo_usage",
+            "severity": "high",
+            "category": "privilege_escalation",
+            "file": "scripts/setup.sh",
+            "line": 97,
+            "match": "echo \"   Try 'npm install -g hyperframes@latest' or 'sudo npm install -g hyperframes@latest'.\"",
+            "description": "uses sudo (privilege escalation)"
+          }
+        ],
+        "rules": [
+          "sudo_usage",
+          "unpinned_npm_install"
+        ],
+        "scanned_at": "2026-08-15T00:34:11.630176+00:00",
+        "summary": "hyperframes: caution — 14 finding(s) in privilege_escalation, supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:11.636473+00:00",
+      "updated_at": "2026-08-15T00:34:11.636504+00:00"
+    },
+    "docker-management": {
+      "source": "official",
+      "identifier": "official/devops/docker-management",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:2929e0dd20148d74",
+      "install_path": "devops/docker-management",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/devops/docker-management",
+        "bundle_hash": "sha256:2929e0dd20148d74851b6cd78aa8eef74a91482c3204dc1fbb382b8d64312dc5",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "dangerous",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "dns_exfil",
+            "severity": "critical",
+            "category": "exfiltration",
+            "file": "SKILL.md",
+            "line": 256,
+            "match": "| Permission denied on volume | UID/GID mismatch host vs container | Use `--user $(id -u):$(id -g)` or fix permissions |",
+            "description": "DNS lookup with variable interpolation (possible DNS exfiltration)"
+          },
+          {
+            "pattern_id": "backtick_subshell",
+            "severity": "medium",
+            "category": "execution",
+            "file": "SKILL.md",
+            "line": 256,
+            "match": "| Permission denied on volume | UID/GID mismatch host vs container | Use `--user $(id -u):$(id -g)` or fix permissions |",
+            "description": "backtick string with command substitution"
+          },
+          {
+            "pattern_id": "docker_pull",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "SKILL.md",
+            "line": 133,
+            "match": "docker pull node:20-alpine",
+            "description": "pulls a Docker image at runtime"
+          },
+          {
+            "pattern_id": "sudo_usage",
+            "severity": "high",
+            "category": "privilege_escalation",
+            "file": "SKILL.md",
+            "line": 32,
+            "match": "- User added to the `docker` group (or use `sudo`)",
+            "description": "uses sudo (privilege escalation)"
+          }
+        ],
+        "rules": [
+          "backtick_subshell",
+          "dns_exfil",
+          "docker_pull",
+          "sudo_usage"
+        ],
+        "scanned_at": "2026-08-15T00:34:16.678787+00:00",
+        "summary": "docker-management: dangerous — 4 finding(s) in execution, exfiltration, privilege_escalation, supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:16.682839+00:00",
+      "updated_at": "2026-08-15T00:34:16.682847+00:00"
+    },
+    "watchers": {
+      "source": "official",
+      "identifier": "official/devops/watchers",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:bb92ebdc4f387bf1",
+      "install_path": "devops/watchers",
+      "files": [
+        "SKILL.md",
+        "scripts/_watermark.py",
+        "scripts/watch_github.py",
+        "scripts/watch_http_json.py",
+        "scripts/watch_rss.py"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/devops/watchers",
+        "bundle_hash": "sha256:bb92ebdc4f387bf140f75a8f2f7140538101ba9574bf5b332d440cac4a44be3b",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "dangerous",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "python_os_environ",
+            "severity": "high",
+            "category": "exfiltration",
+            "file": "scripts/watch_github.py",
+            "line": 118,
+            "match": "token = os.environ.get(\"GITHUB_TOKEN\") or os.environ.get(\"GH_TOKEN\")",
+            "description": "accesses os.environ (potential env dump)"
+          },
+          {
+            "pattern_id": "python_environ_get_secret",
+            "severity": "critical",
+            "category": "exfiltration",
+            "file": "scripts/watch_github.py",
+            "line": 118,
+            "match": "token = os.environ.get(\"GITHUB_TOKEN\") or os.environ.get(\"GH_TOKEN\")",
+            "description": "reads secret via os.environ.get()"
+          }
+        ],
+        "rules": [
+          "python_environ_get_secret",
+          "python_os_environ"
+        ],
+        "scanned_at": "2026-08-15T00:34:17.392984+00:00",
+        "summary": "watchers: dangerous — 2 finding(s) in exfiltration",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:17.396236+00:00",
+      "updated_at": "2026-08-15T00:34:17.396248+00:00"
+    },
+    "pinggy-tunnel": {
+      "source": "official",
+      "identifier": "official/devops/pinggy-tunnel",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:929ec657a84d8dc3",
+      "install_path": "devops/pinggy-tunnel",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/devops/pinggy-tunnel",
+        "bundle_hash": "sha256:929ec657a84d8dc357038ecfdeda45fe65801d16d5698446d0cbb3aee436970d",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "dangerous",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "env_exfil_curl",
+            "severity": "critical",
+            "category": "exfiltration",
+            "file": "SKILL.md",
+            "line": 268,
+            "match": "curl -s \"$URL/api/tags\" -H \"Authorization: Bearer $TOKEN\" | head",
+            "description": "curl command interpolating secret environment variable"
+          },
+          {
+            "pattern_id": "tunnel_service",
+            "severity": "high",
+            "category": "network",
+            "file": "SKILL.md",
+            "line": 25,
+            "match": "- The host has SSH but no `cloudflared` / `ngrok` binary, and installing one would be overkill",
+            "description": "uses tunneling service for external access"
+          },
+          {
+            "pattern_id": "tunnel_service",
+            "severity": "high",
+            "category": "network",
+            "file": "SKILL.md",
+            "line": 27,
+            "match": "If the host already has `cloudflared` configured, prefer the `cloudflared-quick-tunnel` skill — Cloudflare quick tunn...",
+            "description": "uses tunneling service for external access"
+          },
+          {
+            "pattern_id": "tunnel_service",
+            "severity": "high",
+            "category": "network",
+            "file": "SKILL.md",
+            "line": 174,
+            "match": "- **`process(action='log')` may miss SSH banner output.** Pinggy prints the URLs and then the SSH session goes intera...",
+            "description": "uses tunneling service for external access"
+          },
+          {
+            "pattern_id": "hardcoded_ip_port",
+            "severity": "medium",
+            "category": "network",
+            "file": "SKILL.md",
+            "line": 78,
+            "match": "curl -sI http://127.0.0.1:8000/ | head -1",
+            "description": "hardcoded IP address with port"
+          },
+          {
+            "pattern_id": "hardcoded_ip_port",
+            "severity": "medium",
+            "category": "network",
+            "file": "SKILL.md",
+            "line": 255,
+            "match": "# Pre-req: the model server is already running on 127.0.0.1:11434 (Ollama default)",
+            "description": "hardcoded IP address with port"
+          },
+          {
+            "pattern_id": "backtick_subshell",
+            "severity": "medium",
+            "category": "execution",
+            "file": "SKILL.md",
+            "line": 223,
+            "match": "Hand `$URL` to the service that needs to call you. Teardown: `kill $(cat /tmp/webhook-server.pid) $(cat /tmp/webhook-...",
+            "description": "backtick string with command substitution"
+          }
+        ],
+        "rules": [
+          "backtick_subshell",
+          "env_exfil_curl",
+          "hardcoded_ip_port",
+          "tunnel_service"
+        ],
+        "scanned_at": "2026-08-15T00:34:18.063599+00:00",
+        "summary": "pinggy-tunnel: dangerous — 7 finding(s) in execution, exfiltration, network",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:18.067652+00:00",
+      "updated_at": "2026-08-15T00:34:18.067661+00:00"
+    },
+    "mcporter": {
+      "source": "official",
+      "identifier": "official/mcp/mcporter",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:d8960ac556a78c87",
+      "install_path": "mcp/mcporter",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/mcp/mcporter",
+        "bundle_hash": "sha256:d8960ac556a78c873698c6d43c172e41e0e3ef377d0c5fbb82959967af9ab580",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "SKILL.md",
+            "line": 28,
+            "match": "npm install -g mcporter",
+            "description": "npm install without version pinning"
+          }
+        ],
+        "rules": [
+          "unpinned_npm_install"
+        ],
+        "scanned_at": "2026-08-15T00:34:18.773286+00:00",
+        "summary": "mcporter: safe — 1 finding(s) in supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:18.775745+00:00",
+      "updated_at": "2026-08-15T00:34:18.775750+00:00"
+    },
+    "agentmail": {
+      "source": "official",
+      "identifier": "official/email/agentmail",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:8b1766faf804f4e3",
+      "install_path": "email/agentmail",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/email/agentmail",
+        "bundle_hash": "sha256:8b1766faf804f4e3a7cca8d687c6e499ef8640a0f415e63c3b4a0e91daae2468",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "dangerous",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "unpinned_pip_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "SKILL.md",
+            "line": 114,
+            "match": "- The `mcp` Python package must be installed: `pip install mcp`",
+            "description": "pip install without version pinning"
+          },
+          {
+            "pattern_id": "hermes_config_mod",
+            "severity": "critical",
+            "category": "persistence",
+            "file": "SKILL.md",
+            "line": 40,
+            "match": "Add to `~/.hermes/config.yaml` (paste your actual key — MCP env vars are not expanded from .env):",
+            "description": "references Hermes configuration files directly"
+          }
+        ],
+        "rules": [
+          "hermes_config_mod",
+          "unpinned_pip_install"
+        ],
+        "scanned_at": "2026-08-15T00:34:19.461884+00:00",
+        "summary": "agentmail: dangerous — 2 finding(s) in persistence, supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:19.464960+00:00",
+      "updated_at": "2026-08-15T00:34:19.464968+00:00"
+    },
+    "excel-author": {
+      "source": "official",
+      "identifier": "official/finance/excel-author",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:30cee3a68b238dcf",
+      "install_path": "finance/excel-author",
+      "files": [
+        "SKILL.md",
+        "scripts/recalc.py"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/finance/excel-author",
+        "bundle_hash": "sha256:30cee3a68b238dcf80dadb55ed2bb5e77ea4b346e45c27318f5af90b8f6a3359",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "unpinned_pip_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "SKILL.md",
+            "line": 29,
+            "match": "pip install \"openpyxl>=3.0\"",
+            "description": "pip install without version pinning"
+          },
+          {
+            "pattern_id": "python_subprocess",
+            "severity": "medium",
+            "category": "execution",
+            "file": "scripts/recalc.py",
+            "line": 45,
+            "match": "subprocess.run(",
+            "description": "Python subprocess execution"
+          }
+        ],
+        "rules": [
+          "python_subprocess",
+          "unpinned_pip_install"
+        ],
+        "scanned_at": "2026-08-15T00:34:20.142417+00:00",
+        "summary": "excel-author: safe — 2 finding(s) in execution, supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:20.145476+00:00",
+      "updated_at": "2026-08-15T00:34:20.145490+00:00"
+    },
+    "pptx-author": {
+      "source": "official",
+      "identifier": "official/finance/pptx-author",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:98d1209fec491e25",
+      "install_path": "finance/pptx-author",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/finance/pptx-author",
+        "bundle_hash": "sha256:98d1209fec491e25f3c38e635af711442dafa50ab23b3f1d3f2055724f907ecd",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "unpinned_pip_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "SKILL.md",
+            "line": 30,
+            "match": "pip install \"python-pptx>=0.6\"",
+            "description": "pip install without version pinning"
+          }
+        ],
+        "rules": [
+          "unpinned_pip_install"
+        ],
+        "scanned_at": "2026-08-15T00:34:20.835944+00:00",
+        "summary": "pptx-author: safe — 1 finding(s) in supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:20.838549+00:00",
+      "updated_at": "2026-08-15T00:34:20.838554+00:00"
+    },
+    "one-three-one-rule": {
+      "source": "official",
+      "identifier": "official/communication/one-three-one-rule",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:80f778d3807756ca",
+      "install_path": "communication/one-three-one-rule",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "source": "official",
+        "source_url": "official/communication/one-three-one-rule",
+        "bundle_hash": "sha256:80f778d3807756caca8106516087ddcb6a71ec7d5be63d5622bf1d9f9b9626c2",
+        "scanner_version": "skills-guard-v1",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-08-15T00:34:21.514365+00:00",
+        "summary": "one-three-one-rule: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-08-15T00:34:21.516770+00:00",
+      "updated_at": "2026-08-15T00:34:21.516774+00:00"
+    }
+  }
+}

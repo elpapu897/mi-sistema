@@ -1,0 +1,21 @@
+{
+  "projectRoot": "/home/matiigonzz/g",
+  "generatedAtMs": 1786738250027,
+  "currentSuggestionIds": [
+    "caaa01ef-2033-4076-a7d4-d5ae0f8637a1"
+  ],
+  "suggestions": [
+    {
+      "id": "caaa01ef-2033-4076-a7d4-d5ae0f8637a1",
+      "title": "Prepare Amazonía Viva for public sharing beyond its owner-only preview",
+      "description": "The site went live yesterday but is still limited to its owner, with no external visitors. Make the Spanish experience ready to share, add a clear next step for visitors, and publish it with public access.",
+      "prompt": "Prepare the Amazonía Viva site for a public launch: keep the current visual direction, add a clear visitor-facing next step, verify metadata and sharing preview, then publish it with public access.",
+      "appIds": [
+        "connector_20205bf7d4e99a89d7154bb849718324"
+      ],
+      "status": "pending",
+      "createdAtMs": 1786738250027,
+      "updatedAtMs": 1786738250027
+    }
+  ]
+}

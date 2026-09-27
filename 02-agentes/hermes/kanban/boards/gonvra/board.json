@@ -1,0 +1,11 @@
+{
+  "slug": "gonvra",
+  "name": "GONVRA Mission Control",
+  "description": "Ventas, conversión y operación de la tienda GONVRA. Todo medido en pesos; gasto y publicaciones bloqueados sin SEMÁFORO.",
+  "icon": "🐾",
+  "color": "#16a34a",
+  "default_workdir": "/home/matiigonzz/Claude/gonvra2",
+  "project_id": null,
+  "created_at": 1786940235,
+  "archived": false
+}

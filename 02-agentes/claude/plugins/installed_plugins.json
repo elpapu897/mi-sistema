@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "plugins": {
+    "ui-ux-pro-max@local-desktop-app-uploads": [
+      {
+        "scope": "user",
+        "installPath": "/home/matiigonzz/.claude/plugins/marketplaces/local-desktop-app-uploads/ui-ux-pro-max",
+        "version": "2.13.0",
+        "installedAt": "2026-08-09T07:02:48.506Z",
+        "lastUpdated": "2026-08-09T07:02:48.506Z"
+      }
+    ],
+    "watch@local-desktop-app-uploads": [
+      {
+        "scope": "user",
+        "installPath": "/home/matiigonzz/.claude/plugins/marketplaces/local-desktop-app-uploads/watch",
+        "version": "0.2.0",
+        "installedAt": "2026-08-10T02:15:00.498Z",
+        "lastUpdated": "2026-08-10T02:15:00.498Z"
+      }
+    ],
+    "agent-skills@addy-agent-skills": [
+      {
+        "scope": "user",
+        "installPath": "/home/matiigonzz/.claude/plugins/cache/addy-agent-skills/agent-skills/0.6.8",
+        "version": "0.6.8",
+        "installedAt": "2026-09-05T03:23:31.062Z",
+        "lastUpdated": "2026-09-05T03:23:31.062Z",
+        "gitCommitSha": "858c1aea8077a5694b3007b4ac3bfb0c7aa47ac6"
+      }
+    ],
+    "superpowers@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/matiigonzz/.claude/plugins/cache/claude-plugins-official/superpowers/6.4.1",
+        "version": "6.4.1",
+        "installedAt": "2026-09-25T02:27:15.471Z",
+        "lastUpdated": "2026-09-25T02:27:15.471Z",
+        "gitCommitSha": "5bf4e78011075bcfc0dc295f0724994cd123ee71"
+      }
+    ]
+  }
+}

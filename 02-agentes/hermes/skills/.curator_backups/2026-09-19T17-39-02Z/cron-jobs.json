@@ -1,0 +1,91 @@
+{
+  "jobs": [
+    {
+      "id": "2e1a2719befe",
+      "name": "GONVRA2 — JEFE — resumen único 21 ART",
+      "prompt": "Sos JEFE de GONVRA. Primero leé /home/matiigonzz/.hermes/profiles/gonvra-jefe/SOUL.md y /home/matiigonzz/Claude/gonvra2/CONTEXTO.md (reemplaza mascotas). Esta tarea es el ÚNICO resumen diario autorizado por Matías, a las 21:00 Argentina. Leé solo entregables recientes de los 15 agentes activos en gonvra2 y estado real del Kanban gonvra; no reaudites sitio, checkout ni píxel. Guardá /home/matiigonzz/Claude/gonvra2/jefe/AAAA-MM-DD.md usando fecha Argentina real. Entregá en respuesta FINAL un resumen rioplatense de máximo 350 palabras: qué está listo para atraer tráfico/conversión, tres prioridades con responsable, aprobaciones pendientes y bloqueos reales. Si algo es parcial decilo; no inventar métricas, stock ni ventas. Si no hubo actividad decirlo sin reciclar auditorías antiguas. Las cero ventas de tienda nueva no son bug. Sin gasto/publicación/mensajes comerciales/cambios Shopify o Meta, no activar otros agentes ni crear cron. La respuesta final se entrega automáticamente por Telegram: NO enviar mensajes por herramientas ni duplicar avisos. Campañas solo borradores EN PAUSA; cualquier ejecución comercial requiere SEMÁFORO y revalidación. En días sin novedades igualmente un solo resumen breve. Este cron asume rol JEFE en el gateway compartido, no inicia otro gateway.",
+      "skills": [],
+      "skill": null,
+      "model": "gpt-5.6-sol",
+      "provider": "openai-codex",
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * *",
+        "display": "0 21 * * *"
+      },
+      "schedule_display": "0 21 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 5
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-09-14T01:03:14.938039-03:00",
+      "next_run_at": "2026-09-19T21:00:00-03:00",
+      "last_run_at": "2026-09-18T21:03:45.742706-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram:7697535044",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": "/home/matiigonzz/Claude/gonvra2",
+      "fire_claim": null
+    },
+    {
+      "id": "6788a266bc83",
+      "name": "GONVRA2 — aviso único cuatro entregables",
+      "prompt": "Aviso interno autorizado al finalizar los cuatro entregables. Silencio hasta archivos verificados y tarjetas done; una emisión, sin modelo ni gasto comercial.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": "gonvra2_aviso_fase1.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 5,
+        "display": "every 5m"
+      },
+      "schedule_display": "every 5m",
+      "repeat": {
+        "times": null,
+        "completed": 165
+      },
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-09-18T00:10:38.817012-03:00",
+      "paused_reason": null,
+      "created_at": "2026-09-14T01:05:11.634209-03:00",
+      "next_run_at": "2026-09-18T00:12:25.264679-03:00",
+      "last_run_at": "2026-09-18T00:07:25.264679-03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "telegram:7697535044",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-09-18T21:03:45.743562-03:00"
+}

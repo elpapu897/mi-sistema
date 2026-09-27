@@ -1,0 +1,6 @@
+{
+  "enableWorkflows": true,
+  "effortLevel": "medium",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark"
+}

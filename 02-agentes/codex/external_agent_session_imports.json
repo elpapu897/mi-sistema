@@ -1,0 +1,928 @@
+{
+  "records": [
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-edicion-de-videos/2ed10f2f-b03c-496c-8f9b-fe9d43dbb027.jsonl",
+      "content_sha256": "1dace2f57ab01b1fc4217b6b9d9244c4ce3098db88c7c1b0ca0152f26994e57c",
+      "imported_thread_id": "019ff95d-4f1d-76a2-9b79-d8d41b22d5ae",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786586149500845262,
+      "connector_names": [],
+      "title": "Remotion skills setup"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/7b08f2d6-703a-4697-9855-868cbf3fd50f.jsonl",
+      "content_sha256": "8c18ee86cc37b7dad81f4bd285274eeee6ec91da0dfddb6cdb5a8ae18990b631",
+      "imported_thread_id": "019ff95d-4f23-7573-b12b-5c47353547cf",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786514589483453856,
+      "connector_names": [],
+      "title": "Juegos compatibles con mi PC"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/321ce896-f70e-4a62-b025-6356d052c343.jsonl",
+      "content_sha256": "b57a1e88af6b3a633f1b5ff25a13aa3a5fbd6f4140aec8fbb66d3a687d38fbe7",
+      "imported_thread_id": "019ff95d-4ec0-70a0-8ac2-71c367496d31",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786592486053739783,
+      "connector_names": [],
+      "title": "Instales este repositorio de Hitgub https://github.com/ilysenko/codex-desktop-linux"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/92969413-8936-4a51-a24e-4acbadcaf337.jsonl",
+      "content_sha256": "12c62bec124b1cccab56cd284519b76b66a57b156bd56afecb42d98ee48528af",
+      "imported_thread_id": "019ff95d-4f29-79a1-bb3b-08daa0a7e1fd",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786514589480453903,
+      "connector_names": [],
+      "title": "LA DIEZ minijuegos"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/d322e789-8fc6-4412-a246-602df0cddc83.jsonl",
+      "content_sha256": "4df485efcf8963cd9c43877a29b241bdc8d0316becd5e773006f005e1d63fa43",
+      "imported_thread_id": "019ff95d-4ee6-7b62-a3c7-e9c434911d8a",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786594054377154595,
+      "connector_names": [],
+      "title": "Página del Amazonas"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/e6b44d67-82d6-4e96-b05c-d767282007bc.jsonl",
+      "content_sha256": "3f9c959b0950c60a9de31d96ef174600cc070d4bd993a79fa46e92a89d3d4c2f",
+      "imported_thread_id": "019ff95d-4efe-7b92-ba95-cb425f1ebe63",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786592568959386898,
+      "connector_names": [],
+      "title": "LA DIEZ minijuegos"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz/25623e3c-738d-4e3e-ad47-16a9acfb8b33.jsonl",
+      "content_sha256": "42653a5fce44e66355e1ff7598a7799ce89cdfb75590b1fe9bfc6def1711d0ea",
+      "imported_thread_id": "019ff95d-4f4e-70e0-bbfb-becaab716eef",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786415072608605417,
+      "connector_names": [],
+      "title": "hola"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/c74671df-a02b-4083-913d-b234d11bc48f.jsonl",
+      "content_sha256": "1de8c0d5056681c6beceb50fd4f052b4cd47db2e232bd46e4adee67472936b23",
+      "imported_thread_id": "019ff95d-4f52-79e1-b14c-3f69880dfc87",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786489755286000013,
+      "connector_names": [
+        "Facebook",
+        "Shopify"
+      ],
+      "title": "Estructura de creativos Meta Ads"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/130f384c-f056-4cc3-84ea-c0f9224b291f.jsonl",
+      "content_sha256": "e76a99bb4672f84a51e69feccd2813f958c0bef247e9aa4a7988144a1b0e177b",
+      "imported_thread_id": "019ff95d-4fc9-7cb2-afd4-66119b799931",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786324306875999927,
+      "connector_names": [
+        "Canva",
+        "Facebook",
+        "Shopify"
+      ],
+      "title": "Campaña de ads Meta para gonvra.com"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/dc248cbe-6e3b-4db1-a395-51f579ffdd50.jsonl",
+      "content_sha256": "ae86ae692f7de045976441108c6689a46343d13e9fe477de52cecb3e2bbd45be",
+      "imported_thread_id": "019ff95d-5033-7632-aaa6-12f28070b5bd",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786304990202071369,
+      "connector_names": [],
+      "title": "Nano Banana plugin"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/f9a6bf61-c163-4487-9e0a-1def148956a7.jsonl",
+      "content_sha256": "dec304d4c96d19f0fdab7617bda00d954ac31e518dd7c0ec7f1277da55cf2400",
+      "imported_thread_id": "019ff95d-5012-7ce1-9a74-10765023ae7e",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786493027962680214,
+      "connector_names": [],
+      "title": "LA DIEZ — Contexto del proyecto"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/d34cdcf7-6b5e-4a1f-b8fb-ddc7834d80aa.jsonl",
+      "content_sha256": "a4f1f6e7555f1c3437cb78f2c33a7084b8b110974882b8caf412636f90713c32",
+      "imported_thread_id": "019ff95d-5059-76e3-a2cc-0fb378efc13e",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786303992309000015,
+      "connector_names": [],
+      "title": "Antigravity idioma y fondo"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/b9e266f4-e34e-4dbc-8d19-acdb6be64165.jsonl",
+      "content_sha256": "c691c3fab5d9d73a62a1e831fad21573d031247155c637295226fbc934fad4cc",
+      "imported_thread_id": "019ff95d-5073-7cb2-a1d2-353bfd2e4326",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786260107505785203,
+      "connector_names": [],
+      "title": "Te"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/5317f625-02fd-4a57-a1ea-bcf7f98e7685.jsonl",
+      "content_sha256": "f220fbf0368409a5cc85c54041ac5f4893c3e3e1a195d63d7dd2e93f12ed3f50",
+      "imported_thread_id": "019ff95d-5074-7cf3-9174-35808fad5322",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786299775284640213,
+      "connector_names": [],
+      "title": "Página sobre la Antártida"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/dd4bc7cc-3cf7-45bf-bb64-3afc032fd843.jsonl",
+      "content_sha256": "981ead58a2f04ac7427fe06b559e7e5a76f6a3b5835071c2e2be39b782504419",
+      "imported_thread_id": "019ff95d-5068-79c3-9a5c-4891abf0e192",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786304085278000116,
+      "connector_names": [
+        "Shopify"
+      ],
+      "title": "Logo Mercado Pago en Shopify"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/cdd927a8-5e04-4565-a61c-8eaa36a47dc3.jsonl",
+      "content_sha256": "b027c7eb9cb12ef4263c4bb8d4b0b2293efa71b6c675bb5449d8636c76e1f6a0",
+      "imported_thread_id": "019ff95d-508f-7830-a5c6-595934e17bed",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785910127841854950,
+      "connector_names": [],
+      "title": "Abrir Ollama y Kimi K2.7 en terminal"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/922ca8f0-2501-476a-adbc-07f53e36696a.jsonl",
+      "content_sha256": "854636ae1cb18f36ed923c8fce9cb56bebade3cd3efb4b29f8a740498df99271",
+      "imported_thread_id": "019ff95d-50a2-7ce1-a3b6-54455bc5e2f6",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785904913722584819,
+      "connector_names": [],
+      "title": "Juego de carrera futbolística"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/4339848f-8395-43f8-a643-6ccc67e09a6f.jsonl",
+      "content_sha256": "7fb64f2665e72e3dbee8ade0b99eb757710a22b4bf0970b3fde873648242467d",
+      "imported_thread_id": "019ff95d-50b7-78b1-80c0-e9765be70e9d",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785903413585226689,
+      "connector_names": [],
+      "title": "GitHub access help"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/894a10e3-df21-4c2c-8c13-05634b42c4b9.jsonl",
+      "content_sha256": "72b22e2d9778f83ca4988bd9f2bd83056f091f6337b4362d21d97b9a4e05a5b8",
+      "imported_thread_id": "019ff95d-50cb-7b02-b5c7-03232f934f4b",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785903412687242038,
+      "connector_names": [],
+      "title": "Juego 2D de disparos en canvas"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/1ce604af-379a-4301-a1a0-5bc009d98ea6.jsonl",
+      "content_sha256": "4ed8d3f2dccaddf407bedfa21b98f0073cb965821ee9442af775bd04d7fcf595",
+      "imported_thread_id": "019ff95d-50e2-7412-bd6e-3dc4068b3767",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785902541212155562,
+      "connector_names": [],
+      "title": "Juego tipo Fortnite web"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz/80bb80cd-6451-4216-8e37-363ea38f7c99.jsonl",
+      "content_sha256": "ccdc13bcca2069ec0e494dbe002108d2de96851b4a5d869c2a8c265b19fc3ce7",
+      "imported_thread_id": "019ff95d-50e7-7761-8c99-477027d2ae06",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785902316975001339,
+      "connector_names": [],
+      "title": "Conectar API key de Google en Claude Code"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz/f5edbafd-1f6c-4e63-8f6f-a32711fe8b14.jsonl",
+      "content_sha256": "fcbadf7cb8a9b7e8214ce9e0f31df453710fa1e4392a059ef1fe9cb22a7ff3a3",
+      "imported_thread_id": "019ff95d-50fb-7a01-9502-dc46e31bab47",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785891475114341081,
+      "connector_names": [],
+      "title": "hola"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz/777616cb-ba68-471c-9de4-bcfca3f1b0cc.jsonl",
+      "content_sha256": "f577049544289b75ccec2e1d21290f23185bf3c14b8cd48d2a81aa48ed4aa2a1",
+      "imported_thread_id": "019ff95d-50fe-7b63-a214-da43cd130411",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785889782360805334,
+      "connector_names": [],
+      "title": "hola"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/4504473e-bbff-45b1-b209-71f46b0cb272.jsonl",
+      "content_sha256": "fd440cb64171d014c10808db96a8ac4f6660fd55626ed2d4fab5edcc531ef557",
+      "imported_thread_id": "019ff95d-5113-74a1-9d29-a517aa16ee24",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785814758074383112,
+      "connector_names": [],
+      "title": "Juego tipo Fortnite web"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/f574ce93-bf18-4392-94c9-470147c7fd26.jsonl",
+      "content_sha256": "6d4f2e119d05295051268fb1f72275b9b575c13bf18bd914fc2f5f12c81e41f8",
+      "imported_thread_id": "019ff95d-50ed-7641-88c4-135c4b497b16",
+      "imported_at": 1786595070,
+      "source_modified_at": 1786311145645999908,
+      "connector_names": [
+        "Shopify"
+      ],
+      "title": "Shopify store review y cambios"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/0efaf42f-88c0-4564-a197-a8f3ff651d93.jsonl",
+      "content_sha256": "cc90a599ed8317db5892851c601b6d5e0ff09891025d6206da641123278a2e32",
+      "imported_thread_id": "019ff95d-512c-72f3-bcce-3de6af4e789f",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785390976086006393,
+      "connector_names": [],
+      "title": "Forjabot init setup"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/0ff15e9d-ee82-48d1-a5f2-da538d08de3c.jsonl",
+      "content_sha256": "d88ed6b91c1e6896a5231d230cc37884f69d980e4fddb40426d1a358116cd098",
+      "imported_thread_id": "019ff95d-5122-72b3-90ba-4e1f44c9de13",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785654904100540743,
+      "connector_names": [],
+      "title": "Campaña de ads Meta para gonvra.com"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/757940f9-30bc-4b9b-b1ec-d2b43de4d8da.jsonl",
+      "content_sha256": "482d731532fc3b96bac8ccb416c8d55dd7180b077f049361e6fb69c9f006511f",
+      "imported_thread_id": "019ff95d-5136-7032-8350-c6c8b911f90a",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785206208508304312,
+      "connector_names": [],
+      "title": "Descargar Fortnite en Linux"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/42ba4f00-6d86-41e8-a4a4-e4a017686605.jsonl",
+      "content_sha256": "0e6583d6941e0cbca767b5abdadb0baa57bbd2e0a304157570624fb4172e49dc",
+      "imported_thread_id": "019ff95d-5139-7451-817a-2289ab8c6e34",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785117641151909719,
+      "connector_names": [],
+      "title": "Instalar WhatsApp en ordenador"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/f60cb16d-aa11-4177-9649-f62a5f219cf4.jsonl",
+      "content_sha256": "59334068c7b2582d59a9d617e24a46634e82d88686074f7f3c7048267f4c29d8",
+      "imported_thread_id": "019ff95d-513c-73a0-a05f-28f386820773",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785386323730540265,
+      "connector_names": [],
+      "title": "Campaña de ads Meta para gonvra.com"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/7a2c3d61-65dc-4f17-a929-0c97d845030b.jsonl",
+      "content_sha256": "69cf7fb7521f872446d49105c9f9965b45475ba245cb772436e5132ec5f0bf73",
+      "imported_thread_id": "019ff95d-511a-7993-812f-e672f1ba7794",
+      "imported_at": 1786595070,
+      "source_modified_at": 1785993556455014665,
+      "connector_names": [],
+      "title": "Crear juego de carrera futbolística con minijuegos"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/d0eaffa2-0e55-4fec-a62e-acf2661db972.jsonl",
+      "content_sha256": "15c9beca325f382c15104210624f92d225d9f5de3fe771e2e74bf85e1573d898",
+      "imported_thread_id": "019ff95d-501e-7e02-a9c4-485e72b492b4",
+      "imported_at": 1786669413,
+      "source_modified_at": 1786641529424000000,
+      "connector_names": [],
+      "title": "LA DIEZ — Contexto del proyecto"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/61abb17d-ceae-4302-9603-5141d68611b1.jsonl",
+      "content_sha256": "8f49158023b36f5287114d3787a0b3c0bfd4bdc5387ff786a5f80514e2a7f67e",
+      "imported_thread_id": "019ff95d-5143-7950-b747-254809c93af4",
+      "imported_at": 1786675073,
+      "source_modified_at": 1786669434614000082,
+      "connector_names": [],
+      "title": "Crear juego de carrera futbolística con minijuegos"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz--openclaw-crestodian-workspace/0463888e-b981-461e-a03d-78e825951383.jsonl",
+      "content_sha256": "a9666df794ad45b38cd7ccd15569bc8794a25bbc5ebf029ea5c82d3ebd5e3832",
+      "imported_thread_id": "019ffe22-189f-7dc2-8588-3467175a67f3",
+      "imported_at": 1786675075,
+      "source_modified_at": 1786674972127332590,
+      "connector_names": [],
+      "title": "hola"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/4189a463-143b-43e9-94d5-72506e204630.jsonl",
+      "content_sha256": "5e8330f412835cc950df784f34f65987d0c8048750bbcec5a64f440c8c53c3b1",
+      "imported_thread_id": "019ffe22-18b8-7673-b1ca-34c0242c1ea8",
+      "imported_at": 1786738185,
+      "source_modified_at": 1786680597039093616,
+      "connector_names": [],
+      "title": "Curso en ordenador"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz--openclaw-workspace/e9dc85f0-956c-408e-9faf-95b83871e83e.jsonl",
+      "content_sha256": "a49a89d1cb731f9726b0a021081b583df61c67a9bdc924dbafa9c5db130c81c4",
+      "imported_thread_id": "01a001e5-15f6-7cb1-95bb-424c5f828d73",
+      "imported_at": 1786738186,
+      "source_modified_at": 1786677268630411452,
+      "connector_names": [],
+      "title": "What can you do?"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/59862ea3-0e31-46de-b3a1-5133be859146.jsonl",
+      "content_sha256": "1addba5dafb2139d64fc46aafc1872248711f187c74602b915c5e7f12218617b",
+      "imported_thread_id": "01a00334-e7fd-7463-8668-88c9e38e4778",
+      "imported_at": 1786760195,
+      "source_modified_at": 1786751912858022778,
+      "connector_names": [],
+      "title": "Instalar skill en modelos IA"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/e918458a-fd03-497e-a1bb-ffb7095f79d2.jsonl",
+      "content_sha256": "f89d44cfa2a92ab4f8dc62a02b2e457eba0e602117b11d0aba3e8ce89f18e641",
+      "imported_thread_id": "01a00334-e810-7802-b3e0-5b022bb94567",
+      "imported_at": 1786760195,
+      "source_modified_at": 1786747764537316395,
+      "connector_names": [],
+      "title": "Optimización del ordenador"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/07cd199c-3551-427d-9c01-0985d7a0452e.jsonl",
+      "content_sha256": "79f25dfb38e4e9dbc74424de98b1961f24b8f23861d97196babff88c3c4a38c7",
+      "imported_thread_id": "01a00334-e816-73f0-b656-5b60f01133fd",
+      "imported_at": 1786760195,
+      "source_modified_at": 1786750049198013482,
+      "connector_names": [],
+      "title": "Descargar Ollama con interfaz"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/4cf9aef8-4ad4-438d-ae34-b7f3b7e916c8.jsonl",
+      "content_sha256": "9d85fda7558a3df48a20ff31db7e88a9b7788c613f5b204f2d7e44117834d326",
+      "imported_thread_id": "01a00e1b-1380-78c1-88ac-ae6c331988c0",
+      "imported_at": 1786943055,
+      "source_modified_at": 1786943007057835258,
+      "connector_names": [],
+      "title": "Hola"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/d09d9c7c-b372-410f-bd4d-dc062833f635.jsonl",
+      "content_sha256": "63e9ee994896f3bda04f65110537e31791d5e2ebaecee9ccb027b5e9f85af8fc",
+      "imported_thread_id": "01a00e1b-13c1-7b61-9ec9-3395390b182b",
+      "imported_at": 1786943055,
+      "source_modified_at": 1786942981378362668,
+      "connector_names": [],
+      "title": "Equipo de expertos con IA para Shopify"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/2b6568b1-1ec9-4789-b366-6ba1e0fb2df8.jsonl",
+      "content_sha256": "01fba2cba32686c6485520f5e6301484652f3376fc943f8c333ce4246583fcec",
+      "imported_thread_id": "019ff95d-5006-7731-aa05-b8bfbd91358e",
+      "imported_at": 1787282286,
+      "source_modified_at": 1787104771532999992,
+      "connector_names": [
+        "Facebook",
+        "Shopify"
+      ],
+      "title": "GONVRA tienda: cambios en vivo"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/5035c088-c2d9-4608-81d1-ee2d21015060.jsonl",
+      "content_sha256": "3a38654e1bfbac8d9bdd56ea9960c76e6e4033c350595feb11b4ccdb189d73ce",
+      "imported_thread_id": "019ff95d-50a8-7bf3-ad3f-18f24049bcc5",
+      "imported_at": 1787282286,
+      "source_modified_at": 1787104770986999988,
+      "connector_names": [],
+      "title": "Juego tipo Fortnite web"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/cf467c4d-d9db-4371-9ac0-e9e0cfe90580.jsonl",
+      "content_sha256": "89c559710b532bd938237951029e2a62389f5cb4e0aab0391bbf1b4a52031164",
+      "imported_thread_id": "019ff95d-5030-7972-973d-4c501b3412f2",
+      "imported_at": 1787282286,
+      "source_modified_at": 1787104769581000089,
+      "connector_names": [],
+      "title": "Anuncio producto Higgsfield"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/079c150c-a26d-4f7c-9123-37de46e4b33c.jsonl",
+      "content_sha256": "f2b1d6f8d1d67d8e17a50366ad737fa33fd920d10133bad62dc0b0a3d82daad3",
+      "imported_thread_id": "019ff95d-5063-7551-bb9e-2e08409029b4",
+      "imported_at": 1787282286,
+      "source_modified_at": 1787104768947999954,
+      "connector_names": [],
+      "title": "Desinstalar aplicaciones Codex y Whatsie"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/e5dd7861-f1a3-4368-8f3f-08bd71e1c3af.jsonl",
+      "content_sha256": "ef22139a7d00e0e9bd6dcda69fd2846667b88b77e77be93f2a6a5138cd519869",
+      "imported_thread_id": "019ff95d-500d-7753-a3f1-691248952cf4",
+      "imported_at": 1787282286,
+      "source_modified_at": 1787104768030999898,
+      "connector_names": [],
+      "title": "Generación automática de imágenes en páginas"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/91912b4c-9c1e-498e-bdca-ba2c89ff2b58.jsonl",
+      "content_sha256": "7441c9a007435122f554ae6260ea80325eaaece2af5a2036d7176c12760ebfa6",
+      "imported_thread_id": "019ff95d-4f70-7c93-86d7-aca177c92476",
+      "imported_at": 1787282286,
+      "source_modified_at": 1787104758933000087,
+      "connector_names": [],
+      "title": "Personalización PC estilo macOS"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/97674266-d340-470d-a17c-6510757d7f7f.jsonl",
+      "content_sha256": "1376685e18856c76eb4b2ca3ad67d3882e71921af059009e26b05b4b35a3f3d3",
+      "imported_thread_id": "019ff95d-4f6d-7390-816d-082dcc878b48",
+      "imported_at": 1787282286,
+      "source_modified_at": 1787104712049000000,
+      "connector_names": [],
+      "title": "YouTube Shorts nicho strategy"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/6466d08d-e9ba-46c5-93db-f8189346d06d.jsonl",
+      "content_sha256": "7923b882b894cec48e4fe929825748c28e559b34150f79ed58dfd529544474e5",
+      "imported_thread_id": "019ff95d-4f6a-7800-aa10-9f0840519f80",
+      "imported_at": 1787282286,
+      "source_modified_at": 1787104709089999914,
+      "connector_names": [],
+      "title": "Instalar skill Claude Video"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/6c26e0de-6497-40fd-b7ae-c3e39d0133d6.jsonl",
+      "content_sha256": "5a42cdfd591dbe9f61e7782d7cf264d429d78fa8a81180138b0419380edc2d3a",
+      "imported_thread_id": "01a02253-736d-7a70-b94d-8bced23112c2",
+      "imported_at": 1789092070,
+      "source_modified_at": 1789018876756910166,
+      "connector_names": [],
+      "title": "Equipo de expertos con IA para Shopify"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/e631c4c3-5a77-4ff3-8b2c-fbb9b066dc4a.jsonl",
+      "content_sha256": "1340a46fb637acab9986c420f2d9edd7c3c34f5fa3de06ac3617b37e7ed1d8a3",
+      "imported_thread_id": "019ff95d-4f2b-7ae0-a889-4163cce2dc2b",
+      "imported_at": 1787522684,
+      "source_modified_at": 1787511407855000019,
+      "connector_names": [],
+      "title": "Instalar pinguclean"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/17415453-8bcc-4651-887f-f06a84de69d0.jsonl",
+      "content_sha256": "a8e48abbfc702ded01c8ef755bf2a7e3589dc22fabbe18a1955749a7a4a05cbf",
+      "imported_thread_id": "01a00334-e842-7e82-8c43-63bc61dc660f",
+      "imported_at": 1787522684,
+      "source_modified_at": 1787511319167000055,
+      "connector_names": [],
+      "title": "Hermes vs OpenClaw"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/a3f94bdf-fd00-46d9-b4f5-7a8e1ac8a2b9.jsonl",
+      "content_sha256": "f67332cf95728bbf646a531442303679ce0cdf1c76cf1615cc14bdffa6d00ed1",
+      "imported_thread_id": "01a030a7-a022-7521-8337-4aa8d088f715",
+      "imported_at": 1787541788,
+      "source_modified_at": 1787523932977768157,
+      "connector_names": [],
+      "title": "Productos rentables AutoDS salud/belleza"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/4e6cbf44-f034-4ace-b6de-3004ad10d9a6.jsonl",
+      "content_sha256": "d5d30e5875c65e9a451930310ef24aefbcafc2e2dcb54a7629460d4ac337deb3",
+      "imported_thread_id": "01a030a7-a027-7de1-84d1-fd85090104a9",
+      "imported_at": 1787522690,
+      "source_modified_at": 1787522107714256504,
+      "connector_names": [],
+      "title": "Productos rentables AutoDS salud/belleza"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/eeb96bc8-eda8-43f0-aa29-57849a322181.jsonl",
+      "content_sha256": "6a20ca9b17ea4fa9d19206570bf53b65ae01fbcba1a3f7afede2d529e015149d",
+      "imported_thread_id": "019ff95d-4eb8-74c1-907b-9c368366697a",
+      "imported_at": 1787541785,
+      "source_modified_at": 1787532233832000017,
+      "connector_names": [],
+      "title": "Instales este repositorio de Hitgub https://github.com/ilysenko/codex-desktop-linux"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/97a4ef2f-e4ec-4fc7-b326-bd8f234a459a.jsonl",
+      "content_sha256": "745454d23c5b3b5b20602670f2caa9dcf0b8163a28396e9143861a070837c17c",
+      "imported_thread_id": "019ff95d-4eb6-70e1-af0e-aaa09b256a5f",
+      "imported_at": 1787541785,
+      "source_modified_at": 1787526529154999971,
+      "connector_names": [],
+      "title": "Virus y minería de cripto"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/d344848b-ecea-4a66-a1de-d4dc40bc9945.jsonl",
+      "content_sha256": "969b28f858794f769024a9ef375234832a0af9a95960c51472618ca26eeb577c",
+      "imported_thread_id": "01a03602-600b-72c1-8f96-9311c61b35e5",
+      "imported_at": 1787612524,
+      "source_modified_at": 1787612485391962958,
+      "connector_names": [],
+      "title": "Página interactiva para feria de proyectos"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/72ad284c-68dc-4fa4-954d-62fca2c3fed5.jsonl",
+      "content_sha256": "31efe24556d7a35318807740c82dd94578b61800275636b283fd74fb230419d3",
+      "imported_thread_id": "01a030a7-a05a-7a33-a648-e1874085195a",
+      "imported_at": 1788489527,
+      "source_modified_at": 1788485729592999935,
+      "connector_names": [],
+      "title": "Mis cuentas de Meta Ads"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/9271a205-72e2-4013-9a00-86f0d6c08b69.jsonl",
+      "content_sha256": "82770432642951cf35cd09b07ed4c860c81d5aa27264de24ebd6d972f0f17dc1",
+      "imported_thread_id": "01a00e1b-139b-74c0-bff5-2b696a913ec4",
+      "imported_at": 1788489528,
+      "source_modified_at": 1787873118911999940,
+      "connector_names": [],
+      "title": "Obsidian setup y configuración"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/9bc8c381-c8c9-41f6-8082-b296f377a28e.jsonl",
+      "content_sha256": "ac27b565bf7ad66256fbd41a3b02a188aa22ba460da3904ee2b4b68f2408725d",
+      "imported_thread_id": "01a06a48-7aae-7462-a59a-59418811810d",
+      "imported_at": 1788489533,
+      "source_modified_at": 1788485723285000085,
+      "connector_names": [],
+      "title": "Habilidades para chatear con mujeres"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/ce94d2a5-8cac-49f3-81e6-b499254a8b72.jsonl",
+      "content_sha256": "34ec6169f64438f850d564e4fb2c50299d707741e5e327b13f263f5938bdc389",
+      "imported_thread_id": "01a031cb-161e-7a43-a256-b74267561506",
+      "imported_at": 1788664220,
+      "source_modified_at": 1788574425303999900,
+      "connector_names": [],
+      "title": "Productos rentables AutoDS salud/belleza"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/726414fd-0479-45a5-9962-3f32cec62c59.jsonl",
+      "content_sha256": "eb29673e29f827f223ec7b236a410a2761f9f6cefb88d36497fa0d8c70c2934c",
+      "imported_thread_id": "01a074b2-1abb-7d62-86b3-de3aac95fcd4",
+      "imported_at": 1788664231,
+      "source_modified_at": 1788662940642697594,
+      "connector_names": [],
+      "title": "Productos rentables AutoDS salud/belleza"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/0d6125cc-8388-4795-8c3b-324a9884df69.jsonl",
+      "content_sha256": "22544cd3cbbf9d0104ef280d1267cd022e3337a232d0b8585eb5981b653efc81",
+      "imported_thread_id": "01a074b2-1ab6-7192-8edf-c312504c96fa",
+      "imported_at": 1788664231,
+      "source_modified_at": 1788578967170036126,
+      "connector_names": [],
+      "title": "gstack skill installation"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/df2d113e-21a2-49e4-bf80-a273d1847b13.jsonl",
+      "content_sha256": "36528338dd26b38dedc8822c2a84a3531d5ff5e75d3b68965b7120683ac0cbdb",
+      "imported_thread_id": "01a074b2-1abd-7460-9142-5c73d765cdbd",
+      "imported_at": 1788664231,
+      "source_modified_at": 1788662373406273127,
+      "connector_names": [],
+      "title": "Productos Zendrop para nichos de salud"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/a5986327-7844-4bf2-bb9a-f185b7945742.jsonl",
+      "content_sha256": "ff3578ce36ecae5f20c3f5036d8d6eb8a362150b97bd1addffd1de52dbc3c6e2",
+      "imported_thread_id": "01a030a7-a063-79c1-9f39-176dbfbf4e68",
+      "imported_at": 1788710198,
+      "source_modified_at": 1788673103865000009,
+      "connector_names": [],
+      "title": "Mini PC vs PC para IA y gaming"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/42a2fb76-ee87-4b59-b28c-70c1bb07dec3.jsonl",
+      "content_sha256": "470d03792b1e5d56c66d7068aaee8d2a2671eda6f9c5618e2740da3de218be42",
+      "imported_thread_id": "01a030a7-a028-7630-986d-d58fe017f5e7",
+      "imported_at": 1788710198,
+      "source_modified_at": 1788673102431999921,
+      "connector_names": [],
+      "title": "Conexión autods"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/22eef9b9-e4c9-4cab-8118-c18389bfb784.jsonl",
+      "content_sha256": "4f6c6df6fc5a7ee89a9d030540a9bbf78b072f936ddfc473d86549e45ca2fb90",
+      "imported_thread_id": "01a031cb-156f-7900-b27e-726b6aa4186e",
+      "imported_at": 1788710198,
+      "source_modified_at": 1788673094470000028,
+      "connector_names": [],
+      "title": "Productos rentables AutoDS salud/belleza"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/a4e6fe3a-80ec-4e27-9170-3bee242d088e.jsonl",
+      "content_sha256": "a002f82190f9fae4df9086c86439a180c31e425d274eb0e5869f5d9cf0407211",
+      "imported_thread_id": "01a02253-732d-74b3-a076-2f3a6a29ffa9",
+      "imported_at": 1788710198,
+      "source_modified_at": 1788673068341000080,
+      "connector_names": [],
+      "title": "MCP de Facebook para campañas"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/f2be54bc-acd3-4b2f-b805-8d44df276024.jsonl",
+      "content_sha256": "f40706ff170c40654fefd8e65da842a86312ca508b31721d54ad95c188b31be0",
+      "imported_thread_id": "01a02253-7325-7151-9f75-dc74232aeea5",
+      "imported_at": 1788710198,
+      "source_modified_at": 1788673054381000041,
+      "connector_names": [],
+      "title": "Instalación del repositorio"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/73e36e0c-b68f-440b-aa51-4621f7e2bddd.jsonl",
+      "content_sha256": "c0b2555a96650fb542a445a8da6513a074253e1d30ac799365c9cdc9245fe322",
+      "imported_thread_id": "01a0348a-43cd-77b3-a54f-7546c040a26c",
+      "imported_at": 1788710198,
+      "source_modified_at": 1788673020641999959,
+      "connector_names": [],
+      "title": "Shopify theme design y estructura"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/f369f8c6-1b78-40ce-8b1f-813ec567644b.jsonl",
+      "content_sha256": "30dd3c2c142f4c20746610e07281e0ffb9d766fbffa54985f632735cff352209",
+      "imported_thread_id": "01a0776f-a929-7a40-809a-5d4a9b4a0d0d",
+      "imported_at": 1788710207,
+      "source_modified_at": 1788709901046361824,
+      "connector_names": [],
+      "title": "Estructura de página Codex"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/45ad9ba9-8d9c-47ab-b093-d576f39e4ca8.jsonl",
+      "content_sha256": "b05f5c44cf2ca6c1641ec8581878fa5d2b3ff546e4dad44357c98f1011095b00",
+      "imported_thread_id": "01a079a6-d8c8-77f0-a9a5-2fa7073f79b2",
+      "imported_at": 1788747377,
+      "source_modified_at": 1788739478883560363,
+      "connector_names": [],
+      "title": "Google Flow Browser MCP setup"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/f7e7250b-ea9d-451c-845c-74efd7675168.jsonl",
+      "content_sha256": "c1adcdc7619cc2d45ca86df763f9cfbbb91cf95f95fc4b9535605e38a7a5dbc4",
+      "imported_thread_id": "01a079a6-d963-74b2-9d4c-e05c2a5cf717",
+      "imported_at": 1788747377,
+      "source_modified_at": 1788746917502395616,
+      "connector_names": [],
+      "title": "Open-Generative-AI repo clone"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/d09ba4f4-cddd-424a-9a7c-dc0a5f8b9d50.jsonl",
+      "content_sha256": "98a88451f097575fcd5d6eb629bd372040577a2f2e6b96e570b7c7eedddc5bf4",
+      "imported_thread_id": "01a079a6-d976-7f41-a18e-612ba82bea8e",
+      "imported_at": 1788747377,
+      "source_modified_at": 1788747299056532499,
+      "connector_names": [],
+      "title": "Open-Generative-AI repo clone"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/63441c5b-75d9-45be-8449-044f979b8b74.jsonl",
+      "content_sha256": "b2d715ec808694638a0d2b58d09677dd51f7678a2941198b54bb88f93cda4756",
+      "imported_thread_id": "01a030a7-a020-7ca1-87d0-37bf5a055b83",
+      "imported_at": 1788790569,
+      "source_modified_at": 1788754498084000110,
+      "connector_names": [],
+      "title": "Configuración tienda Shopify"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/8ed42ae9-b245-4115-bb9a-d295750ee834.jsonl",
+      "content_sha256": "93cd123483456eb6b5b535ceace508611eb1d1b5d7ff26c4ffd45edc74e5edb3",
+      "imported_thread_id": "019ff95d-5077-7320-ac37-c5203aecf9bc",
+      "imported_at": 1788790570,
+      "source_modified_at": 1788754495907999992,
+      "connector_names": [],
+      "title": "Descargar Minecraft Beedrok"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/66e88ec3-3da1-417f-8a63-f21b6e55f3d7.jsonl",
+      "content_sha256": "c0db5584b6c5f621f2cd0a44e24a92dce747cb82a982f86063c9b346ac12baba",
+      "imported_thread_id": "019ff95d-4f40-7621-a924-3ea683098d17",
+      "imported_at": 1788790570,
+      "source_modified_at": 1788754495724999904,
+      "connector_names": [],
+      "title": "Optimización del sistema operativo"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/c7aa912e-51e9-47c5-a1bd-770cec14844e.jsonl",
+      "content_sha256": "ca87085c7b30bded248d246dbf5cc3dc4480f62a9e7c6fcea5fe5d027a9bbefe",
+      "imported_thread_id": "019ff95d-4fa5-7fb3-a721-f5912ebccd77",
+      "imported_at": 1788790570,
+      "source_modified_at": 1788754494584000110,
+      "connector_names": [],
+      "title": "Instalación skill marketing"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/13365855-a22c-43ca-9c52-bb6b45f6cd10.jsonl",
+      "content_sha256": "37b6ad78e86b5994a9be0b468c4ef6c55041522ebea2964ceefffc5536e35033",
+      "imported_thread_id": "019ff95d-4f7c-7742-a9fe-2b4fceca3e72",
+      "imported_at": 1788790570,
+      "source_modified_at": 1788754493793999910,
+      "connector_names": [],
+      "title": "YouTube Shorts nicho strategy"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/0e4f937b-0e75-4f09-b5e9-7f9e6690ccf6.jsonl",
+      "content_sha256": "4033a16f23fc2e9a1c7ba9d018443b9b1a642455f8cb0064c9ae1b373ff0b487",
+      "imported_thread_id": "019ff95d-4f31-7e01-89da-4d4ad5682368",
+      "imported_at": 1788790570,
+      "source_modified_at": 1788754492744999885,
+      "connector_names": [],
+      "title": "Integración con ChatGPT Plus"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/5ef40783-5cbd-4094-b8cf-3c5ffc1e502d.jsonl",
+      "content_sha256": "1807e2762d42162cd924b2a831b787d83b9faf21301664175d621db8f7e8a7dc",
+      "imported_thread_id": "01a0776f-a81e-75e0-a6c0-12e4a53bc929",
+      "imported_at": 1788790570,
+      "source_modified_at": 1788754143317000000,
+      "connector_names": [],
+      "title": "Configuración de apagado automático"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/6c4dabea-a898-4d89-a51f-0a05d31b69a9.jsonl",
+      "content_sha256": "fe71e56013b1822f72b05455ffc98201b01ed631c89c609393e9ab84cc01f251",
+      "imported_thread_id": "01a07c3a-053b-7ff1-a74f-9dc6b852c493",
+      "imported_at": 1788790574,
+      "source_modified_at": 1788754210149652760,
+      "connector_names": [],
+      "title": "Ver chats archivados"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/bd5b1ba3-5350-4e93-9a1a-925fcc6544c1.jsonl",
+      "content_sha256": "d8b84d2817b29e140beefdf3618dc758fa125f9d6f1ced3c446fc1c80ace3ee6",
+      "imported_thread_id": "01a07f31-7b84-79b3-bf7e-8bc13732a27b",
+      "imported_at": 1788840349,
+      "source_modified_at": 1788809320550794772,
+      "connector_names": [],
+      "title": "Actualización Astra en Linux"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/2971e463-b5fd-4282-9e33-fef6c8ca5cf8.jsonl",
+      "content_sha256": "fa0057781b3cf84ba1226de30455b8f4ea54f416fc516ad8ae21c33dd5ac612d",
+      "imported_thread_id": "01a08262-8985-7a10-a781-092db863bb4d",
+      "imported_at": 1789092071,
+      "source_modified_at": 1789018596532344940,
+      "connector_names": [],
+      "title": "Estructura de página Codex"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/841a9c47-ba26-45f6-8285-7717ddb8df25.jsonl",
+      "content_sha256": "a8e08041fc8da7a9c88e7062ea4f9196b827d26865f546f125c5cad3b373b331",
+      "imported_thread_id": "01a08262-89b7-73d1-9d8a-4ebb96786667",
+      "imported_at": 1789092071,
+      "source_modified_at": 1789092062083011706,
+      "connector_names": [],
+      "title": "Estructura de página Codex (fork)"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/477257f8-c551-4110-8079-292cae13cdaa.jsonl",
+      "content_sha256": "4738680e5d6151d2e08a9ae5941c50b9e2a892161ba9f1e1464161f5d40323c7",
+      "imported_thread_id": "01a083d2-11a5-7ab2-99e5-21237f26cc99",
+      "imported_at": 1788917982,
+      "source_modified_at": 1788912441868042406,
+      "connector_names": [],
+      "title": "Descarga local Send"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/331279f7-5331-4964-8cd6-64633cbb7071.jsonl",
+      "content_sha256": "7b843df577f59f79f2bcb783788c3a585ec804faaeb7d5aaddae33cc0a1ca04d",
+      "imported_thread_id": "01a083d2-11e8-72e3-a530-a066b8bfc58f",
+      "imported_at": 1788917982,
+      "source_modified_at": 1788917766773580940,
+      "connector_names": [],
+      "title": "Editar video con Remotion y Brolls"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/66e56102-c647-4796-b19e-e11daecff8cf.jsonl",
+      "content_sha256": "4676230ef1998cbb204e2bb78b1b49a1971dde71850278536a3a78fb88766fd0",
+      "imported_thread_id": "01a06a48-7a96-7be0-88e1-56994e6fcbd6",
+      "imported_at": 1789092064,
+      "source_modified_at": 1789017613931999921,
+      "connector_names": [],
+      "title": "Descargar versiones"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/62247764-c238-48e4-bdd3-5c0f804c75ff.jsonl",
+      "content_sha256": "2ad8b4a763cbe6b323602c295f948df4756bb1232242623f09c21315bc94c6d7",
+      "imported_thread_id": "01a083d2-11a3-7811-9192-60c436406cf3",
+      "imported_at": 1789092064,
+      "source_modified_at": 1788923569024000000,
+      "connector_names": [],
+      "title": "Complementos para ver videos en Linux"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/b5c44f01-1c66-4e23-a256-51c0fed991d9.jsonl",
+      "content_sha256": "ea6d5c04540bcf03303e4a7b56120b1458162d5cba5a5a30a118dfd89833ae79",
+      "imported_thread_id": "01a08e32-82b3-7732-8a42-61e13f13d981",
+      "imported_at": 1789092074,
+      "source_modified_at": 1789018599058352335,
+      "connector_names": [],
+      "title": "@\"/home/matiigonzz/Descargas/La lluvia sabe por qué.pdf\""
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/8d115318-bf6e-440e-879b-63a6605d6a81.jsonl",
+      "content_sha256": "9196791e913fbe0c8cf70516c7988e82885c4835584f5f86c87af953d8f999cc",
+      "imported_thread_id": "01a08e32-82f2-7bc1-aeae-119cfb8db8ce",
+      "imported_at": 1789092074,
+      "source_modified_at": 1789004229101737043,
+      "connector_names": [],
+      "title": "Análisis literario: La lluvia sabe por qué"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/c96267ce-d4b5-4d2d-8d34-084acf110af9.jsonl",
+      "content_sha256": "1528eee03f23fc5c54e625139bf21680b7c55c64d5e455aea9b7e5b97b12083b",
+      "imported_thread_id": "01a074b2-1ab9-7a30-b5f5-6a4d425693cb",
+      "imported_at": 1789263707,
+      "source_modified_at": 1789189725790999889,
+      "connector_names": [],
+      "title": "Agent skills repository setup"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/6f170d7e-dcbe-4eae-909e-5b06f7bd1101.jsonl",
+      "content_sha256": "3d94a5d14c4e481b56e4365fd55fdfd35c5d4e680639ee5f44164f4818bcffb7",
+      "imported_thread_id": "01a0986d-9864-7fb3-86e7-e31589e44717",
+      "imported_at": 1789263716,
+      "source_modified_at": 1789174356077767215,
+      "connector_names": [],
+      "title": "Edición de videos capacitación Claude"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/2c3e09f5-b686-4ad4-b63e-28d12e063c95.jsonl",
+      "content_sha256": "72beaf2d94151285655eaf5a484a307bebabb290c4a65927d52be9b0afd7cf6b",
+      "imported_thread_id": "01a0986d-980d-7443-88d3-8a76bff59642",
+      "imported_at": 1789263716,
+      "source_modified_at": 1789230746247879264,
+      "connector_names": [],
+      "title": "Verificar instalación Node.js"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/8cd434fa-7e13-4228-b507-1b859ded6710.jsonl",
+      "content_sha256": "9cc05fb1801b68700ebfbd5bfe235ca62de1b7e8747ba427774188a1c3ea848c",
+      "imported_thread_id": "01a0986d-999a-7e13-b5d6-181d52d9699a",
+      "imported_at": 1789263716,
+      "source_modified_at": 1789262959808828551,
+      "connector_names": [],
+      "title": "Planetamati Minecraft video editing"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/501140fa-64c9-400e-9862-445ae7440900.jsonl",
+      "content_sha256": "af070cd68d3b43b1d225da2a3e729bdaf32ce4c7296b47e5c4e74ed6b1223c24",
+      "imported_thread_id": "01a0986d-9990-72f0-8def-aaa229c0c18d",
+      "imported_at": 1789263716,
+      "source_modified_at": 1789189590534000000,
+      "connector_names": [],
+      "title": "Instalar DaVinci Resolve MCP"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/ab47ec7f-4dca-4edb-9cf8-64b3e2f0d21f.jsonl",
+      "content_sha256": "343208685812c17ffc9f89d19e1354484685fcea7632fbb748b4f53a0607bda6",
+      "imported_thread_id": "01a09cac-5662-7960-ad9f-c10e3a06b4ad",
+      "imported_at": 1789334936,
+      "source_modified_at": 1789271817707748721,
+      "connector_names": [],
+      "title": "Grabador de pantalla sin cámara"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/18a0b28d-8953-43ea-83d8-798ac77295aa.jsonl",
+      "content_sha256": "2304baebb1384010953683c75c912695e7d7e019067dd722ce9e01913fd35fd8",
+      "imported_thread_id": "01a074b2-1ac0-7730-8edf-981e175b92f3",
+      "imported_at": 1789344819,
+      "source_modified_at": 1789344212566999912,
+      "connector_names": [],
+      "title": "Evaluar productos del dashboard"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/e41383bf-fd1f-4f84-90c1-7390b8bb3956.jsonl",
+      "content_sha256": "25146337b228493e334e4116e3213822a04762587c2fd30acd144ab17326d5d0",
+      "imported_thread_id": "01a0986d-983a-7223-b1e6-ac799f728107",
+      "imported_at": 1790027118,
+      "source_modified_at": 1789971363267999887,
+      "connector_names": [],
+      "title": "Descargar DaVinci en PC"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-edicion-de-videos/7fca64d2-2895-4489-a4f6-f8973315bd0d.jsonl",
+      "content_sha256": "5dfda5106dc7d69a336768fe81a79cbe4424f585c8339fcc8ce062404ceccc5f",
+      "imported_thread_id": "019ff95d-4eb3-7231-994a-47bbd339f150",
+      "imported_at": 1790027118,
+      "source_modified_at": 1789949430224999904,
+      "connector_names": [],
+      "title": "Remotion skills setup"
+    },
+    {
+      "source_path": "/home/matiigonzz/.claude/projects/-home-matiigonzz-Claude/86b3fc84-b9e3-48d0-ad5a-a2b6c16d1aff.jsonl",
+      "content_sha256": "e0bed9ee4b9a3b351555d6078783c9ec38b9eb99869f37f35586f45777f32057",
+      "imported_thread_id": "01a08e32-82f7-7523-8c68-ad5ede6243fb",
+      "imported_at": 1790027119,
+      "source_modified_at": 1789698332246000051,
+      "connector_names": [],
+      "title": "Actividad 3 Políticas Públicas"
+    }
+  ],
+  "detected_connector_records": []
+}

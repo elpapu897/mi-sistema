@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-08-05T01:23:48.303Z",
+  "updatedAt": "2026-08-05T01:23:48.303Z",
+  "title": "New Session",
+  "isCustomTitle": false,
+  "agents": {
+    "main": {
+      "homedir": "/home/matiigonzz/.kimi-code/sessions/wd_matiigonzz_9a6d71d67f85/session_5773cb96-4215-4533-919c-d1a3fadf816a/agents/main",
+      "type": "main",
+      "parentAgentId": null
+    }
+  },
+  "custom": {},
+  "workDir": "/home/matiigonzz"
+}

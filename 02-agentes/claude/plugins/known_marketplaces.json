@@ -1,0 +1,26 @@
+{
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "/home/matiigonzz/.claude/plugins/marketplaces/claude-plugins-official",
+    "lastUpdated": "2026-09-26T02:52:53.421Z"
+  },
+  "local-desktop-app-uploads": {
+    "source": {
+      "source": "directory",
+      "path": "/home/matiigonzz/.claude/plugins/marketplaces/local-desktop-app-uploads"
+    },
+    "installLocation": "/home/matiigonzz/.claude/plugins/marketplaces/local-desktop-app-uploads",
+    "lastUpdated": "2026-08-05T03:53:32.213Z"
+  },
+  "addy-agent-skills": {
+    "source": {
+      "source": "github",
+      "repo": "addyosmani/agent-skills"
+    },
+    "installLocation": "/home/matiigonzz/.claude/plugins/marketplaces/addy-agent-skills",
+    "lastUpdated": "2026-09-05T03:23:00.621Z"
+  }
+}

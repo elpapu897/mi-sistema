@@ -1,0 +1,20 @@
+{
+  "name": "local-desktop-app-uploads",
+  "version": "1.0.0",
+  "description": "Locally uploaded plugins via Claude Desktop app",
+  "owner": {
+    "name": "Local User"
+  },
+  "plugins": [
+    {
+      "name": "ui-ux-pro-max",
+      "version": "2.13.0",
+      "source": "./ui-ux-pro-max"
+    },
+    {
+      "name": "watch",
+      "version": "0.2.0",
+      "source": "./watch"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/matiigonzz/Descargas/claude-gemini-bridge-main/hooks/gemini-bridge.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "enableWorkflows": true,
+  "enabledPlugins": {
+    "ui-ux-pro-max@local-desktop-app-uploads": true,
+    "watch@local-desktop-app-uploads": true,
+    "agent-skills@addy-agent-skills": false,
+    "superpowers@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "addy-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/agent-skills"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "autoUpdatesChannel": "latest",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark"
+}

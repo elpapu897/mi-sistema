@@ -1,0 +1,9 @@
+{
+  "last_report_path": "/home/matiigonzz/.hermes/logs/curator/20260927-033356",
+  "last_run_at": "2026-09-27T03:33:56.833981+00:00",
+  "last_run_duration_seconds": 5.147826,
+  "last_run_summary": "auto: 77 marked stale; llm: skipped (consolidation off)",
+  "last_run_summary_shown_at": "2026-08-15T01:41:14.847433+00:00",
+  "paused": false,
+  "run_count": 6
+}

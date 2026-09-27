@@ -1,0 +1,30 @@
+{
+  "brand_name": "Your Brand",
+  "handle": "@yourhandle",
+  "one_liner": "What you help people do, in one sentence.",
+  "audience": "Who you're trying to stop mid-scroll.",
+  "voice": ["confident", "specific", "slightly market-weary", "no fluff"],
+  "topic_tree": {
+    "niche_of_one": "Your unique synthesis / point of view.",
+    "interests": ["Interest A", "Interest B", "Interest C"],
+    "subtopics": ["subtopic", "subtopic", "subtopic"]
+  },
+  "colors": {
+    "bg": "#0E0E10",
+    "bg_alt": "#F5F1E8",
+    "ink": "#0E0E10",
+    "ink_inverse": "#F5F1E8",
+    "accent": "#FF4D2E",
+    "muted": "#8A8A8A"
+  },
+  "typography": {
+    "display": "Söhne, Inter, Helvetica Neue, Arial, sans-serif",
+    "body": "Inter, Helvetica Neue, Arial, sans-serif"
+  },
+  "cta": {
+    "comment_word": "GUIDE",
+    "manychat_promise": "I'll DM you the full breakdown",
+    "link_in_bio": "yourlink.com"
+  },
+  "platforms": ["instagram", "linkedin", "tiktok", "x"]
+}

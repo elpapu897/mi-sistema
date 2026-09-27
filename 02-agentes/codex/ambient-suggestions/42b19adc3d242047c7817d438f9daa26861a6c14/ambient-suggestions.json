@@ -1,0 +1,57 @@
+{
+  "projectRoot": "/home/matiigonzz",
+  "generatedAtMs": 1790040082796,
+  "currentSuggestionIds": [
+    "c2e2b51c-f468-4872-ab7f-5c9f79b5f4e5"
+  ],
+  "suggestions": [
+    {
+      "id": "28318016-31e4-4125-a198-d4f5d9587338",
+      "title": "Make the new Amazonía Viva experience viewable beyond your account",
+      "description": "Amazonía Viva went live yesterday, but it is still restricted to your account and has no external visitors. Codex can switch it to public access while keeping the current deployment intact.",
+      "prompt": "Make the Amazonía Viva site publicly accessible and verify that its live URL works for visitors.",
+      "appIds": [
+        "connector_20205bf7d4e99a89d7154bb849718324"
+      ],
+      "status": "pending",
+      "createdAtMs": 1786744673899,
+      "updatedAtMs": 1786744673899
+    },
+    {
+      "id": "94b6237a-874a-4067-95d9-f22debd144d2",
+      "title": "Quitar Mercado Libre de la ficha de la rasuradora recién publicada",
+      "description": "La única ficha activa se actualizó ayer y todavía invita explícitamente a comparar en Mercado Libre. Dejá la página enfocada en cerrar la compra en tu tienda sin cambiar las especificaciones reales.",
+      "prompt": "Editá la ficha de “Rasuradora Integral Recargable — Rostro y Cuerpo” para eliminar la mención a Mercado Libre y reforzar una propuesta de compra clara, sin inventar beneficios, plazos ni políticas.",
+      "appIds": [
+        "asdk_app_69e65c430b3081919aa4d962ab5d1698"
+      ],
+      "status": "pending",
+      "createdAtMs": 1788808684182,
+      "updatedAtMs": 1788808684182
+    },
+    {
+      "id": "6a2ca2b9-f416-4fb1-be2e-4e04f29a751a",
+      "title": "Convertí la página de la rasuradora en una oferta lista para conseguir su primera venta",
+      "description": "La rasuradora quedó actualizada el 10 de septiembre y es el único producto activo, pero la tienda todavía no registra pedidos. Puedo reforzar su propuesta de valor, estructura móvil, confianza y CTA directamente sobre ese producto.",
+      "prompt": "Revisá la página de mi Rasuradora Integral Recargable y aplicá los cambios de conversión necesarios para dejarla lista para conseguir su primera venta.",
+      "appIds": [
+        "asdk_app_69e65c430b3081919aa4d962ab5d1698"
+      ],
+      "status": "pending",
+      "createdAtMs": 1789263783517,
+      "updatedAtMs": 1789263783517
+    },
+    {
+      "id": "c2e2b51c-f468-4872-ab7f-5c9f79b5f4e5",
+      "title": "Convertir el tráfico de la rasuradora en ventas desde la ficha activa",
+      "description": "GONVRA recibió 342 sesiones en los últimos 30 días y llegó a checkout sin completar ventas; la única ficha activa es la rasuradora recargable. Optimizá esa página para reducir fricción y dejar una oferta de compra clara.",
+      "prompt": "Entrá a mi Shopify y mejorá la ficha activa de la Rasuradora Integral Recargable para convertir el tráfico que ya está llegando: revisá la oferta, el CTA, la confianza, la información de envío/pago y la experiencia móvil. Aplicá los cambios concretos que hagan falta y mostrame qué modificaste.",
+      "appIds": [
+        "asdk_app_69e65c430b3081919aa4d962ab5d1698"
+      ],
+      "status": "pending",
+      "createdAtMs": 1790040082796,
+      "updatedAtMs": 1790040082796
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "projectRoot": "/home/matiigonzz/Claude",
+  "generatedAtMs": 1788840444992,
+  "currentSuggestionIds": [
+    "a3193e52-719b-4807-a1db-fe6d00fd6508",
+    "1016935e-3969-43d5-aa63-4b18d167017f"
+  ],
+  "suggestions": [
+    {
+      "id": "4f57d3ca-c1b5-4f2c-8c25-40dc69861e67",
+      "title": "Rediseñá Desafíos para que los 11 juegos se entiendan al instante",
+      "description": "Después de rehacer los minijuegos, quedó pendiente mejorar visualmente Desafíos. Podés convertirlo en una selección clara de juegos con tarjetas, reglas y progreso visibles.",
+      "prompt": "En /home/matiigonzz/Claude/ladiez.html, rediseñá la pantalla Desafíos para que los 11 desafíos se vean modernos y se entiendan antes de entrar. Conservá la lógica existente, no uses emojis, y verificá la sintaxis al terminar.",
+      "appIds": [],
+      "status": "pending",
+      "createdAtMs": 1786745153989,
+      "updatedAtMs": 1786745153989
+    },
+    {
+      "id": "874111a1-f288-4a72-a137-7643b71955c6",
+      "title": "Hacé que alcanzar la idolatría por club vuelva a sentirse merecido",
+      "description": "La última nota del proyecto conserva una observación directa: hoy es demasiado fácil ser querido. Ajustá la progresión y hacé visible qué acciones construyen o erosionan el vínculo con cada hinchada.",
+      "prompt": "En /home/matiigonzz/Claude/ladiez.html, revisá y ajustá el sistema de idolatría por club: hoy se sube demasiado fácil. Hacé la progresión más exigente, con consecuencias por malos rendimientos o falta de lealtad, y mostrale al jugador con claridad qué le falta para el próximo nivel. No rompas partidas existentes y verificá la sintaxis.",
+      "appIds": [],
+      "status": "pending",
+      "createdAtMs": 1786745153989,
+      "updatedAtMs": 1786745153989
+    },
+    {
+      "id": "323b1fc8-f192-4f76-9b97-358f0be4ca66",
+      "title": "Implementá formatos reales para Argentina, MLS y México",
+      "description": "El juego todavía usa 22 fechas idénticas para todas las ligas, pese a que ya incluye sus datos reales. Este cambio haría que tres de las ligas más reconocibles se jueguen como esperan sus aficionados.",
+      "prompt": "En /home/matiigonzz/Claude/ladiez.html, implementá formatos de competición diferenciados y jugables para Argentina, MLS y México, empezando por el modo jugador sin romper las demás ligas. Adaptá fixture, tabla y cierre de temporada; conservá compatibilidad razonable con partidas existentes y verificá la sintaxis.",
+      "appIds": [],
+      "status": "pending",
+      "createdAtMs": 1786745153989,
+      "updatedAtMs": 1786745153989
+    },
+    {
+      "id": "211af628-071d-4e46-9739-39021b66a5a3",
+      "title": "Preparar una copia segura de GONVRA para cerrar los cuatro bloqueantes legales",
+      "description": "La auditoría de hoy encontró el 404 de envíos, el correo roto en la home y una política de devoluciones contradictoria con un placeholder público. Dejo todo listo en una copia sin publicar, con sólo los datos tuyos que haga falta confirmar.",
+      "prompt": "Prepará una copia de trabajo del tema de GONVRA, sin publicar nada, para corregir el enlace roto de envíos, unificar el correo de contacto y dejar borradores coherentes de envíos, cambios/devoluciones y botón de arrepentimiento. Usá el informe gonvra/legal/2026-08-17.md, no inventes CUIT, razón social ni dirección de devolución, y entregame una lista corta de los datos que tengo que confirmar antes de publicar.",
+      "appIds": [
+        "asdk_app_69e65c430b3081919aa4d962ab5d1698"
+      ],
+      "status": "pending",
+      "createdAtMs": 1786943107604,
+      "updatedAtMs": 1786943107604
+    },
+    {
+      "id": "d4880df8-1383-4766-b37f-10f00c3a0b49",
+      "title": "Dejar listo el primer encendido seguro del Mission Control de GONVRA",
+      "description": "El prompt más reciente ya confirma Telegram y las aprobaciones funcionando; faltaría convertir ese diseño en tareas, horarios y un resumen diario sin habilitar gasto ni publicaciones.",
+      "prompt": "Implementá en la carpeta gonvra la configuración inicial del Mission Control descrito en gonvra/PROMPT-MISSION-CONTROL.md: tablero y perfiles de agentes, tareas iniciales, resúmenes diarios y trabajos seguros de investigación. No actives campañas, publicaciones, mensajes externos ni compras; todo eso debe seguir pasando por el SEMÁFORO. Dejá instrucciones simples para verlo desde la PC y el celular.",
+      "appIds": [
+        "connector_openai_plugin_management"
+      ],
+      "status": "pending",
+      "createdAtMs": 1786943107604,
+      "updatedAtMs": 1786943107604
+    },
+    {
+      "id": "35cb4988-0a47-43d8-88c9-3a970ebb6b15",
+      "title": "Mejorar las pantallas pendientes de Desafíos y el hub del jugador en LA DIEZ",
+      "description": "Los minijuegos, partidos y personalización ya quedaron resueltos; el contexto del juego marca específicamente estas dos pantallas como lo que todavía falta mejorar.",
+      "prompt": "Leé CONTEXTO-para-otro-chat.md y mejorá los gráficos de la pantalla Desafíos y del hub del jugador en ladiez.html. Conservá toda la lógica actual, priorizá que se entiendan de un vistazo en celular y verificá que no rompas carreras guardadas ni los minijuegos.",
+      "appIds": [
+        "connector_20205bf7d4e99a89d7154bb849718324"
+      ],
+      "status": "pending",
+      "createdAtMs": 1786943107604,
+      "updatedAtMs": 1786943107604
+    },
+    {
+      "id": "89e762fb-1526-442a-8223-7eeb173ae76b",
+      "title": "Prepará la copia de Gonvra con contacto correcto y botón de arrepentimiento",
+      "description": "Los apuntes actualizados hoy dejan estos dos cambios como el último pendiente visible de la tienda; la política ya existe, pero el correo viejo no recibe mensajes. Dejá una copia lista para previsualizar y publicar, sin tocar el tema activo.",
+      "prompt": "En el proyecto Gonvra, encontrá la copia local del tema de Shopify y prepará los cambios pendientes: reemplazá todas las apariciones y enlaces mailto de contacto@gonvra.com por gonvra0@gmail.com, y agregá un acceso visible de “Botón de arrepentimiento” en la home y el footer hacia /policies/refund-policy. No publiques ni modifiques el tema live: validá los archivos y dejame un resumen exacto de qué subir o previsualizar.",
+      "appIds": [
+        "connector_20205bf7d4e99a89d7154bb849718324"
+      ],
+      "status": "pending",
+      "createdAtMs": 1788489611064,
+      "updatedAtMs": 1788489611064
+    },
+    {
+      "id": "415be12e-2e8f-45d4-8053-23f6c686f2d0",
+      "title": "Hacé cobrable Helio antes de elegir el producto 51",
+      "description": "Tus registros muestran 10 pedidos contra reembolso, PayPal fallando para tarjetas argentinas y cero eventos de carrito/compra; el siguiente cuello de botella es validar una venta real, no otro ranking.",
+      "prompt": "En este proyecto, revisá `investigacion-productos/EMAIL-segunda-opinion.md` y el tema de Shopify Helio. Auditá el recorrido completo desde “Agregar al carrito” hasta la compra para Argentina: identificá qué impide cobrar con tarjeta, verificá la instrumentación de Meta Pixel para ViewContent/AddToCart/InitiateCheckout/Purchase y aplicá en el tema los cambios que sí sean posibles. Dejá un checklist mínimo y preciso de los ajustes que necesariamente tenga que completar yo dentro de Shopify o Meta, y prepará una prueba de compra de bajo riesgo para validar el embudo antes de elegir un producto nuevo.",
+      "appIds": [
+        "connector_20205bf7d4e99a89d7154bb849718324"
+      ],
+      "status": "pending",
+      "createdAtMs": 1788664301327,
+      "updatedAtMs": 1788664301327
+    },
+    {
+      "id": "983e9237-6b67-4530-8631-7e74896ae8e0",
+      "title": "Publicá la ficha de Gonvra con los nuevos videos y packs",
+      "description": "Hoy se terminaron la sección de producto, la galería y los clips para Gonvra. Cargá el tema completo en Shopify y dejá el producto real usando la plantilla product.gonvra, con precio, stock y packs coherentes.",
+      "prompt": "Conectate a mi Shopify y publicá en modo vista previa el tema de /home/matiigonzz/Claude/gonvra-theme-full. Asigná la plantilla product.gonvra a mi rasuradora Gonvra y configurá la ficha con sus imágenes, los clips nuevos, precio, compare-at price, inventario y los packs que correspondan. No publiques el tema en vivo sin avisarme; dejame el enlace de preview y una lista de cualquier dato que falte.",
+      "appIds": [
+        "asdk_app_69e65c430b3081919aa4d962ab5d1698"
+      ],
+      "status": "pending",
+      "createdAtMs": 1788751909230,
+      "updatedAtMs": 1788751909230
+    },
+    {
+      "id": "9bcb250d-0427-4dae-887b-a2acf9b0f399",
+      "title": "Prepará los tres anuncios Gonvra para subirlos como creativos",
+      "description": "Hace minutos quedaron renderizados tres videos: problema, producto y demo. Podés convertirlos en piezas listas para cargar, con copy, títulos y CTA adaptados a cada ángulo sin repetir la ficha de producto.",
+      "prompt": "Tomá los renders recientes de /home/matiigonzz/Claude/gonvra-ads/out y prepará un paquete de lanzamiento para los tres anuncios de Gonvra: nombre del creativo, copy principal, headline, descripción y CTA para Meta/TikTok. Revisá que el lenguaje sobre zonas sensibles sea apto para anuncios y señalá cualquier plano o texto que convenga reemplazar antes de subirlos.",
+      "appIds": [
+        "asdk_app_69e65c430b3081919aa4d962ab5d1698"
+      ],
+      "status": "pending",
+      "createdAtMs": 1788751909230,
+      "updatedAtMs": 1788751909230
+    },
+    {
+      "id": "a3193e52-719b-4807-a1db-fe6d00fd6508",
+      "title": "Integrá las fotos antes/después recién generadas en la ficha de la rasuradora",
+      "description": "La landing y la galería ya tienen una sección comparativa configurada, y ayer se generaron los pares 1100×1375 para el deslizador. Dejemos la prueba visual conectada y revisada en móvil antes de mandar tráfico.",
+      "prompt": "Integrá las imágenes antes/después recién generadas en el deslizador de la ficha face-body-electric-shaver del tema gonvra-theme. Verificá que el orden, recorte 1100×1375, arrastre táctil y carga móvil queden bien; no cambies claims ni textos fuera de esa sección.",
+      "appIds": [
+        "asdk_app_69e65c430b3081919aa4d962ab5d1698"
+      ],
+      "status": "pending",
+      "createdAtMs": 1788840444992,
+      "updatedAtMs": 1788840444992
+    },
+    {
+      "id": "1016935e-3969-43d5-aa63-4b18d167017f",
+      "title": "Actualizá los cuatro anuncios para llevar tráfico a la nueva landing de la rasuradora",
+      "description": "Los renders recientes siguen cerrando con “gonvra.com”, mientras la tienda acaba de recibir una landing específica de la afeitadora. Adaptá los cierres y exportá versiones listas para el producto actual.",
+      "prompt": "Actualizá gonvra-ads para que los cuatro anuncios de la rasuradora cierren con el nombre y destino correctos de la landing actual, sin usar referencias a mascotas ni gonvra.com si ya no corresponden. Renderizá los MP4 finales y dejalos en out/ con nombres claros.",
+      "appIds": [
+        "connector_20205bf7d4e99a89d7154bb849718324"
+      ],
+      "status": "pending",
+      "createdAtMs": 1788840444992,
+      "updatedAtMs": 1788840444992
+    }
+  ]
+}

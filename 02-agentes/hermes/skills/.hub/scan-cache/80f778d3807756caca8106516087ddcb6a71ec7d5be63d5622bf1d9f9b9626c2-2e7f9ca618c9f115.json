@@ -1,0 +1,13 @@
+{
+  "source": "official",
+  "source_url": "official/communication/one-three-one-rule",
+  "bundle_hash": "sha256:80f778d3807756caca8106516087ddcb6a71ec7d5be63d5622bf1d9f9b9626c2",
+  "scanner_version": "skills-guard-v1",
+  "verdict": "safe",
+  "trust_level": "builtin",
+  "findings": [],
+  "rules": [],
+  "scanned_at": "2026-08-15T00:34:21.514365+00:00",
+  "summary": "one-three-one-rule: clean scan, no threats detected",
+  "fresh": true
+}

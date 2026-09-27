@@ -1,0 +1,10 @@
+{
+  "userSettings": {
+    "globalPermissionGrants": {
+      "allow": [
+        "command(ls pwd cat head tail wc grep find which echo mkdir cd git status git diff git log git add git commit git branch npm run npm install npm ci node python3)"
+      ]
+    },
+    "remoteControlHostname": "fedora-deep-titan"
+  }
+}

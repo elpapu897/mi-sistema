@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "1",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/matiigonzz/Descargas/claude-gemini-bridge-main/hooks/gemini-bridge.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

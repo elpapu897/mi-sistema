@@ -1,0 +1,5 @@
+- [x] Limpiar `config/settings_data.json` (Eliminar bloque del pixel Parkour)
+- [x] Modificar `sections/gv-producto.liquid` (Opción 1 por defecto, limpieza de microdatos falsos)
+- [x] Modificar `snippets/card-product.liquid` (Eliminar div de Loox)
+- [x] Limpiar `templates/product*.json` (Eliminar Loox, claims médicos y de garantía cruzada)
+- [x] Actualizar `templates/index.json` (Correo y ajustes estéticos menores)

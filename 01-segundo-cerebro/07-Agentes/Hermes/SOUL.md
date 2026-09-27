@@ -1,0 +1,1 @@
+/home/matiigonzz/.hermes/SOUL.md

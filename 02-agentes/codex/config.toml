@@ -1,0 +1,289 @@
+model = "gpt-6-astra"
+model_reasoning_effort = "xhigh"
+service_tier = "default"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/home/matiigonzz/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.local-desktop-app-uploads]
+last_updated = "2026-08-13T04:24:29Z"
+source_type = "local"
+source = "/home/matiigonzz/.claude/plugins/marketplaces/local-desktop-app-uploads"
+
+[marketplaces.claude-cowork]
+source_type = "local"
+source = "/home/matiigonzz/.codex/plugins/cache/claude-cowork"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/home/matiigonzz/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.agent-skills]
+source_type = "git"
+source = "https://github.com/addyosmani/agent-skills.git"
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."slack@openai-curated"]
+enabled = true
+
+[plugins."ui-ux-pro-max@local-desktop-app-uploads"]
+enabled = true
+
+[plugins."watch@local-desktop-app-uploads"]
+enabled = true
+
+[plugins."anthropic-skills@claude-cowork"]
+enabled = true
+
+[plugins."base44@claude-cowork"]
+enabled = true
+
+[plugins."base44-sandbox@claude-cowork"]
+enabled = true
+
+[plugins."bio-research@claude-cowork"]
+enabled = true
+
+[plugins."cowork-plugin-management@claude-cowork"]
+enabled = true
+
+[plugins."customer-support@claude-cowork"]
+enabled = true
+
+[plugins."data@claude-cowork"]
+enabled = true
+
+[plugins."design@claude-cowork"]
+enabled = true
+
+[plugins."engineering@claude-cowork"]
+enabled = true
+
+[plugins."enterprise-search@claude-cowork"]
+enabled = true
+
+[plugins."finance@claude-cowork"]
+enabled = true
+
+[plugins."human-resources@claude-cowork"]
+enabled = true
+
+[plugins."humanizer@claude-cowork"]
+enabled = true
+
+[plugins."legal@claude-cowork"]
+enabled = true
+
+[plugins."marketing@claude-cowork"]
+enabled = true
+
+[plugins."nano-banana@claude-cowork"]
+enabled = true
+
+[plugins."operations@claude-cowork"]
+enabled = true
+
+[plugins."pdf-viewer@claude-cowork"]
+enabled = true
+
+[plugins."product-management@claude-cowork"]
+enabled = true
+
+[plugins."productivity@claude-cowork"]
+enabled = true
+
+[plugins."sales@claude-cowork"]
+enabled = true
+
+[plugins."small-business@claude-cowork"]
+enabled = true
+
+[plugins."wix@claude-cowork"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."agent-skills@agent-skills"]
+enabled = true
+
+[plugins."sites@openai-bundled"]
+enabled = true
+
+[features]
+js_repl = false
+
+[mcp_servers.node_repl]
+args = []
+command = "/opt/codex-desktop/resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/opt/codex-desktop/resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/opt/codex-desktop/resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/home/matiigonzz/.codex:/opt/codex-desktop/resources/cua_node/lib/node_modules"
+CODEX_HOME = "/home/matiigonzz/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+BROWSER_USE_TINYSKY_ENABLED = "0"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.820.60940"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/home/matiigonzz/.codex/plugins/cache/openai-bundled/browser/26.820.60940/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/opt/codex-desktop/resources/codex"
+
+[mcp_servers.google-flow]
+command = "node"
+args = ["/home/matiigonzz/Claude/mcp-servers/google-flow-browser-mcp/src/index.js"]
+
+[mcp_servers.davinci-resolve]
+command = "/home/matiigonzz/.local/share/davinci-resolve-mcp/venv/bin/python"
+args = ["/home/matiigonzz/.local/share/davinci-resolve-mcp/src/server.py"]
+
+[mcp_servers.davinci-resolve-advanced]
+command = "node"
+args = ["/home/matiigonzz/.local/share/davinci-resolve-mcp/bin/davinci-resolve-advanced-mcp.mjs"]
+
+[mcp_servers.facebook-ads]
+url = "https://mcp.facebook.com/ads"
+
+[shell_environment_policy.set]
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "e7fc907079d6797973cb63f97d2562c965aad8d33f52fb726005bf6702f30afc"
+
+[desktop]
+external-agent-import-sync-enabled = true
+followUpQueueMode = "queue"
+conversationDetailMode = "STEPS_COMMANDS"
+
+[projects."/home/matiigonzz/g"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Claude"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-08-17/files-mentioned-by-the-user-clase"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-08-17/a-la-liga-unitaria-liga-del"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-08-18/files-mentioned-by-the-user-codex"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-08-18/files-mentioned-by-the-user-codex-2"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-08-23/pue"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-08-24/new-chat"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-06/a-fit-adult-man-in-his"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-10/porqye-x20"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-10/porqye-x20-2"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-10/porqye-x20-3"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-10/porqye-x20-4"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-10/porqye-x20-5"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-12/porqye-x20-2"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-12/porqye-x20-3"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/porqye-x20"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/porqye-x20-2"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/porqye-x20-3"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/porqye-x20-4"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/porqye-x20-5"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/por"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/esquiva-ne-n-sites-project-appgprj"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/esquiva-ne-n-sites-project-appgprj-2"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/c"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/mostrame-el-rendimiento-de-mis-campa"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/pu"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-13/ten-s-meta-conectado-quiero-verificar"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-17/mir-quiero-decir-algo-ahora-no"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-18/qi"]
+trust_level = "trusted"
+
+[projects."/home/matiigonzz/Documents/Codex/2026-09-18/sino-que-me-digas-qu-ia"]
+trust_level = "trusted"
+
+[hooks.state."/home/matiigonzz/.codex/hooks.json:pre_tool_use:0:0"]
+trusted_hash = "sha256:bcdc15b8c1785e2ba1359e69d5da9397c340295e0975d9ea7c6e4dde8735a478"
+
+[hooks.state."agent-skills@agent-skills:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:e57b811de94b257c81cbacec569ef2906e2bc71ccc3f0ffc7c996bc575a681f4"
+
+[hooks.state."watch@local-desktop-app-uploads:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:a88430486f1d22e5c8f77ced915ee8b847fc74c11fed20a1a37a63b0c2db0bff"
+
+[tui.model_availability_nux]
+gpt-6-astra = 1

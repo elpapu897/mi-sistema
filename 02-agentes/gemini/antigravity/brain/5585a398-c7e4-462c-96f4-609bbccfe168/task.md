@@ -1,0 +1,6 @@
+- [x] Create the CSS changes for `.pjWrap` and `.pjTop` layout
+- [x] Create CSS for top navigation (`INFORMACIÓN`, `APARIENCIA`, etc.)
+- [x] Restyle `.pjFicha` (Info card) to match the new dark theme
+- [x] Update `.pjTabs` and `.pjOpts` styles for the bottom sections
+- [x] Update the HTML inside `R.personalizar` in `ladiez.html` to use the new classes and layout
+- [x] Test and verify the changes in the browser (if possible) or visually confirm the code
