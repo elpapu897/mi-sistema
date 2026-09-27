@@ -1,0 +1,390 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ficha": {
+      "type": "gv-producto",
+      "blocks": {
+        "pack1": {
+          "type": "oferta",
+          "settings": {
+            "title": "Individual",
+            "subtitle": "Para probarla",
+            "qty": 1,
+            "discount": 0,
+            "preselect": true
+          }
+        },
+        "b1": {
+          "type": "beneficio",
+          "settings": {
+            "text": "Rostro y cuerpo, siguiendo las indicaciones del fabricante"
+          }
+        },
+        "b2": {
+          "type": "beneficio",
+          "settings": {
+            "text": "Peines para elegir el largo"
+          }
+        },
+        "b3": {
+          "type": "beneficio",
+          "settings": {
+            "text": "Equipo recargable; seguí el método de carga del fabricante"
+          }
+        },
+        "b4": {
+          "type": "beneficio",
+          "settings": {
+            "text": "Consultá accesorios y mantenimiento antes de comprar"
+          }
+        },
+        "d1": {
+          "type": "detalle",
+          "settings": {
+            "title": "Qué incluye",
+            "body": "<p>Consultá los accesorios y peines incluidos en la ficha del modelo antes de comprar.</p>",
+            "open": false
+          }
+        },
+        "d2": {
+          "type": "detalle",
+          "settings": {
+            "title": "Envío y entrega",
+            "body": "<p>Despachamos el pedido en 24–48 h hábiles. La entrega estimada es de 12–20 días según la zona.</p><p>Te enviamos el código de seguimiento cuando sale el paquete.</p>",
+            "open": false
+          }
+        },
+        "d3": {
+          "type": "detalle",
+          "settings": {
+            "title": "Cómo se usa",
+            "body": "<p>1. Consultá los peines incluidos y elegí el largo según el manual.<br>2. Revisá las instrucciones y precauciones para cada zona.<br>3. Seguí las indicaciones del fabricante para limpieza y carga.</p><p>Leé el manual antes del primer uso.</p>",
+            "open": false
+          }
+        },
+        "d4": {
+          "type": "detalle",
+          "settings": {
+            "title": "Garantía y arrepentimiento",
+            "body": "<p>Si llega con una falla, escribinos por WhatsApp o mail y lo resolvemos. GONVRA ofrece garantía de 10 días y también podés ejercer el arrepentimiento dentro de los 10 días corridos, conforme a la normativa aplicable. Esto no limita tus derechos legales.</p>",
+            "open": false
+          }
+        },
+        "pack2": {
+          "type": "oferta",
+          "settings": {
+            "title": "Dúo",
+            "subtitle": "Para vos y un regalo",
+            "qty": 2,
+            "discount": 10,
+            "tag": "Más elegido",
+            "preselect": false
+          }
+        },
+        "pack3": {
+          "type": "oferta",
+          "settings": {
+            "title": "Trío",
+            "subtitle": "El de mejor precio por unidad",
+            "qty": 3,
+            "discount": 15,
+            "preselect": false
+          }
+        }
+      },
+      "block_order": [
+        "pack1",
+        "pack2",
+        "pack3",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "settings": {
+        "kicker": "ROSTRO + CUERPO · UN SOLO EQUIPO",
+        "badge_1": "Envío gratis a todo el país, con seguimiento",
+        "price_note": "$36.900 ARS · Precio de referencia; revisá el total final antes de pagar.",
+        "rating_count": 0,
+        "rating_value": "4,8",
+        "rating_word": "reseñas",
+        "promo_title": "",
+        "promo_text": "",
+        "promo_code": "",
+        "offers_label": "Elegí tu unidad",
+        "pill": "Seguimiento del envío incluido",
+        "stock_text": "Producto disponible",
+        "low_stock": 0,
+        "cta_text": "Quiero mi rasuradora",
+        "show_dynamic": false,
+        "show_timeline": false,
+        "cutoff_text": "Despachamos en",
+        "cutoff_hour": 17,
+        "ship_text": "24–48 h hábiles",
+        "deliver_text": "12–20 días",
+        "show_trustbar": true,
+        "trust_1_t": "Envío gratis",
+        "trust_1_s": "A todo el país, con seguimiento",
+        "trust_2_t": "Garantía de 10 días",
+        "trust_2_s": "Si llega con una falla, escribinos",
+        "trust_3_t": "Pago simple",
+        "trust_3_s": "Tarjeta o Mercado Pago",
+        "trust_4_t": "Te respondemos",
+        "trust_4_s": "Atención real por WhatsApp",
+        "gallery_clip": "gv-galeria-clip.webp",
+        "show_pay_badges": false,
+        "pay_note": "Pagá con tarjeta o Mercado Pago",
+        "show_cuotas": false,
+        "cuotas_n": 3,
+        "cuotas_label": "sin interés con Mercado Pago",
+        "loox_rating": false
+      }
+    },
+    "numeros": {
+      "type": "gv-datos",
+      "blocks": {
+        "n1": {
+          "type": "dato",
+          "settings": {
+            "number": "",
+            "suffix": "",
+            "title": "Peines para elegir el largo",
+            "text": "Consultá las opciones incluidas antes de comprar."
+          }
+        },
+        "n2": {
+          "type": "dato",
+          "settings": {
+            "number": "",
+            "suffix": "",
+            "title": "Rostro y cuerpo",
+            "text": "Una misma rasuradora para distintas zonas, respetando las precauciones del fabricante."
+          }
+        },
+        "n3": {
+          "type": "dato",
+          "settings": {
+            "number": "",
+            "suffix": "",
+            "title": "Equipo recargable",
+            "text": "Seguí el método de carga indicado por el fabricante."
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ],
+      "settings": {
+        "heading": "Rostro y cuerpo, con un solo equipo.",
+        "sub": "Una opción para simplificar tu rutina.",
+        "foot": "Seguí las indicaciones del fabricante para el uso, la limpieza y la carga.",
+        "wave": false,
+        "wave_from": "#f7f6f1",
+        "bg": "#edf0e6",
+        "fg": "#101a16",
+        "muted": "#6b7570",
+        "accent": "#6d8b1c",
+        "line": "#dfe2da"
+      }
+    },
+    "historia": {
+      "type": "gv-historia",
+      "blocks": {
+        "h1": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 1",
+            "title": "Elegí el largo",
+            "text": "<p>Consultá los peines incluidos y elegí la opción de largo siguiendo el manual del fabricante.</p>",
+            "list": "Peines para elegir el largo|Seguí las instrucciones del fabricante|Consultanos si tenés dudas",
+            "clip": "gv-paso-1.webp"
+          }
+        },
+        "h2": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 2",
+            "title": "Seguí las indicaciones de uso",
+            "text": "<p>Revisá las instrucciones y precauciones del fabricante para cada zona antes de usarla.</p>",
+            "list": "Leé el manual antes del primer uso|Respetá las precauciones|Si tenés dudas, consultanos",
+            "clip": "gv-paso-2.webp"
+          }
+        },
+        "h3": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 3",
+            "title": "Cuidá el equipo",
+            "text": "<p>Seguí las instrucciones del fabricante para limpieza y carga. No lo mojes ni lo enjuagues sin una indicación expresa del manual para este modelo.</p>",
+            "list": "Limpieza según el fabricante|Carga según el fabricante|No improvises métodos de mantenimiento",
+            "clip": "gv-paso-3.webp"
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "settings": {
+        "kicker": "Cómo usar",
+        "heading": "Conocé el equipo antes de usarlo.",
+        "intro": "<p>Una opción para simplificar tu rutina de rostro y cuerpo. Leé el manual antes del primer uso.</p>",
+        "cta_text": "Quiero mi rasuradora",
+        "wave_from": "#17251e",
+        "wave": false
+      }
+    },
+    "resenas": {
+      "type": "gv-resenas",
+      "settings": {
+        "kicker": "Opiniones",
+        "heading": "Qué dicen quienes la compraron",
+        "empty_title": "Todavía no hay reseñas de este producto",
+        "empty_text": "Somos una tienda nueva y preferimos no inventar opiniones. Si comprás, te vamos a pedir la tuya: esa es la que va a ayudar al que venga después.",
+        "empty_cta": "Ver packs",
+        "foot": "Publicamos las reseñas tal como las recibimos de clientes que compraron en esta tienda.",
+        "wave": false,
+        "bg": "#f2f3ec",
+        "empty_micro": "Después de tu compra te vamos a escribir para que dejes la tuya.",
+        "usar_loox": true,
+        "product_handle": "face-body-electric-shaver"
+      }
+    },
+    "preguntas": {
+      "type": "gv-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cuánto tarda en llegar?",
+            "a": "<p>Despachamos el pedido en 24–48 h hábiles y la entrega estimada es de 12–20 días según la zona. Te mandamos el código de seguimiento.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Sirve para rostro y cuerpo?",
+            "a": "<p>Está presentada para rostro y cuerpo, con peines para elegir el largo. Seguí las precauciones del fabricante para cada zona.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cómo se limpia?",
+            "a": "<p>Seguí las instrucciones de limpieza del fabricante. No lo mojes ni enjuagues el cabezal sin confirmación expresa del manual de este modelo.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cómo se carga?",
+            "a": "<p>Es recargable. Usá únicamente el método y la alimentación indicados por el fabricante. No publicamos autonomía ni tiempo de carga sin confirmación.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Qué pasa si llega fallada?",
+            "a": "<p>Escribinos por WhatsApp o a gonvra0@gmail.com para coordinar la solución. GONVRA ofrece garantía de 10 días y también podés ejercer el arrepentimiento dentro de los 10 días corridos, de acuerdo con la normativa aplicable.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cómo puedo pagar?",
+            "a": "<p>Con tarjeta o Mercado Pago. El total final se muestra antes de confirmar la compra.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "kicker": "Antes de comprar",
+        "heading": "Preguntas frecuentes",
+        "sub": "Las dudas que más nos hacen, contestadas sin vueltas.",
+        "contact_text": "¿Te quedó otra duda? Escribinos",
+        "show_cta": true,
+        "product_handle": "face-body-electric-shaver",
+        "cta_kicker": "Empezá por acá",
+        "cta_heading": "Resolvé tu rutina sin vueltas.",
+        "cta_text": "Una rasuradora para rostro y cuerpo, con el largo que elegís y envío gratis con seguimiento a todo el país.",
+        "cta_button": "Quiero mi rasuradora",
+        "cta_clip": "gv-cierre.webp"
+      }
+    },
+    "antes": {
+      "type": "gv-antes",
+      "blocks": {
+        "a1": {
+          "type": "punto",
+          "settings": {
+            "title": "Zona íntima, brazos, pecho y piernas",
+            "text": "La misma máquina para todo el cuerpo. Sin espuma, sin cuchillas descartables."
+          }
+        },
+        "a2": {
+          "type": "punto",
+          "settings": {
+            "title": "Vos elegís cuánto dejar",
+            "text": "Con el peine de 1, 3 o 5 mm queda parejo. Sin peine, el acabado es más al ras."
+          }
+        },
+        "a3": {
+          "type": "punto",
+          "settings": {
+            "title": "En una pasada",
+            "text": "El cabezal ancho cubre más superficie: menos idas y vueltas sobre la misma zona."
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {
+        "wave": false,
+        "wave_from": "#f7f6f1",
+        "wave_bottom": true,
+        "wave_to": "#edf0e6",
+        "kicker": "Antes y después",
+        "heading": "Deslizá y mirá la diferencia",
+        "sub": "Movés la línea con el dedo y ves la misma zona antes y después de pasar la rasuradora.",
+        "label_before": "Antes",
+        "label_after": "Después",
+        "cta_text": "Ver la rasuradora",
+        "cta_link": "/products/face-body-electric-shaver",
+        "foot": "Imágenes ilustrativas del uso del producto. El resultado es temporal y varía según el tipo y grosor del vello."
+      }
+    }
+  },
+  "order": [
+    "ficha",
+    "numeros",
+    "historia",
+    "antes",
+    "resenas",
+    "preguntas"
+  ]
+}

@@ -1,0 +1,90 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .gv-benefit__title { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+{%- capture gv_icons -%}{%- endcapture -%}
+
+<section class="gv-benefits gv-section">
+  <div class="gv-container">
+    <div class="gv-benefits__grid" data-gv-carousel data-auto="3500">
+      {%- for block in section.blocks -%}
+        <div class="gv-benefit gv-reveal" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <div class="gv-benefit__icon">
+            {%- case block.settings.icono -%}
+              {%- when 'envio' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h5a1 1 0 0 0 1-1v-3.34a2 2 0 0 0-.6-1.43l-3.06-3a2 2 0 0 0-1.4-.57H14"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/></svg>
+              {%- when 'escudo' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+              {%- when 'candado' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              {%- when 'chat' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
+              {%- when 'corazon' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              {%- when 'devolucion' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              {%- when 'pata' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="4" cy="8" r="2"/><path d="M9 10c-2 0-4 2-4 4.5 0 2 1.5 3.5 3.5 3.5 1 0 1.5-.5 2.5-.5s1.5.5 2.5.5c2 0 3.5-1.5 3.5-3.5C19 12 17 10 15 10c-1.5 0-2 .8-3 .8S10.5 10 9 10Z"/></svg>
+              {%- else -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+            {%- endcase -%}
+          </div>
+          <h3 class="gv-benefit__title">{{ block.settings.titulo }}</h3>
+          <p class="gv-benefit__text">{{ block.settings.texto }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Beneficios",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "range", "id": "title_size", "label": "Tamaño del título de cada bloque (px)", "min": 15, "max": 26, "step": 1, "unit": "px", "default": 20 },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 72 }
+  ],
+  "blocks": [
+    {
+      "type": "beneficio",
+      "name": "Beneficio",
+      "settings": [
+        { "type": "select", "id": "icono", "label": "Icono", "default": "envio",
+          "options": [
+            {"value": "envio", "label": "Camión de envío"},
+            {"value": "escudo", "label": "Escudo / garantía"},
+            {"value": "candado", "label": "Candado / pago seguro"},
+            {"value": "chat", "label": "Atención / chat"},
+            {"value": "corazon", "label": "Corazón"},
+            {"value": "devolucion", "label": "Devoluciones"},
+            {"value": "pata", "label": "Huella de mascota"}
+          ] },
+        { "type": "text", "id": "titulo", "label": "Título", "default": "Beneficio" },
+        { "type": "textarea", "id": "texto", "label": "Texto", "default": "Describe aquí este beneficio para tus clientes." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GV – Beneficios",
+      "blocks": [
+        { "type": "beneficio", "settings": { "icono": "envio", "titulo": "Envíos a todo el país", "texto": "Recibí tu pedido en casa, con seguimiento en cada paso." } },
+        { "type": "beneficio", "settings": { "icono": "escudo", "titulo": "Garantía de satisfacción", "texto": "Productos elegidos y probados pensando en tu mascota." } },
+        { "type": "beneficio", "settings": { "icono": "candado", "titulo": "Pago 100% seguro", "texto": "Comprá con tranquilidad con todos los medios de pago." } },
+        { "type": "beneficio", "settings": { "icono": "chat", "titulo": "Atención personalizada", "texto": "Te ayudamos a elegir lo mejor para tu compañero." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

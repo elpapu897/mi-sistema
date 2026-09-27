@@ -1,0 +1,20 @@
+{
+  "store": "jm60sa-cp.myshopify.com",
+  "theme_id": "148158414963",
+  "theme_role": "live",
+  "product_id": 8389240520819,
+  "product_handle": "face-body-electric-shaver",
+  "verified_template_suffix": "tienda",
+  "verification_url": "https://gonvra.com/products/face-body-electric-shaver.json",
+  "source_copy": "/home/matiigonzz/Documents/Codex/tiendas/jm60sa-cp/work-copy-2026-09-18",
+  "files": [
+    {
+      "path": "templates/product.tienda.json",
+      "sha256": "bebf93216f399485253ce8943a34628e938d65d24125017b341107fa2bfacdbd",
+      "bytes": 10975
+    }
+  ],
+  "proposed_command": "npx shopify theme push --store jm60sa-cp.myshopify.com --theme 148158414963 --allow-live --nodelete --only templates/product.tienda.json",
+  "scope": "aplicar el COPY aprobado únicamente a la plantilla realmente asignada al producto; no tocar otros archivos",
+  "status": "sin ejecutar"
+}

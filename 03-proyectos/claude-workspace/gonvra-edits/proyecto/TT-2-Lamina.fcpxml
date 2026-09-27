@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xmeml>
+<xmeml version="5">
+  <sequence id="TT-2-Lamina">
+    <name>TT-2-Lamina</name>
+    <duration>379</duration>
+    <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+    <media>
+      <video>
+        <format><samplecharacteristics>
+          <width>1080</width><height>1920</height>
+          <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+        </samplecharacteristics></format>
+        <track>
+          <clipitem id="clip-1">
+            <name>brazo-corregido.mp4</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>0</start>
+            <end>77</end>
+            <in>5</in>
+            <out>82</out>
+            <file id="file-1">
+              <name>brazo-corregido.mp4</name>
+              <pathurl>file:///home/matiigonzz/Descargas/GONVRA - flow/brazo-corregido.mp4</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="clip-2">
+            <name>brazo-corregido.mp4</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>77</start>
+            <end>144</end>
+            <in>82</in>
+            <out>149</out><file id="file-1"/>
+          </clipitem>
+          <clipitem id="clip-3">
+            <name>Shaver_blade_texture_lighting_720p_202609062312.mp4</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>144</start>
+            <end>250</end>
+            <in>43</in>
+            <out>149</out>
+            <file id="file-2">
+              <name>Shaver_blade_texture_lighting_720p_202609062312.mp4</name>
+              <pathurl>file:///home/matiigonzz/Descargas/videos para la tienda/Shaver_blade_texture_lighting_720p_202609062312.mp4</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="clip-4">
+            <name>enjuague-720p.mp4</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>250</start>
+            <end>326</end>
+            <in>29</in>
+            <out>106</out>
+            <file id="file-3">
+              <name>enjuague-720p.mp4</name>
+              <pathurl>file:///home/matiigonzz/Descargas/gonvra-flow-nuevo/enjuague-720p.mp4</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="clip-5">
+            <name>endcard.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>326</start>
+            <end>379</end>
+            <in>0</in>
+            <out>53</out>
+            <file id="file-4">
+              <name>endcard.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/endcard.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+        </track>
+        <track>
+          <clipitem id="card-1">
+            <name>t2_c1.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>0</start>
+            <end>77</end>
+            <in>0</in>
+            <out>77</out>
+            <file id="card-file-1">
+              <name>t2_c1.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/t2_c1.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="card-2">
+            <name>t2_c2.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>77</start>
+            <end>144</end>
+            <in>0</in>
+            <out>67</out>
+            <file id="card-file-2">
+              <name>t2_c2.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/t2_c2.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="card-3">
+            <name>t2_c3.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>144</start>
+            <end>250</end>
+            <in>0</in>
+            <out>106</out>
+            <file id="card-file-3">
+              <name>t2_c3.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/t2_c3.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="card-4">
+            <name>t2_c4.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>250</start>
+            <end>326</end>
+            <in>0</in>
+            <out>77</out>
+            <file id="card-file-4">
+              <name>t2_c4.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/t2_c4.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+        </track>
+      </video>
+    </media>
+  </sequence>
+</xmeml>

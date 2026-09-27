@@ -1,0 +1,51 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "gv_footer": {
+      "type": "gv-footer",
+      "blocks": {
+        "c1": {
+          "type": "columna",
+          "settings": {
+            "title": "Tienda",
+            "links": "Inicio::/\nLa rasuradora::/products/face-body-electric-shaver\nCarrito::/cart"
+          }
+        },
+        "c2": {
+          "type": "columna",
+          "settings": {
+            "title": "Ayuda",
+            "links": "Preguntas frecuentes::/#faq\nEnvíos y entrega::/#ayuda\nCambios y devoluciones::mailto:gonvra0@gmail.com"
+          }
+        },
+        "c3": {
+          "type": "columna",
+          "settings": {
+            "title": "Contacto",
+            "links": "Escribinos::mailto:gonvra0@gmail.com"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "brand_text": "GONVRA",
+        "tagline": "Cuidado personal a tu manera. Una rasuradora, tres largos y una rutina más simple.",
+        "show_news": true,
+        "news_title": "Novedades",
+        "news_text": "Dejanos tu mail y te avisamos cuando sumamos productos nuevos.",
+        "wa_number": "",
+        "wa_text": "Hola! Tengo una consulta sobre la rasuradora",
+        "legal": "Todos los derechos reservados.",
+        "legal_2": "Defensa de las y los consumidores: para reclamos ingresá a argentina.gob.ar/produccion/defensadelconsumidor"
+      }
+    }
+  },
+  "order": [
+    "gv_footer"
+  ]
+}

@@ -1,0 +1,69 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .mt-faq { background: {{ section.settings.background }}; }
+  #shopify-section-{{ section.id }} .mt-faq__intro { text-align: {{ section.settings.text_align }}; }
+  #shopify-section-{{ section.id }} .mt-faq__intro .mt-h2 { font-size: clamp(36px, 5vw, {{ section.settings.heading_size }}px); }
+  #shopify-section-{{ section.id }} .mt-faq__intro .mt-body { font-size: clamp(15px, 1.35vw, {{ section.settings.body_size }}px); }
+  #shopify-section-{{ section.id }} .mt-faq summary { font-size: clamp(18px, 2vw, {{ section.settings.question_size }}px); }
+  #shopify-section-{{ section.id }} .mt-faq__answer { font-size: clamp(14px, 1.5vw, {{ section.settings.answer_size }}px); }
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} { padding-top: min({{ section.settings.padding_top }}px, 72px); padding-bottom: min({{ section.settings.padding_bottom }}px, 72px); }
+  }
+{% endstyle %}
+
+<section class="mt-faq mt-section" id="preguntas">
+  <div class="mt-container">
+    <div class="mt-faq__layout">
+      <header class="mt-faq__intro">
+        {%- if section.settings.kicker != blank -%}<p class="mt-kicker mt-reveal">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 class="mt-h2 mt-reveal">{{ section.settings.headline }}</h2>
+        {%- if section.settings.body != blank -%}<div class="mt-body mt-reveal">{{ section.settings.body | newline_to_br }}</div>{%- endif -%}
+      </header>
+      <div class="mt-faq__items mt-reveal">
+        {%- for block in section.blocks -%}
+          <details {% if forloop.first and section.settings.open_first %}open{% endif %} {{ block.shopify_attributes }}>
+            <summary><span>{{ block.settings.question }}</span><span class="mt-faq__plus">+</span></summary>
+            <div class="mt-faq__answer">{{ block.settings.answer | newline_to_br }}</div>
+          </details>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Preguntas frecuentes",
+  "tag": "section",
+  "max_blocks": 10,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Antetítulo", "default": "SIN DUDAS" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "Lo importante, antes de elegir." },
+    { "type": "textarea", "id": "body", "label": "Texto", "default": "Reunimos las respuestas esenciales para que sepas exactamente qué esperar de Helio Mini." },
+    { "type": "checkbox", "id": "open_first", "label": "Abrir la primera pregunta", "default": true },
+    { "type": "select", "id": "text_align", "label": "Alineación del encabezado", "options": [{"value":"left","label":"Izquierda"},{"value":"center","label":"Centro"},{"value":"right","label":"Derecha"}], "default": "left" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 34, "max": 80, "step": 2, "unit": "px", "default": 58 },
+    { "type": "range", "id": "body_size", "label": "Tamaño del texto (px)", "min": 14, "max": 24, "step": 1, "unit": "px", "default": 17 },
+    { "type": "range", "id": "question_size", "label": "Tamaño de preguntas (px)", "min": 16, "max": 30, "step": 1, "unit": "px", "default": 22 },
+    { "type": "range", "id": "answer_size", "label": "Tamaño de respuestas (px)", "min": 13, "max": 22, "step": 1, "unit": "px", "default": 16 },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#EDF2F6" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 112 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 120 }
+  ],
+  "blocks": [
+    {
+      "type": "pregunta",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pregunta", "default": "¿Cómo se carga?" },
+        { "type": "textarea", "id": "answer", "label": "Respuesta", "default": "Se recarga mediante conexión USB. Podés conectarla a un cargador compatible, una computadora o una batería portátil." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "MT – Preguntas frecuentes", "blocks": [{"type":"pregunta"},{"type":"pregunta"},{"type":"pregunta"},{"type":"pregunta"}] }]
+}
+{% endschema %}

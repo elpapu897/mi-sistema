@@ -1,0 +1,90 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "gv-newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Sumate a la manada GONVRA",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Enterate primero de los descuentos, los productos nuevos y las novedades para tu mascota.</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email_form"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "logo_width": 160,
+        "marca": "GONVRA",
+        "tagline": "Todo lo que tu mascota necesita, con envío a todo el país y atención cercana.",
+        "instagram": "",
+        "facebook": "",
+        "tiktok": "",
+        "whatsapp": "",
+        "col1_titulo": "Tienda",
+        "col1_link1_label": "Todos los productos",
+        "col1_link1_url": "/collections/all",
+        "col1_link2_label": "Para perros",
+        "col1_link2_url": "/collections/perros",
+        "col1_link3_label": "Para gatos",
+        "col1_link3_url": "/collections/gatos",
+        "col1_link4_label": "Los favoritos",
+        "col1_link4_url": "/collections/los-favoritos",
+        "col1_link5_label": "",
+        "col1_link5_url": "",
+        "col2_titulo": "Ayuda",
+        "col2_link1_label": "Buscar",
+        "col2_link1_url": "/search",
+        "col2_link2_label": "Política de envíos",
+        "col2_link2_url": "/policies/shipping-policy",
+        "col2_link3_label": "Cambios y devoluciones",
+        "col2_link3_url": "/policies/refund-policy",
+        "col2_link4_label": "Política de privacidad",
+        "col2_link4_url": "/policies/privacy-policy",
+        "col2_link5_label": "Términos del servicio",
+        "col2_link5_url": "/policies/terms-of-service",
+        "about_titulo": "Sobre GONVRA",
+        "about_texto": "Somos una tienda pensada para el bienestar de perros y gatos. Elegimos cada producto con cariño para que tu mascota esté feliz y saludable.",
+        "derechos": "Todos los derechos reservados.",
+        "mostrar_pagos": true
+      }
+    }
+  },
+  "order": [
+    "gv-newsletter",
+    "footer"
+  ]
+}

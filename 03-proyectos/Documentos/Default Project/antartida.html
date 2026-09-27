@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Antártida — Un viaje visual al continente blanco: glaciares milenarios, fauna extrema, auroras australes y la historia de su exploración.">
+<meta name="theme-color" content="#05080f">
+<title>ANTÁRTIDA — El Continente Blanco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET & BASE ============ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #05080f;
+  --bg-2: #0a101f;
+  --ice: #a5d8ff;
+  --ice-2: #7ec8e3;
+  --ice-deep: #2a5a8a;
+  --text: #eef4fb;
+  --text-dim: rgba(238, 244, 251, .6);
+  --text-faint: rgba(238, 244, 251, .38);
+  --line: rgba(165, 216, 255, .12);
+  --glass: rgba(16, 28, 48, .45);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+::selection { background: var(--ice); color: #04121f; }
+
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #1e3350; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #2e4a70; }
+
+h1, h2, h3 { font-family: 'Syne', sans-serif; }
+
+section { scroll-margin-top: 70px; }
+
+img { display: block; max-width: 100%; }
+
+/* ============ GRAIN OVERLAY ============ */
+.grain {
+  position: fixed; inset: -50%; z-index: 2000; pointer-events: none;
+  width: 200%; height: 200%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter><rect width="240" height="240" filter="url(%23n)" opacity="0.55"/></svg>');
+  opacity: .045;
+  animation: grainShift 1.2s steps(4) infinite;
+}
+@keyframes grainShift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 1.5%); }
+  50% { transform: translate(1.5%, -2%); }
+  75% { transform: translate(-1%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ============ PRELOADER ============ */
+.preloader {
+  position: fixed; inset: 0; z-index: 3000;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 1s var(--ease-out);
+}
+.preloader.done { transform: translateY(-100%); }
+.preloader-inner { text-align: center; }
+.preloader-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 800; letter-spacing: .45em;
+  padding-left: .45em;
+  background: linear-gradient(120deg, #fff, var(--ice));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  animation: pulseGlow 1.6s ease-in-out infinite;
+}
+@keyframes pulseGlow { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+.preloader-bar {
+  width: min(280px, 60vw); height: 1px;
+  background: rgba(165, 216, 255, .15);
+  margin: 0 auto 1rem; overflow: hidden;
+}
+.preloader-bar span {
+  display: block; height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--ice-2), #fff);
+  transition: width .2s ease;
+}
+.preloader-pct {
+  font-size: .7rem; letter-spacing: .35em;
+  color: var(--text-faint); font-variant-numeric: tabular-nums;
+}
+
+/* ============ CUSTOM CURSOR ============ */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 4000;
+  pointer-events: none; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+html.custom-cursor .cursor-dot,
+html.custom-cursor .cursor-ring { display: block; }
+html.custom-cursor, html.custom-cursor * { cursor: none !important; }
+.cursor-dot { width: 6px; height: 6px; background: var(--ice); }
+.cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(165, 216, 255, .45);
+  transition: width .35s ease, height .35s ease, background .35s ease, border-color .35s ease;
+}
+.cursor-ring.hovering {
+  width: 64px; height: 64px;
+  background: rgba(165, 216, 255, .08);
+  border-color: rgba(165, 216, 255, .8);
+}
+
+/* ============ NAV ============ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.4rem clamp(1.5rem, 5vw, 4rem);
+  transition: background .5s ease, padding .5s ease, box-shadow .5s ease;
+}
+nav.scrolled {
+  background: rgba(5, 8, 15, .75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: .85rem clamp(1.5rem, 5vw, 4rem);
+  box-shadow: 0 1px 0 var(--line);
+}
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 1.05rem; letter-spacing: .3em;
+  color: var(--text); text-decoration: none;
+  display: flex; align-items: center; gap: .6rem;
+}
+.logo i {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--ice), var(--ice-2));
+  box-shadow: 0 0 14px rgba(126, 200, 227, .8);
+  display: inline-block;
+}
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  position: relative;
+  color: var(--text-dim); text-decoration: none;
+  font-size: .72rem; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase;
+  transition: color .3s ease;
+  padding: .3rem 0;
+}
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: var(--ice);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .4s var(--ease-out);
+}
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+.nav-links a:hover::after, .nav-links a.active::after {
+  transform: scaleX(1); transform-origin: left;
+}
+.menu-toggle {
+  display: none; flex-direction: column; gap: 6px;
+  background: none; border: none; padding: 6px; z-index: 1001;
+}
+.menu-toggle span {
+  width: 26px; height: 1.5px; background: var(--text);
+  transition: transform .35s ease, opacity .35s ease;
+}
+.menu-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative; height: 100vh; min-height: 640px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: -6% 0;
+  background:
+    linear-gradient(180deg, rgba(5,8,15,.55) 0%, rgba(5,8,15,.15) 40%, rgba(5,8,15,.35) 75%, var(--bg) 100%),
+    linear-gradient(120deg, rgba(10,25,50,.55), rgba(5,8,15,.1) 60%),
+    url('https://images.unsplash.com/photo-1517783999520-f068d7431a60?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat,
+    linear-gradient(135deg, #0c1a30, #16294a);
+  transform: scale(1.06);
+  will-change: transform;
+}
+#snowCanvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 2;
+}
+.hero-content {
+  position: relative; z-index: 3; text-align: center;
+  padding: 0 1.5rem; will-change: transform;
+}
+.hero-eyebrow {
+  font-size: .72rem; letter-spacing: .5em; text-transform: uppercase;
+  color: rgba(238,244,251,.75); margin-bottom: 1.8rem; font-weight: 400;
+  opacity: 0; animation: fadeUp 1s var(--ease-out) 1.15s forwards;
+}
+.hero-title {
+  font-size: clamp(3.2rem, 13vw, 10.5rem);
+  font-weight: 800; line-height: .95; letter-spacing: .02em;
+  margin-bottom: 1.8rem;
+  text-shadow: 0 20px 80px rgba(0,0,0,.4);
+}
+.hero-title .letter {
+  display: inline-block;
+  transform: translateY(115%);
+  animation: letterUp 1.1s var(--ease-out) forwards;
+  animation-delay: calc(1.05s + var(--i) * .055s);
+  background: linear-gradient(180deg, #ffffff 30%, #bcd9ef 75%, #7fa8c9 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes letterUp { to { transform: translateY(0); } }
+.hero-desc {
+  max-width: 560px; margin: 0 auto 2.8rem;
+  font-size: clamp(.95rem, 1.4vw, 1.1rem);
+  color: rgba(238,244,251,.78);
+  opacity: 0; animation: fadeUp 1s var(--ease-out) 1.6s forwards;
+}
+.hero-ctas {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 1s var(--ease-out) 1.8s forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.btn {
+  display: inline-flex; align-items: center; gap: .7rem;
+  padding: 1rem 2.4rem;
+  font-size: .74rem; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .35s var(--ease-out), box-shadow .35s ease, background .35s ease, color .35s ease, border-color .35s ease;
+  will-change: transform;
+}
+.btn-primary {
+  background: linear-gradient(120deg, #dff0ff, var(--ice));
+  color: #04121f;
+  box-shadow: 0 10px 40px rgba(126, 200, 227, .25);
+}
+.btn-primary:hover { box-shadow: 0 14px 55px rgba(126, 200, 227, .45); }
+.btn-ghost {
+  border: 1px solid rgba(238,244,251,.3); color: var(--text);
+  background: rgba(5,8,15,.25); backdrop-filter: blur(6px);
+}
+.btn-ghost:hover { border-color: var(--ice); background: rgba(165,216,255,.08); }
+.btn svg { width: 14px; height: 14px; transition: transform .35s ease; }
+.btn:hover svg { transform: translateX(4px); }
+
+.hero-meta {
+  position: absolute; z-index: 3;
+  font-size: .65rem; letter-spacing: .3em; text-transform: uppercase;
+  color: rgba(238,244,251,.5);
+  opacity: 0; animation: fadeUp 1s var(--ease-out) 2.1s forwards;
+}
+.hero-meta.left { left: clamp(1.5rem, 4vw, 3rem); bottom: 2.4rem; }
+.hero-meta.right { right: clamp(1.5rem, 4vw, 3rem); bottom: 2.4rem; display: flex; align-items: center; gap: .8rem; }
+.hero-meta .line-v { width: 1px; height: 46px; background: linear-gradient(180deg, var(--ice), transparent); animation: lineDrop 2s ease-in-out infinite; }
+@keyframes lineDrop { 0%,100% { transform: scaleY(.4); opacity:.4 } 50% { transform: scaleY(1); opacity:1 } }
+
+/* ============ MARQUEE ============ */
+.marquee {
+  overflow: hidden; white-space: nowrap;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1.35rem 0;
+  background: var(--bg);
+  position: relative; z-index: 4;
+}
+.marquee-track {
+  display: inline-flex; gap: 3.5rem;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-item {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: .3em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 3.5rem;
+}
+.marquee-item.solid { color: rgba(238,244,251,.85); }
+.marquee-item.outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(165, 216, 255, .45);
+}
+.marquee-item::after { content: '◆'; font-size: .55rem; color: var(--ice-2); -webkit-text-stroke: 0; }
+
+/* ============ STATS ============ */
+.stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  max-width: 1200px; margin: 0 auto;
+  padding: clamp(4rem, 8vw, 6.5rem) clamp(1.5rem, 5vw, 3rem);
+  gap: 2.5rem;
+}
+.stat { text-align: center; position: relative; }
+.stat + .stat::before {
+  content: ''; position: absolute; left: -1.25rem; top: 15%;
+  height: 70%; width: 1px; background: var(--line);
+}
+.stat-number {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+  font-weight: 800; line-height: 1;
+  background: linear-gradient(135deg, #fff 20%, var(--ice));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: .7rem;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--text-faint); font-weight: 400;
+}
+
+/* ============ SECTION HEADERS ============ */
+.section { padding: clamp(5rem, 10vw, 8.5rem) clamp(1.5rem, 5vw, 3rem); }
+.container { max-width: 1200px; margin: 0 auto; }
+.sec-label {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: .68rem; letter-spacing: .4em; text-transform: uppercase;
+  color: var(--ice-2); margin-bottom: 1.3rem; font-weight: 500;
+}
+.sec-label::before { content: ''; width: 42px; height: 1px; background: var(--ice-2); opacity: .6; }
+.sec-title {
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 800; line-height: 1.08; letter-spacing: -.01em;
+  margin-bottom: 1.2rem;
+}
+.sec-title em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-weight: 500;
+  color: var(--ice);
+}
+.sec-desc { color: var(--text-dim); max-width: 640px; font-size: 1.02rem; }
+
+/* ============ ABOUT ============ */
+.about-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: clamp(3rem, 6vw, 5.5rem);
+  align-items: center; margin-top: 3.5rem;
+}
+.about-img {
+  position: relative; height: clamp(420px, 55vw, 560px);
+  overflow: hidden; border-radius: 6px;
+  border: 1px solid var(--line);
+}
+.about-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(5,8,15,.75));
+  pointer-events: none;
+}
+.about-img .ph {
+  position: absolute; inset: -10%;
+  background:
+    linear-gradient(180deg, rgba(5,8,15,.1), rgba(5,8,15,.35)),
+    url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1400&auto=format&fit=crop') center/cover no-repeat,
+    linear-gradient(135deg, #0d1c33, #1a3050);
+  will-change: transform;
+}
+.about-caption {
+  position: absolute; left: 1.6rem; bottom: 1.4rem; z-index: 2;
+  font-size: .68rem; letter-spacing: .25em; text-transform: uppercase;
+  color: rgba(238,244,251,.85);
+  display: flex; align-items: center; gap: .7rem;
+}
+.about-caption::before { content: ''; width: 26px; height: 1px; background: var(--ice); }
+.about-frame {
+  position: absolute; inset: 0;
+  border: 1px solid rgba(165,216,255,.25);
+  transform: translate(18px, 18px);
+  border-radius: 6px; pointer-events: none;
+  z-index: -1;
+}
+.about-img-wrap { position: relative; }
+.about-text p { color: var(--text-dim); margin-bottom: 1.3rem; }
+.about-text p strong { color: var(--text); font-weight: 500; }
+.about-list { list-style: none; margin-top: 2rem; display: grid; gap: 1rem; }
+.about-list li {
+  display: flex; gap: 1rem; align-items: baseline;
+  padding-bottom: 1rem; border-bottom: 1px solid var(--line);
+  font-size: .92rem; color: var(--text-dim);
+}
+.about-list b {
+  font-family: 'Syne', sans-serif; color: var(--ice);
+  font-size: .78rem; letter-spacing: .1em; white-space: nowrap;
+}
+
+/* ============ FACTS ============ */
+.facts-section { background: linear-gradient(180deg, var(--bg), var(--bg-2) 50%, var(--bg)); }
+.facts-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem; margin-top: 3.5rem;
+}
+.fact-card {
+  position: relative;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2.4rem 2rem;
+  backdrop-filter: blur(8px);
+  transition: transform .5s var(--ease-out), border-color .4s ease, box-shadow .5s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.fact-card:hover {
+  border-color: rgba(165,216,255,.35);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(165,216,255,.08) inset;
+}
+.fact-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.6rem; font-weight: 800; line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(165,216,255,.35);
+  margin-bottom: 1.4rem;
+  transition: all .4s ease;
+}
+.fact-card:hover .fact-num { -webkit-text-stroke: 1px rgba(165,216,255,.9); }
+.fact-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .7rem; }
+.fact-card p { font-size: .88rem; color: var(--text-dim); line-height: 1.75; }
+.fact-tag {
+  display: inline-block; margin-top: 1.3rem;
+  font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ice-2); border: 1px solid rgba(126,200,227,.3);
+  padding: .35rem .8rem; border-radius: 100px;
+}
+
+/* ============ WILDLIFE ============ */
+.wild-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem; margin-top: 3.5rem;
+}
+.wild-card {
+  position: relative; height: 520px;
+  border-radius: 6px; overflow: hidden;
+  border: 1px solid var(--line);
+}
+.wild-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 1.1s var(--ease-out), filter .8s ease;
+  filter: saturate(.9) brightness(.92);
+}
+.wild-card:hover .wild-img { transform: scale(1.07); filter: saturate(1.05) brightness(1); }
+.wild-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,8,15,.15) 30%, rgba(5,8,15,.88) 92%);
+  transition: background .5s ease;
+}
+.wild-body {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 2rem 1.8rem;
+}
+.wild-index {
+  font-size: .65rem; letter-spacing: .3em; color: var(--ice-2);
+  text-transform: uppercase; margin-bottom: .6rem; display: block;
+}
+.wild-body h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem; }
+.wild-body p {
+  font-size: .85rem; color: var(--text-dim);
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height .6s var(--ease-out), opacity .5s ease .05s, margin .5s ease;
+}
+.wild-card:hover .wild-body p { max-height: 140px; opacity: 1; margin-top: .4rem; }
+.wild-arrow {
+  position: absolute; top: 1.4rem; right: 1.4rem;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid rgba(238,244,251,.3);
+  display: grid; place-items: center;
+  color: var(--text); font-size: 1rem;
+  transition: all .45s var(--ease-out);
+  transform: rotate(-45deg);
+  background: rgba(5,8,15,.3); backdrop-filter: blur(6px);
+}
+.wild-card:hover .wild-arrow {
+  transform: rotate(0); background: var(--ice); color: #04121f;
+  border-color: var(--ice);
+}
+
+/* ============ GALLERY ============ */
+.gallery-section { background: linear-gradient(180deg, var(--bg), var(--bg-2) 50%, var(--bg)); }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 250px; gap: 1.2rem; margin-top: 3.5rem;
+}
+.g-item {
+  position: relative; overflow: hidden; border-radius: 6px;
+  border: 1px solid var(--line);
+}
+.g-item.wide { grid-column: span 2; }
+.g-item.tall { grid-row: span 2; }
+.g-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform 1.2s var(--ease-out), filter .7s ease;
+  filter: brightness(.9);
+}
+.g-item:hover .g-img { transform: scale(1.06); filter: brightness(1.02); }
+.g-cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 1.4rem 1.5rem;
+  background: linear-gradient(180deg, transparent, rgba(5,8,15,.85));
+  transform: translateY(8px);
+  transition: transform .5s var(--ease-out);
+}
+.g-item:hover .g-cap { transform: translateY(0); }
+.g-cap h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
+.g-cap span {
+  font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(238,244,251,.6);
+}
+
+/* ============ TIMELINE ============ */
+.timeline-wrap { max-width: 860px; margin: 4rem auto 0; position: relative; }
+.timeline { position: relative; padding-left: clamp(2.2rem, 6vw, 4rem); }
+.timeline-track {
+  position: absolute; left: 0; top: 6px; bottom: 6px; width: 1px;
+  background: rgba(165,216,255,.15);
+}
+.timeline-fill {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, var(--ice), var(--ice-deep));
+  transform: scaleY(0); transform-origin: top;
+}
+.tl-item { position: relative; padding-bottom: 3.4rem; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute; left: clamp(-2.2rem, -6vw, -4rem); top: 7px;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--ice-2);
+  transform: translateX(-6px);
+  box-shadow: 0 0 0 5px rgba(126,200,227,.08);
+}
+.tl-year {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800;
+  background: linear-gradient(135deg, #fff, var(--ice));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1; margin-bottom: .6rem;
+}
+.tl-item h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
+.tl-item p { color: var(--text-dim); font-size: .92rem; max-width: 620px; }
+
+/* ============ CLIMATE ============ */
+.climate-section { background: linear-gradient(180deg, var(--bg), var(--bg-2) 55%, var(--bg)); }
+.climate-grid {
+  display: grid; grid-template-columns: 1.15fr .85fr;
+  gap: 1.4rem; margin-top: 3.5rem;
+}
+.panel {
+  background: var(--glass); border: 1px solid var(--line);
+  border-radius: 6px; padding: 2.4rem;
+  backdrop-filter: blur(8px);
+}
+.panel h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+.panel .hint { font-size: .72rem; color: var(--text-faint); margin-bottom: 2rem; }
+.bar-chart {
+  display: flex; align-items: flex-end; gap: clamp(.4rem, 1.2vw, .9rem);
+  height: 220px; padding-top: 1.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.bar-item {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end;
+  height: 100%; gap: .7rem; position: relative;
+}
+.bar {
+  width: 100%; min-height: 4px; border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, #dff0ff, var(--ice-2) 45%, var(--ice-deep));
+  box-shadow: 0 0 20px rgba(126,200,227,.18);
+  transition: height 1.2s var(--ease-out);
+  position: relative;
+}
+.bar-item:hover .bar { filter: brightness(1.25); }
+.bar::after {
+  content: attr(data-temp);
+  position: absolute; top: -1.7rem; left: 50%;
+  transform: translateX(-50%);
+  font-size: .62rem; letter-spacing: .05em;
+  color: var(--ice); white-space: nowrap;
+  opacity: 0; transition: opacity .3s ease;
+}
+.bar-item:hover .bar::after { opacity: 1; }
+.bar-label { font-size: .62rem; letter-spacing: .12em; color: var(--text-faint); text-transform: uppercase; }
+.climate-side { display: grid; gap: 1.4rem; grid-template-rows: repeat(4, 1fr); }
+.climate-stat {
+  background: var(--glass); border: 1px solid var(--line);
+  border-radius: 6px; padding: 1.4rem 1.8rem;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  backdrop-filter: blur(8px);
+  transition: border-color .35s ease, transform .35s var(--ease-out);
+}
+.climate-stat:hover { border-color: rgba(165,216,255,.35); transform: translateX(6px); }
+.climate-stat .l { font-size: .8rem; color: var(--text-dim); }
+.climate-stat .v {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.45rem; color: var(--ice); white-space: nowrap;
+}
+
+/* ============ QUOTE ============ */
+.quote-section {
+  position: relative; overflow: hidden;
+  padding: clamp(7rem, 14vw, 11rem) 1.5rem;
+  text-align: center;
+}
+.quote-bg {
+  position: absolute; inset: -15% 0;
+  background:
+    linear-gradient(180deg, var(--bg), rgba(5,8,15,.55) 40%, rgba(5,8,15,.55) 60%, var(--bg)),
+    url('https://images.unsplash.com/photo-1520769669658-f07657f5a307?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat,
+    linear-gradient(135deg, #0a1626, #14263f);
+  will-change: transform;
+}
+.quote-inner { position: relative; z-index: 2; max-width: 880px; margin: 0 auto; }
+.quote-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem; line-height: .5; color: var(--ice);
+  opacity: .8; display: block; margin-bottom: 2rem;
+}
+.quote-text {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: clamp(1.5rem, 3.6vw, 2.5rem); line-height: 1.4;
+  color: #f4f9ff; font-weight: 500;
+  text-shadow: 0 4px 40px rgba(0,0,0,.5);
+}
+.quote-author {
+  margin-top: 2rem; font-size: .7rem; letter-spacing: .35em;
+  text-transform: uppercase; color: rgba(238,244,251,.65);
+}
+
+/* ============ FINAL CTA ============ */
+.final-cta { text-align: center; }
+.final-cta .sec-title { margin-bottom: 1rem; }
+.final-cta p { color: var(--text-dim); max-width: 520px; margin: 0 auto 2.6rem; }
+
+/* ============ FOOTER ============ */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 3.5rem clamp(1.5rem, 5vw, 3rem) 2.5rem;
+  background: #04060c;
+}
+.footer-top {
+  max-width: 1200px; margin: 0 auto 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 2rem; flex-wrap: wrap;
+}
+.footer-links { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+.footer-links a {
+  color: var(--text-faint); text-decoration: none;
+  font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+  transition: color .3s ease;
+}
+.footer-links a:hover { color: var(--ice); }
+.footer-bottom {
+  max-width: 1200px; margin: 0 auto;
+  padding-top: 1.8rem; border-top: 1px solid rgba(165,216,255,.07);
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  font-size: .68rem; color: rgba(238,244,251,.28); letter-spacing: .12em;
+}
+
+/* ============ REVEAL ============ */
+.reveal {
+  opacity: 0; transform: translateY(42px);
+  transition: opacity .9s ease, transform .9s var(--ease-out);
+  transition-delay: var(--d, 0s);
+  pointer-events: none;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .facts-grid { grid-template-columns: 1fr 1fr; }
+  .wild-grid { grid-template-columns: 1fr 1fr; }
+  .wild-card { height: 460px; }
+  .stats { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .stat:nth-child(3)::before { display: none; }
+  .climate-grid { grid-template-columns: 1fr; }
+  .climate-side { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed; inset: 0;
+    flex-direction: column; justify-content: center; align-items: center;
+    gap: 2.2rem;
+    background: rgba(5,8,15,.96);
+    backdrop-filter: blur(24px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .45s ease;
+  }
+  .nav-links.open { opacity: 1; pointer-events: auto; }
+  .nav-links a { font-size: 1rem; }
+  .menu-toggle { display: flex; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-frame { display: none; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; }
+  .g-item.wide { grid-column: span 2; }
+  .hero-meta.left { display: none; }
+}
+
+@media (max-width: 560px) {
+  .facts-grid, .wild-grid, .gallery-grid { grid-template-columns: 1fr; }
+  .g-item.wide, .g-item.tall { grid-column: auto; grid-row: auto; }
+  .gallery-grid { grid-auto-rows: 260px; }
+  .climate-side { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .wild-card { height: 440px; }
+  .footer-top { flex-direction: column; text-align: center; }
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; pointer-events: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">ANTÁRTIDA</div>
+    <div class="preloader-bar"><span id="loadBar"></span></div>
+    <div class="preloader-pct" id="loadPct">0%</div>
+  </div>
+</div>
+
+<!-- CURSOR & GRAIN -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#inicio" class="logo"><i></i>ANTÁRTIDA</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#continente">Continente</a></li>
+    <li><a href="#datos">Datos</a></li>
+    <li><a href="#fauna">Fauna</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#exploracion">Exploración</a></li>
+    <li><a href="#clima">Clima</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <div class="hero-bg" id="heroBg"></div>
+  <canvas id="snowCanvas"></canvas>
+  <div class="hero-content" id="heroContent">
+    <p class="hero-eyebrow">66°33′ Sur — El fin del mapa</p>
+    <h1 class="hero-title" aria-label="Antártida">
+      <span class="letter" style="--i:0">A</span><span class="letter" style="--i:1">N</span><span class="letter" style="--i:2">T</span><span class="letter" style="--i:3">Á</span><span class="letter" style="--i:4">R</span><span class="letter" style="--i:5">T</span><span class="letter" style="--i:6">I</span><span class="letter" style="--i:7">D</span><span class="letter" style="--i:8">A</span>
+    </h1>
+    <p class="hero-desc">Un desierto helado de belleza indómita, donde el silencio blanco guarda los secretos más profundos de nuestro planeta.</p>
+    <div class="hero-ctas">
+      <a href="#continente" class="btn btn-primary magnetic">Explorar el continente
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#fauna" class="btn btn-ghost magnetic">Descubrir la fauna</a>
+    </div>
+  </div>
+  <p class="hero-meta left">El último confín de la Tierra</p>
+  <p class="hero-meta right"><span class="line-v"></span>Desliza</p>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="marquee-item solid">El continente blanco</span>
+    <span class="marquee-item outline">14.2 millones de km²</span>
+    <span class="marquee-item solid">90% del hielo mundial</span>
+    <span class="marquee-item outline">-89.2°C récord histórico</span>
+    <span class="marquee-item solid">Reserva de ciencia y paz</span>
+    <span class="marquee-item outline">El lugar más frío de la Tierra</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="stats" aria-label="Cifras clave">
+  <div class="stat reveal" style="--d:.05s">
+    <div class="stat-number" data-target="14" data-suffix="M">0</div>
+    <div class="stat-label">km² de superficie</div>
+  </div>
+  <div class="stat reveal" style="--d:.15s">
+    <div class="stat-number" data-target="89.2" data-prefix="-" data-decimals="1" data-suffix="°C">0</div>
+    <div class="stat-label">Temperatura mínima récord</div>
+  </div>
+  <div class="stat reveal" style="--d:.25s">
+    <div class="stat-number" data-target="90" data-suffix="%">0</div>
+    <div class="stat-label">Del hielo del planeta</div>
+  </div>
+  <div class="stat reveal" style="--d:.35s">
+    <div class="stat-number" data-target="70" data-suffix="%">0</div>
+    <div class="stat-label">Del agua dulce mundial</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="continente">
+  <div class="container">
+    <p class="sec-label reveal">El Continente Blanco</p>
+    <h2 class="sec-title reveal" style="--d:.1s">Un mundo de hielo<br>y <em>misterio</em></h2>
+    <div class="about-grid">
+      <div class="about-text reveal" style="--d:.2s">
+        <p>La Antártida es el continente <strong>más frío, seco y ventoso</strong> de la Tierra. Cubierta por una capa de hielo que alcanza los <strong>4.7 kilómetros de grosor</strong>, concentra el 90% del hielo y el 70% del agua dulce del planeta.</p>
+        <p>Sin población nativa permanente, es un santuario dedicado a la ciencia y la paz. El <strong>Tratado Antártico de 1959</strong> la designó como reserva natural, prohibiendo la actividad militar y la explotación minera.</p>
+        <p>Sus paisajes —glaciares milenarios, montañas escarpadas y llanuras infinitas de hielo— conforman uno de los ecosistemas más extremos y fascinantes del mundo.</p>
+        <ul class="about-list">
+          <li><b>1959</b> Firma del Tratado Antártico por 12 naciones</li>
+          <li><b>+70</b> Bases científicas de más de 30 países</li>
+          <li><b>~5.000</b> Investigadores en verano, ~1.000 en invierno</li>
+        </ul>
+      </div>
+      <div class="about-img-wrap reveal" style="--d:.3s">
+        <div class="about-img">
+          <div class="ph" data-parallax="0.08"></div>
+          <p class="about-caption">Noche polar — Cordillera antártica</p>
+        </div>
+        <div class="about-frame"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACTS -->
+<section class="section facts-section" id="datos">
+  <div class="container">
+    <p class="sec-label reveal">Datos Fascinantes</p>
+    <h2 class="sec-title reveal" style="--d:.1s">La Antártida <em>en números</em></h2>
+    <p class="sec-desc reveal" style="--d:.18s">Seis realidades que convierten a este continente en el lugar más extraordinario del planeta.</p>
+    <div class="facts-grid">
+      <div class="fact-card tilt reveal" style="--d:.1s">
+        <div class="fact-num">01</div>
+        <h3>El desierto más grande</h3>
+        <p>Recibe menos de 200 mm de precipitación anual en su interior: menos que el Sahara. Técnicamente, es el desierto más extenso del mundo.</p>
+        <span class="fact-tag">Geografía</span>
+      </div>
+      <div class="fact-card tilt reveal" style="--d:.18s">
+        <div class="fact-num">02</div>
+        <h3>Sin husos horarios</h3>
+        <p>Todas las líneas de longitud convergen en el Polo Sur. Cada base científica usa la hora de su país de origen o de su puerto de suministro.</p>
+        <span class="fact-tag">Curiosidad</span>
+      </div>
+      <div class="fact-card tilt reveal" style="--d:.26s">
+        <div class="fact-num">03</div>
+        <h3>Icebergs colosales</h3>
+        <p>El iceberg B-15, registrado en el año 2000, medía 11.000 km²: una isla de hielo más grande que Jamaica flotando a la deriva.</p>
+        <span class="fact-tag">Récord</span>
+      </div>
+      <div class="fact-card tilt reveal" style="--d:.1s">
+        <div class="fact-num">04</div>
+        <h3>Sangre transparente</h3>
+        <p>Los peces de hielo antárticos carecen de hemoglobina: su sangre es transparente y producen anticongelante natural para sobrevivir.</p>
+        <span class="fact-tag">Biología</span>
+      </div>
+      <div class="fact-card tilt reveal" style="--d:.18s">
+        <div class="fact-num">05</div>
+        <h3>Auroras australes</h3>
+        <p>Durante el invierno polar, el cielo se enciende con cortinas de luz verde y violeta: el equivalente austral de la aurora boreal.</p>
+        <span class="fact-tag">Fenómeno</span>
+      </div>
+      <div class="fact-card tilt reveal" style="--d:.26s">
+        <div class="fact-num">06</div>
+        <h3>Fuego bajo el hielo</h3>
+        <p>El Monte Erebus (3.794 m) es el volcán activo más austral del mundo, con un lago de lava permanente en su cráter desde 1972.</p>
+        <span class="fact-tag">Geología</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WILDLIFE -->
+<section class="section" id="fauna">
+  <div class="container">
+    <p class="sec-label reveal">Vida Silvestre</p>
+    <h2 class="sec-title reveal" style="--d:.1s">Habitantes del <em>frío extremo</em></h2>
+    <p class="sec-desc reveal" style="--d:.18s">Contra todo pronóstico, la vida florece en el continente más hostil. Estos son sus protagonistas.</p>
+    <div class="wild-grid">
+      <article class="wild-card reveal" style="--d:.1s">
+        <div class="wild-img" style="background-image: linear-gradient(180deg, rgba(5,8,15,.05), rgba(5,8,15,.2)), url('https://images.unsplash.com/photo-1516571748831-5d81767b788d?q=80&w=1200&auto=format&fit=crop'), linear-gradient(135deg, #12233c, #1d3a5f);"></div>
+        <div class="wild-overlay"></div>
+        <span class="wild-arrow">→</span>
+        <div class="wild-body">
+          <span class="wild-index">01 — Aves</span>
+          <h3>Pingüinos</h3>
+          <p>Emperadores, adelias y gentoos forman colonias de miles de individuos. El emperador incuba sus huevos a -60°C, en plena noche polar.</p>
+        </div>
+      </article>
+      <article class="wild-card reveal" style="--d:.2s">
+        <div class="wild-img" style="background-image: linear-gradient(180deg, rgba(5,8,15,.05), rgba(5,8,15,.2)), url('https://images.unsplash.com/photo-1518877593221-1f28583780b4?q=80&w=1200&auto=format&fit=crop'), linear-gradient(135deg, #0e1f38, #1a3355);"></div>
+        <div class="wild-overlay"></div>
+        <span class="wild-arrow">→</span>
+        <div class="wild-body">
+          <span class="wild-index">02 — Mamíferos</span>
+          <h3>Ballenas y orcas</h3>
+          <p>Jorobadas, minke y orcas recorren el Océano Austral cada verano, alimentándose del krill que sostiene todo el ecosistema.</p>
+        </div>
+      </article>
+      <article class="wild-card reveal" style="--d:.3s">
+        <div class="wild-img" style="background-image: linear-gradient(180deg, rgba(5,8,15,.05), rgba(5,8,15,.2)), url('https://images.unsplash.com/photo-1551582045-6ec9c11d8697?q=80&w=1200&auto=format&fit=crop'), linear-gradient(135deg, #102544, #20406b);"></div>
+        <div class="wild-overlay"></div>
+        <span class="wild-arrow">→</span>
+        <div class="wild-body">
+          <span class="wild-index">03 — Océano</span>
+          <h3>Bajo el hielo</h3>
+          <p>Focas de Weddell, leopardos marinos y peces de sangre transparente habitan un mundo azul oculto bajo la plataforma congelada.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery-section" id="galeria">
+  <div class="container">
+    <p class="sec-label reveal">Galería Visual</p>
+    <h2 class="sec-title reveal" style="--d:.1s">Paisajes del <em>fin del mundo</em></h2>
+    <div class="gallery-grid">
+      <div class="g-item wide reveal" style="--d:.1s">
+        <div class="g-img" style="background-image: url('https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=1600&auto=format&fit=crop'), linear-gradient(135deg, #0c1e38, #1a3d63);"></div>
+        <div class="g-cap"><h4>Aurora austral</h4><span>Cielos que arden en verde</span></div>
+      </div>
+      <div class="g-item reveal" style="--d:.18s">
+        <div class="g-img" style="background-image: url('https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?q=80&w=1200&auto=format&fit=crop'), linear-gradient(135deg, #122640, #1f3f66);"></div>
+        <div class="g-cap"><h4>Vida silvestre</h4><span>Colonias infinitas</span></div>
+      </div>
+      <div class="g-item tall reveal" style="--d:.24s">
+        <div class="g-img" style="background-image: url('https://images.unsplash.com/photo-1478827387698-1527781a4887?q=80&w=1200&auto=format&fit=crop'), linear-gradient(135deg, #0d1f3a, #1b3d6b);"></div>
+        <div class="g-cap"><h4>Catedrales de hielo</h4><span>Glaciares milenarios</span></div>
+      </div>
+      <div class="g-item reveal" style="--d:.1s">
+        <div class="g-img" style="background-image: url('https://images.unsplash.com/photo-1439405326854-014607f694d7?q=80&w=1200&auto=format&fit=crop'), linear-gradient(135deg, #0e2240, #1c3a5e);"></div>
+        <div class="g-cap"><h4>Océano Austral</h4><span>Aguas gélidas</span></div>
+      </div>
+      <div class="g-item wide reveal" style="--d:.18s">
+        <div class="g-img" style="background-image: url('https://images.unsplash.com/photo-1483347756197-71ef80e95f73?q=80&w=1600&auto=format&fit=crop'), linear-gradient(135deg, #0a1c34, #173457);"></div>
+        <div class="g-cap"><h4>Luces del polo</h4><span>La noche que nunca llega del todo</span></div>
+      </div>
+      <div class="g-item reveal" style="--d:.24s">
+        <div class="g-img" style="background-image: url('https://images.unsplash.com/photo-1418985991508-e47386d96a71?q=80&w=1200&auto=format&fit=crop'), linear-gradient(135deg, #10233e, #1e3c62);"></div>
+        <div class="g-cap"><h4>Montañas del fin</h4><span>Territorio indómito</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section" id="exploracion">
+  <div class="container">
+    <p class="sec-label reveal">Historia de la Exploración</p>
+    <h2 class="sec-title reveal" style="--d:.1s">La conquista del <em>hielo eterno</em></h2>
+    <div class="timeline-wrap">
+      <div class="timeline" id="timeline">
+        <div class="timeline-track"><div class="timeline-fill" id="timelineFill"></div></div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1820</div>
+          <h3>El primer avistamiento</h3>
+          <p>Fabian Gottlieb von Bellingshausen y Edward Bransfield avistan por primera vez la barrera de hielo antártica. La humanidad confirma la existencia del séptimo continente.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1911</div>
+          <h3>La carrera al Polo Sur</h3>
+          <p>Roald Amundsen lidera la primera expedición en alcanzar el Polo Sur. Semanas después, la expedición de Robert Falcon Scott llega al mismo punto, con un trágico regreso.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1915</div>
+          <h3>La epopeya del Endurance</h3>
+          <p>El barco de Ernest Shackleton queda atrapado y es aplastado por el hielo. Tras 22 meses, los 28 tripulantes sobreviven: la mayor historia de rescate polar jamás contada.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">1959</div>
+          <h3>El Tratado Antártico</h3>
+          <p>Doce naciones firman un acuerdo sin precedentes: la Antártida será territorio de ciencia y paz, libre de armas y reclamaciones militares. Un ejemplo único de cooperación global.</p>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Hoy</div>
+          <h3>Ciencia y conservación</h3>
+          <p>Más de 70 bases científicas investigan el cambio climático, la glaciología y la vida extrema. La Antártida es el laboratorio natural más importante del planeta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIMATE -->
+<section class="section climate-section" id="clima">
+  <div class="container">
+    <p class="sec-label reveal">Clima Extremo</p>
+    <h2 class="sec-title reveal" style="--d:.1s">El laboratorio <em>natural</em> del planeta</h2>
+    <p class="sec-desc reveal" style="--d:.18s">Temperaturas medias mensuales aproximadas en la Base Vostok, el lugar habitado más frío de la Tierra.</p>
+    <div class="climate-grid">
+      <div class="panel reveal" style="--d:.2s">
+        <h3>Temperatura media mensual</h3>
+        <p class="hint">Base Vostok (°C) — pasa el cursor sobre cada barra</p>
+        <div class="bar-chart" id="tempChart">
+          <div class="bar-item"><div class="bar" data-h="85" data-temp="-28°C" style="height:2%"></div><span class="bar-label">Ene</span></div>
+          <div class="bar-item"><div class="bar" data-h="62" data-temp="-40°C" style="height:2%"></div><span class="bar-label">Feb</span></div>
+          <div class="bar-item"><div class="bar" data-h="35" data-temp="-54°C" style="height:2%"></div><span class="bar-label">Mar</span></div>
+          <div class="bar-item"><div class="bar" data-h="20" data-temp="-62°C" style="height:2%"></div><span class="bar-label">Abr</span></div>
+          <div class="bar-item"><div class="bar" data-h="14" data-temp="-65°C" style="height:2%"></div><span class="bar-label">May</span></div>
+          <div class="bar-item"><div class="bar" data-h="14" data-temp="-65°C" style="height:2%"></div><span class="bar-label">Jun</span></div>
+          <div class="bar-item"><div class="bar" data-h="12" data-temp="-66°C" style="height:2%"></div><span class="bar-label">Jul</span></div>
+          <div class="bar-item"><div class="bar" data-h="10" data-temp="-67°C" style="height:2%"></div><span class="bar-label">Ago</span></div>
+          <div class="bar-item"><div class="bar" data-h="14" data-temp="-65°C" style="height:2%"></div><span class="bar-label">Sep</span></div>
+          <div class="bar-item"><div class="bar" data-h="34" data-temp="-55°C" style="height:2%"></div><span class="bar-label">Oct</span></div>
+          <div class="bar-item"><div class="bar" data-h="60" data-temp="-41°C" style="height:2%"></div><span class="bar-label">Nov</span></div>
+          <div class="bar-item"><div class="bar" data-h="81" data-temp="-30°C" style="height:2%"></div><span class="bar-label">Dic</span></div>
+        </div>
+      </div>
+      <div class="climate-side">
+        <div class="climate-stat reveal" style="--d:.15s">
+          <span class="l">Temperatura mínima récord</span>
+          <span class="v">-89.2°C</span>
+        </div>
+        <div class="climate-stat reveal" style="--d:.25s">
+          <span class="l">Viento máximo registrado</span>
+          <span class="v">320 km/h</span>
+        </div>
+        <div class="climate-stat reveal" style="--d:.35s">
+          <span class="l">Precipitación anual (interior)</span>
+          <span class="v">&lt; 50 mm</span>
+        </div>
+        <div class="climate-stat reveal" style="--d:.45s">
+          <span class="l">Grosor máximo del hielo</span>
+          <span class="v">4.7 km</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="quote-bg" data-parallax="0.12"></div>
+  <div class="quote-inner">
+    <span class="quote-mark reveal">“</span>
+    <p class="quote-text reveal" style="--d:.1s">La Antártida es el último continente salvaje. Un lugar donde la Tierra aún escribe su historia en hielo, y donde cada iceberg guarda cien mil años de silencio.</p>
+    <p class="quote-author reveal" style="--d:.2s">— Crónicas del Polo Sur</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section final-cta">
+  <div class="container">
+    <p class="sec-label reveal" style="justify-content:center">El llamado del hielo</p>
+    <h2 class="sec-title reveal" style="--d:.1s">¿Preparado para el<br><em>último viaje</em>?</h2>
+    <p class="reveal" style="--d:.18s">Cada año, unos pocos afortunados navegan hacia el sur para presenciar el paisaje más prístino de la Tierra.</p>
+    <div class="reveal" style="--d:.26s">
+      <a href="#inicio" class="btn btn-primary magnetic">Volver al inicio
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <a href="#inicio" class="logo"><i></i>ANTÁRTIDA</a>
+    <div class="footer-links">
+      <a href="#continente">Continente</a>
+      <a href="#datos">Datos</a>
+      <a href="#fauna">Fauna</a>
+      <a href="#galeria">Galería</a>
+      <a href="#exploracion">Exploración</a>
+      <a href="#clima">Clima</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 — Un tributo al continente blanco</span>
+    <span>66°33′45.9″ S — OCÉANO AUSTRAL</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ---------- PRELOADER ---------- */
+  const preloader = document.getElementById('preloader');
+  const loadBar = document.getElementById('loadBar');
+  const loadPct = document.getElementById('loadPct');
+  let progress = 0;
+  const startTime = performance.now();
+
+  function tickLoader(now) {
+    const elapsed = now - startTime;
+    progress = Math.min(100, (elapsed / 1100) * 100);
+    const eased = 1 - Math.pow(1 - progress / 100, 3);
+    const shown = Math.round(eased * 100);
+    loadBar.style.width = shown + '%';
+    loadPct.textContent = shown + '%';
+    if (progress < 100) {
+      requestAnimationFrame(tickLoader);
+    } else {
+      setTimeout(() => {
+        preloader.classList.add('done');
+        setTimeout(() => preloader.remove(), 1100);
+      }, 150);
+    }
+  }
+  if (reduceMotion) {
+    preloader.remove();
+  } else {
+    requestAnimationFrame(tickLoader);
+  }
+
+  /* ---------- CUSTOM CURSOR ---------- */
+  if (finePointer && !reduceMotion) {
+    document.documentElement.classList.add('custom-cursor');
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+
+    window.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top = my + 'px';
+    });
+
+    (function cursorLoop() {
+      rx += (mx - rx) * 0.16;
+      ry += (my - ry) * 0.16;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(cursorLoop);
+    })();
+
+    document.querySelectorAll('a, button, .tilt, .g-item, .wild-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+    });
+  }
+
+  /* ---------- NAVBAR ---------- */
+  const navbar = document.getElementById('navbar');
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    menuToggle.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.classList.remove('open');
+    });
+  });
+
+  // Active link highlighting
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const linkMap = new Map();
+  navLinks.querySelectorAll('a').forEach(a => {
+    linkMap.set(a.getAttribute('href').slice(1), a);
+  });
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        linkMap.forEach(a => a.classList.remove('active'));
+        const link = linkMap.get(entry.target.id);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+
+  /* ---------- SNOW CANVAS ---------- */
+  const canvas = document.getElementById('snowCanvas');
+  if (!reduceMotion && canvas) {
+    const ctx = canvas.getContext('2d');
+    let W, H, flakes = [];
+
+    function initSnow() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+      const count = Math.min(170, Math.floor(W / 9));
+      flakes = Array.from({ length: count }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 2.2 + 0.5,
+        s: Math.random() * 0.9 + 0.3,
+        o: Math.random() * 0.5 + 0.15,
+        ph: Math.random() * Math.PI * 2,
+        amp: Math.random() * 0.6 + 0.2
+      }));
+    }
+    initSnow();
+    window.addEventListener('resize', initSnow);
+
+    function drawSnow(t) {
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#fff';
+      for (const f of flakes) {
+        f.y += f.s;
+        f.x += Math.sin(t * 0.0012 + f.ph) * f.amp * 0.35 + 0.15;
+        if (f.y > H + 4) { f.y = -4; f.x = Math.random() * W; }
+        if (f.x > W + 4) f.x = -4;
+        ctx.globalAlpha = f.o;
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(drawSnow);
+    }
+    requestAnimationFrame(drawSnow);
+  }
+
+  /* ---------- REVEAL ON SCROLL ---------- */
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ---------- COUNTERS ---------- */
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1900;
+    let start = null;
+
+    function step(now) {
+      if (!start) start = now;
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 4);
+      const val = target * eased;
+      el.textContent = prefix + val.toFixed(decimals) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+
+  /* ---------- 3D TILT ---------- */
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform =
+          `perspective(900px) rotateX(${(-y * 7).toFixed(2)}deg) rotateY(${(x * 7).toFixed(2)}deg) translateY(-6px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  }
+
+  /* ---------- MAGNETIC BUTTONS ---------- */
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        btn.style.transform = `translate(${(dx * 0.22).toFixed(1)}px, ${(dy * 0.28).toFixed(1)}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  /* ---------- PARALLAX (rAF loop) ---------- */
+  const heroBg = document.getElementById('heroBg');
+  const heroContent = document.getElementById('heroContent');
+  const pxEls = document.querySelectorAll('[data-parallax]');
+  const timeline = document.getElementById('timeline');
+  const timelineFill = document.getElementById('timelineFill');
+
+  function scrollLoop() {
+    const vh = window.innerHeight;
+    const sy = window.scrollY;
+
+    if (!reduceMotion) {
+      // Hero parallax
+      if (sy < vh * 1.2) {
+        heroBg.style.transform = `scale(1.06) translate3d(0, ${(sy * 0.32).toFixed(1)}px, 0)`;
+        heroContent.style.transform = `translate3d(0, ${(sy * 0.18).toFixed(1)}px, 0)`;
+        heroContent.style.opacity = Math.max(0, 1 - sy / (vh * 0.75));
+      }
+      // Generic parallax
+      pxEls.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < vh) {
+          const dist = r.top + r.height / 2 - vh / 2;
+          const speed = parseFloat(el.dataset.parallax);
+          el.style.transform = `translate3d(0, ${(dist * speed).toFixed(1)}px, 0)`;
+        }
+      });
+    }
+
+    // Timeline progress
+    if (timeline && timelineFill) {
+      const r = timeline.getBoundingClientRect();
+      const prog = Math.min(1, Math.max(0, (vh * 0.72 - r.top) / r.height));
+      timelineFill.style.transform = `scaleY(${prog.toFixed(3)})`;
+    }
+
+    requestAnimationFrame(scrollLoop);
+  }
+  requestAnimationFrame(scrollLoop);
+
+  /* ---------- BAR CHART ---------- */
+  const tempChart = document.getElementById('tempChart');
+  if (tempChart) {
+    const barObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.bar').forEach((bar, i) => {
+            setTimeout(() => {
+              bar.style.height = bar.dataset.h + '%';
+            }, 120 + i * 70);
+          });
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    barObserver.observe(tempChart);
+  }
+
+  /* ---------- MARQUEE (duplicate content for seamless loop) ---------- */
+  const marqueeTrack = document.getElementById('marqueeTrack');
+  if (marqueeTrack) {
+    marqueeTrack.innerHTML += marqueeTrack.innerHTML;
+  }
+})();
+</script>
+</body>
+</html>

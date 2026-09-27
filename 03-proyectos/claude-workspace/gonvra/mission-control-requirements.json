@@ -1,0 +1,26 @@
+{
+  "goal": "Construir un Mission Control autónomo para GONVRA, tienda Shopify argentina de productos para mascotas, cuyo objetivo único sea aumentar ventas y ganancia real con agentes especializados, memoria compartida, revisión entre agentes y aprobación humana para toda acción externa.",
+  "tasks": [
+    {"name":"orquestación","description":"JEFE descompone objetivos, prioriza por pesos y coordina agentes en Kanban."},
+    {"name":"auditoría","description":"Analizar checkout, píxel, contacto, envíos, tienda y cumplimiento sin modificar ni publicar."},
+    {"name":"catálogo","description":"Leer productos, precios, stock, costos y disponibilidad en vivo desde Shopify/AutoDS."},
+    {"name":"crecimiento","description":"Detectar oportunidades de CRO, recuperación, ticket promedio, recompra y marketplaces."},
+    {"name":"investigación","description":"Investigar productos, competencia, anuncios, YouTube, TikTok e Instagram con flujo barato de metadata y transcripción."},
+    {"name":"contenido","description":"Producir guiones, hooks, calendarios, creativos y propuestas de campañas listas para aprobación."},
+    {"name":"finanzas","description":"Calcular margen real, CPA máximo, ROAS de equilibrio, flujo de caja y riesgo."},
+    {"name":"operación","description":"Preparar cambios Shopify, proveedores, mensajes y publicaciones únicamente como borradores."},
+    {"name":"aprendizaje","description":"Registrar resultados, rechazos, hipótesis y aprendizajes en disco y Obsidian."},
+    {"name":"aprobación","description":"SEMÁFORO envía snapshots a Telegram, registra aprobación/rechazo, revalida estado y bloquea cambios si algo cambió."},
+    {"name":"reportes","description":"JEFE entrega un resumen diario único con dinero, alertas y tres acciones prioritarias."}
+  ],
+  "constraints": {
+    "max_response_time": "urgencias inmediatas; auditorías en el mismo día; resumen diario a las 21:00",
+    "budget_per_task": "0 ARS para herramientas; pauta de Meta solo con aprobación explícita y después de checkout, píxel y margen verificados",
+    "concurrent_tasks": 6,
+    "human_approval_required": ["gasto", "publicación", "mensajes externos", "cambios en tema publicado", "instalación de apps", "contacto con proveedores"],
+    "runtime": "laptop local ahora, preparada para migración posterior a VPS",
+    "language": "español rioplatense, explicaciones no técnicas",
+    "token_policy": "metadata antes que video completo, transcripción antes que visión, Obsidian antes que re-investigar, entregables cortos y solo resúmenes para JEFE"
+  },
+  "team_size": 31
+}

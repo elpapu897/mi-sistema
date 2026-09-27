@@ -1,0 +1,15 @@
+clip,ruta,resolucion,dur_total,ventana_usable,veredicto,que_se_ve,motivo,uso
+hook-cajon-desordenado.mp4,~/Claude/gonvra-brand/clips-utiles/,360x640,4.29,0.00-4.29,APROBADO,"Cajon con cables enredados y aparatos viejos; abre y cierra",Sin producto en cuadro: cero riesgo de deformacion,TT-1 gancho
+Man_organizing_cluttered_bathroo…_202609061304.mp4,~/Descargas/videos para gonvra/,360x640,8.00,0.00-4.20,APROBADO PARCIAL,"Cajon desordenado desde otro angulo",Despues de 4.2s revela un aparato off-model (slab lima),TT-1 gancho extra
+brazo-corregido.mp4,~/Descargas/GONVRA - flow/,720x1280,8.00,0.00-8.00,APROBADO,"Hombre pasa la rasuradora por el antebrazo",Silueta estable los 8s; es la regeneracion corregida,TT-2 apertura / TT-1 uso
+Shaver_blade_texture_lighting_720p_202609062312.mp4,~/Descargas/videos para la tienda/,720x1280,8.00,0.00-8.00,APROBADO,"Producto parado y luego macro de la lamina perforada",Producto exacto y rigido; la lamina se lee perfecto,TT-2 clip heroe / TT-1 revelado
+Hand_rinsing_shaver_under_water_202609071535.mp4,~/Descargas/,1080x1920,6.00,0.00-2.05,APROBADO PARCIAL,"Mano enjuaga la rasuradora bajo la canilla",Desde 2.1s el cuerpo se arquea y el cabezal de acero desaparece,TT-2 cierre
+Hand_picking_up_comb_guard_202609062254.mp4,~/Descargas/videos para la tienda/,720x1280,6.00,0.00-6.00,APROBADO,"Kit completo visto de arriba; mano levanta los peines",3 peines dientes negros base lima + cable USB + cepillo; producto correcto,TT-3 clips 1 y 2
+Hands_brushing_blade_and_pluggin…_202609071553.mp4,~/Descargas/,1080x1920,10.00,0.00-10.00,APROBADO,"Cepilla la lamina y despues enchufa el cable USB",Full HD y producto rigido todo el clip,TT-3 clips 3 y 4
+Electric_shaver_product_reveal_l…_202609061322.mp4,~/Descargas/videos para gonvra/,720x1280,6.02,-,DESCARTADO,"Trimmer alargado con cuerpo lima y 5 peines",No es el producto: silueta OneBlade + 5 peines en vez de 3,-
+Electric_body_shavers_rotating_202609061328.mp4,~/Descargas/videos para gonvra/,720x1280,6.02,-,DESCARTADO,"Tres unidades girando",No es el producto (franja lima lateral) y el cuerpo se curva como banana,-
+Electric_body_shavers_rotating_202609061333.mp4,~/Descargas/videos para gonvra/,720x1280,6.02,-,DESCARTADO,"Idem 1328",Misma generacion fallada,-
+Electric_shaver_laid_out_202609061321.mp4,~/Descargas/videos para gonvra/,720x1280,6.02,-,DESCARTADO,"Kit visto de arriba",Producto off-model + TEXTO DE MARCA INVENTADO en el mango + 4 peines y cabezal extra,-
+Electric_shaver_and_accessories_…_202609061321.mp4,~/Descargas/videos para gonvra/,720x1280,6.02,-,DESCARTADO,"Kit visto de arriba",Producto off-model + texto inventado en el mango + 5 peines,-
+Camera_orbiting_metal_blade_product_202609062254.mp4,~/Descargas/videos para la tienda/,720x1280,4.00,0.00-1.30,DESCARTADO,"Orbita alrededor del cabezal","Desde 1.3s la silueta se afina y aparece un aro cromado inexistente; blade720 lo reemplaza mejor",-
+Man_demonstrating_electric_shaver_1080p_202609081643.mp4,~/Descargas/,1080x1920,10.00,-,DESCARTADO,"Hombre habla a camara mostrando el producto",UGC con voz (no sirve sin locucion) y silueta off-model que cambia de proporcion,-

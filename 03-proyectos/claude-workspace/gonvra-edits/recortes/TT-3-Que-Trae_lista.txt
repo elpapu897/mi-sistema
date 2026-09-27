@@ -1,0 +1,5 @@
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-3-Que-Trae_00.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-3-Que-Trae_01.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-3-Que-Trae_02.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-3-Que-Trae_03.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-3-Que-Trae_99_end.mp4'

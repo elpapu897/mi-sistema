@@ -1,0 +1,109 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .mt-hero {
+    min-height: {{ section.settings.min_height }}px;
+    --mt-hero-position: {{ section.settings.image_position }};
+  }
+  #shopify-section-{{ section.id }} .mt-hero__content { text-align: {{ section.settings.text_align }}; }
+  #shopify-section-{{ section.id }} .mt-hero__headline { font-size: clamp(46px, 7vw, {{ section.settings.heading_size }}px); }
+  #shopify-section-{{ section.id }} .mt-hero__body { font-size: clamp(15px, 1.35vw, {{ section.settings.body_size }}px); }
+  @media (max-width: 990px) {
+    #shopify-section-{{ section.id }} .mt-hero { min-height: 680px; }
+  }
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} { padding-top: min({{ section.settings.padding_top }}px, 72px); padding-bottom: min({{ section.settings.padding_bottom }}px, 72px); }
+  }
+  @media (max-width: 540px) {
+    #shopify-section-{{ section.id }} .mt-hero { min-height: 720px; }
+  }
+{% endstyle %}
+
+<section class="mt-hero mt-section">
+  <div class="mt-hero__media" aria-hidden="true">
+    <picture>
+      {%- if section.settings.mobile_image != blank -%}
+        <source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image | image_url: width: 1100 }}">
+      {%- else -%}
+        <source media="(max-width: 749px)" srcset="{{ 'mt-hero-mobile.webp' | asset_url }}">
+      {%- endif -%}
+      {%- if section.settings.image != blank -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 2400 }}"
+          srcset="{{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1600 }} 1600w, {{ section.settings.image | image_url: width: 2400 }} 2400w"
+          sizes="100vw"
+          alt=""
+          width="{{ section.settings.image.width }}"
+          height="{{ section.settings.image.height }}"
+          loading="eager"
+          fetchpriority="high"
+          data-mt-parallax="{{ section.settings.parallax }}"
+        >
+      {%- else -%}
+        <img src="{{ 'mt-hero-wide.webp' | asset_url }}" alt="" loading="eager" fetchpriority="high" width="2033" height="774" data-mt-parallax="{{ section.settings.parallax }}">
+      {%- endif -%}
+    </picture>
+  </div>
+
+  <div class="mt-hero__inner">
+    <div class="mt-hero__content">
+      {%- if section.settings.kicker != blank -%}<p class="mt-kicker mt-reveal">{{ section.settings.kicker }}</p>{%- endif -%}
+      <h1 class="mt-h1 mt-hero__headline mt-reveal">{{ section.settings.headline }}{% if section.settings.outline_line != blank %}<span>{{ section.settings.outline_line }}</span>{% endif %}</h1>
+      {%- if section.settings.body != blank -%}<div class="mt-body mt-hero__body mt-reveal">{{ section.settings.body | newline_to_br }}</div>{%- endif -%}
+      <div class="mt-hero__actions mt-reveal">
+        {%- if section.settings.primary_label != blank -%}
+          <a class="mt-btn mt-btn--primary" href="{{ section.settings.primary_link | default: routes.all_products_collection_url }}">
+            {{ section.settings.primary_label }}
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_label != blank -%}<a class="mt-btn mt-btn--ghost" href="{{ section.settings.secondary_link | default: '#como-funciona' }}">{{ section.settings.secondary_label }}</a>{%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-hero__trust mt-reveal" aria-label="Ventajas de compra">
+    {%- for i in (1..3) -%}
+      {%- assign trust_key = 'trust_' | append: i -%}
+      <div class="mt-hero__trust-item"><span class="mt-hero__trust-dot"></span>{{ section.settings[trust_key] }}</div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Apertura",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen panorámica" },
+    { "type": "image_picker", "id": "mobile_image", "label": "Imagen vertical para móvil" },
+    { "type": "select", "id": "image_position", "label": "Posición de la imagen", "options": [{"value":"center center","label":"Centro"},{"value":"right center","label":"Derecha"},{"value":"left center","label":"Izquierda"}], "default": "center center" },
+    { "type": "range", "id": "min_height", "label": "Altura mínima (px)", "min": 480, "max": 800, "step": 20, "unit": "px", "default": 660 },
+    { "type": "range", "id": "parallax", "label": "Intensidad del movimiento", "min": 0, "max": 30, "step": 2, "default": 10 },
+    { "type": "header", "content": "Contenido" },
+    { "type": "text", "id": "kicker", "label": "Antetítulo", "default": "INGENIERÍA DE BOLSILLO" },
+    { "type": "text", "id": "headline", "label": "Título principal", "default": "Tu rutina, en formato mini." },
+    { "type": "text", "id": "outline_line", "label": "Segunda línea contorneada", "default": "Donde sea." },
+    { "type": "textarea", "id": "body", "label": "Descripción", "default": "Doble cabezal, carga USB y un formato compacto pensado para acompañarte todos los días." },
+    { "type": "text", "id": "primary_label", "label": "Texto del botón principal", "default": "Comprar Helio Mini" },
+    { "type": "url", "id": "primary_link", "label": "Enlace del botón principal" },
+    { "type": "text", "id": "secondary_label", "label": "Texto del botón secundario", "default": "Ver cómo funciona" },
+    { "type": "url", "id": "secondary_link", "label": "Enlace del botón secundario" },
+    { "type": "text", "id": "trust_1", "label": "Ventaja 1", "default": "Carga USB" },
+    { "type": "text", "id": "trust_2", "label": "Ventaja 2", "default": "Limpieza sencilla" },
+    { "type": "text", "id": "trust_3", "label": "Ventaja 3", "default": "Compacta y portátil" },
+    { "type": "header", "content": "Tipografía" },
+    { "type": "select", "id": "text_align", "label": "Alineación", "options": [{"value":"left","label":"Izquierda"},{"value":"center","label":"Centro"},{"value":"right","label":"Derecha"}], "default": "left" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 44, "max": 108, "step": 2, "unit": "px", "default": 84 },
+    { "type": "range", "id": "body_size", "label": "Tamaño del texto (px)", "min": 14, "max": 24, "step": 1, "unit": "px", "default": 18 },
+    { "type": "header", "content": "Color y espacio" },
+    { "type": "color", "id": "background", "label": "Color de respaldo", "default": "#080A0F" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "MT – Apertura" }]
+}
+{% endschema %}

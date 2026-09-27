@@ -1,0 +1,80 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+  #shopify-section-{{ section.id }} .gv-mq__track {
+    animation-duration: {{ section.settings.velocidad }}s;
+  }
+{%- endstyle -%}
+
+<section class="gv-mq gv-section">
+  <div class="gv-mq__mask">
+    <div class="gv-mq__track">
+      {%- comment -%} Se duplica la lista para que el bucle sea continuo {%- endcomment -%}
+      {%- for i in (1..2) -%}
+        <div class="gv-mq__group" {% if i == 2 %}aria-hidden="true"{% endif %}>
+          {%- for block in section.blocks -%}
+            <span class="gv-mq__item" {{ block.shopify_attributes }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="4" cy="8" r="2"/><path d="M9 10c-2 0-4 2-4 4.5 0 2 1.5 3.5 3.5 3.5 1 0 1.5-.5 2.5-.5s1.5.5 2.5.5c2 0 3.5-1.5 3.5-3.5C19 12 17 10 15 10c-1.5 0-2 .8-3 .8S10.5 10 9 10Z"/></svg>
+              {{ block.settings.texto }}
+            </span>
+          {%- endfor -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- if section.settings.mostrar_pagos -%}
+    <div class="gv-container gv-mq__pay">
+      {%- if section.settings.pagos_texto != blank -%}
+        <span class="gv-mq__pay-txt">{{ section.settings.pagos_texto }}</span>
+      {%- endif -%}
+      <div class="gv-mq__pay-icons">
+        {% render 'gv-pagos' %}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "GV – Banda en marcha",
+  "tag": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "range", "id": "velocidad", "label": "Duración del recorrido (s)", "min": 15, "max": 80, "step": 5, "unit": "s", "default": 40 },
+    { "type": "color", "id": "fondo", "label": "Color de fondo", "default": "#F5FAF8" },
+    { "type": "header", "content": "Medios de pago" },
+    { "type": "checkbox", "id": "mostrar_pagos", "label": "Mostrar iconos de pago", "default": true },
+    { "type": "text", "id": "pagos_texto", "label": "Texto junto a los iconos", "default": "Pagá como más te convenga" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 32 }
+  ],
+  "blocks": [
+    {
+      "type": "frase",
+      "name": "Frase",
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto", "default": "Envío a todo el país" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GV – Banda en marcha",
+      "blocks": [
+        { "type": "frase", "settings": { "texto": "Envío a todo el país" } },
+        { "type": "frase", "settings": { "texto": "Garantía de 7 días" } },
+        { "type": "frase", "settings": { "texto": "Pago 100% seguro" } },
+        { "type": "frase", "settings": { "texto": "Atención personalizada" } },
+        { "type": "frase", "settings": { "texto": "Productos revisados uno por uno" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

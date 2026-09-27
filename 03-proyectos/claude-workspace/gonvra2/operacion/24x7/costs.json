@@ -1,0 +1,2212 @@
+{
+  "checked_at": "2026-09-19T16:58:13.379550-03:00",
+  "currency": "USD",
+  "status": "estimacion_no_activada",
+  "scope": "Solo inferencia de texto Gemini Developer API Standard; no total operativo",
+  "models": {
+    "lite": "gemini-2.5-flash-lite/gemini",
+    "flash": "gemini-2.5-flash/gemini",
+    "sol": "gpt-5.6-sol/openai-codex"
+  },
+  "rates_usd_per_million": {
+    "lite": {
+      "uncached_input": 0.1,
+      "cached_input": 0.01,
+      "output_including_thinking": 0.4
+    },
+    "flash": {
+      "uncached_input": 0.3,
+      "cached_input": 0.03,
+      "output_including_thinking": 2.5
+    },
+    "sol": null
+  },
+  "explicit_cache_storage_usd_per_million_token_hours": 1,
+  "explicit_cache_used_in_estimate": false,
+  "per_session_scenarios": {
+    "bajo": {
+      "uncached_input": 45000,
+      "cached_input": 80000,
+      "output_including_thinking": 1500,
+      "llm_turns": 3
+    },
+    "central": {
+      "uncached_input": 55000,
+      "cached_input": 250000,
+      "output_including_thinking": 4000,
+      "llm_turns": 6
+    },
+    "alto": {
+      "uncached_input": 65000,
+      "cached_input": 525000,
+      "output_including_thinking": 8000,
+      "llm_turns": 10
+    }
+  },
+  "per_session_assumptions": "Misma envolvente conservadora por rol. Sesiones nuevas, 3–10 turnos LLM, pocas herramientas, catálogo de skills todavía grande. Cache condicional, no medición Gemini. Output incluye thinking. Cada escenario es pareado; no percentiles estadísticos.",
+  "standard_roles": [
+    {
+      "role": "GUARDIA",
+      "model_key": "lite",
+      "sessions_per_week": 49
+    },
+    {
+      "role": "ANALISTA",
+      "model_key": "lite",
+      "sessions_per_week": 7
+    },
+    {
+      "role": "CAZADOR",
+      "model_key": "lite",
+      "sessions_per_week": 7
+    },
+    {
+      "role": "LEGAL",
+      "model_key": "lite",
+      "sessions_per_week": 1
+    },
+    {
+      "role": "ESPIA",
+      "model_key": "flash",
+      "sessions_per_week": 7
+    },
+    {
+      "role": "TIKTOKER",
+      "model_key": "flash",
+      "sessions_per_week": 7
+    },
+    {
+      "role": "INSTAGRAMER",
+      "model_key": "flash",
+      "sessions_per_week": 7
+    },
+    {
+      "role": "CREATIVO",
+      "model_key": "flash",
+      "sessions_per_week": 7
+    },
+    {
+      "role": "COPY",
+      "model_key": "sol",
+      "sessions_per_week": 7
+    },
+    {
+      "role": "CRO",
+      "model_key": "sol",
+      "sessions_per_week": 7
+    },
+    {
+      "role": "JEFE",
+      "model_key": "sol",
+      "sessions_per_week": 7
+    }
+  ],
+  "guard_hours": [
+    "00:00",
+    "04:00",
+    "08:00",
+    "12:00",
+    "16:00",
+    "20:00",
+    "22:00"
+  ],
+  "standard": {
+    "ordinary_day": {
+      "sessions": 16,
+      "sessions_by_model": {
+        "lite": 9,
+        "flash": 4,
+        "sol": 3
+      },
+      "scenarios": {
+        "bajo": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 405000,
+                "cached_input": 720000,
+                "output_including_thinking": 13500
+              },
+              "total_input": 1125000,
+              "total_tokens": 1138500,
+              "gemini_api_usd": 0.0531,
+              "gemini_api_usd_if_no_cache": 0.1179
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 180000,
+                "cached_input": 320000,
+                "output_including_thinking": 6000
+              },
+              "total_input": 500000,
+              "total_tokens": 506000,
+              "gemini_api_usd": 0.0786,
+              "gemini_api_usd_if_no_cache": 0.165
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 135000,
+                "cached_input": 240000,
+                "output_including_thinking": 4500
+              },
+              "total_input": 375000,
+              "total_tokens": 379500,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 720000,
+            "cached_input": 1280000,
+            "output_including_thinking": 24000
+          },
+          "total_input": 2000000,
+          "total_tokens": 2024000,
+          "llm_calls_estimated": 48,
+          "gemini_api_usd": 0.1317,
+          "gemini_api_usd_if_no_cache": 0.2829,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "central": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 495000,
+                "cached_input": 2250000,
+                "output_including_thinking": 36000
+              },
+              "total_input": 2745000,
+              "total_tokens": 2781000,
+              "gemini_api_usd": 0.0864,
+              "gemini_api_usd_if_no_cache": 0.2889
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 220000,
+                "cached_input": 1000000,
+                "output_including_thinking": 16000
+              },
+              "total_input": 1220000,
+              "total_tokens": 1236000,
+              "gemini_api_usd": 0.136,
+              "gemini_api_usd_if_no_cache": 0.406
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 165000,
+                "cached_input": 750000,
+                "output_including_thinking": 12000
+              },
+              "total_input": 915000,
+              "total_tokens": 927000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 880000,
+            "cached_input": 4000000,
+            "output_including_thinking": 64000
+          },
+          "total_input": 4880000,
+          "total_tokens": 4944000,
+          "llm_calls_estimated": 96,
+          "gemini_api_usd": 0.2224,
+          "gemini_api_usd_if_no_cache": 0.6949,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "alto": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 585000,
+                "cached_input": 4725000,
+                "output_including_thinking": 72000
+              },
+              "total_input": 5310000,
+              "total_tokens": 5382000,
+              "gemini_api_usd": 0.13455,
+              "gemini_api_usd_if_no_cache": 0.5598
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 260000,
+                "cached_input": 2100000,
+                "output_including_thinking": 32000
+              },
+              "total_input": 2360000,
+              "total_tokens": 2392000,
+              "gemini_api_usd": 0.221,
+              "gemini_api_usd_if_no_cache": 0.788
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 195000,
+                "cached_input": 1575000,
+                "output_including_thinking": 24000
+              },
+              "total_input": 1770000,
+              "total_tokens": 1794000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 1040000,
+            "cached_input": 8400000,
+            "output_including_thinking": 128000
+          },
+          "total_input": 9440000,
+          "total_tokens": 9568000,
+          "llm_calls_estimated": 160,
+          "gemini_api_usd": 0.35555,
+          "gemini_api_usd_if_no_cache": 1.3478,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        }
+      }
+    },
+    "friday": {
+      "sessions": 17,
+      "sessions_by_model": {
+        "lite": 10,
+        "flash": 4,
+        "sol": 3
+      },
+      "scenarios": {
+        "bajo": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 450000,
+                "cached_input": 800000,
+                "output_including_thinking": 15000
+              },
+              "total_input": 1250000,
+              "total_tokens": 1265000,
+              "gemini_api_usd": 0.059,
+              "gemini_api_usd_if_no_cache": 0.131
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 180000,
+                "cached_input": 320000,
+                "output_including_thinking": 6000
+              },
+              "total_input": 500000,
+              "total_tokens": 506000,
+              "gemini_api_usd": 0.0786,
+              "gemini_api_usd_if_no_cache": 0.165
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 135000,
+                "cached_input": 240000,
+                "output_including_thinking": 4500
+              },
+              "total_input": 375000,
+              "total_tokens": 379500,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 765000,
+            "cached_input": 1360000,
+            "output_including_thinking": 25500
+          },
+          "total_input": 2125000,
+          "total_tokens": 2150500,
+          "llm_calls_estimated": 51,
+          "gemini_api_usd": 0.1376,
+          "gemini_api_usd_if_no_cache": 0.296,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "central": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 550000,
+                "cached_input": 2500000,
+                "output_including_thinking": 40000
+              },
+              "total_input": 3050000,
+              "total_tokens": 3090000,
+              "gemini_api_usd": 0.096,
+              "gemini_api_usd_if_no_cache": 0.321
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 220000,
+                "cached_input": 1000000,
+                "output_including_thinking": 16000
+              },
+              "total_input": 1220000,
+              "total_tokens": 1236000,
+              "gemini_api_usd": 0.136,
+              "gemini_api_usd_if_no_cache": 0.406
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 165000,
+                "cached_input": 750000,
+                "output_including_thinking": 12000
+              },
+              "total_input": 915000,
+              "total_tokens": 927000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 935000,
+            "cached_input": 4250000,
+            "output_including_thinking": 68000
+          },
+          "total_input": 5185000,
+          "total_tokens": 5253000,
+          "llm_calls_estimated": 102,
+          "gemini_api_usd": 0.232,
+          "gemini_api_usd_if_no_cache": 0.727,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "alto": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 650000,
+                "cached_input": 5250000,
+                "output_including_thinking": 80000
+              },
+              "total_input": 5900000,
+              "total_tokens": 5980000,
+              "gemini_api_usd": 0.1495,
+              "gemini_api_usd_if_no_cache": 0.622
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 260000,
+                "cached_input": 2100000,
+                "output_including_thinking": 32000
+              },
+              "total_input": 2360000,
+              "total_tokens": 2392000,
+              "gemini_api_usd": 0.221,
+              "gemini_api_usd_if_no_cache": 0.788
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 195000,
+                "cached_input": 1575000,
+                "output_including_thinking": 24000
+              },
+              "total_input": 1770000,
+              "total_tokens": 1794000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 1105000,
+            "cached_input": 8925000,
+            "output_including_thinking": 136000
+          },
+          "total_input": 10030000,
+          "total_tokens": 10166000,
+          "llm_calls_estimated": 170,
+          "gemini_api_usd": 0.3705,
+          "gemini_api_usd_if_no_cache": 1.41,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        }
+      }
+    },
+    "week": {
+      "sessions": 113,
+      "sessions_by_model": {
+        "lite": 64,
+        "flash": 28,
+        "sol": 21
+      },
+      "scenarios": {
+        "bajo": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 2880000,
+                "cached_input": 5120000,
+                "output_including_thinking": 96000
+              },
+              "total_input": 8000000,
+              "total_tokens": 8096000,
+              "gemini_api_usd": 0.3776,
+              "gemini_api_usd_if_no_cache": 0.8384
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 1260000,
+                "cached_input": 2240000,
+                "output_including_thinking": 42000
+              },
+              "total_input": 3500000,
+              "total_tokens": 3542000,
+              "gemini_api_usd": 0.5502,
+              "gemini_api_usd_if_no_cache": 1.155
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 945000,
+                "cached_input": 1680000,
+                "output_including_thinking": 31500
+              },
+              "total_input": 2625000,
+              "total_tokens": 2656500,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 5085000,
+            "cached_input": 9040000,
+            "output_including_thinking": 169500
+          },
+          "total_input": 14125000,
+          "total_tokens": 14294500,
+          "llm_calls_estimated": 339,
+          "gemini_api_usd": 0.9278,
+          "gemini_api_usd_if_no_cache": 1.9934,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "central": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 3520000,
+                "cached_input": 16000000,
+                "output_including_thinking": 256000
+              },
+              "total_input": 19520000,
+              "total_tokens": 19776000,
+              "gemini_api_usd": 0.6144,
+              "gemini_api_usd_if_no_cache": 2.0544
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 1540000,
+                "cached_input": 7000000,
+                "output_including_thinking": 112000
+              },
+              "total_input": 8540000,
+              "total_tokens": 8652000,
+              "gemini_api_usd": 0.952,
+              "gemini_api_usd_if_no_cache": 2.842
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 1155000,
+                "cached_input": 5250000,
+                "output_including_thinking": 84000
+              },
+              "total_input": 6405000,
+              "total_tokens": 6489000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 6215000,
+            "cached_input": 28250000,
+            "output_including_thinking": 452000
+          },
+          "total_input": 34465000,
+          "total_tokens": 34917000,
+          "llm_calls_estimated": 678,
+          "gemini_api_usd": 1.5664,
+          "gemini_api_usd_if_no_cache": 4.8964,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "alto": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 4160000,
+                "cached_input": 33600000,
+                "output_including_thinking": 512000
+              },
+              "total_input": 37760000,
+              "total_tokens": 38272000,
+              "gemini_api_usd": 0.9568,
+              "gemini_api_usd_if_no_cache": 3.9808
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 1820000,
+                "cached_input": 14700000,
+                "output_including_thinking": 224000
+              },
+              "total_input": 16520000,
+              "total_tokens": 16744000,
+              "gemini_api_usd": 1.547,
+              "gemini_api_usd_if_no_cache": 5.516
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 1365000,
+                "cached_input": 11025000,
+                "output_including_thinking": 168000
+              },
+              "total_input": 12390000,
+              "total_tokens": 12558000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 7345000,
+            "cached_input": 59325000,
+            "output_including_thinking": 904000
+          },
+          "total_input": 66670000,
+          "total_tokens": 67574000,
+          "llm_calls_estimated": 1130,
+          "gemini_api_usd": 2.5038,
+          "gemini_api_usd_if_no_cache": 9.4968,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        }
+      }
+    },
+    "30_day_average": {
+      "sessions": 484.2857142857143,
+      "sessions_by_model": {
+        "lite": 274.2857142857143,
+        "flash": 120.0,
+        "sol": 90.0
+      },
+      "scenarios": {
+        "bajo": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 12342857.142857142,
+                "cached_input": 21942857.14285714,
+                "output_including_thinking": 411428.5714285714
+              },
+              "total_input": 34285714.28571428,
+              "total_tokens": 34697142.85714286,
+              "gemini_api_usd": 1.61828571,
+              "gemini_api_usd_if_no_cache": 3.59314286
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 5400000.0,
+                "cached_input": 9600000.0,
+                "output_including_thinking": 180000.0
+              },
+              "total_input": 15000000.0,
+              "total_tokens": 15180000.0,
+              "gemini_api_usd": 2.358,
+              "gemini_api_usd_if_no_cache": 4.95
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 4050000.0,
+                "cached_input": 7200000.0,
+                "output_including_thinking": 135000.0
+              },
+              "total_input": 11250000.0,
+              "total_tokens": 11385000.0,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 21792857.14285714,
+            "cached_input": 38742857.14285714,
+            "output_including_thinking": 726428.5714285714
+          },
+          "total_input": 60535714.28571428,
+          "total_tokens": 61262142.85714286,
+          "llm_calls_estimated": 1452.857142857143,
+          "gemini_api_usd": 3.97628571,
+          "gemini_api_usd_if_no_cache": 8.54314286,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "central": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 15085714.285714285,
+                "cached_input": 68571428.57142857,
+                "output_including_thinking": 1097142.857142857
+              },
+              "total_input": 83657142.85714285,
+              "total_tokens": 84754285.7142857,
+              "gemini_api_usd": 2.63314286,
+              "gemini_api_usd_if_no_cache": 8.80457143
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 6600000.0,
+                "cached_input": 30000000.0,
+                "output_including_thinking": 480000.0
+              },
+              "total_input": 36600000.0,
+              "total_tokens": 37080000.0,
+              "gemini_api_usd": 4.08,
+              "gemini_api_usd_if_no_cache": 12.18
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 4950000.0,
+                "cached_input": 22500000.0,
+                "output_including_thinking": 360000.0
+              },
+              "total_input": 27450000.0,
+              "total_tokens": 27810000.0,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 26635714.285714284,
+            "cached_input": 121071428.57142857,
+            "output_including_thinking": 1937142.857142857
+          },
+          "total_input": 147707142.85714287,
+          "total_tokens": 149644285.71428573,
+          "llm_calls_estimated": 2905.714285714286,
+          "gemini_api_usd": 6.71314286,
+          "gemini_api_usd_if_no_cache": 20.98457143,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "alto": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 17828571.42857143,
+                "cached_input": 144000000.0,
+                "output_including_thinking": 2194285.714285714
+              },
+              "total_input": 161828571.42857143,
+              "total_tokens": 164022857.14285713,
+              "gemini_api_usd": 4.10057143,
+              "gemini_api_usd_if_no_cache": 17.06057143
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 7800000.0,
+                "cached_input": 63000000.0,
+                "output_including_thinking": 960000.0
+              },
+              "total_input": 70800000.0,
+              "total_tokens": 71760000.0,
+              "gemini_api_usd": 6.63,
+              "gemini_api_usd_if_no_cache": 23.64
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 5850000.0,
+                "cached_input": 47250000.0,
+                "output_including_thinking": 720000.0
+              },
+              "total_input": 53100000.0,
+              "total_tokens": 53820000.0,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 31478571.42857143,
+            "cached_input": 254250000.0,
+            "output_including_thinking": 3874285.714285714
+          },
+          "total_input": 285728571.4285714,
+          "total_tokens": 289602857.14285713,
+          "llm_calls_estimated": 4842.857142857143,
+          "gemini_api_usd": 10.73057143,
+          "gemini_api_usd_if_no_cache": 40.70057143,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        }
+      }
+    },
+    "30_days_4_fridays": {
+      "sessions": 484,
+      "sessions_by_model": {
+        "lite": 274,
+        "flash": 120,
+        "sol": 90
+      },
+      "scenarios": {
+        "bajo": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 12330000,
+                "cached_input": 21920000,
+                "output_including_thinking": 411000
+              },
+              "total_input": 34250000,
+              "total_tokens": 34661000,
+              "gemini_api_usd": 1.6166,
+              "gemini_api_usd_if_no_cache": 3.5894
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 5400000,
+                "cached_input": 9600000,
+                "output_including_thinking": 180000
+              },
+              "total_input": 15000000,
+              "total_tokens": 15180000,
+              "gemini_api_usd": 2.358,
+              "gemini_api_usd_if_no_cache": 4.95
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 4050000,
+                "cached_input": 7200000,
+                "output_including_thinking": 135000
+              },
+              "total_input": 11250000,
+              "total_tokens": 11385000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 21780000,
+            "cached_input": 38720000,
+            "output_including_thinking": 726000
+          },
+          "total_input": 60500000,
+          "total_tokens": 61226000,
+          "llm_calls_estimated": 1452,
+          "gemini_api_usd": 3.9746,
+          "gemini_api_usd_if_no_cache": 8.5394,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "central": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 15070000,
+                "cached_input": 68500000,
+                "output_including_thinking": 1096000
+              },
+              "total_input": 83570000,
+              "total_tokens": 84666000,
+              "gemini_api_usd": 2.6304,
+              "gemini_api_usd_if_no_cache": 8.7954
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 6600000,
+                "cached_input": 30000000,
+                "output_including_thinking": 480000
+              },
+              "total_input": 36600000,
+              "total_tokens": 37080000,
+              "gemini_api_usd": 4.08,
+              "gemini_api_usd_if_no_cache": 12.18
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 4950000,
+                "cached_input": 22500000,
+                "output_including_thinking": 360000
+              },
+              "total_input": 27450000,
+              "total_tokens": 27810000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 26620000,
+            "cached_input": 121000000,
+            "output_including_thinking": 1936000
+          },
+          "total_input": 147620000,
+          "total_tokens": 149556000,
+          "llm_calls_estimated": 2904,
+          "gemini_api_usd": 6.7104,
+          "gemini_api_usd_if_no_cache": 20.9754,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "alto": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 17810000,
+                "cached_input": 143850000,
+                "output_including_thinking": 2192000
+              },
+              "total_input": 161660000,
+              "total_tokens": 163852000,
+              "gemini_api_usd": 4.0963,
+              "gemini_api_usd_if_no_cache": 17.0428
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 7800000,
+                "cached_input": 63000000,
+                "output_including_thinking": 960000
+              },
+              "total_input": 70800000,
+              "total_tokens": 71760000,
+              "gemini_api_usd": 6.63,
+              "gemini_api_usd_if_no_cache": 23.64
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 5850000,
+                "cached_input": 47250000,
+                "output_including_thinking": 720000
+              },
+              "total_input": 53100000,
+              "total_tokens": 53820000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 31460000,
+            "cached_input": 254100000,
+            "output_including_thinking": 3872000
+          },
+          "total_input": 285560000,
+          "total_tokens": 289432000,
+          "llm_calls_estimated": 4840,
+          "gemini_api_usd": 10.7263,
+          "gemini_api_usd_if_no_cache": 40.6828,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        }
+      }
+    },
+    "30_days_5_fridays": {
+      "sessions": 485,
+      "sessions_by_model": {
+        "lite": 275,
+        "flash": 120,
+        "sol": 90
+      },
+      "scenarios": {
+        "bajo": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 12375000,
+                "cached_input": 22000000,
+                "output_including_thinking": 412500
+              },
+              "total_input": 34375000,
+              "total_tokens": 34787500,
+              "gemini_api_usd": 1.6225,
+              "gemini_api_usd_if_no_cache": 3.6025
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 5400000,
+                "cached_input": 9600000,
+                "output_including_thinking": 180000
+              },
+              "total_input": 15000000,
+              "total_tokens": 15180000,
+              "gemini_api_usd": 2.358,
+              "gemini_api_usd_if_no_cache": 4.95
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 4050000,
+                "cached_input": 7200000,
+                "output_including_thinking": 135000
+              },
+              "total_input": 11250000,
+              "total_tokens": 11385000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 21825000,
+            "cached_input": 38800000,
+            "output_including_thinking": 727500
+          },
+          "total_input": 60625000,
+          "total_tokens": 61352500,
+          "llm_calls_estimated": 1455,
+          "gemini_api_usd": 3.9805,
+          "gemini_api_usd_if_no_cache": 8.5525,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "central": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 15125000,
+                "cached_input": 68750000,
+                "output_including_thinking": 1100000
+              },
+              "total_input": 83875000,
+              "total_tokens": 84975000,
+              "gemini_api_usd": 2.64,
+              "gemini_api_usd_if_no_cache": 8.8275
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 6600000,
+                "cached_input": 30000000,
+                "output_including_thinking": 480000
+              },
+              "total_input": 36600000,
+              "total_tokens": 37080000,
+              "gemini_api_usd": 4.08,
+              "gemini_api_usd_if_no_cache": 12.18
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 4950000,
+                "cached_input": 22500000,
+                "output_including_thinking": 360000
+              },
+              "total_input": 27450000,
+              "total_tokens": 27810000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 26675000,
+            "cached_input": 121250000,
+            "output_including_thinking": 1940000
+          },
+          "total_input": 147925000,
+          "total_tokens": 149865000,
+          "llm_calls_estimated": 2910,
+          "gemini_api_usd": 6.72,
+          "gemini_api_usd_if_no_cache": 21.0075,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        },
+        "alto": {
+          "by_model": {
+            "lite": {
+              "tokens": {
+                "uncached_input": 17875000,
+                "cached_input": 144375000,
+                "output_including_thinking": 2200000
+              },
+              "total_input": 162250000,
+              "total_tokens": 164450000,
+              "gemini_api_usd": 4.11125,
+              "gemini_api_usd_if_no_cache": 17.105
+            },
+            "flash": {
+              "tokens": {
+                "uncached_input": 7800000,
+                "cached_input": 63000000,
+                "output_including_thinking": 960000
+              },
+              "total_input": 70800000,
+              "total_tokens": 71760000,
+              "gemini_api_usd": 6.63,
+              "gemini_api_usd_if_no_cache": 23.64
+            },
+            "sol": {
+              "tokens": {
+                "uncached_input": 5850000,
+                "cached_input": 47250000,
+                "output_including_thinking": 720000
+              },
+              "total_input": 53100000,
+              "total_tokens": 53820000,
+              "gemini_api_usd": null,
+              "gemini_api_usd_if_no_cache": null
+            }
+          },
+          "tokens": {
+            "uncached_input": 31525000,
+            "cached_input": 254625000,
+            "output_including_thinking": 3880000
+          },
+          "total_input": 286150000,
+          "total_tokens": 290030000,
+          "llm_calls_estimated": 4850,
+          "gemini_api_usd": 10.74125,
+          "gemini_api_usd_if_no_cache": 40.745,
+          "subscription_incremental_usd": null,
+          "all_in_usd": null
+        }
+      }
+    }
+  },
+  "light_alternative": {
+    "description": "GUARDIA determinista sin LLM en los 7 horarios; ESPIA y CRO cada uno 2 o 3 veces/semana; TIKTOKER, INSTAGRAMER, CREATIVO y COPY producen solo con novedades verificadas. Por prudencia los cálculos reservan 1 corrida diaria para estos cuatro: son techo de planificación, se descuenta si no hay ítems. LEGAL viernes. No activar.",
+    "deterministic_guard_checks_per_week": 49,
+    "no_llm_novelty_gate_required": true,
+    "scenarios_by_spy_cro_runs_per_week": {
+      "2": {
+        "week": {
+          "sessions": 54,
+          "sessions_by_model": {
+            "lite": 15,
+            "flash": 23,
+            "sol": 16
+          },
+          "scenarios": {
+            "bajo": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 675000,
+                    "cached_input": 1200000,
+                    "output_including_thinking": 22500
+                  },
+                  "total_input": 1875000,
+                  "total_tokens": 1897500,
+                  "gemini_api_usd": 0.0885,
+                  "gemini_api_usd_if_no_cache": 0.1965
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 1035000,
+                    "cached_input": 1840000,
+                    "output_including_thinking": 34500
+                  },
+                  "total_input": 2875000,
+                  "total_tokens": 2909500,
+                  "gemini_api_usd": 0.45195,
+                  "gemini_api_usd_if_no_cache": 0.94875
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 720000,
+                    "cached_input": 1280000,
+                    "output_including_thinking": 24000
+                  },
+                  "total_input": 2000000,
+                  "total_tokens": 2024000,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 2430000,
+                "cached_input": 4320000,
+                "output_including_thinking": 81000
+              },
+              "total_input": 6750000,
+              "total_tokens": 6831000,
+              "llm_calls_estimated": 162,
+              "gemini_api_usd": 0.54045,
+              "gemini_api_usd_if_no_cache": 1.14525,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "central": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 825000,
+                    "cached_input": 3750000,
+                    "output_including_thinking": 60000
+                  },
+                  "total_input": 4575000,
+                  "total_tokens": 4635000,
+                  "gemini_api_usd": 0.144,
+                  "gemini_api_usd_if_no_cache": 0.4815
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 1265000,
+                    "cached_input": 5750000,
+                    "output_including_thinking": 92000
+                  },
+                  "total_input": 7015000,
+                  "total_tokens": 7107000,
+                  "gemini_api_usd": 0.782,
+                  "gemini_api_usd_if_no_cache": 2.3345
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 880000,
+                    "cached_input": 4000000,
+                    "output_including_thinking": 64000
+                  },
+                  "total_input": 4880000,
+                  "total_tokens": 4944000,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 2970000,
+                "cached_input": 13500000,
+                "output_including_thinking": 216000
+              },
+              "total_input": 16470000,
+              "total_tokens": 16686000,
+              "llm_calls_estimated": 324,
+              "gemini_api_usd": 0.926,
+              "gemini_api_usd_if_no_cache": 2.816,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "alto": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 975000,
+                    "cached_input": 7875000,
+                    "output_including_thinking": 120000
+                  },
+                  "total_input": 8850000,
+                  "total_tokens": 8970000,
+                  "gemini_api_usd": 0.22425,
+                  "gemini_api_usd_if_no_cache": 0.933
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 1495000,
+                    "cached_input": 12075000,
+                    "output_including_thinking": 184000
+                  },
+                  "total_input": 13570000,
+                  "total_tokens": 13754000,
+                  "gemini_api_usd": 1.27075,
+                  "gemini_api_usd_if_no_cache": 4.531
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 1040000,
+                    "cached_input": 8400000,
+                    "output_including_thinking": 128000
+                  },
+                  "total_input": 9440000,
+                  "total_tokens": 9568000,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 3510000,
+                "cached_input": 28350000,
+                "output_including_thinking": 432000
+              },
+              "total_input": 31860000,
+              "total_tokens": 32292000,
+              "llm_calls_estimated": 540,
+              "gemini_api_usd": 1.495,
+              "gemini_api_usd_if_no_cache": 5.464,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            }
+          }
+        },
+        "average_day": {
+          "sessions": 7.714285714285714,
+          "sessions_by_model": {
+            "lite": 2.142857142857143,
+            "flash": 3.2857142857142856,
+            "sol": 2.2857142857142856
+          },
+          "scenarios": {
+            "bajo": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 96428.57142857142,
+                    "cached_input": 171428.57142857142,
+                    "output_including_thinking": 3214.285714285714
+                  },
+                  "total_input": 267857.14285714284,
+                  "total_tokens": 271071.4285714286,
+                  "gemini_api_usd": 0.01264286,
+                  "gemini_api_usd_if_no_cache": 0.02807143
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 147857.14285714284,
+                    "cached_input": 262857.14285714284,
+                    "output_including_thinking": 4928.571428571428
+                  },
+                  "total_input": 410714.2857142857,
+                  "total_tokens": 415642.8571428571,
+                  "gemini_api_usd": 0.06456429,
+                  "gemini_api_usd_if_no_cache": 0.13553571
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 102857.14285714286,
+                    "cached_input": 182857.14285714284,
+                    "output_including_thinking": 3428.5714285714284
+                  },
+                  "total_input": 285714.2857142857,
+                  "total_tokens": 289142.8571428571,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 347142.8571428571,
+                "cached_input": 617142.857142857,
+                "output_including_thinking": 11571.428571428572
+              },
+              "total_input": 964285.7142857141,
+              "total_tokens": 975857.1428571426,
+              "llm_calls_estimated": 23.142857142857142,
+              "gemini_api_usd": 0.07720715,
+              "gemini_api_usd_if_no_cache": 0.16360714,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "central": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 117857.14285714286,
+                    "cached_input": 535714.2857142857,
+                    "output_including_thinking": 8571.42857142857
+                  },
+                  "total_input": 653571.4285714285,
+                  "total_tokens": 662142.857142857,
+                  "gemini_api_usd": 0.02057143,
+                  "gemini_api_usd_if_no_cache": 0.06878571
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 180714.2857142857,
+                    "cached_input": 821428.5714285714,
+                    "output_including_thinking": 13142.857142857143
+                  },
+                  "total_input": 1002142.857142857,
+                  "total_tokens": 1015285.7142857142,
+                  "gemini_api_usd": 0.11171429,
+                  "gemini_api_usd_if_no_cache": 0.3335
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 125714.28571428571,
+                    "cached_input": 571428.5714285714,
+                    "output_including_thinking": 9142.857142857143
+                  },
+                  "total_input": 697142.857142857,
+                  "total_tokens": 706285.7142857142,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 424285.7142857143,
+                "cached_input": 1928571.4285714284,
+                "output_including_thinking": 30857.142857142855
+              },
+              "total_input": 2352857.1428571427,
+              "total_tokens": 2383714.2857142854,
+              "llm_calls_estimated": 46.285714285714285,
+              "gemini_api_usd": 0.13228572,
+              "gemini_api_usd_if_no_cache": 0.40228571,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "alto": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 139285.7142857143,
+                    "cached_input": 1125000.0,
+                    "output_including_thinking": 17142.85714285714
+                  },
+                  "total_input": 1264285.7142857143,
+                  "total_tokens": 1281428.5714285714,
+                  "gemini_api_usd": 0.03203571,
+                  "gemini_api_usd_if_no_cache": 0.13328571
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 213571.42857142855,
+                    "cached_input": 1725000.0,
+                    "output_including_thinking": 26285.714285714286
+                  },
+                  "total_input": 1938571.4285714286,
+                  "total_tokens": 1964857.142857143,
+                  "gemini_api_usd": 0.18153571,
+                  "gemini_api_usd_if_no_cache": 0.64728571
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 148571.42857142855,
+                    "cached_input": 1200000.0,
+                    "output_including_thinking": 18285.714285714286
+                  },
+                  "total_input": 1348571.4285714286,
+                  "total_tokens": 1366857.142857143,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 501428.57142857136,
+                "cached_input": 4050000.0,
+                "output_including_thinking": 61714.28571428571
+              },
+              "total_input": 4551428.571428571,
+              "total_tokens": 4613142.857142856,
+              "llm_calls_estimated": 77.14285714285714,
+              "gemini_api_usd": 0.21357142,
+              "gemini_api_usd_if_no_cache": 0.78057142,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            }
+          }
+        },
+        "30_day_average": {
+          "sessions": 231.42857142857144,
+          "sessions_by_model": {
+            "lite": 64.28571428571429,
+            "flash": 98.57142857142857,
+            "sol": 68.57142857142857
+          },
+          "scenarios": {
+            "bajo": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 2892857.142857143,
+                    "cached_input": 5142857.142857144,
+                    "output_including_thinking": 96428.57142857143
+                  },
+                  "total_input": 8035714.285714287,
+                  "total_tokens": 8132142.857142859,
+                  "gemini_api_usd": 0.37928571,
+                  "gemini_api_usd_if_no_cache": 0.84214286
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 4435714.285714285,
+                    "cached_input": 7885714.285714285,
+                    "output_including_thinking": 147857.14285714284
+                  },
+                  "total_input": 12321428.57142857,
+                  "total_tokens": 12469285.714285715,
+                  "gemini_api_usd": 1.93692857,
+                  "gemini_api_usd_if_no_cache": 4.06607143
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 3085714.2857142854,
+                    "cached_input": 5485714.285714285,
+                    "output_including_thinking": 102857.14285714286
+                  },
+                  "total_input": 8571428.57142857,
+                  "total_tokens": 8674285.714285715,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 10414285.714285715,
+                "cached_input": 18514285.714285716,
+                "output_including_thinking": 347142.8571428571
+              },
+              "total_input": 28928571.428571433,
+              "total_tokens": 29275714.28571429,
+              "llm_calls_estimated": 694.2857142857143,
+              "gemini_api_usd": 2.31621428,
+              "gemini_api_usd_if_no_cache": 4.90821429,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "central": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 3535714.285714286,
+                    "cached_input": 16071428.571428573,
+                    "output_including_thinking": 257142.85714285716
+                  },
+                  "total_input": 19607142.85714286,
+                  "total_tokens": 19864285.714285716,
+                  "gemini_api_usd": 0.61714286,
+                  "gemini_api_usd_if_no_cache": 2.06357143
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 5421428.571428571,
+                    "cached_input": 24642857.14285714,
+                    "output_including_thinking": 394285.71428571426
+                  },
+                  "total_input": 30064285.714285713,
+                  "total_tokens": 30458571.428571425,
+                  "gemini_api_usd": 3.35142857,
+                  "gemini_api_usd_if_no_cache": 10.005
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 3771428.5714285714,
+                    "cached_input": 17142857.14285714,
+                    "output_including_thinking": 274285.71428571426
+                  },
+                  "total_input": 20914285.714285713,
+                  "total_tokens": 21188571.428571425,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 12728571.428571427,
+                "cached_input": 57857142.85714286,
+                "output_including_thinking": 925714.2857142857
+              },
+              "total_input": 70585714.28571428,
+              "total_tokens": 71511428.57142857,
+              "llm_calls_estimated": 1388.5714285714287,
+              "gemini_api_usd": 3.96857143,
+              "gemini_api_usd_if_no_cache": 12.06857143,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "alto": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 4178571.428571429,
+                    "cached_input": 33750000.0,
+                    "output_including_thinking": 514285.7142857143
+                  },
+                  "total_input": 37928571.42857143,
+                  "total_tokens": 38442857.14285715,
+                  "gemini_api_usd": 0.96107143,
+                  "gemini_api_usd_if_no_cache": 3.99857143
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 6407142.857142857,
+                    "cached_input": 51750000.0,
+                    "output_including_thinking": 788571.4285714285
+                  },
+                  "total_input": 58157142.85714286,
+                  "total_tokens": 58945714.28571428,
+                  "gemini_api_usd": 5.44607143,
+                  "gemini_api_usd_if_no_cache": 19.41857143
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 4457142.857142857,
+                    "cached_input": 36000000.0,
+                    "output_including_thinking": 548571.4285714285
+                  },
+                  "total_input": 40457142.85714286,
+                  "total_tokens": 41005714.28571428,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 15042857.142857146,
+                "cached_input": 121500000.0,
+                "output_including_thinking": 1851428.5714285714
+              },
+              "total_input": 136542857.14285713,
+              "total_tokens": 138394285.7142857,
+              "llm_calls_estimated": 2314.2857142857147,
+              "gemini_api_usd": 6.40714286,
+              "gemini_api_usd_if_no_cache": 23.41714286,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            }
+          }
+        }
+      },
+      "3": {
+        "week": {
+          "sessions": 56,
+          "sessions_by_model": {
+            "lite": 15,
+            "flash": 24,
+            "sol": 17
+          },
+          "scenarios": {
+            "bajo": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 675000,
+                    "cached_input": 1200000,
+                    "output_including_thinking": 22500
+                  },
+                  "total_input": 1875000,
+                  "total_tokens": 1897500,
+                  "gemini_api_usd": 0.0885,
+                  "gemini_api_usd_if_no_cache": 0.1965
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 1080000,
+                    "cached_input": 1920000,
+                    "output_including_thinking": 36000
+                  },
+                  "total_input": 3000000,
+                  "total_tokens": 3036000,
+                  "gemini_api_usd": 0.4716,
+                  "gemini_api_usd_if_no_cache": 0.99
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 765000,
+                    "cached_input": 1360000,
+                    "output_including_thinking": 25500
+                  },
+                  "total_input": 2125000,
+                  "total_tokens": 2150500,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 2520000,
+                "cached_input": 4480000,
+                "output_including_thinking": 84000
+              },
+              "total_input": 7000000,
+              "total_tokens": 7084000,
+              "llm_calls_estimated": 168,
+              "gemini_api_usd": 0.5601,
+              "gemini_api_usd_if_no_cache": 1.1865,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "central": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 825000,
+                    "cached_input": 3750000,
+                    "output_including_thinking": 60000
+                  },
+                  "total_input": 4575000,
+                  "total_tokens": 4635000,
+                  "gemini_api_usd": 0.144,
+                  "gemini_api_usd_if_no_cache": 0.4815
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 1320000,
+                    "cached_input": 6000000,
+                    "output_including_thinking": 96000
+                  },
+                  "total_input": 7320000,
+                  "total_tokens": 7416000,
+                  "gemini_api_usd": 0.816,
+                  "gemini_api_usd_if_no_cache": 2.436
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 935000,
+                    "cached_input": 4250000,
+                    "output_including_thinking": 68000
+                  },
+                  "total_input": 5185000,
+                  "total_tokens": 5253000,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 3080000,
+                "cached_input": 14000000,
+                "output_including_thinking": 224000
+              },
+              "total_input": 17080000,
+              "total_tokens": 17304000,
+              "llm_calls_estimated": 336,
+              "gemini_api_usd": 0.96,
+              "gemini_api_usd_if_no_cache": 2.9175,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "alto": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 975000,
+                    "cached_input": 7875000,
+                    "output_including_thinking": 120000
+                  },
+                  "total_input": 8850000,
+                  "total_tokens": 8970000,
+                  "gemini_api_usd": 0.22425,
+                  "gemini_api_usd_if_no_cache": 0.933
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 1560000,
+                    "cached_input": 12600000,
+                    "output_including_thinking": 192000
+                  },
+                  "total_input": 14160000,
+                  "total_tokens": 14352000,
+                  "gemini_api_usd": 1.326,
+                  "gemini_api_usd_if_no_cache": 4.728
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 1105000,
+                    "cached_input": 8925000,
+                    "output_including_thinking": 136000
+                  },
+                  "total_input": 10030000,
+                  "total_tokens": 10166000,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 3640000,
+                "cached_input": 29400000,
+                "output_including_thinking": 448000
+              },
+              "total_input": 33040000,
+              "total_tokens": 33488000,
+              "llm_calls_estimated": 560,
+              "gemini_api_usd": 1.55025,
+              "gemini_api_usd_if_no_cache": 5.661,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            }
+          }
+        },
+        "average_day": {
+          "sessions": 8.0,
+          "sessions_by_model": {
+            "lite": 2.142857142857143,
+            "flash": 3.4285714285714284,
+            "sol": 2.4285714285714284
+          },
+          "scenarios": {
+            "bajo": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 96428.57142857142,
+                    "cached_input": 171428.57142857142,
+                    "output_including_thinking": 3214.285714285714
+                  },
+                  "total_input": 267857.14285714284,
+                  "total_tokens": 271071.4285714286,
+                  "gemini_api_usd": 0.01264286,
+                  "gemini_api_usd_if_no_cache": 0.02807143
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 154285.7142857143,
+                    "cached_input": 274285.71428571426,
+                    "output_including_thinking": 5142.857142857142
+                  },
+                  "total_input": 428571.4285714285,
+                  "total_tokens": 433714.2857142857,
+                  "gemini_api_usd": 0.06737143,
+                  "gemini_api_usd_if_no_cache": 0.14142857
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 109285.71428571428,
+                    "cached_input": 194285.71428571426,
+                    "output_including_thinking": 3642.8571428571427
+                  },
+                  "total_input": 303571.4285714285,
+                  "total_tokens": 307214.2857142857,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 360000.0,
+                "cached_input": 640000.0,
+                "output_including_thinking": 12000.0
+              },
+              "total_input": 1000000.0,
+              "total_tokens": 1012000.0,
+              "llm_calls_estimated": 24.0,
+              "gemini_api_usd": 0.08001429,
+              "gemini_api_usd_if_no_cache": 0.1695,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "central": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 117857.14285714286,
+                    "cached_input": 535714.2857142857,
+                    "output_including_thinking": 8571.42857142857
+                  },
+                  "total_input": 653571.4285714285,
+                  "total_tokens": 662142.857142857,
+                  "gemini_api_usd": 0.02057143,
+                  "gemini_api_usd_if_no_cache": 0.06878571
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 188571.42857142855,
+                    "cached_input": 857142.857142857,
+                    "output_including_thinking": 13714.285714285714
+                  },
+                  "total_input": 1045714.2857142856,
+                  "total_tokens": 1059428.5714285714,
+                  "gemini_api_usd": 0.11657143,
+                  "gemini_api_usd_if_no_cache": 0.348
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 133571.42857142855,
+                    "cached_input": 607142.857142857,
+                    "output_including_thinking": 9714.285714285714
+                  },
+                  "total_input": 740714.2857142856,
+                  "total_tokens": 750428.5714285712,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 440000.0,
+                "cached_input": 1999999.9999999998,
+                "output_including_thinking": 31999.999999999996
+              },
+              "total_input": 2440000.0,
+              "total_tokens": 2472000.0,
+              "llm_calls_estimated": 48.0,
+              "gemini_api_usd": 0.13714286,
+              "gemini_api_usd_if_no_cache": 0.41678571,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "alto": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 139285.7142857143,
+                    "cached_input": 1125000.0,
+                    "output_including_thinking": 17142.85714285714
+                  },
+                  "total_input": 1264285.7142857143,
+                  "total_tokens": 1281428.5714285714,
+                  "gemini_api_usd": 0.03203571,
+                  "gemini_api_usd_if_no_cache": 0.13328571
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 222857.14285714284,
+                    "cached_input": 1800000.0,
+                    "output_including_thinking": 27428.571428571428
+                  },
+                  "total_input": 2022857.1428571427,
+                  "total_tokens": 2050285.714285714,
+                  "gemini_api_usd": 0.18942857,
+                  "gemini_api_usd_if_no_cache": 0.67542857
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 157857.14285714284,
+                    "cached_input": 1275000.0,
+                    "output_including_thinking": 19428.571428571428
+                  },
+                  "total_input": 1432857.1428571427,
+                  "total_tokens": 1452285.714285714,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 520000.0,
+                "cached_input": 4200000.0,
+                "output_including_thinking": 63999.99999999999
+              },
+              "total_input": 4720000.0,
+              "total_tokens": 4784000.0,
+              "llm_calls_estimated": 80.0,
+              "gemini_api_usd": 0.22146428,
+              "gemini_api_usd_if_no_cache": 0.80871428,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            }
+          }
+        },
+        "30_day_average": {
+          "sessions": 240.00000000000003,
+          "sessions_by_model": {
+            "lite": 64.28571428571429,
+            "flash": 102.85714285714286,
+            "sol": 72.85714285714286
+          },
+          "scenarios": {
+            "bajo": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 2892857.142857143,
+                    "cached_input": 5142857.142857144,
+                    "output_including_thinking": 96428.57142857143
+                  },
+                  "total_input": 8035714.285714287,
+                  "total_tokens": 8132142.857142859,
+                  "gemini_api_usd": 0.37928571,
+                  "gemini_api_usd_if_no_cache": 0.84214286
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 4628571.428571429,
+                    "cached_input": 8228571.428571429,
+                    "output_including_thinking": 154285.7142857143
+                  },
+                  "total_input": 12857142.857142858,
+                  "total_tokens": 13011428.571428573,
+                  "gemini_api_usd": 2.02114286,
+                  "gemini_api_usd_if_no_cache": 4.24285714
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 3278571.4285714286,
+                    "cached_input": 5828571.428571429,
+                    "output_including_thinking": 109285.71428571429
+                  },
+                  "total_input": 9107142.857142858,
+                  "total_tokens": 9216428.571428573,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 10800000.000000002,
+                "cached_input": 19200000.0,
+                "output_including_thinking": 360000.0
+              },
+              "total_input": 30000000.0,
+              "total_tokens": 30360000.0,
+              "llm_calls_estimated": 720.0000000000001,
+              "gemini_api_usd": 2.40042857,
+              "gemini_api_usd_if_no_cache": 5.085,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "central": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 3535714.285714286,
+                    "cached_input": 16071428.571428573,
+                    "output_including_thinking": 257142.85714285716
+                  },
+                  "total_input": 19607142.85714286,
+                  "total_tokens": 19864285.714285716,
+                  "gemini_api_usd": 0.61714286,
+                  "gemini_api_usd_if_no_cache": 2.06357143
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 5657142.857142857,
+                    "cached_input": 25714285.714285716,
+                    "output_including_thinking": 411428.5714285714
+                  },
+                  "total_input": 31371428.571428575,
+                  "total_tokens": 31782857.142857146,
+                  "gemini_api_usd": 3.49714286,
+                  "gemini_api_usd_if_no_cache": 10.44
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 4007142.8571428573,
+                    "cached_input": 18214285.714285716,
+                    "output_including_thinking": 291428.5714285714
+                  },
+                  "total_input": 22221428.571428575,
+                  "total_tokens": 22512857.142857146,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 13200000.0,
+                "cached_input": 60000000.00000001,
+                "output_including_thinking": 960000.0
+              },
+              "total_input": 73200000.0,
+              "total_tokens": 74160000.0,
+              "llm_calls_estimated": 1440.0000000000002,
+              "gemini_api_usd": 4.11428572,
+              "gemini_api_usd_if_no_cache": 12.50357143,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            },
+            "alto": {
+              "by_model": {
+                "lite": {
+                  "tokens": {
+                    "uncached_input": 4178571.428571429,
+                    "cached_input": 33750000.0,
+                    "output_including_thinking": 514285.7142857143
+                  },
+                  "total_input": 37928571.42857143,
+                  "total_tokens": 38442857.14285715,
+                  "gemini_api_usd": 0.96107143,
+                  "gemini_api_usd_if_no_cache": 3.99857143
+                },
+                "flash": {
+                  "tokens": {
+                    "uncached_input": 6685714.285714286,
+                    "cached_input": 54000000.0,
+                    "output_including_thinking": 822857.1428571428
+                  },
+                  "total_input": 60685714.28571428,
+                  "total_tokens": 61508571.428571425,
+                  "gemini_api_usd": 5.68285714,
+                  "gemini_api_usd_if_no_cache": 20.26285714
+                },
+                "sol": {
+                  "tokens": {
+                    "uncached_input": 4735714.285714286,
+                    "cached_input": 38250000.0,
+                    "output_including_thinking": 582857.1428571428
+                  },
+                  "total_input": 42985714.28571428,
+                  "total_tokens": 43568571.428571425,
+                  "gemini_api_usd": null,
+                  "gemini_api_usd_if_no_cache": null
+                }
+              },
+              "tokens": {
+                "uncached_input": 15600000.000000004,
+                "cached_input": 126000000.0,
+                "output_including_thinking": 1920000.0
+              },
+              "total_input": 141600000.0,
+              "total_tokens": 143520000.0,
+              "llm_calls_estimated": 2400.0000000000005,
+              "gemini_api_usd": 6.64392857,
+              "gemini_api_usd_if_no_cache": 24.26142857,
+              "subscription_incremental_usd": null,
+              "all_in_usd": null
+            }
+          }
+        }
+      }
+    }
+  },
+  "historical_observations": [
+    {
+      "id": "20260919_163719_81bc9c",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 15,
+      "input_tokens": 53442,
+      "cache_read_tokens": 524800,
+      "cache_write_tokens": 0,
+      "output_tokens": 5875,
+      "reasoning_tokens": 1506,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-cro",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-cro/state.db"
+    },
+    {
+      "id": "20260919_163720_169899",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 11,
+      "input_tokens": 51915,
+      "cache_read_tokens": 372736,
+      "cache_write_tokens": 0,
+      "output_tokens": 4654,
+      "reasoning_tokens": 818,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-tienda",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-tienda/state.db"
+    },
+    {
+      "id": "20260918_113606_4afb20",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 7,
+      "input_tokens": 45147,
+      "cache_read_tokens": 200704,
+      "cache_write_tokens": 0,
+      "output_tokens": 1550,
+      "reasoning_tokens": 320,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-tienda",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-tienda/state.db"
+    },
+    {
+      "id": "20260918_111503_9a8e02",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 17,
+      "input_tokens": 124838,
+      "cache_read_tokens": 1413120,
+      "cache_write_tokens": 0,
+      "output_tokens": 14723,
+      "reasoning_tokens": 2988,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-tienda",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-tienda/state.db"
+    },
+    {
+      "id": "20260817_023102_362251",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 11,
+      "input_tokens": 65478,
+      "cache_read_tokens": 446464,
+      "cache_write_tokens": 0,
+      "output_tokens": 5018,
+      "reasoning_tokens": 789,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-tienda",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-tienda/state.db"
+    },
+    {
+      "id": "20260919_164120_2196dd",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 7,
+      "input_tokens": 45465,
+      "cache_read_tokens": 208896,
+      "cache_write_tokens": 0,
+      "output_tokens": 4560,
+      "reasoning_tokens": 412,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-precios",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-precios/state.db"
+    },
+    {
+      "id": "20260919_163719_45548a",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 12,
+      "input_tokens": 46266,
+      "cache_read_tokens": 374272,
+      "cache_write_tokens": 0,
+      "output_tokens": 4986,
+      "reasoning_tokens": 1020,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-precios",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-precios/state.db"
+    },
+    {
+      "id": "20260918_111503_d0fc5d",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 9,
+      "input_tokens": 48064,
+      "cache_read_tokens": 282624,
+      "cache_write_tokens": 0,
+      "output_tokens": 2938,
+      "reasoning_tokens": 552,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-jefe",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-jefe/state.db"
+    },
+    {
+      "id": "20260918_000833_a54f1a",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 12,
+      "input_tokens": 51423,
+      "cache_read_tokens": 418304,
+      "cache_write_tokens": 0,
+      "output_tokens": 2741,
+      "reasoning_tokens": 541,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-jefe",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-jefe/state.db"
+    },
+    {
+      "id": "20260817_023359_83d930",
+      "source": "kanban",
+      "model": "gpt-5.6-luna",
+      "api_call_count": 7,
+      "input_tokens": 55053,
+      "cache_read_tokens": 229376,
+      "cache_write_tokens": 0,
+      "output_tokens": 3616,
+      "reasoning_tokens": 320,
+      "ended_at": null,
+      "billing_mode": "subscription_included",
+      "profile": "gonvra-jefe",
+      "db": "/home/matiigonzz/.hermes/profiles/gonvra-jefe/state.db"
+    }
+  ],
+  "accounting_semantics": {
+    "input_cache_disjoint": true,
+    "evidence": "agent/usage_pricing.py:1271–1319 resta cache del total Codex; agent/conversation_loop.py:3930–3934 acumula los buckets por separado. Cache_write=0 en muestras. No sumar reasoning otra vez al output.",
+    "verification_scope": "Código local actual y coherencia SQLite, no conciliación de cada factura histórica."
+  },
+  "sources": [
+    {
+      "title": "Google Gemini Developer API pricing — Standard",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing#gemini-2.5-flash",
+      "observed_page_updated": "2026-09-16",
+      "note": "Flash 0.30/0.03/2.50; Flash-Lite 0.10/0.01/0.40 USD por millón; almacenamiento explícito 1 USD/M tokens-hora."
+    },
+    {
+      "title": "Google context caching",
+      "url": "https://ai.google.dev/gemini-api/docs/generate-content/caching",
+      "note": "Cache implícita automática sin garantía de acierto; explícita cobra almacenamiento; cache cuenta para límites."
+    },
+    {
+      "title": "Google rate limits",
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "note": "RPM, TPM y RPD por proyecto; verificar cuota real en AI Studio."
+    },
+    {
+      "title": "Hermes cron",
+      "url": "https://hermes-agent.nousresearch.com/docs/user-guide/features/cron/",
+      "note": "Sesiones nuevas y no_agent sin intervención LLM."
+    },
+    {
+      "title": "Codex con suscripción",
+      "url": "https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan",
+      "note": "Uso sujeto al plan y límites; no aporta tarifa verificada por token para gpt-5.6-sol."
+    }
+  ],
+  "confidence": {
+    "prices": "alta: página oficial consultada",
+    "arithmetic_schedule": "alta: Python y assertions",
+    "historical_buckets": "alta para código actual; muestras de sesiones no cerradas",
+    "gemini_token_projection": "media-baja: historial Luna/Codex, no Gemini ni Sol; tokenizer/cache/reasoning pueden cambiar",
+    "subscription_dollars": "no determinado; null no significa cero"
+  },
+  "excluded": [
+    "grounding pago",
+    "generación y análisis de imágenes/video/audio",
+    "servicios de herramientas/búsqueda/navegador",
+    "electricidad/hosting",
+    "impuestos y cambio ARS",
+    "suscripción Codex y créditos extra",
+    "reintentos y compacciones auxiliares fuera del presupuesto",
+    "cache explícita almacenada"
+  ]
+}

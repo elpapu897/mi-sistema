@@ -1,0 +1,106 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "gv_footer": {
+      "type": "gv-footer",
+      "blocks": {
+        "c1": {
+          "type": "columna",
+          "settings": {
+            "title": "Tienda",
+            "links": "Inicio::/\nLa rasuradora::/products/face-body-electric-shaver\nCarrito::/cart"
+          }
+        },
+        "c2": {
+          "type": "columna",
+          "settings": {
+            "title": "Ayuda",
+            "links": "Preguntas frecuentes::/products/face-body-electric-shaver#faq\nEnvíos y entrega::/policies/shipping-policy\nCambios y devoluciones::/policies/refund-policy"
+          }
+        },
+        "c3": {
+          "type": "columna",
+          "settings": {
+            "title": "Legal",
+            "links": "Botón de arrepentimiento::/policies/refund-policy\nTérminos del servicio::/policies/terms-of-service\nPolítica de privacidad::/policies/privacy-policy"
+          }
+        },
+        "q1": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Cuánto tarda en llegar?",
+            "a": "<p>Despacho en 24 a 48 h hábiles y la entrega estimada es de 12 a 20 días. Te mando el código de seguimiento por mail apenas sale.</p>"
+          }
+        },
+        "q2": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Hacen envíos a todo el país?",
+            "a": "<p>Sí, a todo el país, siempre con seguimiento.</p>"
+          }
+        },
+        "q3": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Cómo puedo pagar?",
+            "a": "<p>Con tarjeta o Mercado Pago, en el checkout seguro de Shopify. Antes de confirmar ves el total final.</p>"
+          }
+        },
+        "q4": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Sirve para la cara y el cuerpo?",
+            "a": "<p>Sí, es el mismo equipo para barba, patillas, pecho, brazos, piernas y zona íntima. Con los peines elegís el largo.</p>"
+          }
+        },
+        "q5": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Y si llega fallada?",
+            "a": "<p>Escribime y lo resolvemos: coordinamos el cambio o la devolución según la Ley 24.240.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "brand_text": "GONVRA",
+        "tagline": "Cuidado personal sin vueltas: productos elegidos, precio claro y envío con seguimiento a todo el país.",
+        "show_news": true,
+        "news_title": "Novedades",
+        "news_text": "Dejanos tu mail y te avisamos cuando sumamos productos nuevos.",
+        "contact_email": "gonvra0@gmail.com",
+        "contact_phone": "+54 9 11 5376-7293",
+        "wa_number": "5491153767293",
+        "wa_text": "Hola! Tengo una consulta sobre la rasuradora",
+        "legal": "Todos los derechos reservados.",
+        "legal_2": "Defensa de las y los consumidores: para reclamos ingresá a argentina.gob.ar/produccion/defensadelconsumidor",
+        "wa_title": "¿Te ayudo con algo?",
+        "wa_sub": "Mirá si tu duda está acá. Si no, escribime.",
+        "wa_cta": "Seguir por WhatsApp",
+        "wa_horario": "Respondo de 9 a 21 h"
+      }
+    }
+  },
+  "order": [
+    "gv_footer"
+  ]
+}

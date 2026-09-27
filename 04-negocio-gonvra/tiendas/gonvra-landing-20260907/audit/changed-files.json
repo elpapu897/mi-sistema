@@ -1,0 +1,20 @@
+[
+  "assets/gv-experience.css",
+  "assets/gv-experience.js",
+  "config/settings_data.json",
+  "config/settings_schema.json",
+  "layout/theme.liquid",
+  "sections/footer-group.json",
+  "sections/gv-faq.liquid",
+  "sections/gv-footer.liquid",
+  "sections/gv-header.liquid",
+  "sections/gv-home.liquid",
+  "sections/gv-historia.liquid",
+  "sections/gv-producto.liquid",
+  "sections/header-group.json",
+  "sections/gv-beneficios.liquid",
+  "snippets/meta-tags.liquid",
+  "templates/index.json",
+  "templates/product.json",
+  "templates/product.tienda.json"
+]

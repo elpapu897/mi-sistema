@@ -1,0 +1,35 @@
+{
+  "store": "jm60sa-cp.myshopify.com",
+  "theme_id": "148158414963",
+  "source_copy": "/home/matiigonzz/Documents/Codex/tiendas/jm60sa-cp/work-copy-2026-09-18",
+  "files": [
+    {
+      "path": "templates/index.json",
+      "sha256": "43ff813240b0ae3562ca852f1f829463819e3a1c727110114b9cb906b34cd41f",
+      "bytes": 7863
+    },
+    {
+      "path": "templates/product.gonvra.json",
+      "sha256": "bebf93216f399485253ce8943a34628e938d65d24125017b341107fa2bfacdbd",
+      "bytes": 10975
+    },
+    {
+      "path": "sections/gv-home.liquid",
+      "sha256": "d38da93c7df55499a343435ceb63f34d9f16fcaed55c7b741be0014675f73906",
+      "bytes": 13751
+    },
+    {
+      "path": "sections/gv-producto.liquid",
+      "sha256": "dd3c71cf163a2ab58bdcb122e8979499aca74ad37de36f5fd32c1ff4b0ded3b7",
+      "bytes": 45104
+    },
+    {
+      "path": "sections/gv-faq.liquid",
+      "sha256": "d38e2c27c10af38eef37995493338f3849df35b9e5b096dab6bbca9a3ce19936",
+      "bytes": 9918
+    }
+  ],
+  "proposed_command": "npx shopify theme push --store jm60sa-cp.myshopify.com --theme 148158414963",
+  "status": "sin ejecutar",
+  "scope": "push de copy aprobado al tema LIVE #148158414963 únicamente después de aprobación y revalidación SEMÁFORO"
+}

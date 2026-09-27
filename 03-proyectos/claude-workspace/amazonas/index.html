@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMAZONÍA — El corazón verde del planeta</title>
+<meta name="description" content="Un recorrido visual por la selva amazónica: su escala, su biodiversidad, sus pueblos y la amenaza que enfrenta.">
+<meta name="theme-color" content="#050b09">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#050b09;
+  --ink-2:#0a1512;
+  --paper:#f3f1ea;
+  --moss:#8fb996;
+  --leaf:#c7e8b0;
+  --gold:#d9a441;
+  --clay:#c96f4a;
+  --line:rgba(243,241,234,.14);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:var(--sans);font-weight:300;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+body::after{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:.045;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:1000;
+  background:linear-gradient(90deg,var(--moss),var(--leaf),var(--gold));
+}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px clamp(20px,5vw,64px);
+  transition:background .5s ease,backdrop-filter .5s ease,padding .5s ease;
+}
+nav.stuck{
+  background:rgba(5,11,9,.72);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);padding:14px clamp(20px,5vw,64px);
+}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;
+  display:flex;align-items:center;gap:10px}
+.brand i{width:7px;height:7px;border-radius:50%;background:var(--leaf);
+  box-shadow:0 0 12px var(--leaf);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.nav-links{display:flex;gap:34px;font-size:12.5px;letter-spacing:.06em}
+.nav-links a{opacity:.6;position:relative;transition:opacity .3s;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--leaf);transition:width .35s cubic-bezier(.4,0,.2,1)}
+.nav-links a:hover{opacity:1}
+.nav-links a:hover::after{width:100%}
+.coords{font-family:var(--mono);font-size:12px;letter-spacing:.28em;opacity:.45}
+@media(max-width:980px){.nav-links{display:none}}
+@media(max-width:520px){.coords{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:-8% 0 0;z-index:0}
+.hero-bg img{width:100%;height:116%;object-fit:cover;object-position:center 42%;will-change:transform}
+.hero::before{content:'';position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(180deg,rgba(5,11,9,.82) 0%,rgba(5,11,9,.2) 32%,rgba(5,11,9,.6) 66%,var(--ink) 100%),
+    radial-gradient(120% 75% at 50% 100%,rgba(5,11,9,.9),transparent 62%)}
+.hero-inner{position:relative;z-index:2;width:100%;
+  padding:0 clamp(20px,5vw,64px) clamp(44px,7vw,88px)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--leaf);display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.eyebrow::before{content:'';width:clamp(28px,6vw,72px);height:1px;background:var(--leaf);opacity:.6}
+.hero h1{font-family:var(--serif);font-weight:400;
+  font-size:clamp(58px,15vw,250px);line-height:.83;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--leaf)}
+.hero-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;
+  margin-top:clamp(26px,4vw,44px);flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
+.hero-foot p{max-width:44ch;font-size:15.5px;line-height:1.65;opacity:.75}
+.scroll-hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  opacity:.5;display:flex;align-items:center;gap:12px;white-space:nowrap}
+.scroll-hint span{display:block;width:1px;height:36px;background:var(--paper);
+  transform-origin:top;animation:drop 2.2s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes drop{0%{transform:scaleY(0)}45%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
+
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
+.sec-pad{padding:clamp(88px,13vw,180px) 0}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--moss);margin-bottom:26px;display:flex;gap:12px;align-items:baseline}
+.label b{color:var(--gold);font-weight:500}
+h2{font-family:var(--serif);font-weight:400;
+  font-size:clamp(36px,6.2vw,84px);line-height:1.03;letter-spacing:-.015em}
+h2 em{font-style:italic;color:var(--moss)}
+.lede{font-size:clamp(16px,1.35vw,19px);line-height:1.75;opacity:.74;max-width:62ch}
+
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:18px 0;overflow:hidden;background:var(--ink-2)}
+.marquee-track{display:flex;width:max-content;animation:slide 46s linear infinite}
+.marquee-track span{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  opacity:.55;display:flex;align-items:center;gap:52px;white-space:nowrap;padding-right:52px}
+.marquee-track span::after{content:'◦';color:var(--gold)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.stat{padding:clamp(30px,4vw,52px) clamp(16px,2.4vw,34px);
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:background .5s}
+.stat:last-child{border-right:none}
+.stat:hover{background:var(--ink-2)}
+.stat .n{font-family:var(--serif);font-size:clamp(38px,5.3vw,74px);line-height:1;
+  color:var(--leaf);letter-spacing:-.02em}
+.stat .n small{font-size:.4em;color:var(--paper);opacity:.62;margin-left:6px;
+  font-family:var(--sans);font-weight:300}
+.stat .t{margin-top:14px;font-size:13px;line-height:1.55;opacity:.6}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2n){border-right:none}}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,6vw,92px);align-items:center}
+.split.rev>.media{order:2}
+@media(max-width:900px){.split{grid-template-columns:1fr}.split.rev>.media{order:0}}
+.media{position:relative;overflow:hidden;background:var(--ink-2)}
+.media img{width:100%;height:100%;object-fit:cover;
+  transform:scale(1.05);transition:transform 1.5s cubic-bezier(.2,.8,.2,1)}
+.media:hover img{transform:scale(1)}
+.media .cap{position:absolute;left:0;right:0;bottom:0;padding:20px 22px;
+  background:linear-gradient(0deg,rgba(5,11,9,.92),transparent);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.88}
+.media .cap b{color:var(--moss);font-weight:400}
+.body-copy p{font-size:16.5px;line-height:1.8;opacity:.75;margin-top:22px}
+.body-copy p strong{color:var(--leaf);font-weight:500}
+.pull{font-family:var(--serif);font-size:clamp(23px,3vw,40px);line-height:1.3;
+  border-left:2px solid var(--gold);padding-left:clamp(20px,2.6vw,34px);margin-top:38px}
+.pull cite{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;font-style:normal;opacity:.5;margin-top:18px}
+
+/* especies: tarjetas horizontales */
+.species{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:clamp(42px,6vw,72px)}
+@media(max-width:760px){.species{grid-template-columns:1fr}}
+.card{position:relative;overflow:hidden;background:var(--ink-2);aspect-ratio:3/2}
+.card img{width:100%;height:100%;object-fit:cover;
+  transition:transform 1.3s cubic-bezier(.2,.8,.2,1),filter .8s;
+  filter:saturate(.86) brightness(.74)}
+.card:hover img{transform:scale(1.06);filter:saturate(1.05) brightness(.92)}
+.card::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(5,11,9,.94) 3%,rgba(5,11,9,.12) 62%,rgba(5,11,9,.4))}
+.card-txt{position:absolute;inset:auto 0 0 0;z-index:2;padding:26px clamp(22px,2.6vw,32px);
+  transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.card:hover .card-txt{transform:translateY(-6px)}
+.card-txt .sci{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:9px}
+.card-txt h3{font-family:var(--serif);font-weight:400;font-size:clamp(25px,2.6vw,32px);line-height:1.1}
+.card-txt p{font-size:13.5px;line-height:1.65;opacity:0;max-height:0;
+  transition:opacity .5s,max-height .6s,margin .6s;overflow:hidden;max-width:52ch}
+.card:hover .card-txt p{opacity:.8;max-height:140px;margin-top:12px}
+.card .idx{position:absolute;top:20px;right:24px;z-index:2;
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;opacity:.55}
+.card .credit{position:absolute;bottom:8px;right:12px;z-index:2;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;opacity:.32}
+@media(hover:none){
+  .card{aspect-ratio:4/5}
+  .card img{filter:saturate(.9) brightness(.68)}
+  .card-txt p{opacity:.78;max-height:none;margin-top:12px}
+}
+@media(hover:none) and (min-width:761px){.card{aspect-ratio:3/2}}
+
+.threat{background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bars{margin-top:clamp(38px,5vw,62px);display:flex;flex-direction:column}
+.bar{display:grid;grid-template-columns:120px 1fr 92px;align-items:center;
+  gap:clamp(14px,2.4vw,30px);padding:17px 0;border-bottom:1px solid var(--line)}
+.bar .yr{font-family:var(--mono);font-size:13px;letter-spacing:.14em;opacity:.65}
+.bar .track{height:9px;background:rgba(243,241,234,.07);position:relative;overflow:hidden}
+.bar .fill{height:100%;width:0;background:linear-gradient(90deg,var(--clay),var(--gold));
+  transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+.bar.good .fill{background:linear-gradient(90deg,var(--moss),var(--leaf))}
+.bar .val{font-family:var(--mono);font-size:13px;text-align:right;opacity:.85}
+.bar-note{font-size:12.5px;opacity:.45;margin-top:20px;line-height:1.6;max-width:80ch}
+@media(max-width:640px){.bar{grid-template-columns:64px 1fr 74px}.bar .yr,.bar .val{font-size:11.5px}}
+
+.tl{margin-top:clamp(40px,5vw,64px);border-top:1px solid var(--line)}
+.tl-row{display:grid;grid-template-columns:150px 1fr;gap:clamp(16px,3vw,44px);
+  padding:clamp(22px,3vw,34px) 0;border-bottom:1px solid var(--line);
+  transition:background .45s,padding-left .45s}
+.tl-row:hover{background:rgba(199,232,176,.035);padding-left:14px}
+.tl-row .k{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;color:var(--gold);padding-top:5px}
+.tl-row h4{font-family:var(--serif);font-weight:400;font-size:clamp(21px,2.3vw,29px);margin-bottom:9px}
+.tl-row p{font-size:15px;line-height:1.7;opacity:.66;max-width:64ch}
+@media(max-width:700px){.tl-row{grid-template-columns:1fr;gap:8px}}
+
+.cta{position:relative;overflow:hidden;text-align:center;padding:clamp(100px,15vw,190px) 0}
+.cta-bg{position:absolute;inset:0;z-index:0}
+.cta-bg img{width:100%;height:100%;object-fit:cover;opacity:.34;filter:saturate(.7)}
+.cta::before{content:'';position:absolute;inset:0;z-index:1;
+  background:radial-gradient(75% 90% at 50% 50%,rgba(5,11,9,.6),var(--ink) 90%)}
+.cta .wrap{position:relative;z-index:2}
+.cta .eyebrow{justify-content:center}
+.cta h2{max-width:17ch;margin:0 auto}
+.btns{display:flex;gap:16px;justify-content:center;margin-top:44px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  padding:17px 34px;border:1px solid var(--line);position:relative;overflow:hidden;
+  transition:color .4s,border-color .4s}
+.btn span{position:relative;z-index:2}
+.btn::before{content:'';position:absolute;inset:0;background:var(--leaf);
+  transform:translateY(101%);transition:transform .48s cubic-bezier(.4,0,.2,1);z-index:1}
+.btn:hover{color:var(--ink);border-color:var(--leaf)}
+.btn:hover::before{transform:translateY(0)}
+.btn.solid{background:var(--leaf);color:var(--ink);border-color:var(--leaf)}
+.btn.solid::before{background:var(--paper)}
+
+footer{border-top:1px solid var(--line);padding:clamp(48px,6vw,72px) 0 40px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1.4fr;gap:40px}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr;gap:34px}}
+.foot-grid h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+  opacity:.45;margin-bottom:16px}
+.foot-grid li{list-style:none;font-size:14px;opacity:.68;margin-bottom:10px;transition:opacity .3s}
+.foot-grid li:hover{opacity:1}
+.foot-mark{font-family:var(--serif);font-size:clamp(34px,4.4vw,54px);line-height:1;margin-bottom:14px}
+.foot-mark em{font-style:italic;color:var(--moss)}
+.credits{font-size:11.5px;line-height:1.85;opacity:.45}
+.credits a{border-bottom:1px solid rgba(243,241,234,.2)}
+.credits a:hover{color:var(--leaf);border-color:var(--leaf)}
+.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  margin-top:clamp(44px,6vw,70px);padding-top:24px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.4}
+
+.rv{opacity:0;transform:translateY(32px);
+  transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.09s}.rv.d2{transition-delay:.18s}
+.rv.d3{transition-delay:.27s}.rv.d4{transition-delay:.36s}
+@media(max-width:700px){.hero-bg img{object-position:80% 62%}}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none}
+  *{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+<noscript><style>
+  .rv{opacity:1!important;transform:none!important}
+  .bar .fill{width:auto!important;min-width:12%}
+  .card-txt p{opacity:.78!important;max-height:none!important;margin-top:12px}
+</style></noscript>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav id="nav">
+  <div class="brand"><i></i>Amazonía</div>
+  <div class="nav-links">
+    <a href="#escala">Escala</a>
+    <a href="#lluvia">Lluvia</a>
+    <a href="#vida">Vida</a>
+    <a href="#pueblos">Pueblos</a>
+    <a href="#amenaza">Amenaza</a>
+    <a href="#actuar">Actuar</a>
+  </div>
+  <div class="coords">06°S · 60°O</div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg" id="heroBg">
+    <img src="img/hero.jpg" alt="Vista aérea de un río serpenteando entre la selva amazónica" fetchpriority="high">
+  </div>
+  <div class="hero-inner">
+    <div class="eyebrow rv">Sudamérica · 9 países · 6.700.000 km²</div>
+    <h1 class="rv d1">El corazón<br><em>verde</em> del<br>planeta</h1>
+    <div class="hero-foot rv d2">
+      <p>La selva más grande del mundo respira por todos nosotros. Un bosque que fabrica su propia lluvia, guarda un décimo de las especies conocidas y sostiene a más de 400 pueblos originarios.</p>
+      <div class="scroll-hint"><span></span>Desplazá para entrar</div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Río Negro</span><span>Manaos</span><span>Yasuní</span><span>Madre de Dios</span>
+    <span>Igapó</span><span>Yanomami</span><span>Ceiba</span><span>Ríos voladores</span>
+    <span>Río Negro</span><span>Manaos</span><span>Yasuní</span><span>Madre de Dios</span>
+    <span>Igapó</span><span>Yanomami</span><span>Ceiba</span><span>Ríos voladores</span>
+  </div>
+</div>
+
+<section id="escala" class="sec-pad">
+  <div class="wrap">
+    <div class="label rv"><b>01</b> — La escala</div>
+    <h2 class="rv d1">Un bosque del <em>tamaño</em><br>de un continente</h2>
+  </div>
+  <div class="wrap" style="margin-top:clamp(46px,6vw,80px)">
+    <div class="stats">
+      <div class="stat rv"><div class="n" data-to="6.7">6,7</div><div class="t">Millones de km² de selva continua repartidos entre nueve países</div></div>
+      <div class="stat rv d1"><div class="n" data-to="390">390<small>mil M</small></div><div class="t">Árboles estimados, de unas 16.000 especies distintas</div></div>
+      <div class="stat rv d2"><div class="n" data-to="10">10<small>%</small></div><div class="t">De todas las especies conocidas del planeta viven acá</div></div>
+      <div class="stat rv d3"><div class="n" data-to="47">47<small>M</small></div><div class="t">Personas habitan la cuenca, entre ellas 400+ pueblos originarios</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="lluvia" class="sec-pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="split">
+      <div class="media rv" style="aspect-ratio:4/5">
+        <img src="img/canopy.jpg" alt="Imagen satelital: nubes de convección formándose sobre la selva amazónica" loading="lazy">
+        <div class="cap">Nubes sobre la cuenca — <b>NASA / MODIS</b></div>
+      </div>
+      <div class="body-copy">
+        <div class="label rv"><b>02</b> — El mecanismo</div>
+        <h2 class="rv d1">La selva<br>que fabrica<br>su propia <em>lluvia</em></h2>
+        <p class="rv d2">Un solo árbol grande puede bombear cerca de <strong>1.000 litros de agua por día</strong> a la atmósfera. Multiplicado por cientos de miles de millones, el resultado son los <strong>ríos voladores</strong>: corrientes de vapor que cruzan el continente y descargan lluvia sobre los Andes, el Chaco y la Pampa.</p>
+        <p class="rv d2">La Amazonia no es sólo un pulmón: es una bomba de humedad de escala continental. Esas manchas blancas sobre el verde son la selva evaporando su propia tormenta.</p>
+        <blockquote class="pull rv d3">
+          «El bosque no crece porque llueve.<br>Llueve porque hay bosque.»
+          <cite>Antonio Donato Nobre — Científico del clima</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vida" class="sec-pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="label rv"><b>03</b> — La vida</div>
+    <h2 class="rv d1">Cuatro habitantes<br>de <em>millones</em></h2>
+    <p class="lede rv d2" style="margin-top:24px">Una sola hectárea de selva puede albergar más especies de árboles que toda Europa occidental junta. Estos son apenas cuatro rostros de un censo que nadie terminó de escribir.</p>
+
+    <div class="species">
+      <article class="card rv">
+        <img src="img/jaguar.jpg" alt="Jaguar caminando por la orilla arenosa de un río" loading="lazy">
+        <div class="idx">01</div>
+        <div class="credit">© Charles J. Sharp · CC BY-SA 4.0</div>
+        <div class="card-txt">
+          <div class="sci">Panthera onca</div>
+          <h3>Jaguar</h3>
+          <p>El mayor felino de América y depredador tope. Su territorio puede superar los 100 km²: donde todavía hay jaguar, el bosque funciona entero.</p>
+        </div>
+      </article>
+
+      <article class="card rv d1">
+        <img src="img/guacamayo.jpg" alt="Pareja de guacamayos rojos posados en una rama" loading="lazy">
+        <div class="idx">02</div>
+        <div class="credit">© Julio-César Chávez · CC BY 4.0</div>
+        <div class="card-txt">
+          <div class="sci">Ara macao</div>
+          <h3>Guacamayo rojo</h3>
+          <p>Forman parejas de por vida y vuelan kilómetros cada día buscando fruta. Al hacerlo dispersan semillas y siembran la selva del futuro.</p>
+        </div>
+      </article>
+
+      <article class="card rv d2">
+        <img src="img/nutria.jpg" alt="Dos nutrias gigantes descansando sobre un tronco" loading="lazy">
+        <div class="idx">03</div>
+        <div class="credit">© Charles J. Sharp · CC BY-SA 4.0</div>
+        <div class="card-txt">
+          <div class="sci">Pteronura brasiliensis</div>
+          <h3>Nutria gigante</h3>
+          <p>Llega a los dos metros y caza en grupos familiares ruidosos. Casi exterminada por el comercio de pieles, hoy sobrevive en ríos limpios contados.</p>
+        </div>
+      </article>
+
+      <article class="card rv d3">
+        <img src="img/rana.jpg" alt="Rana dardo venenosa azul sobre hojas" loading="lazy">
+        <div class="idx">04</div>
+        <div class="credit">© Michael Gäbler · CC BY 3.0</div>
+        <div class="card-txt">
+          <div class="sci">Dendrobates tinctorius</div>
+          <h3>Rana dardo</h3>
+          <p>Su color grita advertencia. De la piel de estas ranas salieron moléculas que la medicina estudia como analgésicos cientos de veces más potentes que la morfina.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="pueblos" class="sec-pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="split rev">
+      <div class="media rv" style="aspect-ratio:3/2">
+        <img src="img/pueblos.jpg" alt="Mujer siona preparando casabe de mandioca sobre el fuego" loading="lazy">
+        <div class="cap">Casabe de mandioca — comunidad siona, <b>Ecuador</b></div>
+      </div>
+      <div class="body-copy">
+        <div class="label rv"><b>04</b> — La gente</div>
+        <h2 class="rv d1">Quienes <em>saben</em><br>leer el bosque</h2>
+        <p class="rv d2">Más de <strong>400 pueblos originarios</strong> viven en la Amazonia y hablan cerca de 300 lenguas. Algunos permanecen en aislamiento voluntario, sin contacto con el exterior.</p>
+        <p class="rv d2">Los datos satelitales son contundentes: en los territorios indígenas titulados la deforestación es <strong>varias veces menor</strong> que fuera de ellos. No es folclore: es manejo del territorio acumulado durante milenios.</p>
+        <p class="rv d2">Grandes zonas de selva que creemos «vírgenes» son en realidad huertas antiguas. Las tierras negras del Amazonas —suelos fértiles creados por manos humanas hace más de mil años— siguen produciendo hoy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="amenaza" class="threat sec-pad">
+  <div class="wrap">
+    <div class="split">
+      <div class="body-copy">
+        <div class="label rv"><b>05</b> — El límite</div>
+        <h2 class="rv d1">A un paso<br>del punto de <em>no retorno</em></h2>
+        <p class="rv d2">Ya se perdió cerca del <strong>17 % de la selva original</strong>. Varios modelos ubican el punto de inflexión entre el 20 % y el 25 %: pasado ese umbral, el sistema de lluvias se quiebra y grandes zonas colapsan hacia una sabana seca.</p>
+        <p class="rv d2">Ganadería, soja, minería ilegal de oro, rutas y fuego. Partes del sur y el este del bosque ya emiten más carbono del que absorben: dejaron de ser solución para volverse problema.</p>
+        <p class="rv d2">Dos árboles en pie en medio de un potrero no son un bosque. Son <strong>lo que quedó</strong>.</p>
+      </div>
+      <div class="media rv d1" style="aspect-ratio:4/3">
+        <img src="img/deforestacion.jpg" alt="Campo desmontado con dos árboles solitarios en pie" loading="lazy">
+        <div class="cap">Frontera agrícola — <b>Amazonia brasileña</b></div>
+      </div>
+    </div>
+
+    <div class="bars" id="bars">
+      <div class="bar rv"><div class="yr">1990–2000</div><div class="track"><div class="fill" data-w="88"></div></div><div class="val">alta</div></div>
+      <div class="bar rv"><div class="yr">2004</div><div class="track"><div class="fill" data-w="100"></div></div><div class="val">pico</div></div>
+      <div class="bar rv good"><div class="yr">2012</div><div class="track"><div class="fill" data-w="17"></div></div><div class="val">mínimo</div></div>
+      <div class="bar rv"><div class="yr">2021</div><div class="track"><div class="fill" data-w="52"></div></div><div class="val">rebrote</div></div>
+      <div class="bar rv good"><div class="yr">2023–2024</div><div class="track"><div class="fill" data-w="24"></div></div><div class="val">baja</div></div>
+    </div>
+    <p class="bar-note rv">Pérdida anual de bosque en la Amazonia brasileña, en escala relativa al pico histórico de 2004 (fuente: INPE / PRODES). La curva demuestra algo clave: cuando hay control y voluntad política, la deforestación baja rápido.</p>
+  </div>
+</section>
+
+<section id="actuar" class="sec-pad">
+  <div class="wrap">
+    <div class="label rv"><b>06</b> — Qué se puede hacer</div>
+    <h2 class="rv d1">La selva todavía<br>está a <em>tiempo</em></h2>
+    <div class="tl">
+      <div class="tl-row rv"><div class="k">01 / TIERRA</div>
+        <div><h4>Titular territorios indígenas</h4><p>La medida de conservación más barata y más eficaz que existe. Donde hay título comunitario, el bosque se queda de pie.</p></div></div>
+      <div class="tl-row rv"><div class="k">02 / MERCADO</div>
+        <div><h4>Cadenas de suministro limpias</h4><p>Carne, soja, madera y oro con trazabilidad real hasta el origen. Sin demanda no hay motosierra rentable.</p></div></div>
+      <div class="tl-row rv"><div class="k">03 / SATÉLITE</div>
+        <div><h4>Monitoreo abierto y en tiempo real</h4><p>Alertas satelitales públicas que permiten detectar una tala en días y no en años. Ver es el primer acto de defensa.</p></div></div>
+      <div class="tl-row rv"><div class="k">04 / ECONOMÍA</div>
+        <div><h4>Bioeconomía en pie</h4><p>Açaí, castaña, cacao silvestre, fibras y turismo comunitario: valen más con el bosque vivo que talado.</p></div></div>
+      <div class="tl-row rv"><div class="k">05 / RESTAURAR</div>
+        <div><h4>Replantar los bordes</h4><p>Restaurar áreas degradadas reconecta fragmentos aislados y devuelve corredores por donde la fauna vuelve a moverse.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-bg"><img src="img/cta.jpg" alt="Atardecer sobre el Río Negro, en la Amazonia" loading="lazy"></div>
+  <div class="wrap">
+    <div class="eyebrow rv">Todavía se puede</div>
+    <h2 class="rv d1">Ninguna otra selva<br>hace lo que hace <em>esta</em></h2>
+    <p class="lede rv d2" style="margin:26px auto 0;text-align:center">No hay reemplazo, ni tecnología equivalente, ni segunda copia. Lo que se pierde acá no vuelve en escalas de tiempo humanas.</p>
+    <div class="btns rv d3">
+      <a class="btn solid" href="#escala"><span>Volver al principio</span></a>
+      <a class="btn" href="#amenaza"><span>Ver los datos</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-mark">Amaz<em>onía</em></div>
+        <p style="font-size:14px;opacity:.55;line-height:1.7;max-width:38ch">Pieza editorial divulgativa. Las cifras son estimaciones ampliamente citadas y pueden variar según la fuente y el año.</p>
+      </div>
+      <div>
+        <h5>Secciones</h5>
+        <ul>
+          <li><a href="#escala">La escala</a></li>
+          <li><a href="#lluvia">La lluvia</a></li>
+          <li><a href="#vida">La vida</a></li>
+          <li><a href="#pueblos">Los pueblos</a></li>
+          <li><a href="#amenaza">La amenaza</a></li>
+          <li><a href="#actuar">Qué hacer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Créditos fotográficos</h5>
+        <div class="credits">
+          Portada: <em>Aerial view of the Amazon Rainforest</em> — lubasi, CC BY-SA 2.0<br>
+          Nubes sobre la cuenca: NASA / Jeff Schmaltz, MODIS — dominio público<br>
+          Jaguar y nutria gigante: Charles J. Sharp, CC BY-SA 4.0<br>
+          Guacamayos: Julio-César Chávez, CC BY 4.0<br>
+          Rana dardo: Michael Gäbler, CC BY 3.0<br>
+          Comunidad siona: Fährtenleser, CC BY-SA 4.0<br>
+          Desmonte: Ana Cotta, CC BY 2.0<br>
+          Atardecer en el Río Negro: James Martins, CC BY 3.0<br>
+          Todas vía <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>.
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 — Proyecto Amazonía</span>
+      <span>Datos: INPE · RAISG · Global Forest Watch</span>
+      <span>Hecho con respeto por el bosque</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav'),prog=document.getElementById('progress'),
+      heroBg=document.getElementById('heroBg');
+let ticking=false;
+function onScroll(){
+  const y=window.scrollY;
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  prog.style.width=(h>0?y/h*100:0)+'%';
+  nav.classList.toggle('stuck',y>80);
+  if(y<window.innerHeight*1.2) heroBg.style.transform='translate3d(0,'+(y*0.3)+'px,0)';
+  ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true}},{passive:true});
+onScroll();
+
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+function fmt(v,to){return to%1!==0?v.toFixed(1).replace('.',','):Math.round(v).toString()}
+const cio=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,to=parseFloat(el.dataset.to),suf=el.querySelector('small');
+    const sufHTML=suf?suf.outerHTML:'',t0=performance.now(),dur=1500;
+    (function step(t){
+      const p=Math.min((t-t0)/dur,1),e2=1-Math.pow(1-p,3);
+      el.innerHTML=fmt(to*e2,to)+sufHTML;
+      if(p<1)requestAnimationFrame(step);
+    })(t0);
+    cio.unobserve(el);
+  });
+},{threshold:.6});
+document.querySelectorAll('[data-to]').forEach(el=>cio.observe(el));
+
+const bars=document.getElementById('bars');
+if(bars){
+  const bio=new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.fill').forEach((f,i)=>setTimeout(()=>f.style.width=f.dataset.w+'%',i*140));
+      bio.unobserve(e.target);
+    });
+  },{threshold:.3});
+  bio.observe(bars);
+}
+</script>
+</body>
+</html>

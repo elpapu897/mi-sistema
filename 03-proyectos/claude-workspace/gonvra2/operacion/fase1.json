@@ -1,0 +1,18 @@
+{
+  "copy": {
+    "task": "t_8c5c1e31",
+    "path": "/home/matiigonzz/Claude/gonvra2/copy/2026-09-14.md"
+  },
+  "tiktoker": {
+    "task": "t_9b5ff120",
+    "path": "/home/matiigonzz/Claude/gonvra2/tiktoker/2026-09-14.md"
+  },
+  "instagramer": {
+    "task": "t_f84591b6",
+    "path": "/home/matiigonzz/Claude/gonvra2/instagramer/2026-09-14.md"
+  },
+  "espia": {
+    "task": "t_e2a4368c",
+    "path": "/home/matiigonzz/Claude/gonvra2/espia/2026-09-14.md"
+  }
+}

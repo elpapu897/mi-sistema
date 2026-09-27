@@ -1,0 +1,80 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background:{{ section.settings.bg }};
+    padding-top:{{ section.settings.padding_top }}px;
+    padding-bottom:{{ section.settings.padding_bottom }}px;
+    --gvb-ink:{{ section.settings.ink }};
+    --gvb-accent:{{ section.settings.accent }};
+    --gvb-heading:{{ section.settings.heading_size }}px;
+    --gvb-body:{{ section.settings.body_size }}px;
+    --gvb-align:{{ section.settings.text_align }};
+  }
+  @media(max-width:860px){#shopify-section-{{ section.id }}{padding-top:{{ section.settings.padding_top | times: 0.65 }}px;padding-bottom:{{ section.settings.padding_bottom | times: 0.65 }}px;}}
+{% endstyle %}
+
+<section class="gvb" {% if section.settings.anchor != blank %}id="{{ section.settings.anchor | handleize }}"{% endif %} aria-labelledby="gvb-heading-{{ section.id }}">
+  <div class="gvb-wrap">
+    <header class="gvb-head" data-gvb-reveal>
+      {% if section.settings.kicker != blank %}<p class="gvb-kicker">{{ section.settings.kicker | escape }}</p>{% endif %}
+      <h2 id="gvb-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.intro != blank %}<p class="gvb-intro">{{ section.settings.intro | escape | newline_to_br }}</p>{% endif %}
+    </header>
+    <div class="gvb-grid">
+      {% for block in section.blocks %}
+        <article class="gvb-item" data-gvb-reveal {{ block.shopify_attributes }}>
+          <span class="gvb-number" aria-hidden="true">{{ block.settings.number | escape }}</span>
+          <h3>{{ block.settings.title | escape }}</h3>
+          <p>{{ block.settings.text | escape | newline_to_br }}</p>
+          {% if block.settings.url != blank and block.settings.link_label != blank %}
+            <a href="{{ block.settings.url }}">{{ block.settings.link_label | escape }} <span aria-hidden="true">↗</span></a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+.gvb{color:var(--gvb-ink);font-family:inherit;scroll-margin-top:110px}
+.gvb-wrap{width:min(1280px,calc(100% - 40px));margin:auto}
+.gvb-head{text-align:var(--gvb-align);max-width:760px}
+.gvb-kicker{margin:0 0 14px;color:var(--gvb-accent);font-size:.75rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+.gvb-head h2{margin:0;font-size:clamp(1.8rem,4vw,var(--gvb-heading));line-height:1.08;letter-spacing:-.035em;color:inherit;text-wrap:balance}
+.gvb-intro{margin:18px 0 0;max-width:54ch;font-size:var(--gvb-body);line-height:1.65;color:inherit}
+.gvb-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:48px}
+.gvb-item{border-top:1px solid color-mix(in srgb,var(--gvb-ink) 30%,transparent);padding-top:22px}
+.gvb-number{display:block;color:var(--gvb-accent);font-size:2.8rem;font-weight:600;letter-spacing:-.06em;line-height:1}
+.gvb-item h3{margin:22px 0 12px;font-size:1.35rem;line-height:1.2;color:inherit}
+.gvb-item p{margin:0;line-height:1.65;font-size:var(--gvb-body);color:inherit}
+.gvb-item a{display:inline-flex;align-items:center;gap:18px;min-height:44px;margin-top:18px;color:var(--gvb-accent);font-weight:700;text-underline-offset:5px}
+@media(max-width:860px){.gvb-grid{grid-template-columns:1fr;gap:28px;margin-top:32px}.gvb-item{display:grid;grid-template-columns:54px minmax(0,1fr);gap:12px 18px}.gvb-number{grid-row:1/4;font-size:2.2rem}.gvb-item h3{margin:0}.gvb-item p,.gvb-item a{grid-column:2}.gvb-item a{margin-top:0}.gvb-intro{font-size:1rem}}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name":"GONVRA · Beneficios",
+  "settings":[
+    {"type":"text","id":"anchor","label":"Nombre del enlace interno","default":"beneficios"},
+    {"type":"text","id":"kicker","label":"Antetítulo","default":"Menos aparatos. Más simple."},
+    {"type":"text","id":"heading","label":"Título","default":"Cuidado personal a tu manera."},
+    {"type":"textarea","id":"intro","label":"Introducción"},
+    {"type":"color","id":"bg","label":"Fondo","default":"#14271e"},
+    {"type":"color","id":"ink","label":"Texto","default":"#f2f4e9"},
+    {"type":"color","id":"accent","label":"Acento","default":"#c8e54a"},
+    {"type":"range","id":"heading_size","label":"Tamaño de título","min":24,"max":72,"step":2,"default":48,"unit":"px"},
+    {"type":"range","id":"body_size","label":"Tamaño de texto","min":14,"max":22,"step":1,"default":16,"unit":"px"},
+    {"type":"select","id":"text_align","label":"Alineación","options":[{"value":"left","label":"Izquierda"},{"value":"center","label":"Centro"}],"default":"left"},
+    {"type":"range","id":"padding_top","label":"Espacio superior","min":0,"max":160,"step":8,"default":64,"unit":"px"},
+    {"type":"range","id":"padding_bottom","label":"Espacio inferior","min":0,"max":160,"step":8,"default":64,"unit":"px"}
+  ],
+  "blocks":[{"type":"item","name":"Beneficio","settings":[
+    {"type":"text","id":"number","label":"Número o detalle","default":"01"},
+    {"type":"text","id":"title","label":"Título","default":"Tu beneficio"},
+    {"type":"textarea","id":"text","label":"Descripción"},
+    {"type":"text","id":"link_label","label":"Texto del enlace"},
+    {"type":"url","id":"url","label":"Destino del enlace"}
+  ]}],
+  "max_blocks":6,
+  "presets":[{"name":"GONVRA · Beneficios","blocks":[{"type":"item"},{"type":"item"},{"type":"item"}]}]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{
+  "assets": [
+    {
+      "path": "gonvra-brand/logo_gonvra_wordmark_20260906_dark.svg",
+      "type": "logo",
+      "brand": "GONVRA"
+    },
+    {
+      "path": "gonvra-brand/banner_gonvra_product-hero_20260906_light.webp",
+      "type": "banner",
+      "brand": "GONVRA"
+    }
+  ]
+}

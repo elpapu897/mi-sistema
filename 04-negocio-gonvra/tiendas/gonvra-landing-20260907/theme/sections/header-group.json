@@ -1,0 +1,67 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "gv_header": {
+      "type": "gv-header",
+      "blocks": {
+        "a1": {
+          "type": "anuncio",
+          "settings": {
+            "text": "Rostro y cuerpo · un solo equipo"
+          }
+        },
+        "a2": {
+          "type": "anuncio",
+          "settings": {
+            "text": "Peines de 1, 3 y 5 mm incluidos"
+          }
+        },
+        "a3": {
+          "type": "anuncio",
+          "settings": {
+            "text": "Carga USB · cable incluido"
+          }
+        },
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Beneficios",
+            "url": "/#beneficios"
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "Cómo se usa",
+            "url": "/#como-funciona"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "Preguntas",
+            "url": "/#faq"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "l1",
+        "l2",
+        "l3"
+      ],
+      "settings": {
+        "brand_text": "GONVRA",
+        "show_marquee": true,
+        "cta_label": "Comprar",
+        "cta_url": "/products/face-body-electric-shaver"
+      }
+    }
+  },
+  "order": [
+    "gv_header"
+  ]
+}

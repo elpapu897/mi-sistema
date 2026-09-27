@@ -1,0 +1,679 @@
+{% liquid
+  assign v = product.selected_or_first_available_variant
+  assign unit_price = v.price
+  assign has_compare = false
+  if v.compare_at_price > v.price
+    assign has_compare = true
+    assign save_pct = v.compare_at_price | minus: v.price | times: 100.0 | divided_by: v.compare_at_price | round
+  endif
+  assign rating_count = section.settings.rating_count
+  assign cutoff = section.settings.cutoff_hour
+%}
+
+<section class="gv" data-gv>
+  <div class="gv-wrap">
+    <div class="gv-top">
+
+      {%- comment -%} ---------- GALERÍA ---------- {%- endcomment -%}
+      <div class="gv-gal">
+        <div class="gv-gal__stage">
+          {% if section.settings.badge_1 != blank %}<b class="gv-flag">{{ section.settings.badge_1 }}</b>{% endif %}
+          <div class="gv-gal__track" data-gv-track>
+            {% if section.settings.gallery_clip != blank %}
+              <figure data-gv-slide="clip">
+                <img src="{{ section.settings.gallery_clip | asset_url }}" width="620" height="775" loading="eager" decoding="async" alt="{{ product.title | escape }} en movimiento">
+              </figure>
+            {% endif %}
+            {% for media in product.media %}
+              {% if media.media_type == 'image' %}
+                <figure data-gv-slide="{{ forloop.index0 }}">
+                  {{ media.preview_image | image_url: width: 1400 | image_tag: widths: '540, 760, 1000, 1400', sizes: '(min-width: 950px) 55vw, 100vw', loading: 'eager', alt: product.title }}
+                </figure>
+              {% endif %}
+            {% else %}
+              <figure><div class="gv-gal__ph"></div></figure>
+            {% endfor %}
+            {% if section.settings.gallery_extra != blank %}
+              {% assign extras = section.settings.gallery_extra | split: ',' %}
+              {% for extra in extras %}
+                {% assign nombre = extra | strip %}
+                {% if nombre != blank %}
+                  <figure><img src="{{ nombre | asset_url }}" width="1100" height="1375" loading="lazy" alt="{{ product.title | escape }}"></figure>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+          <button class="gv-gal__nav gv-gal__nav--prev" type="button" data-gv-prev aria-label="Imagen anterior">‹</button>
+          <button class="gv-gal__nav gv-gal__nav--next" type="button" data-gv-next aria-label="Imagen siguiente">›</button>
+        </div>
+        <div class="gv-thumbs" role="tablist" aria-label="Miniaturas del producto">
+          {% if section.settings.gallery_clip != blank %}
+            <button type="button" role="tab" data-gv-thumb="0" aria-label="Ver el video" aria-selected="true" class="is-on gv-thumbs__video">
+              <img src="{{ section.settings.gallery_clip | asset_url }}" width="110" height="138" loading="lazy" alt="">
+              <i aria-hidden="true"></i>
+            </button>
+          {% endif %}
+          {% for media in product.media %}
+            {% if media.media_type == 'image' %}
+              <button type="button" role="tab" data-gv-thumb="{% if section.settings.gallery_clip != blank %}{{ forloop.index }}{% else %}{{ forloop.index0 }}{% endif %}" aria-label="Ver imagen {{ forloop.index }}" {% if forloop.first and section.settings.gallery_clip == blank %}aria-selected="true" class="is-on"{% else %}aria-selected="false"{% endif %}>
+                {{ media.preview_image | image_url: width: 220 | image_tag: widths: '110, 220', loading: 'lazy', alt: '' }}
+              </button>
+            {% endif %}
+          {% endfor %}
+          {% if section.settings.gallery_extra != blank %}
+            {% assign extras = section.settings.gallery_extra | split: ',' %}
+            {% assign base = product.media.size %}
+            {% if section.settings.gallery_clip != blank %}{% assign base = base | plus: 1 %}{% endif %}
+            {% for extra in extras %}
+              {% assign nombre = extra | strip %}
+              {% if nombre != blank %}
+                <button type="button" role="tab" data-gv-thumb="{{ forloop.index0 | plus: base }}" aria-selected="false" aria-label="Ver comparación">
+                  <img src="{{ nombre | asset_url }}" width="110" height="138" loading="lazy" alt="">
+                </button>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      {%- comment -%} ---------- CAJA DE COMPRA ---------- {%- endcomment -%}
+      <aside class="gv-buy" id="comprar">
+        {% if section.settings.kicker != blank %}<p class="gv-kicker">{{ section.settings.kicker }}</p>{% endif %}
+        <h1 class="gv-title">{{ product.title | escape }}</h1>
+
+        {% if section.settings.loox_rating %}
+          <a class="gv-loox-rating" href="#resenas" aria-label="Ver reseñas">
+            <div class="loox-rating" data-id="{{ product.id }}" data-fallback="hide"></div>
+          </a>
+        {% endif %}
+        {% if rating_count > 0 %}
+          <a class="gv-rating" href="#resenas">
+            <span aria-hidden="true">★★★★★</span>
+            <strong>{{ section.settings.rating_value }}</strong>
+            <small>{{ rating_count }} {{ section.settings.rating_word }}</small>
+          </a>
+        {% endif %}
+
+        <div class="gv-price">
+          <strong data-gv-total>{{ unit_price | money }}</strong>
+          {% if has_compare %}
+            <s>{{ v.compare_at_price | money }}</s>
+            <b class="gv-save">Ahorrá {{ save_pct }}%</b>
+          {% endif %}
+          <span class="gv-price__note">{{ section.settings.price_note }}</span>
+        </div>
+
+        {% if section.settings.show_cuotas and section.settings.cuotas_n > 1 %}
+          {% assign cuota = unit_price | divided_by: section.settings.cuotas_n %}
+          <p class="gv-cuotas" data-gv-cuotas>
+            <strong>{{ section.settings.cuotas_n }} cuotas de {{ cuota | money }}</strong>
+            {% if section.settings.cuotas_label != blank %}<span>{{ section.settings.cuotas_label }}</span>{% endif %}
+          </p>
+        {% endif %}
+
+        {% if section.settings.promo_title != blank %}
+          <div class="gv-promo">
+            <i aria-hidden="true">🏷</i>
+            <div>
+              <strong>{{ section.settings.promo_title }}</strong>
+              <p>
+                {{ section.settings.promo_text }}
+                {% if section.settings.promo_code != blank %}
+                  <button type="button" class="gv-code" data-gv-code="{{ section.settings.promo_code }}">{{ section.settings.promo_code }} <em>copiar</em></button>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if section.settings.offers_label != blank %}
+          <div class="gv-divider"><span>{{ section.settings.offers_label }}</span></div>
+        {% endif %}
+
+        {%- comment -%} ---------- OFERTAS / PACKS ---------- {%- endcomment -%}
+        <div class="gv-offers" role="radiogroup" aria-label="Elegí tu pack">
+          {% for block in section.blocks %}
+            {% if block.type == 'oferta' %}
+              {% liquid
+                assign qty = block.settings.qty
+                assign full = unit_price | times: qty
+                assign disc = block.settings.discount
+                assign cut = full | times: disc | divided_by: 100
+                assign now = full | minus: cut
+              %}
+              <button type="button" class="gv-offer{% if block.settings.preselect %} is-on{% endif %}" role="radio"
+                aria-checked="{% if block.settings.preselect %}true{% else %}false{% endif %}"
+                data-gv-offer data-qty="{{ qty }}" data-total="{{ now | money }}" data-cuota="{% assign c = now | divided_by: section.settings.cuotas_n | default: now %}{{ c | money }}"{% if block.settings.gift != blank %} data-gift="{{ block.settings.gift.selected_or_first_available_variant.id }}"{% endif %} {{ block.shopify_attributes }}>
+                <span class="gv-offer__pic" aria-hidden="true">
+                  {% if block.settings.image != blank %}
+                    {{ block.settings.image | image_url: width: 180 | image_tag: widths: '90, 180', loading: 'lazy', alt: '' }}
+                  {% elsif section.settings.pack_assets and qty <= 3 %}
+                    {% assign pack_asset = 'gv-pack-' | append: qty | append: '.png' %}
+                    <img class="gv-pack" src="{{ pack_asset | asset_url }}" width="180" height="180" loading="lazy" alt="">
+                  {% else %}
+                    {% for i in (1..qty) %}
+                      {% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 120 | image_tag: widths: '60, 120', loading: 'lazy', alt: '' }}{% endif %}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+                <span class="gv-offer__txt">
+                  <strong>{{ block.settings.title }}</strong>
+                  <small>{{ block.settings.subtitle }}</small>
+                </span>
+                <span class="gv-offer__price">
+                  <b>{{ now | money }}</b>
+                  {% if disc > 0 %}<s>{{ full | money }}</s>{% endif %}
+                </span>
+                {% if block.settings.tag != blank %}<i class="gv-offer__tag">{{ block.settings.tag }}</i>{% endif %}
+                {% if block.settings.gift != blank %}
+                  <span class="gv-offer__gift">
+                    {% if block.settings.gift.featured_image != blank %}
+                      {{ block.settings.gift.featured_image | image_url: width: 90 | image_tag: widths: '45, 90', loading: 'lazy', alt: '' }}
+                    {% endif %}
+                    <b>+ {{ block.settings.gift_label | default: 'De regalo' }}</b>
+                    <em>{{ block.settings.gift.title }}</em>
+                  </span>
+                {% endif %}
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if section.settings.discount_note != blank %}
+          <p class="gv-discnote">{{ section.settings.discount_note }}</p>
+        {% endif %}
+
+        {%- comment -%} ---------- BENEFICIOS ---------- {%- endcomment -%}
+        <ul class="gv-bullets">
+          {% for block in section.blocks %}
+            {% if block.type == 'beneficio' %}
+              <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+
+        {% if section.settings.pill != blank %}
+          <p class="gv-pill"><i aria-hidden="true">✓</i>{{ section.settings.pill }}</p>
+        {% endif %}
+
+        {%- comment -%} ---------- STOCK ---------- {%- endcomment -%}
+        {% if v.available %}
+          {% if v.inventory_management != blank and v.inventory_quantity > 0 and v.inventory_quantity <= section.settings.low_stock %}
+            <p class="gv-stock"><i></i>Quedan {{ v.inventory_quantity }} unidades</p>
+          {% else %}
+            <p class="gv-stock"><i></i>{{ section.settings.stock_text }}</p>
+          {% endif %}
+        {% else %}
+          <p class="gv-stock gv-stock--out"><i></i>Sin stock por ahora</p>
+        {% endif %}
+
+        {%- comment -%} ---------- FORMULARIO ---------- {%- endcomment -%}
+        {% form 'product', product, class: 'gv-form', id: 'gv-form' %}
+          <input type="hidden" name="id" value="{{ v.id }}">
+          <input type="hidden" name="quantity" value="1" data-gv-qty>
+          {% if v.available %}
+            <button type="submit" class="gv-cta">{{ section.settings.cta_text }}</button>
+            {% if section.settings.show_dynamic %}<div class="gv-dyn">{{ form | payment_button }}</div>{% endif %}
+          {% else %}
+            <button type="button" class="gv-cta" disabled>Sin stock</button>
+          {% endif %}
+        {% endform %}
+
+        {%- comment -%} ---------- MEDIOS DE PAGO ---------- {%- endcomment -%}
+        {% if shop.enabled_payment_types != blank %}
+          <div class="gv-pays" aria-label="Medios de pago disponibles">
+            {% if section.settings.show_mp %}
+              <img class="gv-pay gv-pay--mp" src="{{ 'gv-pay-mp.png' | asset_url }}" width="46" height="29" loading="lazy" alt="Mercado Pago">
+            {% endif %}
+            {% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag: class: 'gv-pay' }}{% endfor %}
+          </div>
+          {% if section.settings.pay_note != blank %}<p class="gv-paynote">{{ section.settings.pay_note }}</p>{% endif %}
+        {% elsif section.settings.show_pay_badges %}
+          <div class="gv-badges" aria-label="Medios de pago">
+            {% if section.settings.pay_note != blank %}<span>{{ section.settings.pay_note }}</span>{% endif %}
+            <div>
+              <img class="gv-logo" src="{{ 'gv-pay-mp.png' | asset_url }}" width="46" height="29" loading="lazy" alt="Mercado Pago">
+              <img class="gv-logo" src="{{ 'gv-pay-visa.svg' | asset_url }}" width="46" height="29" loading="lazy" alt="Visa">
+              <img class="gv-logo" src="{{ 'gv-pay-mastercard.svg' | asset_url }}" width="46" height="29" loading="lazy" alt="Mastercard">
+              <img class="gv-logo" src="{{ 'gv-pay-amex.svg' | asset_url }}" width="46" height="29" loading="lazy" alt="American Express">
+            </div>
+          </div>
+        {% endif %}
+
+        {%- comment -%} ---------- URGENCIA + LÍNEA DE ENTREGA ---------- {%- endcomment -%}
+        {% if section.settings.show_timeline %}
+          <div class="gv-deliv">
+            <p class="gv-deliv__lead">{{ section.settings.cutoff_text }} <strong data-gv-clock data-cutoff="{{ cutoff }}">--:--</strong></p>
+            <ol class="gv-line">
+              <li>
+                <span class="gv-line__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                </span>
+                <strong>Pedido</strong><small>Hoy</small>
+              </li>
+              <li>
+                <span class="gv-line__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 7h11v10H2zM13 10h4l4 4v3h-8z"/><circle cx="6" cy="18" r="1.7"/><circle cx="17" cy="18" r="1.7"/></svg>
+                </span>
+                <strong>Despachado</strong><small>{{ section.settings.ship_text }}</small>
+              </li>
+              <li>
+                <span class="gv-line__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M3 7.5V17l9 4.5V12"/><path d="M21 7.5V17l-9 4.5"/></svg>
+                </span>
+                <strong>Entregado</strong><small>{{ section.settings.deliver_text }}</small>
+              </li>
+            </ol>
+          </div>
+        {% endif %}
+
+        {%- comment -%} ---------- ACORDEONES ---------- {%- endcomment -%}
+        <div class="gv-acc">
+          {% for block in section.blocks %}
+            {% if block.type == 'detalle' %}
+              <details {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
+                <summary>{{ block.settings.title }}<i aria-hidden="true"></i></summary>
+                <div class="gv-acc__body">{{ block.settings.body }}</div>
+              </details>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </aside>
+    </div>
+
+    {%- comment -%} ---------- BARRA DE GARANTÍAS ---------- {%- endcomment -%}
+    {% if section.settings.show_trustbar %}
+      <ul class="gv-trust" data-gv-reveal>
+        <li><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 7h11v10H2zM13 10h4l4 4v3h-8z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span><strong>{{ section.settings.trust_1_t }}</strong><small>{{ section.settings.trust_1_s }}</small></li>
+        <li><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3l7 3v6c0 4.4-3 7.9-7 9-4-1.1-7-4.6-7-9V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg></span><strong>{{ section.settings.trust_2_t }}</strong><small>{{ section.settings.trust_2_s }}</small></li>
+        <li><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><strong>{{ section.settings.trust_3_t }}</strong><small>{{ section.settings.trust_3_s }}</small></li>
+        <li><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M21 12a9 9 0 1 0-3.2 6.9L21 21l-1.2-3.6A8.9 8.9 0 0 0 21 12Z"/></svg></span><strong>{{ section.settings.trust_4_t }}</strong><small>{{ section.settings.trust_4_s }}</small></li>
+      </ul>
+    {% endif %}
+  </div>
+
+  {%- comment -%} ---------- CTA FIJA MÓVIL ---------- {%- endcomment -%}
+  <div class="gv-sticky" data-gv-sticky>
+    <div class="gv-sticky__info">
+      <strong data-gv-sticky-total>{{ unit_price | money }}</strong>
+      <small data-gv-sticky-qty>1 unidad</small>
+    </div>
+    <button type="button" class="gv-sticky__btn" data-gv-sticky-add>{{ section.settings.cta_text }}</button>
+  </div>
+</section>
+
+{% stylesheet %}
+.gv{--ink:#101a16;--paper:#f7f6f1;--card:#fff;--muted:#6b7570;--line:#e2e5dd;--lime:#c8e54a;--olive:#6d8b1c;--ok:#3f7d3a;background:var(--paper);color:var(--ink);font-family:inherit;-webkit-font-smoothing:antialiased}
+.gv *{box-sizing:border-box}
+.gv-wrap{width:min(1280px,calc(100% - 36px));margin:auto;padding:44px 0 30px}
+.gv-top{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(28px,4.5vw,68px);align-items:start}
+.gv-gal{position:sticky;top:92px;display:grid;gap:10px}
+.gv-gal__stage{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#eef0e9}
+.gv-gal__track{display:flex;scroll-snap-type:x mandatory;overflow-x:auto;scrollbar-width:none}
+.gv-gal__track::-webkit-scrollbar{display:none}
+.gv-gal__track figure{flex:0 0 100%;margin:0;scroll-snap-align:center;aspect-ratio:4/5}
+.gv-gal__track img,.gv-gal__ph{display:block;width:100%;height:100%;object-fit:cover}
+.gv-gal__ph{background:linear-gradient(135deg,#e7ebe1,#f5f6f1)}
+.gv-flag{position:absolute;top:14px;left:14px;z-index:2;padding:7px 11px;border-radius:999px;background:var(--ink);color:#fff;font-size:.63rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.gv-gal__nav{position:absolute;top:50%;z-index:2;display:grid;width:36px;height:36px;place-items:center;border:1px solid var(--line);border-radius:50%;background:rgba(255,255,255,.92);color:var(--ink);font-size:1.2rem;line-height:1;cursor:pointer;transform:translateY(-50%);transition:background .18s}
+.gv-gal__nav:hover{background:#fff}
+.gv-gal__nav--prev{left:12px}.gv-gal__nav--next{right:12px}
+.gv-thumbs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.gv-thumbs::-webkit-scrollbar{display:none}
+.gv-thumbs button{flex:0 0 72px;height:88px;padding:0;overflow:hidden;border:1px solid var(--line);border-radius:9px;background:#eef0e9;cursor:pointer;opacity:.62;transition:opacity .18s,border-color .18s}
+.gv-thumbs button.is-on{opacity:1;border-color:var(--ink)}
+.gv-thumbs__video{position:relative}
+.gv-thumbs__video i{position:absolute;top:50%;left:50%;display:block;width:0;height:0;border:7px solid transparent;border-left:11px solid #fff;transform:translate(-40%,-50%);filter:drop-shadow(0 1px 4px rgba(0,0,0,.6))}
+.gv-thumbs img{width:100%;height:100%;object-fit:cover}
+.gv-buy{display:grid;gap:0}
+.gv-kicker{margin:0 0 9px;color:var(--olive);font-size:.68rem;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+.gv-title{margin:0;font-size:clamp(1.85rem,3.1vw,2.9rem);line-height:1.03;letter-spacing:-.035em}
+.gv-loox-rating{display:block;margin:13px 0 0;text-decoration:none}
+.gv-loox-rating:empty,.gv-loox-rating .loox-rating:empty{display:none}
+.gv-loox-rating *{font-family:inherit!important}
+.gv-rating{display:inline-flex;align-items:center;gap:7px;margin:13px 0 0;color:inherit;text-decoration:none}
+.gv-rating>span{color:var(--olive);font-size:.95rem;letter-spacing:.08em}
+.gv-rating strong{font-size:.85rem}
+.gv-rating small{color:var(--muted);font-size:.8rem;text-decoration:underline;text-underline-offset:3px}
+.gv-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:16px 0 0}
+.gv-price strong{font-size:1.72rem;font-weight:800;letter-spacing:-.02em}
+.gv-price s{color:var(--muted);font-size:1rem}
+.gv-save{padding:4px 9px;border-radius:999px;background:var(--lime);color:#26310a;font-size:.68rem;font-weight:850;letter-spacing:.06em;text-transform:uppercase}
+.gv-price__note{flex:1 0 100%;color:var(--muted);font-size:.74rem}
+.gv-cuotas{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:10px 0 0;padding:9px 13px;border-radius:10px;background:#eef6df}
+.gv-cuotas strong{color:#3d5210;font-size:.98rem}
+.gv-cuotas span{color:#6a7a52;font-size:.76rem}
+.gv-promo{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;margin:18px 0 0;padding:12px 13px;border:1.5px dashed #b9cf74;border-radius:12px;background:#f4f8e6}
+.gv-promo i{font-size:1rem;font-style:normal;line-height:1.3}
+.gv-promo strong{display:inline-block;padding:3px 9px;border-radius:999px;background:#dff0a8;color:#31420c;font-size:.79rem}
+.gv-promo p{margin:6px 0 0;color:#41503a;font-size:.79rem;line-height:1.45}
+.gv-code{margin-left:5px;padding:2px 7px;border:1px dashed #8ca343;border-radius:6px;background:#fff;color:#3c4c14;font:inherit;font-size:.74rem;font-weight:800;letter-spacing:.05em;cursor:pointer}
+.gv-code em{font-style:normal;font-weight:600;opacity:.6}
+.gv-divider{display:flex;align-items:center;gap:12px;margin:22px 0 12px;color:var(--muted);font-size:.66rem;font-weight:850;letter-spacing:.19em;text-transform:uppercase}
+.gv-divider::before,.gv-divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.gv-offers{display:grid;gap:9px}
+.gv-offer{position:relative;display:grid;grid-template-columns:66px 1fr auto;gap:12px 12px;align-items:center;width:100%;padding:11px 13px 11px 11px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:inherit;font:inherit;text-align:left;cursor:pointer;transition:border-color .18s,box-shadow .18s,transform .18s}
+.gv-offer:hover{border-color:#b9c1b4;transform:translateY(-1px)}
+.gv-offer.is-on{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink);animation:gv-pop .32s ease}
+@keyframes gv-pop{0%{transform:scale(1)}45%{transform:scale(1.012)}100%{transform:scale(1)}}
+.gv-offer__pic{display:flex;align-items:center;justify-content:center;height:52px}
+.gv-offer__pic img{width:auto;max-width:100%;height:52px;object-fit:contain;mix-blend-mode:multiply}
+.gv-offer__pic img+img{margin-left:-16px}
+.gv-offer__pic img.gv-pack{width:66px;height:56px;margin:0;object-fit:contain}
+.gv-offer__txt{display:grid;gap:2px;min-width:0}
+.gv-offer__txt strong{font-size:.98rem}
+.gv-offer__txt small{color:var(--muted);font-size:.76rem}
+.gv-offer__price{display:grid;justify-items:end;gap:1px}
+.gv-offer__price b{font-size:.98rem}
+.gv-offer__price s{color:var(--muted);font-size:.76rem}
+.gv-offer__gift{grid-column:1/-1;display:flex;align-items:center;gap:8px;margin-top:9px;padding-top:9px;border-top:1px dashed #d9e0c9}
+.gv-offer__gift img{width:26px;height:26px;border-radius:6px;object-fit:cover;background:#eef0e9}
+.gv-offer__gift b{padding:3px 8px;border-radius:999px;background:var(--lime);color:#26310a;font-size:.62rem;font-weight:850;letter-spacing:.06em;text-transform:uppercase}
+.gv-offer__gift em{color:var(--muted);font-size:.75rem;font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gv-discnote{margin:10px 0 0;color:var(--muted);font-size:.74rem;line-height:1.45}
+.gv-offer__tag{position:absolute;top:-9px;right:12px;padding:3px 9px;border-radius:999px;background:var(--olive);color:#fff;font-size:.62rem;font-style:normal;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+.gv-bullets{display:grid;gap:8px;margin:20px 0 0;padding:0;list-style:none;font-size:.9rem;line-height:1.4}
+.gv-bullets li{display:grid;grid-template-columns:19px 1fr;gap:9px;align-items:start}
+.gv-bullets li::before{content:"";width:19px;height:19px;margin-top:1px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236d8b1c' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 10.6l4.2 4.2L16.5 5'/%3E%3C/svg%3E") center/19px 19px no-repeat}
+.gv-pill{display:inline-flex;align-items:center;gap:8px;margin:16px 0 0;padding:7px 13px 7px 8px;border-radius:999px;background:#e8f3cf;color:#33430f;font-size:.79rem;font-weight:650}
+.gv-pill i{width:17px;height:17px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23415a0c' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 10.6l4.2 4.2L16.5 5'/%3E%3C/svg%3E") center/17px 17px no-repeat;font-size:0}
+.gv-stock{display:flex;align-items:center;gap:8px;margin:15px 0 11px;color:var(--ok);font-size:.82rem;font-weight:700}
+.gv-stock i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(63,125,58,.16)}
+.gv-stock--out{color:#9a4b3c}.gv-stock--out i{background:#9a4b3c;box-shadow:0 0 0 3px rgba(154,75,60,.16)}
+.gv-form{display:grid;gap:9px;margin:0}
+.gv-cta{width:100%;padding:18px;border:0;border-radius:12px;background:var(--ink);color:#fff;font:inherit;font-size:.84rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:transform .16s,opacity .16s}
+.gv-cta:hover{transform:translateY(-1px)}
+.gv-cta:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.gv-dyn,.gv-dyn .shopify-payment-button{width:100%}
+.gv-dyn .shopify-payment-button__button{width:100%!important;padding:17px!important;border-radius:12px!important;font-size:.84rem!important;font-weight:850!important;letter-spacing:.1em!important}
+.gv-pays{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin:14px 0 0}
+.gv-pay{width:42px;height:27px;border-radius:5px}
+.gv-pay--mp{padding:3px 5px;border:1px solid var(--line);background:#fff;object-fit:contain}
+.gv-paynote{margin:8px 0 0;color:var(--muted);font-size:.72rem;text-align:center}
+.gv-badges{display:grid;justify-items:center;gap:9px;margin:14px 0 0}
+.gv-badges>span{color:var(--muted);font-size:.72rem}
+.gv-badges>div{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
+.gv-logo{width:46px;height:29px;padding:4px 6px;border:1px solid var(--line);border-radius:5px;background:#fff;object-fit:contain;display:block}
+.gv-deliv{margin:22px 0 0;padding:18px 0 4px;border-top:1px solid var(--line)}
+.gv-deliv__lead{margin:0 0 18px;color:var(--muted);font-size:.79rem}
+.gv-deliv__lead strong{color:var(--ink);font-variant-numeric:tabular-nums}
+.gv-line{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0;padding:0;list-style:none;position:relative}
+.gv-line::before{content:"";position:absolute;top:15px;left:12%;right:12%;border-top:1.5px dashed #c9cfc3}
+.gv-line li{display:grid;justify-items:center;gap:5px;text-align:center}
+.gv-line__ico{display:grid;width:32px;height:32px;place-items:center;border-radius:50%;background:var(--paper);color:var(--ink);position:relative;z-index:1}
+.gv-line__ico svg{width:20px;height:20px}
+.gv-line strong{font-size:.76rem}
+.gv-line small{color:var(--muted);font-size:.68rem;line-height:1.3}
+.gv-acc{margin:24px 0 0;border-top:1px solid var(--line)}
+.gv-acc details{border-bottom:1px solid var(--line)}
+.gv-acc summary{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 2px;font-size:.9rem;font-weight:700;cursor:pointer;list-style:none}
+.gv-acc summary::-webkit-details-marker{display:none}
+.gv-acc summary i{position:relative;width:12px;height:12px;flex:0 0 12px}
+.gv-acc summary i::before,.gv-acc summary i::after{content:"";position:absolute;top:50%;left:0;width:12px;height:1.5px;background:var(--ink);transition:transform .2s}
+.gv-acc summary i::after{transform:rotate(90deg)}
+.gv-acc details[open] summary i::after{transform:rotate(0)}
+.gv-acc__body{padding:0 2px 16px;color:var(--muted);font-size:.86rem;line-height:1.6}
+.gv-acc__body p{margin:0 0 8px}
+.gv-acc__body ul{margin:0;padding-left:18px}
+.gv-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:48px 0 0;padding:0;list-style:none;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--line)}
+.gv-trust li{display:grid;justify-items:center;gap:5px;padding:22px 14px;background:var(--paper);text-align:center}
+.gv-trust span{display:grid;width:30px;height:30px;place-items:center;color:var(--olive)}
+.gv-trust svg{width:24px;height:24px}
+.gv-trust strong{font-size:.82rem}
+.gv-trust small{color:var(--muted);font-size:.72rem;line-height:1.35}
+.gv-buy>*{animation:gv-in .7s cubic-bezier(.2,.7,.3,1) both}
+.gv-buy>*:nth-child(1){animation-delay:.02s}.gv-buy>*:nth-child(2){animation-delay:.07s}.gv-buy>*:nth-child(3){animation-delay:.12s}.gv-buy>*:nth-child(4){animation-delay:.17s}.gv-buy>*:nth-child(5){animation-delay:.22s}.gv-buy>*:nth-child(6){animation-delay:.27s}.gv-buy>*:nth-child(7){animation-delay:.31s}.gv-buy>*:nth-child(n+8){animation-delay:.35s}
+@keyframes gv-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.gv-cta{position:relative;overflow:hidden}
+.gv-cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-18deg);animation:gv-shine 4.5s ease-in-out infinite}
+@keyframes gv-shine{0%,72%{left:-60%}88%,100%{left:120%}}
+@media (prefers-reduced-motion:reduce){.gv-buy>*,.gv-cta::after{animation:none}}
+.gv [data-gv-reveal]{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.gv [data-gv-reveal].is-in{opacity:1;transform:none}
+.gv-sticky{position:fixed;right:10px;bottom:10px;left:10px;z-index:40;display:none;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 16px;border-radius:14px;background:var(--ink);color:#fff;box-shadow:0 14px 34px rgba(0,0,0,.24);transform:translateY(130%);transition:transform .3s ease}
+.gv-sticky.is-up{transform:none}
+.gv-sticky__info{display:grid;gap:1px}
+.gv-sticky__info strong{font-size:.92rem}
+.gv-sticky__info small{color:#b9c4b6;font-size:.7rem}
+.gv-sticky__btn{padding:13px 18px;border:0;border-radius:10px;background:var(--lime);color:#1b2410;font:inherit;font-size:.74rem;font-weight:850;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+@media(max-width:950px){
+.gv-wrap{width:min(100% - 24px,1280px);padding:26px 0 24px}
+.gv-top{grid-template-columns:1fr;gap:24px}
+.gv-gal{position:static}
+.gv-gal__nav{display:none}
+.gv-trust{grid-template-columns:repeat(2,1fr);margin-top:34px}
+.gv-sticky{display:flex}
+}
+@media(max-width:420px){
+.gv-offer{grid-template-columns:54px 1fr auto;gap:9px;padding:10px}
+.gv-offer__pic,.gv-offer__pic img{height:44px}
+.gv-price strong{font-size:1.5rem}
+}
+{% endstylesheet %}
+
+{% javascript %}
+(() => {
+  const root = document.querySelector('[data-gv]');
+  if (!root) return;
+
+  // Galería
+  const track = root.querySelector('[data-gv-track]');
+  const slides = track ? [...track.querySelectorAll('figure')] : [];
+  const thumbs = [...root.querySelectorAll('[data-gv-thumb]')];
+  const go = (i) => { if (slides[i]) track.scrollTo({ left: slides[i].offsetLeft, behavior: 'smooth' }); };
+  thumbs.forEach((t) => t.addEventListener('click', () => go(+t.dataset.gvThumb)));
+  const prev = root.querySelector('[data-gv-prev]');
+  const next = root.querySelector('[data-gv-next]');
+  const current = () => Math.round(track.scrollLeft / Math.max(track.clientWidth, 1));
+  if (prev) prev.addEventListener('click', () => go(Math.max(current() - 1, 0)));
+  if (next) next.addEventListener('click', () => go(Math.min(current() + 1, slides.length - 1)));
+  if (track) track.addEventListener('scroll', () => {
+    const i = current();
+    thumbs.forEach((t, k) => { t.classList.toggle('is-on', k === i); t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+  }, { passive: true });
+
+  // Ofertas
+  const qtyInput = root.querySelector('[data-gv-qty]');
+  const total = root.querySelector('[data-gv-total]');
+  const stickyTotal = root.querySelector('[data-gv-sticky-total]');
+  const stickyQty = root.querySelector('[data-gv-sticky-qty]');
+  const offers = [...root.querySelectorAll('[data-gv-offer]')];
+  const pick = (btn) => {
+    offers.forEach((o) => { o.classList.remove('is-on'); o.setAttribute('aria-checked', 'false'); });
+    btn.classList.add('is-on');
+    btn.setAttribute('aria-checked', 'true');
+    if (qtyInput) qtyInput.value = btn.dataset.qty;
+    if (total) total.textContent = btn.dataset.total;
+    const cuotas = root.querySelector('[data-gv-cuotas] strong');
+    if (cuotas && btn.dataset.cuota) cuotas.textContent = cuotas.textContent.replace(/de .*/, 'de ' + btn.dataset.cuota);
+    if (stickyTotal) stickyTotal.textContent = btn.dataset.total;
+    if (stickyQty) stickyQty.textContent = btn.dataset.qty + (btn.dataset.qty === '1' ? ' unidad' : ' unidades');
+  };
+  offers.forEach((btn) => btn.addEventListener('click', () => pick(btn)));
+  const preselected = offers.find((o) => o.classList.contains('is-on')) || offers[0];
+  if (preselected) pick(preselected);
+
+  // Si el pack elegido trae regalo, se agregan las dos cosas al carrito
+  const form = root.querySelector('form[action*="/cart/add"]');
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      const active = root.querySelector('[data-gv-offer].is-on');
+      const giftId = active && active.dataset.gift;
+      if (!giftId) return;
+      event.preventDefault();
+      const variantId = form.querySelector('[name="id"]').value;
+      const qty = parseInt(form.querySelector('[data-gv-qty]').value, 10) || 1;
+      const button = form.querySelector('.gv-cta');
+      if (button) { button.disabled = true; button.dataset.label = button.textContent; button.textContent = 'Agregando…'; }
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: [{ id: Number(variantId), quantity: qty }, { id: Number(giftId), quantity: 1 }] })
+      }).then((r) => r.json())
+        .then(() => { window.location.href = '/cart'; })
+        .catch(() => { form.submit(); });
+    });
+  }
+
+  // Copiar código
+  const code = root.querySelector('[data-gv-code]');
+  if (code) code.addEventListener('click', () => {
+    navigator.clipboard?.writeText(code.dataset.gvCode);
+    const tag = code.querySelector('em');
+    if (tag) { tag.textContent = 'copiado'; setTimeout(() => { tag.textContent = 'copiar'; }, 1800); }
+  });
+
+  // Contador hasta la hora de corte
+  const clock = root.querySelector('[data-gv-clock]');
+  if (clock) {
+    const tick = () => {
+      const cut = parseInt(clock.dataset.cutoff, 10) || 17;
+      const now = new Date();
+      const end = new Date(now);
+      end.setHours(cut, 0, 0, 0);
+      if (end <= now) end.setDate(end.getDate() + 1);
+      const diff = end - now;
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      clock.textContent = h + ' h ' + String(m).padStart(2, '0') + ' min';
+    };
+    tick();
+    setInterval(tick, 30000);
+  }
+
+  // Barra fija móvil
+  const sticky = root.querySelector('[data-gv-sticky]');
+  const cta = root.querySelector('.gv-cta');
+  const addBtn = root.querySelector('[data-gv-sticky-add]');
+  if (addBtn && form) addBtn.addEventListener('click', () => { if (cta && !cta.disabled) form.requestSubmit ? form.requestSubmit(cta) : form.submit(); });
+  if (sticky && cta) {
+    const watcher = new IntersectionObserver((e) => {
+      e.forEach((entry) => {
+        // sólo aparece cuando el botón ya quedó ARRIBA de la pantalla
+        const passed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        sticky.classList.toggle('is-up', passed);
+      });
+    }, { threshold: 0 });
+    watcher.observe(cta);
+  }
+
+  // Animaciones de entrada
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  root.querySelectorAll('[data-gv-reveal]').forEach((el) => io.observe(el));
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "GONVRA · Ficha",
+  "tag": "section",
+  "class": "section-gv-producto",
+  "settings": [
+    { "type": "header", "content": "Encabezado" },
+    { "type": "text", "id": "kicker", "label": "Bajada corta", "default": "ROSTRO + CUERPO · UN SOLO EQUIPO" },
+    { "type": "text", "id": "badge_1", "label": "Etiqueta sobre la foto", "default": "Envío a todo el país" },
+    { "type": "text", "id": "gallery_clip", "label": "Clip al inicio de la galería", "info": "Nombre del archivo del tema, ej: gv-galeria-clip.webp" },
+    { "type": "text", "id": "gallery_extra", "label": "Imágenes extra al final de la galería", "info": "Archivos del tema separados por coma, ej: gv-comparacion-1.jpg, gv-comparacion-2.jpg" },
+    { "type": "text", "id": "price_note", "label": "Nota bajo el precio", "default": "Impuestos incluidos. Envío calculado en el checkout." },
+    { "type": "checkbox", "id": "show_cuotas", "label": "Mostrar cuotas", "default": true },
+    { "type": "number", "id": "cuotas_n", "label": "Cantidad de cuotas", "default": 3 },
+    { "type": "text", "id": "cuotas_label", "label": "Texto al lado de las cuotas", "default": "sin interés con Mercado Pago" },
+
+    { "type": "header", "content": "Reseñas" },
+    { "type": "paragraph", "content": "Dejá la cantidad en 0 hasta tener reseñas reales: si es 0, las estrellas no se muestran." },
+    { "type": "checkbox", "id": "loox_rating", "label": "Mostrar las estrellas de Loox", "default": true },
+    { "type": "number", "id": "rating_count", "label": "Cantidad de reseñas", "default": 0 },
+    { "type": "text", "id": "rating_value", "label": "Puntaje", "default": "4,8" },
+    { "type": "text", "id": "rating_word", "label": "Palabra", "default": "reseñas" },
+
+    { "type": "header", "content": "Promo destacada" },
+    { "type": "text", "id": "promo_title", "label": "Título de la promo", "default": "Comprá 2 y ahorrá" },
+    { "type": "text", "id": "promo_text", "label": "Texto", "default": "Agregá el pack Dúo y el descuento se aplica solo en el carrito." },
+    { "type": "text", "id": "promo_code", "label": "Código (opcional)" },
+
+    { "type": "header", "content": "Packs" },
+    { "type": "text", "id": "offers_label", "label": "Título del bloque de packs", "default": "Elegí tu pack" },
+    { "type": "checkbox", "id": "pack_assets", "label": "Usar las fotos de pack del tema (1, 2 y 3 unidades)", "default": true },
+    { "type": "text", "id": "discount_note", "label": "Nota debajo de los packs", "default": "El descuento del pack se aplica solo al llegar al carrito." },
+
+    { "type": "header", "content": "Compra" },
+    { "type": "text", "id": "pill", "label": "Frase destacada verde", "default": "Seguimiento del envío incluido" },
+    { "type": "text", "id": "stock_text", "label": "Texto de disponibilidad", "default": "Producto disponible" },
+    { "type": "number", "id": "low_stock", "label": "Avisar poco stock cuando queden menos de", "default": 15 },
+    { "type": "text", "id": "cta_text", "label": "Texto del botón", "default": "Agregar al carrito" },
+    { "type": "checkbox", "id": "show_dynamic", "label": "Mostrar botón de pago rápido", "default": true },
+    { "type": "checkbox", "id": "show_pay_badges", "label": "Mostrar medios de pago aunque no estén conectados", "default": false },
+    { "type": "checkbox", "id": "show_mp", "label": "Sumar el logo de Mercado Pago", "default": true },
+    { "type": "text", "id": "pay_note", "label": "Texto sobre los medios de pago", "default": "Pagá con tarjeta o Mercado Pago" },
+
+    { "type": "header", "content": "Entrega" },
+    { "type": "checkbox", "id": "show_timeline", "label": "Mostrar línea de entrega", "default": true },
+    { "type": "text", "id": "cutoff_text", "label": "Texto de urgencia", "default": "Si hacés tu pedido dentro de" },
+    { "type": "number", "id": "cutoff_hour", "label": "Hora de corte diaria (0-23)", "default": 17 },
+    { "type": "text", "id": "ship_text", "label": "Texto de despacho", "default": "24 a 48 h hábiles" },
+    { "type": "text", "id": "deliver_text", "label": "Texto de entrega", "default": "12 a 20 días" },
+
+    { "type": "header", "content": "Barra de garantías" },
+    { "type": "checkbox", "id": "show_trustbar", "label": "Mostrar barra", "default": true },
+    { "type": "text", "id": "trust_1_t", "label": "1 · Título", "default": "Envío a todo el país" },
+    { "type": "text", "id": "trust_1_s", "label": "1 · Detalle", "default": "Con seguimiento del pedido" },
+    { "type": "text", "id": "trust_2_t", "label": "2 · Título", "default": "Garantía de 10 días" },
+    { "type": "text", "id": "trust_2_s", "label": "2 · Detalle", "default": "Si llega fallado, lo resolvemos" },
+    { "type": "text", "id": "trust_3_t", "label": "3 · Título", "default": "Pago simple" },
+    { "type": "text", "id": "trust_3_s", "label": "3 · Detalle", "default": "Tarjeta o Mercado Pago" },
+    { "type": "text", "id": "trust_4_t", "label": "4 · Título", "default": "Te respondemos" },
+    { "type": "text", "id": "trust_4_s", "label": "4 · Detalle", "default": "Escribinos antes o después de comprar" }
+  ],
+  "blocks": [
+    {
+      "type": "oferta",
+      "name": "Pack",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Nombre", "default": "Individual" },
+        { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Precio estándar" },
+        { "type": "number", "id": "qty", "label": "Unidades", "default": 1 },
+        { "type": "range", "id": "discount", "label": "% de descuento a mostrar", "min": 0, "max": 40, "step": 1, "unit": "%", "default": 0, "info": "Ojo: para que el descuento sea real tenés que crearlo en Shopify › Descuentos › Automático." },
+        { "type": "text", "id": "tag", "label": "Etiqueta (ej: Más elegido)" },
+        { "type": "image_picker", "id": "image", "label": "Imagen del pack" },
+        { "type": "checkbox", "id": "preselect", "label": "Preseleccionado", "default": false },
+        { "type": "product", "id": "gift", "label": "Producto de regalo" },
+        { "type": "text", "id": "gift_label", "label": "Etiqueta del regalo", "default": "De regalo" }
+      ]
+    },
+    {
+      "type": "beneficio",
+      "name": "Beneficio",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "Peines guía de 1, 3 y 5 mm" }
+      ]
+    },
+    {
+      "type": "detalle",
+      "name": "Desplegable",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Envío y entrega" },
+        { "type": "richtext", "id": "body", "label": "Contenido", "default": "<p>Despachamos en 24 a 48 h hábiles.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Abierto por defecto", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GONVRA · Ficha",
+      "blocks": [
+        { "type": "oferta", "settings": { "title": "Individual", "subtitle": "Precio estándar", "qty": 1, "preselect": true } },
+        { "type": "oferta", "settings": { "title": "Dúo", "subtitle": "Uno para vos, otro de regalo", "qty": 2, "tag": "Más elegido" } },
+        { "type": "oferta", "settings": { "title": "Pack x3", "subtitle": "Para toda la casa", "qty": 3 } },
+        { "type": "beneficio", "settings": { "text": "Sirve para rostro y cuerpo: barba, patillas, brazos y piernas" } },
+        { "type": "beneficio", "settings": { "text": "Peines guía de 1, 3 y 5 mm para elegir el largo" } },
+        { "type": "beneficio", "settings": { "text": "Recargable por USB: la cargás en cualquier lado" } },
+        { "type": "detalle", "settings": { "title": "Qué viene en la caja", "body": "<p>Rasuradora, 3 peines guía (1, 3 y 5 mm), cabezales de repuesto, cable USB y cepillo de limpieza.</p>" } },
+        { "type": "detalle", "settings": { "title": "Envío y entrega", "body": "<p>Despacho en 24 a 48 h hábiles. La entrega estimada es de 12 a 20 días según la zona. Te mandamos el código de seguimiento por mail.</p>" } },
+        { "type": "detalle", "settings": { "title": "Cómo se usa", "body": "<p>1. Elegí el peine según el largo que quieras.<br>2. Pasala sobre piel limpia y seca con movimientos suaves.<br>3. Limpiá los restos con el cepillo y cargala por USB.</p><p>Para zonas sensibles, probá primero en un área chica. No usar sobre piel irritada o lastimada.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

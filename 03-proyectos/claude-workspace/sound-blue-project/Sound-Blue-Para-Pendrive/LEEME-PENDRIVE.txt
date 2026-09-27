@@ -1,0 +1,10 @@
+SOUND BLUE PROJECT — versión para pendrive
+
+1. Extraé este ZIP completo en el pendrive.
+2. Abrí index.html desde esta misma carpeta.
+
+No copies solamente index.html: las fotos, el video y los documentos están dentro de la carpeta assets.
+El modelo 3D de auriculares sí está integrado dentro del HTML, por lo que gira sin Internet y sin Tinkercad.
+
+Para usar el micrófono en vivo hace falta abrir la página con servir.sh en una computadora con Python.
+Sin eso, usá el botón “Modo demo” del semáforo: funciona sin Internet.

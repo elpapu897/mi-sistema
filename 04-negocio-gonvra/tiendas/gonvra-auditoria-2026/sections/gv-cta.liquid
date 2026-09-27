@@ -1,0 +1,51 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .gv-cta__title { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+<section class="gv-cta gv-section">
+  <div class="gv-container">
+    <div class="gv-cta__box gv-reveal">
+      <div class="gv-cta__glow"></div>
+      {%- if section.settings.eyebrow != blank -%}<span class="gv-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="gv-cta__title">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="gv-cta__sub">{{ section.settings.subtitle | newline_to_br }}</p>{%- endif -%}
+      <div class="gv-cta__actions">
+        {%- if section.settings.boton1_texto != blank -%}
+          <a class="gv-btn gv-btn--gold" href="{{ section.settings.boton1_url | default: '/collections/all' }}">{{ section.settings.boton1_texto }}</a>
+        {%- endif -%}
+        {%- if section.settings.boton2_texto != blank -%}
+          <a class="gv-btn gv-btn--ghost-light" href="{{ section.settings.boton2_url | default: '/' }}">{{ section.settings.boton2_texto }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Llamada final",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Empezá hoy" },
+    { "type": "textarea", "id": "title", "label": "Título", "default": "Consentí a tu mascota como se merece" },
+    { "type": "textarea", "id": "subtitle", "label": "Texto", "default": "Descubrí toda nuestra selección de productos y hacé que cada día sea especial para tu compañero." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 26, "max": 60, "step": 2, "unit": "px", "default": 42 },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "boton1_texto", "label": "Botón principal (texto)", "default": "Ver la tienda" },
+    { "type": "url", "id": "boton1_url", "label": "Botón principal (enlace)" },
+    { "type": "text", "id": "boton2_texto", "label": "Botón secundario (texto)", "default": "Escribinos" },
+    { "type": "url", "id": "boton2_url", "label": "Botón secundario (enlace)" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 }
+  ],
+  "presets": [ { "name": "GV – Llamada final" } ]
+}
+{% endschema %}

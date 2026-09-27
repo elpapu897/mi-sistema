@@ -1,0 +1,52 @@
+{% style %}
+  #shopify-section-{{ section.id }} .mtp-band {
+    background: {{ section.settings.background }};
+    --mtp-speed: {{ section.settings.speed }}s;
+  }
+  #shopify-section-{{ section.id }} .mtp-band__item { color: {{ section.settings.text_color }}; font-size: clamp(13px, 1.5vw, {{ section.settings.text_size }}px); }
+  #shopify-section-{{ section.id }} .mtp-band__item::after { background: {{ section.settings.dot_color }}; box-shadow: 0 0 14px {{ section.settings.dot_color }}; }
+{% endstyle %}
+
+<section class="mtp-band mt-section">
+  <div class="mtp-band__track">
+    {%- for pass in (1..2) -%}
+      <div class="mtp-band__group" {% if pass == 2 %}aria-hidden="true"{% endif %}>
+        {%- for repeat in (1..3) -%}
+          {%- for block in section.blocks -%}
+            <span class="mtp-band__item" {% if pass == 1 and repeat == 1 %}{{ block.shopify_attributes }}{% endif %}>{{ block.settings.text }}</span>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Banda en movimiento",
+  "tag": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "range", "id": "speed", "label": "Duración del recorrido (segundos)", "min": 12, "max": 80, "step": 2, "unit": "s", "default": 34 },
+    { "type": "range", "id": "text_size", "label": "Tamaño del texto (px)", "min": 12, "max": 28, "step": 1, "unit": "px", "default": 19 },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#080A0F" },
+    { "type": "color", "id": "text_color", "label": "Color del texto", "default": "#F7FAFC" },
+    { "type": "color", "id": "dot_color", "label": "Color del punto separador", "default": "#65F29A" }
+  ],
+  "blocks": [
+    {
+      "type": "frase",
+      "name": "Frase",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texto", "default": "DOBLE CABEZAL" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Banda en movimiento",
+      "blocks": [{"type":"frase"},{"type":"frase"},{"type":"frase"},{"type":"frase"},{"type":"frase"}]
+    }
+  ]
+}
+{% endschema %}

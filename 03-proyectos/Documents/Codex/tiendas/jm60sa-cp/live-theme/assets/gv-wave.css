@@ -1,0 +1,15 @@
+.gvw{position:relative;line-height:0;margin-bottom:-2px;overflow:hidden}
+.gvw-svg{display:block;width:100%;height:clamp(46px,6vw,74px)}
+/* En pantallas grandes la ola se estiraba y quedaba como un manchón.
+   Se baja la altura y se suaviza para que lea como separador, igual que en celular. */
+@media (min-width:900px){
+  .gvw-svg{height:clamp(40px,3.2vw,56px)}
+  .gvw-p1{opacity:.22}
+  .gvw-p2{opacity:.38}
+}
+.gvw-p{will-change:transform}
+.gvw-p1{opacity:.34;animation:gvw-slide 19s linear infinite}
+.gvw-p2{opacity:.55;animation:gvw-slide 13s linear infinite reverse}
+.gvw-p3{animation:gvw-slide 26s linear infinite}
+@keyframes gvw-slide{from{transform:translateX(0)}to{transform:translateX(-1440px)}}
+@media (prefers-reduced-motion:reduce){.gvw-p{animation:none}}

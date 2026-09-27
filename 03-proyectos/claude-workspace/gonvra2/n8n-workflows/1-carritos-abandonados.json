@@ -1,0 +1,162 @@
+{
+  "name": "GONVRA — Carritos abandonados → texto listo para mandar",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 3
+            }
+          ]
+        }
+      },
+      "id": "sched-1",
+      "name": "Cada 3 horas",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://{{ $env.GONVRA_SHOPIFY_DOMAIN }}/admin/api/2026-01/checkouts.json?limit=50",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $env.GONVRA_SHOPIFY_TOKEN }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 25000
+        }
+      },
+      "id": "http-1",
+      "name": "Traer carritos de Shopify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "jsCode": "// Filtra carritos que valen la pena: con mail, con plata, y con mas de 2 horas.\n// Se saltea los que ya se avisaron antes (memoria en workflow static data).\nconst staticData = $getWorkflowStaticData('global');\nstaticData.avisados = staticData.avisados || [];\n\nconst ahora = Date.now();\nconst DOS_HORAS = 2 * 60 * 60 * 1000;\nconst SIETE_DIAS = 7 * 24 * 60 * 60 * 1000;\n\nconst carritos = $input.first().json.checkouts || [];\nconst salida = [];\n\nfor (const c of carritos) {\n  if (!c.email) continue;                                  // sin mail no se puede contactar\n  const total = parseFloat(c.total_price || 0);\n  if (total <= 0) continue;\n  const creado = new Date(c.created_at).getTime();\n  const edad = ahora - creado;\n  if (edad < DOS_HORAS) continue;                           // dejarlo respirar\n  if (edad > SIETE_DIAS) continue;                          // ya esta frio\n  if (staticData.avisados.includes(String(c.id))) continue; // ya avisado\n\n  const items = (c.line_items || [])\n    .map(li => `${li.quantity}x ${li.title}`).join(', ');\n  const nombre = (c.customer && c.customer.first_name) || '';\n  const horas = Math.round(edad / 3600000);\n\n  salida.push({ json: {\n    id: String(c.id),\n    email: c.email,\n    nombre,\n    total,\n    items,\n    horas,\n    link: c.abandoned_checkout_url || ''\n  }});\n\n  staticData.avisados.push(String(c.id));\n}\n\n// no dejar crecer la memoria para siempre\nif (staticData.avisados.length > 300) {\n  staticData.avisados = staticData.avisados.slice(-300);\n}\n\nreturn salida;"
+      },
+      "id": "code-1",
+      "name": "Filtrar los que valen",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Arma el mensaje de Telegram con el texto del mail YA REDACTADO,\n// para que Matias solo copie y pegue. NO se manda nada al cliente solo.\nconst d = $input.first().json;\nconst plata = d.total.toLocaleString('es-AR', {minimumFractionDigits: 2});\n\nconst texto = [\n  'CARRITO ABANDONADO EN GONVRA',\n  '',\n  `Plata en juego: $${plata}`,\n  `Cliente: ${d.nombre || 'sin nombre'} (${d.email})`,\n  `Se fue hace: ${d.horas} horas`,\n  `Tenia: ${d.items}`,\n  '',\n  '--- MAIL LISTO PARA MANDARLE ---',\n  '',\n  `Asunto: ${d.nombre ? d.nombre + ', t' : 'T'}e quedo algo en el carrito`,\n  '',\n  `Hola${d.nombre ? ' ' + d.nombre : ''}, te escribo de GONVRA.`,\n  '',\n  'Vi que dejaste tu pedido a medias. Si tuviste algun problema con el pago',\n  'o te quedo alguna duda del producto, respondeme este mail y te ayudo.',\n  '',\n  'Si queres retomarlo, entra aca:',\n  d.link,\n  '',\n  'Cualquier cosa estoy por WhatsApp: +54 9 11 5376-7293',\n  '',\n  'Matias - GONVRA',\n  '--------------------------------',\n  '',\n  'NO prometas descuentos que no existen en la web.'\n].join('\\n');\n\nreturn [{ json: { texto } }];"
+      },
+      "id": "code-2",
+      "name": "Redactar el mail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.texto }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "id": "tg-1",
+      "name": "Avisar por Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    }
+  ],
+  "connections": {
+    "Cada 3 horas": {
+      "main": [
+        [
+          {
+            "node": "Traer carritos de Shopify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Traer carritos de Shopify": {
+      "main": [
+        [
+          {
+            "node": "Filtrar los que valen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrar los que valen": {
+      "main": [
+        [
+          {
+            "node": "Redactar el mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redactar el mail": {
+      "main": [
+        [
+          {
+            "node": "Avisar por Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}

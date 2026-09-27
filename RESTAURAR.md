@@ -72,7 +72,7 @@ Git for Windows trae **Git Bash**, y eso significa que podés usar los scripts
 ## 2. Clonar
 
 ```bash
-git clone https://github.com/USUARIO/mi-sistema.git
+git clone https://github.com/elpapu897/mi-sistema.git
 cd mi-sistema
 ```
 

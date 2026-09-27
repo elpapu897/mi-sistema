@@ -1,0 +1,119 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+  #shopify-section-{{ section.id }} .gv-h2 { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+{%- comment -%} Solo se muestra si hay al menos un video o una portada cargada {%- endcomment -%}
+{%- assign gv_hay = false -%}
+{%- for block in section.blocks -%}
+  {%- if block.settings.video != blank or block.settings.video_url != blank or block.settings.portada != blank -%}
+    {%- assign gv_hay = true -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if gv_hay -%}
+<section class="gv-vids gv-section">
+  <div class="gv-container">
+    <div class="gv-head gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<span class="gv-eyebrow gv-center">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="gv-h2">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="gv-lead">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+
+    <div class="gv-vids__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.video != blank or block.settings.video_url != blank or block.settings.portada != blank -%}
+          <div class="gv-vid gv-reveal" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+
+            {%- if block.settings.video != blank -%}
+              {%- comment -%}
+                Solo parámetros soportados por video_tag (image_size, loop, muted, controls,
+                autoplay, loading). Pasar otros —como "attributes"— rompe la sección.
+                El data-attribute para el JS va en este contenedor, no en el filtro.
+              {%- endcomment -%}
+              <div class="gv-vid__media" data-gv-vid-wrap>
+                {{ block.settings.video | video_tag: image_size: '600x', loop: true, muted: true, controls: false, loading: 'lazy' }}
+              </div>
+              <button type="button" class="gv-vid__sound" data-gv-vid-sound aria-label="Activar o silenciar el sonido">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+              </button>
+
+            {%- elsif block.settings.video_url != blank -%}
+              {%- if block.settings.portada != blank -%}
+                <img src="{{ block.settings.portada | image_url: width: 600 }}" alt="{{ block.settings.titulo | escape }}" loading="lazy" data-gv-vid-cover>
+              {%- endif -%}
+              {%- comment -%} Solo montamos el botón si el enlace trae un id válido {%- endcomment -%}
+              {%- assign gv_vid_id = block.settings.video_url.id | default: '' -%}
+              {%- if gv_vid_id != '' -%}
+                {%- if block.settings.video_url.type == 'youtube' -%}
+                  {%- assign gv_embed = 'https://www.youtube.com/embed/' | append: gv_vid_id | append: '?autoplay=1&rel=0' -%}
+                {%- else -%}
+                  {%- assign gv_embed = 'https://player.vimeo.com/video/' | append: gv_vid_id | append: '?autoplay=1' -%}
+                {%- endif -%}
+                <button type="button" class="gv-vid__play" data-gv-vid-embed data-src="{{ gv_embed }}" aria-label="Reproducir video">
+                  <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+                </button>
+              {%- endif -%}
+
+            {%- elsif block.settings.portada != blank -%}
+              <img src="{{ block.settings.portada | image_url: width: 600 }}" alt="{{ block.settings.titulo | escape }}" loading="lazy">
+            {%- endif -%}
+
+            <div class="gv-vid__veil"></div>
+            {%- if block.settings.titulo != blank -%}
+              <p class="gv-vid__cap">{{ block.settings.titulo }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "GV – Videos",
+  "tag": "section",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "En movimiento" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Mirá cómo funciona" },
+    { "type": "textarea", "id": "subtitle", "label": "Texto bajo el título", "default": "Videos cortos para que veas el producto en uso antes de comprarlo." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 22, "max": 48, "step": 2, "unit": "px", "default": 34 },
+    { "type": "color", "id": "fondo", "label": "Color de fondo", "default": "#EFF7F3" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 72 }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Video subido a Shopify (recomendado)" },
+        { "type": "video_url", "id": "video_url", "label": "O pegá un enlace de YouTube / Vimeo", "accept": ["youtube", "vimeo"] },
+        { "type": "image_picker", "id": "portada", "label": "Imagen de portada (para el enlace de YouTube/Vimeo)" },
+        { "type": "text", "id": "titulo", "label": "Texto sobre el video", "default": "Así se usa" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GV – Videos",
+      "blocks": [
+        { "type": "video", "settings": { "titulo": "Así se usa" } },
+        { "type": "video", "settings": { "titulo": "En casa, día a día" } },
+        { "type": "video", "settings": { "titulo": "Resultado real" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

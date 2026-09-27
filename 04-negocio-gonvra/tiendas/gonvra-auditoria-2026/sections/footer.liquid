@@ -1,0 +1,132 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} { margin-top: 0; }
+{%- endstyle -%}
+
+<footer class="gv-footer gv-section">
+  <div class="gv-container">
+    <div class="gv-footer__top">
+      <div class="gv-footer__brand">
+        {%- if section.settings.logo != blank -%}
+          <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ shop.name | escape }}" style="max-width: {{ section.settings.logo_width }}px; height:auto; margin-bottom:16px;">
+        {%- else -%}
+          <p class="gv-footer__brand-name">{{ section.settings.marca | default: shop.name }}<span>.</span></p>
+        {%- endif -%}
+        {%- if section.settings.tagline != blank -%}
+          <p class="gv-footer__tag">{{ section.settings.tagline | newline_to_br }}</p>
+        {%- endif -%}
+        <div class="gv-footer__social">
+          {%- if section.settings.instagram != blank -%}
+            <a href="{{ section.settings.instagram }}" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          {%- endif -%}
+          {%- if section.settings.facebook != blank -%}
+            <a href="{{ section.settings.facebook }}" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg></a>
+          {%- endif -%}
+          {%- if section.settings.tiktok != blank -%}
+            <a href="{{ section.settings.tiktok }}" aria-label="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8.2a6.3 6.3 0 0 0 3.7 1.2V6.7a3.7 3.7 0 0 1-.8-.1 3.6 3.6 0 0 1-2.9-3H13v11.9a2.2 2.2 0 1 1-1.6-2.1V10.6a5 5 0 1 0 4.6 5V8.2Z"/></svg></a>
+          {%- endif -%}
+          {%- if section.settings.whatsapp != blank -%}
+            <a href="{{ section.settings.whatsapp }}" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg></a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="gv-footer__col">
+        <h4>{{ section.settings.col1_titulo | default: 'Tienda' }}</h4>
+        <ul>
+          {%- for i in (1..5) -%}
+            {%- liquid
+              assign lkey = 'col1_link' | append: i | append: '_label'
+              assign ukey = 'col1_link' | append: i | append: '_url'
+              assign lbl = section.settings[lkey]
+              assign url = section.settings[ukey]
+            -%}
+            {%- if lbl != blank -%}
+              <li><a href="{{ url | default: '#' }}">{{ lbl }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div class="gv-footer__col">
+        <h4>{{ section.settings.col2_titulo | default: 'Ayuda' }}</h4>
+        <ul>
+          {%- for i in (1..5) -%}
+            {%- liquid
+              assign lkey = 'col2_link' | append: i | append: '_label'
+              assign ukey = 'col2_link' | append: i | append: '_url'
+              assign lbl = section.settings[lkey]
+              assign url = section.settings[ukey]
+            -%}
+            {%- if lbl != blank -%}
+              <li><a href="{{ url | default: '#' }}">{{ lbl }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div class="gv-footer__col gv-footer__about">
+        <h4>{{ section.settings.about_titulo | default: 'Sobre GONVRA' }}</h4>
+        <p>{{ section.settings.about_texto | newline_to_br }}</p>
+      </div>
+    </div>
+
+    <div class="gv-footer__bottom">
+      <p class="gv-footer__copy">© {{ 'now' | date: '%Y' }} {{ section.settings.marca | default: shop.name }}. {{ section.settings.derechos | default: 'Todos los derechos reservados.' }}</p>
+      {%- if section.settings.mostrar_pagos -%}
+        <div class="gv-footer__pay">
+          {% render 'gv-pagos' %}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie de página",
+  "settings": [
+    { "type": "header", "content": "Marca" },
+    { "type": "image_picker", "id": "logo", "label": "Logo (opcional; si no, usa el nombre)" },
+    { "type": "range", "id": "logo_width", "label": "Ancho del logo (px)", "min": 80, "max": 280, "step": 10, "unit": "px", "default": 160 },
+    { "type": "text", "id": "marca", "label": "Nombre de la marca", "default": "GONVRA" },
+    { "type": "textarea", "id": "tagline", "label": "Frase de marca", "default": "Todo lo que tu mascota necesita, con envío a todo el país y atención cercana." },
+    { "type": "header", "content": "Redes sociales (pega el enlace completo)" },
+    { "type": "url", "id": "instagram", "label": "Instagram" },
+    { "type": "url", "id": "facebook", "label": "Facebook" },
+    { "type": "url", "id": "tiktok", "label": "TikTok" },
+    { "type": "url", "id": "whatsapp", "label": "WhatsApp" },
+    { "type": "header", "content": "Columna 1" },
+    { "type": "text", "id": "col1_titulo", "label": "Título", "default": "Tienda" },
+    { "type": "text", "id": "col1_link1_label", "label": "Enlace 1 – texto", "default": "Todos los productos" },
+    { "type": "url", "id": "col1_link1_url", "label": "Enlace 1 – destino" },
+    { "type": "text", "id": "col1_link2_label", "label": "Enlace 2 – texto", "default": "Para perros" },
+    { "type": "url", "id": "col1_link2_url", "label": "Enlace 2 – destino" },
+    { "type": "text", "id": "col1_link3_label", "label": "Enlace 3 – texto", "default": "Para gatos" },
+    { "type": "url", "id": "col1_link3_url", "label": "Enlace 3 – destino" },
+    { "type": "text", "id": "col1_link4_label", "label": "Enlace 4 – texto", "default": "Los favoritos" },
+    { "type": "url", "id": "col1_link4_url", "label": "Enlace 4 – destino" },
+    { "type": "text", "id": "col1_link5_label", "label": "Enlace 5 – texto" },
+    { "type": "url", "id": "col1_link5_url", "label": "Enlace 5 – destino" },
+    { "type": "header", "content": "Columna 2" },
+    { "type": "text", "id": "col2_titulo", "label": "Título", "default": "Ayuda" },
+    { "type": "text", "id": "col2_link1_label", "label": "Enlace 1 – texto", "default": "Preguntas frecuentes" },
+    { "type": "url", "id": "col2_link1_url", "label": "Enlace 1 – destino" },
+    { "type": "text", "id": "col2_link2_label", "label": "Enlace 2 – texto", "default": "Envíos y entregas" },
+    { "type": "url", "id": "col2_link2_url", "label": "Enlace 2 – destino" },
+    { "type": "text", "id": "col2_link3_label", "label": "Enlace 3 – texto", "default": "Cambios y devoluciones" },
+    { "type": "url", "id": "col2_link3_url", "label": "Enlace 3 – destino" },
+    { "type": "text", "id": "col2_link4_label", "label": "Enlace 4 – texto", "default": "Política de privacidad" },
+    { "type": "url", "id": "col2_link4_url", "label": "Enlace 4 – destino" },
+    { "type": "text", "id": "col2_link5_label", "label": "Enlace 5 – texto", "default": "Términos del servicio" },
+    { "type": "url", "id": "col2_link5_url", "label": "Enlace 5 – destino" },
+    { "type": "header", "content": "Sobre la marca" },
+    { "type": "text", "id": "about_titulo", "label": "Título", "default": "Sobre GONVRA" },
+    { "type": "textarea", "id": "about_texto", "label": "Texto", "default": "Somos una tienda pensada para el bienestar de perros y gatos. Elegimos cada producto con cariño para que tu mascota esté feliz y saludable." },
+    { "type": "header", "content": "Barra inferior" },
+    { "type": "text", "id": "derechos", "label": "Texto de derechos", "default": "Todos los derechos reservados." },
+    { "type": "checkbox", "id": "mostrar_pagos", "label": "Mostrar iconos de medios de pago", "default": true }
+  ]
+}
+{% endschema %}

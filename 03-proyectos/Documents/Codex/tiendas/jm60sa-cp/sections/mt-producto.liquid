@@ -1,0 +1,313 @@
+<script src="{{ 'product-form.js' | asset_url }}" defer></script>
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .mt-product { background: {{ section.settings.background }}; }
+  #shopify-section-{{ section.id }} .mt-product-info { text-align: {{ section.settings.text_align }}; }
+  #shopify-section-{{ section.id }} .mt-product-info__title { font-size: clamp(38px, 5vw, {{ section.settings.heading_size }}px); }
+  #shopify-section-{{ section.id }} .mt-product-info__intro { font-size: clamp(15px, 1.35vw, {{ section.settings.body_size }}px); }
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} { padding-top: min({{ section.settings.padding_top }}px, 72px); padding-bottom: min({{ section.settings.padding_bottom }}px, 72px); }
+  }
+{% endstyle %}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign primary_media = product.media.last -%}
+{%- assign product_form_id = 'mt-product-form-' | append: section.id -%}
+{%- assign show_compare_price = false -%}
+{%- if current_variant.compare_at_price and current_variant.compare_at_price > current_variant.price -%}
+  {%- assign show_compare_price = true -%}
+{%- endif -%}
+
+<product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
+<section
+  class="mt-product mt-section"
+  data-mt-product
+  data-add-text="{{ section.settings.button_text | escape }}"
+  data-add-multiple-text="{{ section.settings.button_multiple_text | escape }}"
+  data-sold-out-text="{{ section.settings.sold_out_text | escape }}"
+  data-unavailable-text="{{ section.settings.unavailable_text | escape }}"
+  data-in-stock-text="{{ section.settings.in_stock_text | escape }}"
+  data-out-of-stock-text="{{ section.settings.out_of_stock_text | escape }}"
+>
+  <div class="mt-container">
+    <div class="mt-product__shell">
+      <div class="mt-product-gallery mt-reveal" data-mt-gallery>
+        <div class="mt-product-gallery__main">
+          <span class="mt-product-gallery__badge">{{ section.settings.gallery_badge }}</span>
+          {%- if primary_media != blank -%}
+            <img
+              data-mt-gallery-main
+              src="{{ primary_media.preview_image | image_url: width: 1500 }}"
+              srcset="{{ primary_media.preview_image | image_url: width: 700 }} 700w, {{ primary_media.preview_image | image_url: width: 1100 }} 1100w, {{ primary_media.preview_image | image_url: width: 1500 }} 1500w"
+              sizes="(min-width: 990px) 55vw, 100vw"
+              alt="{{ primary_media.alt | default: product.title | escape }}"
+              loading="eager"
+              fetchpriority="high"
+              width="{{ primary_media.preview_image.width }}"
+              height="{{ primary_media.preview_image.height }}"
+            >
+          {%- else -%}
+            <img data-mt-gallery-main src="{{ 'mt-catalogo-plata-frontal.webp' | asset_url }}" alt="{{ product.title | default: 'Helio Mini' | escape }}" loading="eager" fetchpriority="high" width="1254" height="1254">
+          {%- endif -%}
+        </div>
+
+        {%- if product.media.size > 0 -%}
+          <div class="mt-product-gallery__thumbs" aria-label="Galería del producto">
+            {%- for media in product.media reversed -%}
+              <button
+                class="mt-product-thumb{% if media.id == primary_media.id %} is-active{% endif %}"
+                type="button"
+                data-mt-gallery-thumb
+                data-media-id="{{ media.id }}"
+                data-src="{{ media.preview_image | image_url: width: 1500 }}"
+                data-srcset="{{ media.preview_image | image_url: width: 700 }} 700w, {{ media.preview_image | image_url: width: 1100 }} 1100w, {{ media.preview_image | image_url: width: 1500 }} 1500w"
+                data-alt="{{ media.alt | default: product.title | escape }}"
+                aria-label="Ver imagen {{ forloop.index }}"
+              >
+                <img src="{{ media.preview_image | image_url: width: 220 }}" alt="" loading="lazy" width="110" height="110">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="mt-product-info">
+        {%- if section.settings.kicker != blank -%}<p class="mt-kicker mt-reveal">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h1 class="mt-h1 mt-product-info__title mt-reveal">{{ product.title | default: section.settings.fallback_title }}</h1>
+        <div class="mt-product-info__rating mt-reveal"><span>● {{ section.settings.status_label }}</span><span data-mt-stock-state aria-live="polite">{{ section.settings.status_detail }} · {% if current_variant.available %}{{ section.settings.in_stock_text }}{% else %}{{ section.settings.out_of_stock_text }}{% endif %}</span></div>
+
+        {%- liquid
+          assign stock_tracked = false
+          assign stock_qty = 0
+          if current_variant.inventory_management == 'shopify'
+            assign stock_tracked = true
+            assign stock_qty = current_variant.inventory_quantity
+          endif
+          assign stock_threshold = section.settings.stock_threshold
+          assign show_stock_bar = false
+          if section.settings.show_stock and stock_tracked and current_variant.available and stock_qty > 0 and stock_qty <= stock_threshold
+            assign show_stock_bar = true
+          endif
+        -%}
+
+        {%- if section.settings.show_viral or show_stock_bar -%}
+          <div class="mtp-flags mt-reveal">
+            {%- if section.settings.show_viral and section.settings.viral_text != blank -%}
+              <span class="mtp-flag mtp-flag--viral">{{ section.settings.viral_text }}</span>
+            {%- endif -%}
+            {%- if show_stock_bar -%}
+              <span class="mtp-flag mtp-flag--stock">{{ stock_qty }} {% if stock_qty == 1 %}unidad{% else %}unidades{% endif %} en depósito</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if show_stock_bar -%}
+          {%- assign stock_pct = stock_qty | times: 100 | divided_by: stock_threshold -%}
+          <div class="mtp-stockbar mt-reveal">
+            <div class="mtp-stockbar__track">
+              <span class="mtp-stockbar__fill" data-mtp-pct="{{ stock_pct }}"></span>
+            </div>
+            <p class="mtp-stockbar__text">Quedan <b>{{ stock_qty }}</b> de esta variante en nuestro depósito. Es el número real, actualizado por Shopify.</p>
+          </div>
+        {%- endif -%}
+
+        <div class="mt-product-price mt-reveal" aria-live="polite">
+          <span class="mt-product-price__current" data-mt-price>{{ current_variant.price | money }}</span>
+          <span class="mt-product-price__compare" data-mt-compare-price {% unless show_compare_price %}hidden{% endunless %}>{{ current_variant.compare_at_price | money }}</span>
+        </div>
+
+        {%- if section.settings.intro != blank -%}<div class="mt-product-info__intro mt-reveal">{{ section.settings.intro | newline_to_br }}</div>{%- endif -%}
+
+        {%- if product.has_only_default_variant == false -%}
+          <div class="mt-product-options mt-reveal">
+            {%- for option in product.options_with_values -%}
+              {%- assign option_name_downcase = option.name | downcase -%}
+              {%- if option.values.size == 1 -%}
+                {%- comment -%}La presentación y el cable son datos fijos del proveedor, no decisiones de compra.{%- endcomment -%}
+                <div class="mt-product-option mt-product-option--fixed" data-mt-option-group data-mt-option-name="{{ option.name | downcase | escape }}">
+                  <input type="hidden" data-mt-option value="{{ option.selected_value | escape }}">
+                </div>
+              {%- else -%}
+                <fieldset class="mt-product-option" data-mt-option-group data-mt-option-name="{{ option.name | downcase | escape }}">
+                  <legend>
+                    {%- case option_name_downcase -%}
+                      {%- when 'color', 'colour' -%}Elegí tu color
+                      {%- else -%}Elegí {{ option.name | downcase }}
+                    {%- endcase -%}
+                  </legend>
+                  <div class="mt-product-option__choices">
+                    {%- for value in option.values -%}
+                      {%- assign value_downcase = value | downcase -%}
+                      {%- assign choice_label = value -%}
+                      {%- assign choice_swatch = '#CBD5E1' -%}
+                      {%- case value_downcase -%}
+                        {%- when 'silver', 'plateado', 'plata' -%}
+                          {%- assign choice_label = 'Plateado' -%}
+                          {%- assign choice_swatch = '#D8DEE7' -%}
+                        {%- when 'green', 'verde' -%}
+                          {%- assign choice_label = 'Verde' -%}
+                          {%- assign choice_swatch = '#8FC8B3' -%}
+                      {%- endcase -%}
+                      {%- assign choice_id = 'MtOption-' | append: section.id | append: '-' | append: option.position | append: '-' | append: forloop.index -%}
+                      <div class="mt-product-option__choice">
+                        <input class="mt-product-option__input" id="{{ choice_id }}" type="radio" name="MtOption-{{ section.id }}-{{ option.position }}" value="{{ value | escape }}" data-mt-option {% if option.selected_value == value %}checked{% endif %}>
+                        <label for="{{ choice_id }}">
+                          {%- if option_name_downcase == 'color' or option_name_downcase == 'colour' -%}<i class="mt-product-option__swatch" style="--mt-choice-swatch: {{ choice_swatch }};"></i>{%- endif -%}
+                          <span>{{ choice_label }}</span>
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.3 4.3L19 7.2"/></svg>
+                        </label>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                </fieldset>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <product-form class="mt-product-form mt-reveal" data-hide-errors="false" data-section-id="{{ section.id }}">
+          <div class="product-form__error-message-wrapper mt-product-form__error" role="alert" hidden><span class="product-form__error-message"></span></div>
+          {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" value="{{ current_variant.id }}" class="product-variant-id">
+            <input type="hidden" name="quantity" value="1" data-mt-quantity>
+            <div class="mt-product-offer" data-mt-offer-picker>
+              <div class="mt-product-offer__head">
+                <div>
+                  <span class="mt-product-offer__eyebrow">Elegí tu oferta</span>
+                  <strong>Una para vos. O dos para resolverlo de una.</strong>
+                </div>
+                <span class="mt-product-offer__note">Podés revisar el envío antes de pagar.</span>
+              </div>
+              <div class="mt-product-offer__grid">
+                <button class="mt-product-offer__card is-active" type="button" data-mt-offer data-mt-quantity-value="1" aria-pressed="true">
+                  <span class="mt-product-offer__check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.3 4.3L19 7.2"/></svg></span>
+                  <span class="mt-product-offer__copy"><b>1 unidad</b><small>Para tu rutina diaria</small></span>
+                  <span class="mt-product-offer__price" data-mt-offer-price="1">{{ current_variant.price | money }}</span>
+                </button>
+                <button class="mt-product-offer__card" type="button" data-mt-offer data-mt-quantity-value="2" aria-pressed="false">
+                  <span class="mt-product-offer__check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.3 4.3L19 7.2"/></svg></span>
+                  <span class="mt-product-offer__copy"><b>2 unidades</b><small>Casa + bolso, o para compartir</small></span>
+                  <span class="mt-product-offer__price"><strong data-mt-offer-price="2">{{ current_variant.price | times: 2 | money }}</strong><em data-mt-offer-unit-price>{{ current_variant.price | money }} c/u</em></span>
+                </button>
+              </div>
+            </div>
+            <button class="product-form__submit button button--full-width" type="submit" name="add" {% unless current_variant.available %}disabled{% endunless %}>
+              <span data-mt-submit-text>{% if current_variant.available %}{{ section.settings.button_text }}{% else %}{{ section.settings.sold_out_text }}{% endif %}</span>
+              {%- render 'loading-spinner' -%}
+            </button>
+          {%- endform -%}
+        </product-form>
+
+        <div class="mt-product-trust mt-reveal">
+          <div class="mt-product-trust__item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7zM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg><span>{{ section.settings.trust_1 }}</span></div>
+          <div class="mt-product-trust__item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg><span>{{ section.settings.trust_2 }}</span></div>
+          <div class="mt-product-trust__item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM4 9h16M8 14h3"/></svg><span>{{ section.settings.trust_3 }}</span></div>
+        </div>
+
+        <div class="mt-product-details mt-reveal">
+          <details open>
+            <summary><span>{{ section.settings.details_title }}</span><span>+</span></summary>
+            <div class="mt-product-details__content">
+              {%- if product.description != blank -%}{{ product.description }}{%- else -%}{{ section.settings.description_fallback | newline_to_br }}{%- endif -%}
+            </div>
+          </details>
+          <details>
+            <summary><span>{{ section.settings.features_title }}</span><span>+</span></summary>
+            <div class="mt-product-details__content mt-product-details__grid">
+              {%- for block in section.blocks -%}
+                <div class="mt-product-feature" {{ block.shopify_attributes }}><strong>{{ block.settings.title }}</strong><span>{{ block.settings.body }}</span></div>
+              {%- endfor -%}
+            </div>
+          </details>
+          <details>
+            <summary><span>{{ section.settings.includes_title }}</span><span>+</span></summary>
+            <div class="mt-product-details__content">
+              {%- assign include_items = section.settings.includes | newline_to_br | split: '<br />' -%}
+              <ul class="mt-product-includes">{%- for item in include_items -%}{%- assign clean_item = item | strip -%}{%- if clean_item != blank -%}<li>{{ clean_item }}</li>{%- endif -%}{%- endfor -%}</ul>
+            </div>
+          </details>
+        </div>
+
+        <script type="application/json" data-mt-variants-json>
+          [
+            {%- for variant in product.variants -%}
+              {
+                "id": {{ variant.id | json }},
+                "available": {{ variant.available | json }},
+                "options": {{ variant.options | json }},
+                "featuredMediaId": {% if variant.featured_media %}{{ variant.featured_media.id | json }}{% else %}null{% endif %},
+                "price": {{ variant.price | json }},
+                "priceFormatted": {{ variant.price | money | json }},
+                "compareAtPriceFormatted": {% if variant.compare_at_price and variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money | json }}{% else %}""{% endif %}
+              }{% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+          ]
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
+</product-component>
+
+{% schema %}
+{
+  "name": "MT – Producto completo",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "gallery_badge", "label": "Etiqueta sobre la galería", "default": "HELIO MINI · PORTÁTIL" },
+    { "type": "text", "id": "kicker", "label": "Antetítulo", "default": "FORMATO PORTÁTIL" },
+    { "type": "text", "id": "fallback_title", "label": "Título si no hay producto", "default": "Afeitadora Portátil Helio Mini" },
+    { "type": "textarea", "id": "intro", "label": "Introducción", "default": "Doble cabezal, carga USB y un cuerpo compacto para los retoques cotidianos, en casa o de viaje." },
+    { "type": "text", "id": "status_label", "label": "Estado destacado", "default": "DOS COLORES" },
+    { "type": "text", "id": "status_detail", "label": "Detalle del estado", "default": "Plateado o verde" },
+    { "type": "text", "id": "in_stock_text", "label": "Texto con stock", "default": "En stock" },
+    { "type": "text", "id": "out_of_stock_text", "label": "Texto sin stock", "default": "Agotado" },
+    { "type": "text", "id": "button_text", "label": "Texto para comprar", "default": "Agregar al carrito" },
+    { "type": "text", "id": "button_multiple_text", "label": "Texto para comprar más de una unidad", "default": "Agregar [cantidad] unidades al carrito" },
+    { "type": "text", "id": "sold_out_text", "label": "Texto cuando está agotado", "default": "Agotado" },
+    { "type": "text", "id": "unavailable_text", "label": "Texto cuando una combinación no existe", "default": "Combinación no disponible" },
+    { "type": "header", "content": "Distintivos y stock" },
+    { "type": "checkbox", "id": "show_viral", "label": "Mostrar distintivo de producto destacado", "default": true },
+    { "type": "text", "id": "viral_text", "label": "Texto del distintivo", "default": "PRODUCTO DESTACADO" },
+    { "type": "checkbox", "id": "show_stock", "label": "Mostrar unidades reales cuando queden pocas", "default": true },
+    { "type": "range", "id": "stock_threshold", "label": "Avisar cuando queden menos de…", "min": 3, "max": 60, "step": 1, "default": 25 },
+    { "type": "header", "content": "Confianza" },
+    { "type": "text", "id": "trust_1", "label": "Confianza 1", "default": "Envío informado al finalizar" },
+    { "type": "text", "id": "trust_2", "label": "Confianza 2", "default": "Stock según variante" },
+    { "type": "text", "id": "trust_3", "label": "Confianza 3", "default": "Checkout seguro" },
+    { "type": "header", "content": "Información desplegable" },
+    { "type": "text", "id": "details_title", "label": "Título de descripción", "default": "Descripción" },
+    { "type": "textarea", "id": "description_fallback", "label": "Descripción de respaldo", "default": "Una afeitadora eléctrica recargable y compacta para la rutina diaria y los viajes." },
+    { "type": "text", "id": "features_title", "label": "Título de características", "default": "Características" },
+    { "type": "text", "id": "includes_title", "label": "Título de contenido", "default": "Qué incluye" },
+    { "type": "textarea", "id": "includes", "label": "Contenido, un elemento por línea", "default": "1 afeitadora Helio Mini\nConexión de carga USB\nPresentación en caja" },
+    { "type": "header", "content": "Tipografía y espacio" },
+    { "type": "select", "id": "text_align", "label": "Alineación", "options": [{"value":"left","label":"Izquierda"},{"value":"center","label":"Centro"},{"value":"right","label":"Derecha"}], "default": "left" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 34, "max": 80, "step": 2, "unit": "px", "default": 58 },
+    { "type": "range", "id": "body_size", "label": "Tamaño del texto (px)", "min": 14, "max": 24, "step": 1, "unit": "px", "default": 17 },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#F4F7FA" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 112 }
+  ],
+  "blocks": [
+    {
+      "type": "caracteristica",
+      "name": "Característica",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Doble cabezal" },
+        { "type": "text", "id": "body", "label": "Texto", "default": "Dos superficies circulares de corte" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "MT – Producto completo", "blocks": [{"type":"caracteristica"},{"type":"caracteristica"},{"type":"caracteristica"},{"type":"caracteristica"}] }]
+}
+{% endschema %}

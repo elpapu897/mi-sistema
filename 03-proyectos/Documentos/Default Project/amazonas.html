@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Amazonas: un archivo visual sobre el bosque, el agua y la vida que sostiene la cuenca amazónica.">
+  <meta name="theme-color" content="#08150f">
+  <title>Amazonas — El bosque que piensa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #08150f;
+      --forest-soft: #10241a;
+      --forest-light: #183624;
+      --paper: #f1eee2;
+      --paper-deep: #e5e2d4;
+      --ink: #112018;
+      --moss: #93a96a;
+      --lime: #d5eb73;
+      --water: #8bc8b5;
+      --clay: #c9754d;
+      --cream: #e8ead9;
+      --muted: rgba(232, 234, 217, .68);
+      --muted-dark: rgba(17, 32, 24, .67);
+      --line: rgba(232, 234, 217, .18);
+      --line-dark: rgba(17, 32, 24, .18);
+      --display: "Crimson Pro", Georgia, serif;
+      --body: "Atkinson Hyperlegible", Arial, sans-serif;
+      --mono: "Space Mono", monospace;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--forest);
+      color: var(--cream);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    body.is-locked { overflow: hidden; }
+    ::selection { background: var(--lime); color: var(--forest); }
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: var(--forest); }
+    ::-webkit-scrollbar-thumb { background: var(--forest-light); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--moss); }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    img { display: block; max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--lime);
+      outline-offset: 5px;
+    }
+    section, header { scroll-margin-top: 82px; }
+    .mono {
+      font-family: var(--mono);
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Atmosphere */
+    .grain {
+      position: fixed;
+      inset: -50%;
+      z-index: 50;
+      width: 200%;
+      height: 200%;
+      pointer-events: none;
+      opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+      animation: grain 1.1s steps(3) infinite;
+    }
+    @keyframes grain {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(-2%, 1%); }
+      66% { transform: translate(1%, -2%); }
+    }
+    .scroll-progress {
+      position: fixed;
+      z-index: 101;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--lime);
+      box-shadow: 0 0 16px rgba(213, 235, 115, .7);
+      transition: width .1s linear;
+    }
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      background: var(--forest);
+      transition: opacity .65s ease, visibility .65s ease;
+    }
+    .preloader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+    .preloader-inner { width: min(320px, 72vw); text-align: center; }
+    .preloader-title {
+      margin-bottom: 1.8rem;
+      color: var(--cream);
+      font: 500 clamp(1.4rem, 5vw, 2.2rem)/1 var(--display);
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+    .preloader-line { height: 1px; overflow: hidden; background: var(--line); }
+    .preloader-line span { display: block; width: 0; height: 100%; background: var(--lime); transition: width .2s ease; }
+    .preloader-meta { margin-top: .8rem; color: var(--muted); }
+
+    /* Navigation */
+    .site-nav {
+      position: fixed;
+      z-index: 100;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 78px;
+      padding: 0 clamp(1.25rem, 5vw, 4.8rem);
+      transition: height .4s var(--ease), background .4s ease, border-color .4s ease;
+    }
+    .site-nav.is-scrolled {
+      height: 64px;
+      background: rgba(8, 21, 15, .86);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1280px, 100%);
+      height: 100%;
+      margin: auto;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+    }
+    .brand-symbol {
+      position: relative;
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--lime);
+      border-radius: 50%;
+    }
+    .brand-symbol::before,
+    .brand-symbol::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1px;
+      height: 130%;
+      content: "";
+      background: var(--lime);
+      transform: translate(-50%, -50%) rotate(38deg);
+    }
+    .brand-symbol::after { transform: translate(-50%, -50%) rotate(-38deg); }
+    .nav-links { display: flex; align-items: center; gap: clamp(1.3rem, 3vw, 3rem); }
+    .nav-links a {
+      position: relative;
+      padding: .55rem 0;
+      color: var(--muted);
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: color .25s ease;
+    }
+    .nav-links a::after {
+      position: absolute;
+      right: 100%;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--lime);
+      transition: right .4s var(--ease);
+    }
+    .nav-links a:hover,
+    .nav-links a.is-active { color: var(--cream); }
+    .nav-links a:hover::after,
+    .nav-links a.is-active::after { right: 0; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .65rem .95rem;
+      border: 1px solid rgba(213, 235, 115, .62);
+      color: var(--lime);
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: background .25s ease, color .25s ease;
+    }
+    .nav-cta:hover { color: var(--forest); background: var(--lime); }
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      background: transparent;
+      cursor: pointer;
+    }
+    .menu-toggle span { display: block; height: 1px; margin: 5px 0; background: var(--cream); transition: transform .3s ease, opacity .3s ease; }
+    .menu-toggle.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: min(920px, 100svh);
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      align-items: flex-end;
+      background: var(--forest);
+    }
+    .hero-photo {
+      position: absolute;
+      z-index: -3;
+      inset: -8% 0;
+      background:
+        linear-gradient(90deg, rgba(5, 16, 10, .88) 0%, rgba(5, 16, 10, .5) 46%, rgba(5, 16, 10, .16) 100%),
+        linear-gradient(0deg, var(--forest) 0%, rgba(8, 21, 15, .12) 42%, rgba(8, 21, 15, .48) 100%),
+        url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?q=85&w=2200&auto=format&fit=crop") center/cover no-repeat,
+        var(--forest-soft);
+      transform: scale(1.06);
+      will-change: transform;
+    }
+    .hero-vignette {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      background: radial-gradient(circle at 75% 35%, transparent 0, rgba(8, 21, 15, .12) 30%, rgba(8, 21, 15, .58) 100%);
+      pointer-events: none;
+    }
+    #fireflies { position: absolute; z-index: -1; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .hero-contour {
+      position: absolute;
+      z-index: -1;
+      top: 12%;
+      right: -5%;
+      width: min(46vw, 650px);
+      opacity: .28;
+      transform: rotate(10deg);
+      pointer-events: none;
+    }
+    .hero-contour path { fill: none; stroke: var(--lime); stroke-width: .8; }
+    .hero-coordinates { position: absolute; top: 30%; right: clamp(1.4rem, 6vw, 6rem); color: rgba(232, 234, 217, .54); writing-mode: vertical-rl; }
+    .hero-coordinates::before { display: block; width: 1px; height: 54px; margin: 0 auto 1rem; content: ""; background: linear-gradient(var(--lime), transparent); }
+    .hero-content { width: min(1280px, 100%); margin: auto; padding: 0 clamp(1.25rem, 8vw, 7.5rem) clamp(4rem, 9vh, 7rem); }
+    .eyebrow { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.8rem; color: var(--lime); }
+    .eyebrow::before { width: 46px; height: 1px; content: ""; background: currentColor; }
+    .hero-title {
+      max-width: 940px;
+      margin: 0;
+      color: var(--cream);
+      font: 500 clamp(4.2rem, 13.2vw, 12rem)/.79 var(--display);
+      letter-spacing: -.075em;
+    }
+    .hero-title em { color: var(--lime); font-style: italic; font-weight: 400; }
+    .hero-under {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 3rem;
+      max-width: 840px;
+      margin-top: 2.5rem;
+    }
+    .hero-description { max-width: 400px; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.72; }
+    .hero-description strong { color: var(--cream); font-weight: 700; }
+    .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .8rem;
+      min-height: 48px;
+      padding: .8rem 1.1rem;
+      border: 1px solid transparent;
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      transition: color .25s ease, background .25s ease, border-color .25s ease, transform .25s var(--ease);
+    }
+    .button svg { width: 16px; height: 16px; transition: transform .25s ease; }
+    .button:hover svg { transform: translateX(4px); }
+    .button-primary { color: var(--forest); background: var(--lime); }
+    .button-primary:hover { background: #e8f59b; transform: translateY(-2px); }
+    .button-ghost { border-color: rgba(232, 234, 217, .38); color: var(--cream); background: rgba(8, 21, 15, .22); backdrop-filter: blur(6px); }
+    .button-ghost:hover { border-color: var(--lime); color: var(--lime); transform: translateY(-2px); }
+    .hero-footer {
+      position: absolute;
+      right: clamp(1.25rem, 5vw, 4.8rem);
+      bottom: 2rem;
+      left: clamp(1.25rem, 5vw, 4.8rem);
+      display: flex;
+      justify-content: space-between;
+      color: rgba(232, 234, 217, .5);
+    }
+    .scroll-prompt { display: flex; align-items: center; gap: .8rem; }
+    .scroll-prompt span { display: inline-block; width: 42px; height: 1px; background: var(--lime); animation: pulseLine 1.8s ease-in-out infinite; }
+    @keyframes pulseLine { 0%, 100% { transform: scaleX(.45); transform-origin: left; opacity: .35; } 50% { transform: scaleX(1); opacity: 1; } }
+
+    /* Shared layout */
+    .marquee { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--forest); }
+    .marquee-track { display: flex; width: max-content; animation: marquee 32s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-item { display: flex; align-items: center; gap: 2.8rem; padding: 1.15rem 0 1.15rem 2.8rem; color: var(--cream); white-space: nowrap; }
+    .marquee-item.outline { color: transparent; -webkit-text-stroke: 1px rgba(213, 235, 115, .72); }
+    .marquee-item::after { width: 5px; height: 5px; content: ""; border-radius: 50%; background: var(--clay); }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    .section { padding: clamp(5.5rem, 11vw, 10rem) clamp(1.25rem, 7vw, 7rem); }
+    .container { width: min(1200px, 100%); margin: auto; }
+    .section-kicker { display: flex; align-items: center; gap: .9rem; margin: 0 0 1.35rem; color: var(--moss); }
+    .section-kicker::before { width: 44px; height: 1px; content: ""; background: currentColor; }
+    .section-title { max-width: 850px; margin: 0; color: var(--cream); font: 500 clamp(3rem, 6.7vw, 6.6rem)/.9 var(--display); letter-spacing: -.06em; }
+    .section-title em { color: var(--lime); font-style: italic; font-weight: 400; }
+    .section-lead { max-width: 590px; margin: 1.6rem 0 0; color: var(--muted); font-size: 1.03rem; line-height: 1.75; }
+    .reveal { opacity: 0; transform: translateY(34px); transition: opacity .9s ease, transform .9s var(--ease); transition-delay: var(--delay, 0s); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Key numbers */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; width: min(1200px, 100%); margin: auto; padding: clamp(4rem, 8vw, 6.5rem) clamp(1.25rem, 7vw, 7rem); }
+    .stat { position: relative; padding: 0 1.6rem; }
+    .stat:first-child { padding-left: 0; }
+    .stat:last-child { padding-right: 0; }
+    .stat + .stat { border-left: 1px solid var(--line); }
+    .stat-number { display: block; margin-bottom: .65rem; color: var(--lime); font: 500 clamp(2.7rem, 5vw, 4.7rem)/.9 var(--display); letter-spacing: -.05em; }
+    .stat-label { display: block; max-width: 150px; color: var(--muted); font-size: .73rem; line-height: 1.45; }
+
+    /* Origin */
+    .origin { background: var(--forest); }
+    .origin-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: clamp(3rem, 9vw, 9rem); align-items: center; margin-top: 4.6rem; }
+    .origin-visual { position: relative; min-height: 560px; }
+    .origin-image { position: absolute; inset: 0 12% 0 0; overflow: hidden; background: var(--forest-soft); }
+    .origin-image::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, transparent 45%, rgba(8, 21, 15, .84) 100%); }
+    .origin-image > div { position: absolute; inset: -8%; background: url("https://images.unsplash.com/photo-1448375240586-882707db888b?q=85&w=1500&auto=format&fit=crop") center/cover no-repeat; transition: transform 1.2s var(--ease); }
+    .origin-visual:hover .origin-image > div { transform: scale(1.06); }
+    .image-caption { position: absolute; z-index: 1; right: 1.6rem; bottom: 1.4rem; left: 1.6rem; display: flex; align-items: center; gap: .7rem; color: var(--cream); }
+    .image-caption::before { width: 28px; height: 1px; content: ""; background: var(--lime); }
+    .origin-frame { position: absolute; z-index: -1; inset: 4% 6% -4% 6%; border: 1px solid rgba(213, 235, 115, .38); }
+    .origin-stamp { position: absolute; top: 2rem; right: 0; display: grid; place-items: center; width: 108px; height: 108px; padding: 1rem; border: 1px solid var(--lime); border-radius: 50%; color: var(--lime); text-align: center; transform: rotate(12deg); }
+    .origin-stamp::before { position: absolute; inset: 7px; border: 1px dashed rgba(213, 235, 115, .55); border-radius: inherit; content: ""; }
+    .origin-text p { margin: 0 0 1.35rem; color: var(--muted); line-height: 1.78; }
+    .origin-text strong { color: var(--cream); font-weight: 700; }
+    .field-notes { display: grid; gap: 0; margin-top: 2.4rem; border-top: 1px solid var(--line); }
+    .field-note { display: grid; grid-template-columns: 76px 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+    .field-note b { color: var(--lime); font-family: var(--mono); font-size: .69rem; letter-spacing: .08em; }
+
+    /* Biodiversity */
+    .biodiversity { color: var(--ink); background: var(--paper); }
+    .biodiversity .section-kicker { color: var(--clay); }
+    .biodiversity .section-title { color: var(--ink); }
+    .biodiversity .section-title em { color: #718f4e; }
+    .biodiversity .section-lead { color: var(--muted-dark); }
+    .species-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 4rem; }
+    .species-card { position: relative; min-height: 500px; overflow: hidden; color: var(--cream); background: var(--forest); }
+    .species-card::after { position: absolute; inset: 0; content: ""; background: linear-gradient(0deg, rgba(5, 16, 10, .93), transparent 63%); }
+    .species-card-image { position: absolute; inset: 0; background-position: center; background-size: cover; filter: saturate(.8); transition: transform 1s var(--ease), filter .7s ease; }
+    .species-card:hover .species-card-image { filter: saturate(1.05); transform: scale(1.07); }
+    .species-card:nth-child(1) .species-card-image { background-image: url("https://images.unsplash.com/photo-1549366021-9f761d450615?q=85&w=1100&auto=format&fit=crop"); }
+    .species-card:nth-child(2) .species-card-image { background-image: url("https://images.unsplash.com/photo-1555169062-013468b47731?q=85&w=1100&auto=format&fit=crop"); }
+    .species-card:nth-child(3) .species-card-image { background-image: url("https://images.unsplash.com/photo-1544550285-f813152fb2bf?q=85&w=1100&auto=format&fit=crop"); }
+    .species-content { position: absolute; z-index: 1; right: 1.5rem; bottom: 1.5rem; left: 1.5rem; }
+    .species-index { display: block; margin-bottom: .7rem; color: var(--lime); }
+    .species-content h3 { margin: 0 0 .35rem; font: 500 2.1rem/1 var(--display); }
+    .species-content p { max-width: 260px; margin: 0; color: rgba(232, 234, 217, .7); font-size: .84rem; }
+    .species-arrow { position: absolute; z-index: 2; top: 1.3rem; right: 1.3rem; display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid rgba(232, 234, 217, .48); border-radius: 50%; color: var(--cream); font-size: 1.1rem; transition: background .25s ease, color .25s ease, transform .35s var(--ease); }
+    .species-card:hover .species-arrow { color: var(--forest); background: var(--lime); transform: rotate(45deg); }
+    .species-footnote { display: flex; justify-content: space-between; gap: 2rem; margin-top: 1.2rem; color: var(--muted-dark); font-size: .76rem; }
+
+    /* River chapter */
+    .river-chapter { position: relative; min-height: 760px; display: flex; align-items: center; overflow: hidden; isolation: isolate; }
+    .river-photo { position: absolute; z-index: -2; inset: -10% 0; background: linear-gradient(90deg, rgba(8, 21, 15, .96) 0%, rgba(8, 21, 15, .68) 48%, rgba(8, 21, 15, .18) 100%), linear-gradient(0deg, var(--forest) 0%, transparent 30%), url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=85&w=2200&auto=format&fit=crop") center/cover no-repeat, var(--forest-soft); will-change: transform; }
+    .river-chapter::after { position: absolute; z-index: -1; inset: 0; content: ""; background: linear-gradient(90deg, transparent, rgba(139, 200, 181, .06)); pointer-events: none; }
+    .river-grid { display: grid; grid-template-columns: 1fr .82fr; gap: clamp(3rem, 8vw, 9rem); align-items: center; }
+    .river-copy .section-kicker { color: var(--water); }
+    .river-copy p { max-width: 470px; margin: 1.8rem 0 0; color: var(--muted); line-height: 1.82; }
+    .river-copy strong { color: var(--cream); }
+    .river-map { position: relative; min-height: 440px; padding: 2rem; border: 1px solid rgba(139, 200, 181, .28); background: rgba(8, 21, 15, .32); backdrop-filter: blur(9px); }
+    .river-map svg { position: absolute; inset: 12% 17% 8% 20%; width: 65%; height: 80%; overflow: visible; }
+    .river-map .main-river { fill: none; stroke: var(--water); stroke-width: 2; stroke-dasharray: 5 5; animation: dash 18s linear infinite; }
+    .river-map .tributary { fill: none; stroke: rgba(139, 200, 181, .46); stroke-width: 1; }
+    @keyframes dash { to { stroke-dashoffset: -100; } }
+    .map-point { position: absolute; display: flex; align-items: center; gap: .5rem; color: var(--cream); }
+    .map-point::before { width: 7px; height: 7px; content: ""; border: 1px solid var(--water); border-radius: 50%; box-shadow: 0 0 0 5px rgba(139, 200, 181, .1); }
+    .map-point span { color: var(--muted); }
+    .map-point.source { top: 20%; right: 18%; }
+    .map-point.middle { top: 49%; left: 13%; }
+    .map-point.end { right: 12%; bottom: 14%; }
+    .river-distance { position: absolute; right: 1.4rem; bottom: 1.4rem; left: 1.4rem; padding-top: 1rem; border-top: 1px solid rgba(139, 200, 181, .25); }
+    .river-distance strong { display: block; color: var(--water); font: 500 clamp(3rem, 7vw, 5.8rem)/.85 var(--display); letter-spacing: -.06em; }
+    .river-distance span { display: block; margin-top: .55rem; color: var(--muted); font-size: .78rem; }
+
+    /* Data cards */
+    .data-section { background: var(--forest-soft); }
+    .data-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 4rem; border: 1px solid var(--line); background: var(--line); }
+    .data-card { min-height: 265px; padding: 2rem; background: var(--forest-soft); transition: background .3s ease, transform .3s var(--ease); }
+    .data-card:hover { position: relative; z-index: 1; background: var(--forest-light); transform: translateY(-5px); }
+    .data-number { margin-bottom: 2.8rem; color: transparent; font: 500 2.8rem/1 var(--display); -webkit-text-stroke: 1px rgba(213, 235, 115, .65); }
+    .data-card h3 { margin: 0 0 .55rem; color: var(--cream); font: 500 1.65rem/1 var(--display); }
+    .data-card p { margin: 0; color: var(--muted); font-size: .87rem; line-height: 1.7; }
+    .data-tag { display: inline-block; margin-top: 1.5rem; padding: .35rem .7rem; border: 1px solid rgba(139, 200, 181, .35); color: var(--water); }
+
+    /* Gallery */
+    .gallery { background: var(--paper); color: var(--ink); }
+    .gallery .section-kicker { color: var(--clay); }
+    .gallery .section-title { color: var(--ink); }
+    .gallery .section-title em { color: #718f4e; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 1rem; margin-top: 4rem; }
+    .gallery-tile { position: relative; overflow: hidden; min-height: 220px; background: var(--forest-soft); }
+    .gallery-tile.wide { grid-column: span 2; }
+    .gallery-tile.tall { grid-row: span 2; }
+    .gallery-image { position: absolute; inset: 0; background-position: center; background-size: cover; filter: saturate(.84); transition: transform 1s var(--ease), filter .6s ease; }
+    .gallery-tile:hover .gallery-image { filter: saturate(1.08); transform: scale(1.08); }
+    .gallery-tile:nth-child(1) .gallery-image { background-image: url("https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?q=85&w=1500&auto=format&fit=crop"); }
+    .gallery-tile:nth-child(2) .gallery-image { background-image: url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=85&w=1100&auto=format&fit=crop"); }
+    .gallery-tile:nth-child(3) .gallery-image { background-image: url("https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?q=85&w=1200&auto=format&fit=crop"); }
+    .gallery-tile:nth-child(4) .gallery-image { background-image: url("https://images.unsplash.com/photo-1473445361085-b9a07f55608b?q=85&w=1100&auto=format&fit=crop"); }
+    .gallery-tile:nth-child(5) .gallery-image { background-image: url("https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=85&w=1500&auto=format&fit=crop"); }
+    .gallery-tile:nth-child(6) .gallery-image { background-image: url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=85&w=1100&auto=format&fit=crop"); }
+    .gallery-tile::after { position: absolute; inset: 0; content: ""; background: linear-gradient(0deg, rgba(8, 21, 15, .8), transparent 55%); pointer-events: none; }
+    .gallery-caption { position: absolute; z-index: 1; right: 1.2rem; bottom: 1.1rem; left: 1.2rem; color: var(--cream); }
+    .gallery-caption strong { display: block; font: 500 1.4rem/1 var(--display); }
+    .gallery-caption span { display: block; margin-top: .25rem; color: rgba(232, 234, 217, .65); font-size: .69rem; letter-spacing: .12em; text-transform: uppercase; }
+
+    /* Timeline */
+    .timeline-section { background: var(--forest); }
+    .timeline-wrap { max-width: 880px; margin: 4.5rem auto 0; }
+    .timeline { position: relative; padding-left: clamp(2.4rem, 8vw, 5.5rem); }
+    .timeline-track { position: absolute; top: 7px; bottom: 7px; left: 0; width: 1px; background: var(--line); }
+    .timeline-fill { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(var(--lime), var(--water)); transform: scaleY(0); transform-origin: top; transition: transform 1.2s var(--ease); }
+    .timeline.is-visible .timeline-fill { transform: scaleY(1); }
+    .timeline-item { position: relative; padding-bottom: 3.6rem; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot { position: absolute; top: 6px; left: clamp(-2.4rem, -8vw, -5.5rem); width: 14px; height: 14px; border: 2px solid var(--lime); border-radius: 50%; background: var(--forest); transform: translateX(-6px); box-shadow: 0 0 0 6px rgba(213, 235, 115, .08); }
+    .timeline-year { margin-bottom: .6rem; color: var(--lime); font: 500 clamp(2.4rem, 5vw, 4rem)/.9 var(--display); letter-spacing: -.05em; }
+    .timeline-item h3 { margin: 0 0 .45rem; color: var(--cream); font: 700 1.1rem/1.2 var(--body); }
+    .timeline-item p { max-width: 620px; margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.75; }
+
+    /* Final statement */
+    .closing { color: var(--forest); background: var(--lime); }
+    .closing .section { padding-top: clamp(5.5rem, 11vw, 10rem); padding-bottom: clamp(5.5rem, 11vw, 10rem); text-align: center; }
+    .closing .section-kicker { justify-content: center; color: var(--forest); opacity: .68; }
+    .closing .section-kicker::before { background: currentColor; }
+    .closing h2 { max-width: 950px; margin: auto; font: 500 clamp(3.8rem, 10vw, 9.5rem)/.8 var(--display); letter-spacing: -.075em; }
+    .closing h2 em { font-style: italic; }
+    .closing p { max-width: 450px; margin: 1.7rem auto 2rem; color: rgba(8, 21, 15, .72); line-height: 1.7; }
+    .closing .button { border-color: var(--forest); color: var(--lime); background: var(--forest); }
+    .closing .button:hover { color: var(--forest); background: transparent; }
+    .closing-seal { display: grid; place-items: center; width: 80px; height: 80px; margin: 3.5rem auto 0; border: 1px solid rgba(8, 21, 15, .5); border-radius: 50%; font-size: 1.5rem; }
+    footer { padding: 2.2rem clamp(1.25rem, 7vw, 7rem); color: rgba(232, 234, 217, .48); background: var(--forest); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; width: min(1200px, 100%); margin: auto; }
+    .footer-links { display: flex; gap: 1.7rem; flex-wrap: wrap; }
+    .footer-links a { font-size: .67rem; letter-spacing: .12em; text-transform: uppercase; transition: color .25s ease; }
+    .footer-links a:hover { color: var(--lime); }
+
+    /* Cursor only appears on devices that support hover */
+    .cursor-dot, .cursor-ring { position: fixed; z-index: 200; top: 0; left: 0; display: none; pointer-events: none; border-radius: 50%; transform: translate(-50%, -50%); }
+    html.has-cursor .cursor-dot, html.has-cursor .cursor-ring { display: block; }
+    html.has-cursor, html.has-cursor * { cursor: none !important; }
+    .cursor-dot { width: 5px; height: 5px; background: var(--lime); }
+    .cursor-ring { width: 34px; height: 34px; border: 1px solid rgba(213, 235, 115, .55); transition: width .3s ease, height .3s ease, background .3s ease; }
+    .cursor-ring.is-hovering { width: 62px; height: 62px; background: rgba(213, 235, 115, .1); }
+
+    @media (max-width: 900px) {
+      .nav-links { gap: 1rem; }
+      .nav-cta { display: none; }
+      .origin-grid, .river-grid { grid-template-columns: 1fr; }
+      .origin-visual { min-height: 500px; }
+      .river-chapter { min-height: auto; }
+      .river-map { min-height: 420px; margin-top: 1rem; }
+      .data-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-tile.wide { grid-column: span 2; }
+    }
+    @media (max-width: 680px) {
+      .site-nav { height: 68px; }
+      .site-nav.is-scrolled { height: 60px; }
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        background: rgba(8, 21, 15, .97);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-12px);
+        transition: opacity .35s ease, transform .35s ease;
+      }
+      .nav-links.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+      .nav-links a { color: var(--cream); font-size: .85rem; }
+      .brand, .menu-toggle { position: relative; z-index: 3; }
+      .menu-toggle { display: block; }
+      .hero { min-height: 760px; }
+      .hero-photo { background-position: 64% center; }
+      .hero-contour { top: 20%; right: -35%; width: 90vw; }
+      .hero-coordinates { display: none; }
+      .hero-content { padding-bottom: 5.2rem; }
+      .hero-title { font-size: clamp(4.25rem, 20vw, 8.7rem); }
+      .hero-under { display: block; margin-top: 2rem; }
+      .hero-actions { margin-top: 1.5rem; }
+      .hero-footer { bottom: 1.25rem; }
+      .hero-footer > span:first-child { display: none; }
+      .stats { grid-template-columns: 1fr 1fr; row-gap: 2.5rem; }
+      .stat { padding: 0 1rem; }
+      .stat:nth-child(3) { padding-left: 0; }
+      .stat:nth-child(3), .stat:nth-child(4) { padding-top: 2.5rem; border-top: 1px solid var(--line); }
+      .stat:nth-child(3) { border-left: 0; }
+      .stat:nth-child(4) { border-left: 1px solid var(--line); }
+      .species-grid, .data-grid { grid-template-columns: 1fr; }
+      .species-card { min-height: 410px; }
+      .species-footnote { display: block; }
+      .species-footnote span + span { display: block; margin-top: .5rem; }
+      .origin-visual { min-height: 420px; }
+      .origin-image { right: 0; }
+      .origin-frame { display: none; }
+      .origin-stamp { top: -1.2rem; right: .75rem; width: 86px; height: 86px; }
+      .river-map { min-height: 360px; padding: 1.2rem; }
+      .river-map svg { inset: 12% 10% 9% 16%; width: 75%; }
+      .map-point.source { right: 5%; }
+      .map-point.middle { left: 3%; }
+      .map-point.end { right: 4%; }
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 260px; }
+      .gallery-tile, .gallery-tile.wide, .gallery-tile.tall { grid-column: auto; grid-row: auto; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+      .timeline-fill { transform: scaleY(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-title">Amazonas</div>
+      <div class="preloader-line"><span id="loaderBar"></span></div>
+      <div class="preloader-meta mono" id="loaderText">Cargando archivo / 0%</div>
+    </div>
+  </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <nav class="site-nav" id="siteNav" aria-label="Navegación principal">
+    <div class="nav-inner">
+      <a class="brand" href="#inicio" aria-label="Amazonas, volver al inicio"><span class="brand-symbol" aria-hidden="true"></span> AMAZONAS</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#origen">Origen</a>
+        <a href="#vida">Vida</a>
+        <a href="#rio">El río</a>
+        <a href="#archivo">Archivo</a>
+      </div>
+      <a class="nav-cta" href="#proteger">Cuidar <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero" id="inicio">
+      <div class="hero-photo" id="heroPhoto" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <canvas id="fireflies" aria-hidden="true"></canvas>
+      <svg class="hero-contour" viewBox="0 0 500 600" aria-hidden="true">
+        <path d="M232 22c-40 28-12 69-54 92s-73 4-80 48 50 51 19 86-73 36-49 80 80 22 78 68-55 79-7 106 81-22 105 30 70 44 89 9-5-74 34-101 76-19 60-65-57-38-45-79 66-67 21-95-77-13-80-57 17-91-19-122z"/>
+        <path d="M230 67c-22 69-24 118 1 182s-21 91 21 152 15 106-10 159"/>
+        <path d="M102 231c76 35 143 7 227 56s102 47 128 30"/>
+        <path d="M78 381c82-4 124 45 198 33s98-68 162-67"/>
+      </svg>
+      <p class="hero-coordinates mono">03° 27′ S / 60° 00′ O</p>
+      <div class="hero-content">
+        <p class="eyebrow mono">Cuaderno de campo / cuenca amazónica</p>
+        <h1 class="hero-title">El bosque<br>que <em>piensa.</em></h1>
+        <div class="hero-under">
+          <p class="hero-description">Un territorio vivo, húmedo y antiguo. <strong>Una red de agua, raíces y especies</strong> que respira más allá de cualquier frontera.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#origen">Abrir el archivo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-ghost" href="#vida">Ver la vida</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-footer mono"><span>Archivo vivo / edición 01</span><span class="scroll-prompt"><span aria-hidden="true"></span> Desliza para explorar</span></div>
+    </header>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item mono">8 países conectados</span>
+        <span class="marquee-item outline mono">6,7 millones de km²</span>
+        <span class="marquee-item mono">Un río que escribe el paisaje</span>
+        <span class="marquee-item outline mono">Más de 40.000 plantas</span>
+        <span class="marquee-item mono">8 países conectados</span>
+        <span class="marquee-item outline mono">6,7 millones de km²</span>
+        <span class="marquee-item mono">Un río que escribe el paisaje</span>
+        <span class="marquee-item outline mono">Más de 40.000 plantas</span>
+      </div>
+    </div>
+
+    <section class="stats" aria-label="Cifras principales">
+      <div class="stat reveal" style="--delay:.05s"><span class="stat-number" data-target="6.7" data-suffix=" M">0</span><span class="stat-label">km² de cuenca amazónica</span></div>
+      <div class="stat reveal" style="--delay:.15s"><span class="stat-number" data-target="40" data-suffix="k">0</span><span class="stat-label">especies de plantas registradas</span></div>
+      <div class="stat reveal" style="--delay:.25s"><span class="stat-number" data-target="2200" data-format="true">0</span><span class="stat-label">especies de peces en sus aguas</span></div>
+      <div class="stat reveal" style="--delay:.35s"><span class="stat-number" data-target="9">0</span><span class="stat-label">países unidos por el sistema fluvial</span></div>
+    </section>
+
+    <section class="section origin" id="origen">
+      <div class="container">
+        <p class="section-kicker mono reveal">01 / El origen</p>
+        <h2 class="section-title reveal" style="--delay:.1s">La selva no es un lugar.<br>Es una <em>forma de tiempo.</em></h2>
+        <div class="origin-grid">
+          <div class="origin-visual reveal" style="--delay:.18s">
+            <div class="origin-image"><div></div><p class="image-caption mono">Dosel amazónico / luz de mañana</p></div>
+            <div class="origin-frame" aria-hidden="true"></div>
+            <div class="origin-stamp mono" aria-hidden="true">VIVO<br>DESDE<br>SIEMPRE</div>
+          </div>
+          <div class="origin-text reveal" style="--delay:.28s">
+            <p>Durante millones de años, el Amazonas ha tejido una red de agua, raíces y memoria. No es un paisaje inmóvil: es <strong>un sistema que se adapta, intercambia y se regenera</strong> a cada instante.</p>
+            <p>La cuenca reúne bosques inundables, sabanas, pantanos y montañas. Cada ecosistema tiene su propio ritmo, pero todos comparten una misma corriente.</p>
+            <div class="field-notes" aria-label="Notas de campo">
+              <div class="field-note"><b>01 / AGUA</b><span>El ciclo de lluvias del bosque alimenta ríos que atraviesan todo el continente.</span></div>
+              <div class="field-note"><b>02 / SUELO</b><span>Las raíces sostienen una conversación subterránea entre árboles, hongos y nutrientes.</span></div>
+              <div class="field-note"><b>03 / TIEMPO</b><span>Muchas especies siguen esperando ser observadas, nombradas y comprendidas.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section biodiversity" id="vida">
+      <div class="container">
+        <p class="section-kicker mono reveal">02 / Vida extraordinaria</p>
+        <h2 class="section-title reveal" style="--delay:.1s">Pequeños universos<br>en cada <em>hoja.</em></h2>
+        <p class="section-lead reveal" style="--delay:.18s">La biodiversidad no vive solamente en los grandes animales. También está en la textura de una hoja, en un sonido nocturno y en el color exacto de una flor.</p>
+        <div class="species-grid">
+          <article class="species-card reveal" style="--delay:.12s">
+            <div class="species-card-image" role="img" aria-label="Rana tropical entre el follaje"></div>
+            <span class="species-arrow" aria-hidden="true">↗</span>
+            <div class="species-content"><span class="species-index mono">01 / Anfibios</span><h3>La mirada nocturna</h3><p>Colores que advierten. Silencios que protegen.</p></div>
+          </article>
+          <article class="species-card reveal" style="--delay:.22s">
+            <div class="species-card-image" role="img" aria-label="Ave tropical sobre una rama"></div>
+            <span class="species-arrow" aria-hidden="true">↗</span>
+            <div class="species-content"><span class="species-index mono">02 / Aves</span><h3>El pulso del dosel</h3><p>Un territorio dibujado desde las alturas.</p></div>
+          </article>
+          <article class="species-card reveal" style="--delay:.32s">
+            <div class="species-card-image" role="img" aria-label="Felino entre la vegetación del bosque"></div>
+            <span class="species-arrow" aria-hidden="true">↗</span>
+            <div class="species-content"><span class="species-index mono">03 / Felinos</span><h3>El guardián dorado</h3><p>La fuerza de la selva camina sin hacer ruido.</p></div>
+          </article>
+        </div>
+        <div class="species-footnote mono reveal" style="--delay:.4s"><span>La vida no se cuenta solo en cifras</span><span>Se escucha / se observa / se protege</span></div>
+      </div>
+    </section>
+
+    <section class="river-chapter" id="rio">
+      <div class="river-photo" id="riverPhoto" aria-hidden="true"></div>
+      <div class="section container river-grid">
+        <div class="river-copy">
+          <p class="section-kicker mono reveal">03 / El río</p>
+          <h2 class="section-title reveal" style="--delay:.1s">Todo vuelve<br>al <em>agua.</em></h2>
+          <p class="reveal" style="--delay:.18s">El Amazonas no solo atraviesa el bosque: lo alimenta, lo conecta y lo transforma. <strong>Cada afluente es una arteria</strong> de un sistema que regula el clima de todo un continente.</p>
+        </div>
+        <div class="river-map reveal" style="--delay:.25s" aria-label="Diagrama del recorrido del río Amazonas">
+          <svg viewBox="0 0 260 400" fill="none" aria-hidden="true">
+            <path class="tributary" d="M31 52c45 39 40 87 74 113s44 49 38 96 21 74 71 111"/>
+            <path class="tributary" d="M224 77c-48 32-78 65-79 116s-36 72-82 103"/>
+            <path class="tributary" d="M56 14c33 54 47 82 32 140s18 94 55 121 60 65 54 111"/>
+            <path class="main-river" d="M132 21c-8 47 27 83 10 124s-38 70-10 110 8 80 33 124"/>
+          </svg>
+          <div class="map-point source mono"><span>Andes</span></div>
+          <div class="map-point middle mono"><span>Cuenca</span></div>
+          <div class="map-point end mono"><span>Atlántico</span></div>
+          <div class="river-distance"><strong>6.400 km</strong><span>de recorrido aproximado desde las montañas hasta el océano.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section data-section" id="archivo">
+      <div class="container">
+        <p class="section-kicker mono reveal">04 / El archivo</p>
+        <h2 class="section-title reveal" style="--delay:.1s">Una inteligencia<br><em>hecha de relaciones.</em></h2>
+        <p class="section-lead reveal" style="--delay:.18s">Cada dato es apenas una puerta. El verdadero valor del Amazonas está en las conexiones invisibles que hacen posible la vida.</p>
+        <div class="data-grid">
+          <article class="data-card reveal" style="--delay:.1s"><div class="data-number">01</div><h3>La lluvia viaja</h3><p>Los árboles liberan humedad a la atmósfera y ayudan a formar nuevas lluvias lejos de la costa.</p><span class="data-tag mono">Ciclo del agua</span></article>
+          <article class="data-card reveal" style="--delay:.18s"><div class="data-number">02</div><h3>El bosque escucha</h3><p>Ranas, aves e insectos construyen una banda sonora que cambia con la hora, la estación y el nivel del río.</p><span class="data-tag mono">Señales vivas</span></article>
+          <article class="data-card reveal" style="--delay:.26s"><div class="data-number">03</div><h3>El suelo recuerda</h3><p>Las inundaciones transportan sedimentos y nutrientes, renovando territorios que respiran con cada crecida.</p><span class="data-tag mono">Territorio</span></article>
+          <article class="data-card reveal" style="--delay:.12s"><div class="data-number">04</div><h3>La noche cambia todo</h3><p>Cuando cae el sol aparece otra selva: depredadores, polinizadores y criaturas que solo existen en la oscuridad.</p><span class="data-tag mono">Ritmos</span></article>
+          <article class="data-card reveal" style="--delay:.2s"><div class="data-number">05</div><h3>La memoria es humana</h3><p>Los pueblos amazónicos guardan conocimientos sobre plantas, ríos y estaciones transmitidos durante generaciones.</p><span class="data-tag mono">Cultura</span></article>
+          <article class="data-card reveal" style="--delay:.28s"><div class="data-number">06</div><h3>Proteger es conectar</h3><p>Conservar un árbol, un afluente o una especie significa cuidar una red completa, no una pieza aislada.</p><span class="data-tag mono">Futuro</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery" id="galeria">
+      <div class="container">
+        <p class="section-kicker mono reveal">05 / Miradas del bosque</p>
+        <h2 class="section-title reveal" style="--delay:.1s">Un paisaje que<br>nunca se <em>repite.</em></h2>
+        <div class="gallery-grid">
+          <figure class="gallery-tile wide reveal" style="--delay:.1s"><div class="gallery-image"></div><figcaption class="gallery-caption"><strong>El dosel</strong><span>Una ciudad verde desde arriba</span></figcaption></figure>
+          <figure class="gallery-tile reveal" style="--delay:.18s"><div class="gallery-image"></div><figcaption class="gallery-caption"><strong>Raíces</strong><span>La arquitectura del suelo</span></figcaption></figure>
+          <figure class="gallery-tile tall reveal" style="--delay:.24s"><div class="gallery-image"></div><figcaption class="gallery-caption"><strong>Vertical</strong><span>La selva crece en capas</span></figcaption></figure>
+          <figure class="gallery-tile reveal" style="--delay:.1s"><div class="gallery-image"></div><figcaption class="gallery-caption"><strong>Humedad</strong><span>La luz también tiene textura</span></figcaption></figure>
+          <figure class="gallery-tile wide reveal" style="--delay:.18s"><div class="gallery-image"></div><figcaption class="gallery-caption"><strong>El pulso del agua</strong><span>Donde el bosque aprende a moverse</span></figcaption></figure>
+          <figure class="gallery-tile reveal" style="--delay:.24s"><div class="gallery-image"></div><figcaption class="gallery-caption"><strong>Horizonte</strong><span>Un territorio sin final visible</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section timeline-section" id="memoria">
+      <div class="container">
+        <p class="section-kicker mono reveal">06 / Memoria viva</p>
+        <h2 class="section-title reveal" style="--delay:.1s">El bosque cambia.<br>La historia <em>continúa.</em></h2>
+        <div class="timeline-wrap">
+          <div class="timeline" id="timeline">
+            <div class="timeline-track"><div class="timeline-fill"></div></div>
+            <article class="timeline-item reveal"><div class="timeline-dot"></div><div class="timeline-year">4.000+</div><h3>Lenguas y culturas</h3><p>La Amazonía es hogar de cientos de pueblos y de un patrimonio de conocimientos que sigue vivo en sus territorios.</p></article>
+            <article class="timeline-item reveal" style="--delay:.12s"><div class="timeline-dot"></div><div class="timeline-year">1541</div><h3>El río entra en los mapas europeos</h3><p>La expedición de Francisco de Orellana recorre el gran río, aunque sus aguas y caminos ya eran conocidos por sus pueblos originarios.</p></article>
+            <article class="timeline-item reveal" style="--delay:.24s"><div class="timeline-dot"></div><div class="timeline-year">Hoy</div><h3>Un laboratorio para el futuro</h3><p>La investigación, la conservación y las comunidades locales abren nuevas formas de proteger una de las redes de vida más complejas del planeta.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="proteger">
+      <div class="section">
+        <div class="container">
+          <p class="section-kicker mono reveal">07 / El futuro</p>
+          <h2 class="reveal" style="--delay:.1s">Lo que cuidamos<br><em>permanece.</em></h2>
+          <p class="reveal" style="--delay:.2s">La historia del Amazonas todavía se está escribiendo. También depende de nosotros cómo termina cada capítulo.</p>
+          <a class="button reveal" style="--delay:.28s" href="#inicio">Volver al inicio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+          <div class="closing-seal reveal mono" style="--delay:.36s" aria-hidden="true">AM / 01</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="mono">Amazonas / Archivo vivo</span>
+      <div class="footer-links"><a href="#origen">Origen</a><a href="#vida">Vida</a><a href="#rio">El río</a><a href="#galeria">Galería</a></div>
+      <span class="mono">03° 27′ S / 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const nav = document.getElementById('siteNav');
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const progress = document.getElementById('scrollProgress');
+      const heroPhoto = document.getElementById('heroPhoto');
+      const riverPhoto = document.getElementById('riverPhoto');
+
+      /* Loading screen: short enough to feel intentional, never blocks the page. */
+      const preloader = document.getElementById('preloader');
+      const loaderBar = document.getElementById('loaderBar');
+      const loaderText = document.getElementById('loaderText');
+      if (reduceMotion) {
+        preloader.remove();
+      } else {
+        const started = performance.now();
+        const tickLoader = now => {
+          const elapsed = Math.min(now - started, 900);
+          const amount = Math.round((elapsed / 900) * 100);
+          loaderBar.style.width = amount + '%';
+          loaderText.textContent = 'Cargando archivo / ' + amount + '%';
+          if (amount < 100) requestAnimationFrame(tickLoader);
+          else setTimeout(() => preloader.classList.add('is-done'), 120);
+        };
+        requestAnimationFrame(tickLoader);
+      }
+
+      const closeMenu = () => {
+        navLinks.classList.remove('is-open');
+        menuToggle.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Abrir menú');
+        document.body.classList.remove('is-locked');
+      };
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('is-open');
+        menuToggle.classList.toggle('is-open', isOpen);
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+        document.body.classList.toggle('is-locked', isOpen);
+      });
+      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+      let scrollTicking = false;
+      const updateScroll = () => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const amount = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+        progress.style.width = amount + '%';
+        nav.classList.toggle('is-scrolled', window.scrollY > 28);
+        if (!reduceMotion) {
+          heroPhoto.style.transform = 'scale(1.06) translateY(' + (window.scrollY * .055) + 'px)';
+          if (riverPhoto) riverPhoto.style.transform = 'translateY(' + (Math.max(-80, Math.min(80, (window.scrollY - riverPhoto.offsetTop) * .045))) + 'px)';
+        }
+        scrollTicking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+          window.requestAnimationFrame(updateScroll);
+          scrollTicking = true;
+        }
+      }, { passive: true });
+      updateScroll();
+
+      /* Active chapter in the navigation. */
+      const chapterLinks = new Map([...navLinks.querySelectorAll('a')].map(link => [link.getAttribute('href').slice(1), link]));
+      const chapterObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && chapterLinks.has(entry.target.id)) {
+            chapterLinks.forEach(link => link.classList.remove('is-active'));
+            chapterLinks.get(entry.target.id).classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-42% 0px -48% 0px' });
+      document.querySelectorAll('section[id]').forEach(section => chapterObserver.observe(section));
+
+      /* Scroll reveals and the timeline progress line. */
+      const reveals = document.querySelectorAll('.reveal');
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        reveals.forEach(element => element.classList.add('is-visible'));
+        document.getElementById('timeline').classList.add('is-visible');
+      } else {
+        const revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .12 });
+        reveals.forEach(element => revealObserver.observe(element));
+        const timeline = document.getElementById('timeline');
+        const timelineObserver = new IntersectionObserver(entries => {
+          if (entries.some(entry => entry.isIntersecting)) {
+            timeline.classList.add('is-visible');
+            timelineObserver.disconnect();
+          }
+        }, { threshold: .2 });
+        timelineObserver.observe(timeline);
+      }
+
+      /* Counters animate only when their row enters the viewport. */
+      const counters = document.querySelectorAll('[data-target]');
+      const animateCounter = element => {
+        if (element.dataset.counted) return;
+        element.dataset.counted = 'true';
+        const target = Number(element.dataset.target);
+        const decimals = Number.isInteger(target) ? 0 : 1;
+        const suffix = element.dataset.suffix || '';
+        const format = value => {
+          const rounded = value.toFixed(decimals);
+          return element.dataset.format ? Number(rounded).toLocaleString('es-ES') : rounded.replace('.', ',');
+        };
+        if (reduceMotion) {
+          element.textContent = format(target) + suffix;
+          return;
+        }
+        const start = performance.now();
+        const step = now => {
+          const progressAmount = Math.min((now - start) / 1200, 1);
+          const eased = 1 - Math.pow(1 - progressAmount, 3);
+          element.textContent = format(target * eased) + suffix;
+          if (progressAmount < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        const counterObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+          if (entry.isIntersecting) { animateCounter(entry.target); counterObserver.unobserve(entry.target); }
+        }), { threshold: .6 });
+        counters.forEach(counter => counterObserver.observe(counter));
+      } else counters.forEach(animateCounter);
+
+      /* Quiet ambient particles in the hero. */
+      const canvas = document.getElementById('fireflies');
+      if (canvas && !reduceMotion) {
+        const context = canvas.getContext('2d');
+        let particles = [];
+        let width = 0;
+        let height = 0;
+        const resizeCanvas = () => {
+          const ratio = Math.min(window.devicePixelRatio || 1, 2);
+          width = canvas.clientWidth;
+          height = canvas.clientHeight;
+          canvas.width = width * ratio;
+          canvas.height = height * ratio;
+          context.setTransform(ratio, 0, 0, ratio, 0, 0);
+          particles = Array.from({ length: Math.min(48, Math.floor(width / 27)) }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 1.4 + .4,
+            alpha: Math.random() * .5 + .15,
+            speed: Math.random() * .24 + .08,
+            phase: Math.random() * Math.PI * 2
+          }));
+        };
+        const drawParticles = time => {
+          context.clearRect(0, 0, width, height);
+          particles.forEach(particle => {
+            particle.y -= particle.speed;
+            if (particle.y < -8) particle.y = height + 8;
+            const pulse = particle.alpha + Math.sin(time * .0012 + particle.phase) * .16;
+            context.beginPath();
+            context.fillStyle = 'rgba(213, 235, 115, ' + Math.max(.04, pulse) + ')';
+            context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            context.fill();
+          });
+          requestAnimationFrame(drawParticles);
+        };
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        requestAnimationFrame(drawParticles);
+      }
+
+      /* Delayed ring cursor for large pointer devices only. */
+      if (finePointer && !reduceMotion) {
+        document.documentElement.classList.add('has-cursor');
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
+        window.addEventListener('mousemove', event => {
+          mouseX = event.clientX;
+          mouseY = event.clientY;
+          dot.style.left = mouseX + 'px';
+          dot.style.top = mouseY + 'px';
+        });
+        const moveRing = () => {
+          ringX += (mouseX - ringX) * .15;
+          ringY += (mouseY - ringY) * .15;
+          ring.style.left = ringX + 'px';
+          ring.style.top = ringY + 'px';
+          requestAnimationFrame(moveRing);
+        };
+        requestAnimationFrame(moveRing);
+        document.querySelectorAll('a, button, .species-card, .gallery-tile').forEach(element => {
+          element.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
+          element.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

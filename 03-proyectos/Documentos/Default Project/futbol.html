@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101914">
+  <meta name="description" content="Un partido de fútbol arcade de 90 segundos. Jugá contra la computadora con teclado o controles táctiles, sin instalar nada.">
+  <title>Potrero — Fútbol arcade</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101914; --panel: #19251d; --line: #344538;
+      --text: #f2f3e9; --muted: #a5b7a7; --accent: #dcf78c;
+      --home: #79d9ed; --away: #ffa274;
+      --display: Impact, "Arial Narrow", "DejaVu Sans", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body {
+      margin: 0; min-height: 100svh; color: var(--text); background: var(--bg);
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background-image: radial-gradient(ellipse at 50% 0%, #26382a 0, transparent 65%);
+    }
+    button { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, canvas:focus-visible, .joystick:focus-visible {
+      outline: 3px solid var(--accent); outline-offset: 4px;
+    }
+    button:disabled { opacity: .35; cursor: default; }
+    button:not(:disabled):active { transform: translateY(1px); }
+    .app { width: min(1080px, 100% - 40px); margin: 0 auto; padding: 28px 0 20px; }
+    .masthead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .brand { display: flex; align-items: center; gap: 15px; }
+    .brand-mark {
+      width: 42px; height: 46px; border: 2px solid var(--accent); color: var(--accent);
+      border-radius: 4px 4px 19px 19px; display: grid; place-items: center;
+      font: italic 30px var(--display); transform: rotate(-6deg);
+    }
+    h1 { font: italic 900 38px/.95 var(--display); letter-spacing: 1px; margin: 0 0 6px; }
+    .eyebrow { font-size: 10px; font-weight: 750; letter-spacing: 2.4px; text-transform: uppercase; }
+    .brand .eyebrow { color: var(--muted); }
+    .masthead-note { text-align: right; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .masthead-note strong { color: var(--accent); font-weight: 600; }
+    .match { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #131f17; box-shadow: 0 24px 64px #0004; }
+    .scoreboard { display: grid; grid-template-columns: 1fr 210px 1fr; align-items: center; padding: 19px 36px; background: var(--panel); }
+    .team { display: flex; align-items: center; gap: 14px; }
+    .team-away { justify-content: flex-end; text-align: right; }
+    .team-name { font-size: 17px; font-weight: 800; letter-spacing: 1px; }
+    .team-meta { color: var(--muted); font-size: 11px; margin-top: 5px; }
+    .jersey { width: 32px; height: 35px; background: var(--home); clip-path: polygon(28% 0, 40% 8%, 60% 8%, 72% 0, 100% 22%, 85% 43%, 76% 36%, 76% 100%, 24% 100%, 24% 36%, 15% 43%, 0 22%); }
+    .team-away .jersey { background: var(--away); }
+    .score-center { text-align: center; }
+    .score { display: flex; justify-content: center; align-items: center; gap: 22px; font: 900 48px/1 var(--display); font-variant-numeric: tabular-nums; }
+    .score-divider { color: #718675; font: 24px var(--display); }
+    .clock { display: inline-flex; align-items: center; gap: 7px; margin-top: 8px; font: 12px ui-monospace, monospace; color: var(--accent); }
+    .clock-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .clock.urgent { color: var(--away); }
+    .time-track { height: 3px; background: var(--line); }
+    .time-fill { width: 100%; height: 100%; background: var(--accent); transform-origin: left; }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 20px; }
+    .field-label { color: var(--muted); font-size: 10px; font-weight: 650; letter-spacing: 1.3px; }
+    .field-label span { color: var(--home); margin-left: 14px; }
+    .tools { display: flex; align-items: center; gap: 6px; }
+    .tool { border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 7px 11px; border-radius: 6px; font-size: 11px; min-height: 34px; }
+    .tool:hover:not(:disabled) { color: var(--text); border-color: var(--muted); background: #ffffff06; }
+    .arena { position: relative; display: grid; place-items: center; background: #14251b; }
+    canvas { width: 100%; aspect-ratio: 1000 / 560; display: block; touch-action: none; }
+    .overlay { position: absolute; inset: 0; display: grid; place-items: center; padding: 16px; background: #0a160d9e; backdrop-filter: blur(3px); }
+    .dialog { width: min(405px, 100%); text-align: center; padding: 28px 30px; border: 1px solid #82947566; border-radius: 12px; background: #15221df0; box-shadow: 0 18px 60px #0005; }
+    .dialog .eyebrow { color: var(--accent); }
+    h2 { font: italic 900 clamp(28px, 4.2vw, 46px)/1.04 var(--display); text-transform: uppercase; margin: 14px 0 12px; letter-spacing: .5px; }
+    .dialog p { color: #bccbbb; font-size: 13px; line-height: 1.7; margin: 0 0 20px; text-wrap: pretty; }
+    .difficulty-label { display: block; color: var(--muted); font-size: 10px; letter-spacing: 1.6px; margin: 0 0 9px; text-transform: uppercase; }
+    .difficulty { display: flex; padding: 4px; gap: 4px; border: 1px solid var(--line); border-radius: 7px; margin: 0 0 17px; }
+    .difficulty button { flex: 1; background: transparent; border: 0; border-radius: 4px; padding: 10px 4px; color: var(--muted); font-size: 12px; min-height: 38px; }
+    .difficulty button[aria-pressed="true"] { background: #34432d; color: var(--accent); }
+    .difficulty button:hover { background: #34432d99; color: var(--text); }
+    .primary { width: 100%; min-height: 48px; border: 0; border-radius: 6px; padding: 13px 20px; background: var(--accent); color: #15210b; font-size: 13px; font-weight: 850; letter-spacing: 1px; text-transform: uppercase; transition: background .15s; }
+    .primary:hover { background: #e9ffb1; }
+    .dialog-foot { display: block; margin-top: 13px; color: var(--muted); font-size: 10px; }
+    .secondary { margin-top: 10px; width: 100%; min-height: 42px; background: transparent; border: 1px solid var(--line); color: var(--text); border-radius: 6px; font-size: 12px; }
+    .secondary:hover { border-color: var(--muted); }
+    .goal-banner { position: absolute; inset: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; flex-direction: column; background: #10201530; }
+    .goal-banner strong { font: italic 900 clamp(40px, 10vw, 108px)/1 var(--display); color: var(--accent); text-shadow: 0 5px 0 #102015, 0 0 70px #dcf78c40; }
+    .goal-banner span { margin-top: 10px; background: #102015e0; color: var(--text); padding: 8px 16px; border-radius: 4px; font-size: 12px; }
+    .match-bottom { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 22px; min-height: 48px; border-top: 1px solid #34453880; }
+    .tip { font-size: 11px; color: var(--muted); }
+    .energy { display: flex; align-items: center; gap: 10px; font-size: 10px; letter-spacing: 1px; color: var(--muted); white-space: nowrap; }
+    .energy-track { width: 90px; height: 5px; border-radius: 4px; background: var(--line); overflow: hidden; }
+    .energy-fill { width: 100%; height: 100%; background: var(--home); transform-origin: left; }
+    .instructions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 24px; padding: 22px 0 16px; }
+    .control { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 11px; }
+    kbd { font: 10px ui-monospace, monospace; border: 1px solid #415244; border-bottom-width: 3px; padding: 5px 7px; border-radius: 4px; color: var(--text); background: #1d2a20; white-space: nowrap; }
+    footer { text-align: center; color: #819785; font-size: 10px; letter-spacing: .5px; padding-top: 8px; }
+    .touch-controls { display: none; align-items: center; justify-content: space-between; padding: 16px 16px 4px; user-select: none; }
+    .joystick { width: 112px; height: 112px; position: relative; border-radius: 50%; border: 1px solid #78986b70; background: radial-gradient(circle, #263b2c 0 33%, #17271dd9 34%); touch-action: none; }
+    .joystick::before, .joystick::after { content: ""; position: absolute; background: #78986b30; }
+    .joystick::before { width: 1px; height: 82px; left: 55px; top: 14px; }
+    .joystick::after { height: 1px; width: 82px; top: 55px; left: 14px; }
+    .stick { position: absolute; width: 44px; height: 44px; border-radius: 50%; left: 33px; top: 33px; background: #98b79a; border: 3px solid #c5dac4; box-shadow: 0 3px 12px #0005; z-index: 1; pointer-events: none; }
+    .touch-actions { display: flex; align-items: center; gap: 14px; }
+    .touch-button { width: 65px; height: 65px; border-radius: 50%; border: 1px solid var(--line); background: #243728; color: var(--text); font-size: 10px; font-weight: 800; letter-spacing: .5px; touch-action: none; }
+    .touch-button.shoot { width: 82px; height: 82px; background: var(--accent); color: #172111; border: 4px solid #acc369; }
+    .touch-button.pressed { transform: scale(.94); filter: brightness(1.16); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (hover: none), (pointer: coarse) { .touch-controls { display: flex; } .instructions { display: none; } .tool { min-height: 44px; } }
+    @media (max-width: 600px) {
+      .app { width: calc(100% - 20px); padding-top: 18px; }
+      .masthead { margin-bottom: 17px; } h1 { font-size: 30px; }
+      .brand { gap: 10px; } .brand-mark { width: 34px; height: 38px; font-size: 25px; }
+      .brand .eyebrow { font-size: 8px; letter-spacing: 1.9px; }
+      .masthead-note { max-width: 118px; font-size: 9px; }
+      .scoreboard { padding: 16px 15px; grid-template-columns: 1fr 112px 1fr; }
+      .team { gap: 8px; } .team-name { font-size: 11px; letter-spacing: .5px; }
+      .team-meta { font-size: 9px; } .jersey { width: 23px; height: 27px; flex-shrink: 0; }
+      .score { font-size: 40px; gap: 14px; } .clock { font-size: 10px; }
+      .toolbar { padding: 8px 10px; } .field-label { font-size: 9px; letter-spacing: .5px; }
+      .field-label span { display: block; margin: 4px 0 0; }
+      .tool { padding: 7px 8px; font-size: 10px; }
+      .arena { min-height: 310px; }
+      .arena > canvas, .arena > .overlay { grid-area: 1 / 1; }
+      .overlay { position: relative; align-self: stretch; width: 100%; padding: 10px; } .dialog { max-width: 300px; padding: 17px 20px; }
+      .dialog h2 { font-size: 29px; margin: 9px 0; } .dialog p { font-size: 11px; margin-bottom: 12px; line-height: 1.5; }
+      .dialog .eyebrow { font-size: 8px; } .difficulty-label, .dialog-foot { display: none; }
+      .difficulty { margin-bottom: 10px; } .difficulty button { padding: 8px 4px; }
+      .primary { min-height: 44px; font-size: 11px; padding: 12px; }
+      .match-bottom { padding: 11px 13px; gap: 12px; } .tip { font-size: 10px; line-height: 1.5; }
+      .energy { font-size: 8px; gap: 6px; } .energy-track { width: 48px; }
+      .instructions { gap: 13px; padding: 18px 4px; } .control { font-size: 10px; gap: 6px; }
+      footer { margin: 13px 0 8px; font-size: 9px; }
+    }
+    @media (max-width: 370px) { .jersey, .masthead-note { display: none; } .touch-controls { padding-inline: 6px; } .touch-actions { gap: 9px; } }
+    @media (max-height: 540px) and (orientation: landscape) and (pointer: coarse) {
+      .app { width: calc(100% - 20px); padding: 5px 0; }
+      .masthead, .match-bottom, footer, .field-label { display: none; }
+      .match { width: min(100%, calc((100dvh - 116px) * 1.7857)); margin: auto; }
+      .scoreboard { padding: 6px 16px; grid-template-columns: 1fr 130px 1fr; }
+      .score { font-size: 29px; } .clock { margin-top: 3px; font-size: 10px; }
+      .team-name { font-size: 12px; } .team-meta { font-size: 9px; }
+      .toolbar { padding: 3px 8px; justify-content: center; } .tool { min-height: 32px; }
+      .arena { min-height: 0; }
+      .overlay { position: absolute; }
+      .dialog { padding: 10px 16px; max-width: 340px; } .dialog h2 { font-size: 27px; margin: 6px 0; }
+      .dialog p, .dialog-foot, .difficulty-label { display: none; }
+      .difficulty { margin-bottom: 8px; } .difficulty button { min-height: 32px; padding: 5px; }
+      .primary { min-height: 38px; padding: 9px; }
+      .touch-controls { position: fixed; inset: auto 4px 8px; padding: 0; pointer-events: none; }
+      .joystick, .touch-button { pointer-events: auto; }
+      .joystick { transform: scale(.85); transform-origin: bottom left; }
+      .touch-actions { flex-direction: column; gap: 7px; }
+      .touch-button { width: 48px; height: 48px; font-size: 9px; }
+      .touch-button.shoot { width: 62px; height: 62px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="masthead">
+      <div class="brand"><div class="brand-mark" aria-hidden="true">P</div><div><h1>POTRERO</h1><div class="eyebrow">Fútbol en estado puro</div></div></div>
+      <div class="masthead-note"><strong>90 segundos. Todo en la cancha.</strong><br>Un partido más, y listo.</div>
+    </header>
+    <section class="match" aria-label="Partido de fútbol">
+      <div class="scoreboard">
+        <div class="team"><div class="jersey" aria-hidden="true"></div><div><div class="team-name">CELESTE</div><div class="team-meta">VOS · LOCAL</div></div></div>
+        <div class="score-center">
+          <div class="score" aria-label="Marcador"><span id="home-score" aria-label="Tus goles">0</span><span class="score-divider" aria-hidden="true">:</span><span id="away-score" aria-label="Goles del rival">0</span></div>
+          <div class="clock" id="clock"><span class="clock-dot" aria-hidden="true"></span><span id="time" aria-label="Tiempo restante">01:30</span></div>
+        </div>
+        <div class="team team-away"><div><div class="team-name">NARANJA</div><div class="team-meta">CPU · <span id="level-name">NORMAL</span></div></div><div class="jersey" aria-hidden="true"></div></div>
+      </div>
+      <div class="time-track" aria-hidden="true"><div class="time-fill" id="time-fill"></div></div>
+      <div class="toolbar">
+        <div class="field-label">CANCHA 01 <span>ATACÁS A LA DERECHA →</span></div>
+        <div class="tools">
+          <button class="tool" id="sound" aria-pressed="true" aria-label="Activar o desactivar sonido">Sonido: sí</button>
+          <button class="tool" id="pause" disabled title="P o Escape">Ⅱ Pausa</button>
+          <button class="tool" id="restart" disabled title="Reiniciar el partido">↻ Reiniciar</button>
+        </div>
+      </div>
+      <div class="arena">
+        <canvas id="game" width="1000" height="560" tabindex="0" aria-label="Cancha de fútbol. Sos el jugador celeste número 10 y atacás hacia la derecha." aria-describedby="game-help">Tu navegador necesita soporte para Canvas. Probá con una versión reciente de Chrome, Firefox, Edge o Safari.</canvas>
+        <div class="overlay" id="overlay">
+          <div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+            <div class="eyebrow" id="dialog-tag">Partido rápido · 1 contra 1 + arqueros</div>
+            <h2 id="dialog-title">Tu cancha.<br>Tus reglas.</h2>
+            <p id="dialog-description">Gambeteá, cargá el remate y buscá el gol.<br>Tenés 90 segundos para ganar.</p>
+            <div id="difficulty-options">
+              <span class="difficulty-label" id="difficulty-label">Elegí tu rival</span>
+              <div class="difficulty" role="group" aria-labelledby="difficulty-label">
+                <button data-level="easy" aria-pressed="false">Tranqui</button>
+                <button data-level="normal" aria-pressed="true">Normal</button>
+                <button data-level="hard" aria-pressed="false">Picante</button>
+              </div>
+            </div>
+            <button class="primary" id="play">Entrar a la cancha →</button>
+            <button class="secondary" id="cancel" hidden>Volver al partido</button>
+            <span class="dialog-foot" id="dialog-foot">También podés empezar con Enter</span>
+          </div>
+        </div>
+        <div class="goal-banner" id="goal-banner" hidden><strong id="goal-title">¡GOOOL!</strong><span id="goal-subtitle">La mandaste a guardar.</span></div>
+      </div>
+      <div class="match-bottom">
+        <div class="tip" id="tip">Sos el 10 celeste. Tu arquero se mueve solo.</div>
+        <div class="energy">ENERGÍA <div class="energy-track" role="progressbar" aria-label="Energía para correr" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" id="energy"><div class="energy-fill" id="energy-fill"></div></div></div>
+      </div>
+    </section>
+    <div class="instructions" id="game-help">
+      <div class="control"><kbd>W A S D</kbd><span>o flechas · mover</span></div>
+      <div class="control"><kbd>ESPACIO</kbd><span>mantener y soltar · patear</span></div>
+      <div class="control"><kbd>SHIFT</kbd><span>correr</span></div>
+      <div class="control"><kbd>P</kbd><span>pausa</span></div>
+    </div>
+    <div class="touch-controls" aria-label="Controles táctiles">
+      <div class="joystick" id="joystick" role="group" aria-label="Arrastrá para mover al jugador"><div class="stick" id="stick"></div></div>
+      <div class="touch-actions"><button class="touch-button" id="sprint-touch" aria-label="Mantener para correr">CORRER</button><button class="touch-button shoot" id="shoot-touch" aria-label="Mantener y soltar para patear">PATEAR</button></div>
+    </div>
+    <footer>Hecho para jugar. Sin faltas, sin laterales, sin excusas.</footer>
+    <p class="sr-only" role="status" aria-live="polite" id="announcer"></p>
+  </main>
+  <script>
+    'use strict';
+    const $ = id => document.getElementById(id);
+    const canvas = $('game');
+    const ctx = canvas.getContext('2d');
+    const W = 1000, H = 560, DURATION = 90;
+    const field = { left: 64, right: 936, top: 48, bottom: 512, goalTop: 214, goalBottom: 346 };
+    const colors = { home: '#79d9ed', away: '#ffa274', accent: '#dcf78c', line: '#d8ecd180' };
+    const levels = {
+      easy: { name: 'TRANQUI', speed: 140, keeper: 115, cooldown: 1.5, error: 55 },
+      normal: { name: 'NORMAL', speed: 178, keeper: 151, cooldown: 1.05, error: 35 },
+      hard: { name: 'PICANTE', speed: 210, keeper: 192, cooldown: .75, error: 19 }
+    };
+    const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+    const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+    const unit = (x, y) => { const d = Math.hypot(x, y); return d ? { x: x / d, y: y / d } : { x: 0, y: 0 }; };
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const keys = new Set();
+    const touch = { x: 0, y: 0, sprint: false, joystickId: null };
+    const game = { state: 'menu', previous: 'playing', level: 'normal', time: DURATION, score: [0, 0], shots: [0, 0], saves: [0, 0], elapsed: 0, goalTime: 0, kickoff: 0, charge: 0, charging: false, aimY: 0, stamina: 100, exhausted: false, tipTime: 0 };
+    const makeActor = (id, team, keeper = false) => ({ id, team, keeper, x: 0, y: H / 2, vx: 0, vy: 0, radius: keeper ? 16 : 15, cooldown: 0, step: 0 });
+    const player = makeActor('player', 0), opponent = makeActor('opponent', 1);
+    const homeKeeper = makeActor('homeKeeper', 0, true), awayKeeper = makeActor('awayKeeper', 1, true);
+    const actors = [player, opponent, homeKeeper, awayKeeper];
+    const ball = { x: W / 2, y: H / 2, vx: 0, vy: 0, radius: 8, spin: 0, ignore: null, grace: 0 };
+    let particles = [], trail = [], audio = null, sound = true, modalAction = 'start';
+    let lastTime = 0, accumulator = 0, hudClock = '', hudEnergy = -1;
+
+    function tone(frequency, duration, type = 'sine', volume = .035, delay = 0, endFrequency = frequency) {
+      if (!sound || !audio || audio.state !== 'running') return;
+      const t = audio.currentTime + delay, oscillator = audio.createOscillator(), gain = audio.createGain();
+      oscillator.type = type; oscillator.frequency.setValueAtTime(frequency, t);
+      oscillator.frequency.exponentialRampToValueAtTime(endFrequency, t + duration);
+      gain.gain.setValueAtTime(volume, t); gain.gain.exponentialRampToValueAtTime(.001, t + duration);
+      oscillator.connect(gain); gain.connect(audio.destination); oscillator.start(t); oscillator.stop(t + duration);
+      oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); };
+    }
+    function enableAudio() {
+      if (!sound) return;
+      try {
+        const Audio = window.AudioContext || window.webkitAudioContext;
+        if (!audio && Audio) audio = new Audio();
+        if (audio && audio.state === 'suspended') audio.resume().catch(() => {});
+      } catch { /* El partido también funciona cuando el navegador bloquea el audio. */ }
+    }
+    function whistle() { tone(1600, .16, 'sine', .025); tone(1850, .22, 'sine', .02, .18); }
+    function announce(text) { $('announcer').textContent = text; }
+    function tip(text, seconds = 3) { $('tip').textContent = text; game.tipTime = seconds; }
+    function clearInput() {
+      keys.clear(); touch.x = touch.y = 0; touch.sprint = false; touch.joystickId = null;
+      game.charging = false; game.charge = 0; $('stick').style.transform = '';
+      document.querySelectorAll('.touch-button').forEach(button => button.classList.remove('pressed'));
+    }
+    function resetPositions(team = 0) {
+      player.x = team === 0 ? 451 : 300; player.y = H / 2;
+      opponent.x = team === 1 ? 549 : 710; opponent.y = H / 2;
+      homeKeeper.x = field.left + 29; awayKeeper.x = field.right - 29;
+      homeKeeper.y = awayKeeper.y = H / 2;
+      actors.forEach(actor => { actor.vx = actor.vy = 0; actor.cooldown = .6; });
+      Object.assign(ball, { x: W / 2, y: H / 2, vx: 0, vy: 0, grace: 0, ignore: null });
+      game.aimY = 0; game.charging = false; game.charge = 0; trail = [];
+    }
+    function showDialog(tag, title, description, button, action, choices = false, cancel = false) {
+      $('dialog-tag').textContent = tag; $('dialog-title').textContent = title;
+      $('dialog-description').textContent = description; $('play').textContent = button;
+      $('difficulty-options').hidden = !choices; $('cancel').hidden = !cancel;
+      $('dialog-foot').hidden = true; $('overlay').hidden = false; modalAction = action;
+      canvas.tabIndex = -1; $('play').focus({ preventScroll: true });
+    }
+    function hideDialog() {
+      $('overlay').hidden = true; canvas.tabIndex = 0; canvas.focus({ preventScroll: true });
+    }
+    function startMatch() {
+      enableAudio(); clearInput();
+      Object.assign(game, { state: 'playing', time: DURATION, score: [0, 0], shots: [0, 0], saves: [0, 0], elapsed: 0, stamina: 100, exhausted: false, goalTime: 0 });
+      particles = []; resetPositions(0); hideDialog(); $('goal-banner').hidden = true;
+      $('pause').disabled = false; $('restart').disabled = false; $('pause').textContent = 'Ⅱ Pausa';
+      tip('¡A jugar! Llevá la pelota y atacá el arco de la derecha.', 5); updateHUD(); whistle();
+      announce('Comienza el partido. Sos celeste y atacás hacia la derecha.');
+    }
+    function pauseMatch() {
+      if (!['playing', 'goal'].includes(game.state)) return;
+      game.previous = game.state; game.state = 'paused'; clearInput();
+      $('pause').textContent = '▷ Seguir';
+      showDialog('Tomate un respiro', 'Partido en pausa', 'El reloj está detenido. La cancha te espera.', 'Seguir jugando →', 'resume');
+    }
+    function resumeMatch() {
+      if (game.state !== 'paused') return;
+      clearInput(); game.state = game.previous; $('pause').textContent = 'Ⅱ Pausa'; hideDialog();
+    }
+    function finishMatch() {
+      game.state = 'finished'; game.time = 0; clearInput(); $('pause').disabled = true;
+      $('goal-banner').hidden = true; updateHUD(); whistle();
+      const result = game.score[0] > game.score[1] ? '¡El potrero es tuyo!' : game.score[0] < game.score[1] ? 'Hay revancha.' : '¡Qué partido parejo!';
+      const summary = `Celeste ${game.score[0]} — ${game.score[1]} Naranja. Tus remates: ${game.shots[0]}. Atajadas de tu arquero: ${game.saves[0]}.`;
+      showDialog('Final del partido', result, summary, 'Jugar la revancha →', 'start', true); announce(`${result} ${summary}`);
+    }
+    function updateHUD() {
+      $('home-score').textContent = game.score[0]; $('away-score').textContent = game.score[1];
+      const seconds = Math.ceil(game.time), clock = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+      if (clock !== hudClock) { $('time').textContent = clock; hudClock = clock; }
+      $('clock').classList.toggle('urgent', game.time <= 15);
+      $('time-fill').style.transform = `scaleX(${game.time / DURATION})`;
+      const energy = Math.round(game.stamina);
+      if (energy !== hudEnergy) {
+        $('energy-fill').style.transform = `scaleX(${energy / 100})`;
+        $('energy').setAttribute('aria-valuenow', energy); hudEnergy = energy;
+      }
+    }
+    function movement() {
+      let x = (keys.has('KeyD') || keys.has('ArrowRight') ? 1 : 0) - (keys.has('KeyA') || keys.has('ArrowLeft') ? 1 : 0);
+      let y = (keys.has('KeyS') || keys.has('ArrowDown') ? 1 : 0) - (keys.has('KeyW') || keys.has('ArrowUp') ? 1 : 0);
+      if (touch.joystickId !== null) { x = touch.x; y = touch.y; }
+      const length = Math.hypot(x, y); return length > 1 ? { x: x / length, y: y / length } : { x, y };
+    }
+    function moveActor(actor, x, y, speed, dt) {
+      const blend = 1 - Math.exp(-14 * dt);
+      actor.vx += (x * speed - actor.vx) * blend; actor.vy += (y * speed - actor.vy) * blend;
+      actor.x = clamp(actor.x + actor.vx * dt, field.left + actor.radius, field.right - actor.radius);
+      actor.y = clamp(actor.y + actor.vy * dt, field.top + actor.radius, field.bottom - actor.radius);
+      actor.step += Math.hypot(actor.vx, actor.vy) * dt * .07;
+    }
+    function updateOpponent(dt) {
+      const level = levels[game.level];
+      let targetX = ball.x + 27, targetY = ball.y;
+      // Rodear la pelota antes de rematar evita que la IA la empuje hacia su propio arco.
+      if (opponent.x < ball.x + 10 && Math.abs(opponent.y - ball.y) < 48) {
+        targetX = ball.x + 58; targetY = ball.y + (ball.y > H / 2 ? -66 : 66);
+      }
+      const delta = unit(targetX - opponent.x, targetY - opponent.y);
+      const speed = distance(opponent, { x: targetX, y: targetY }) < 5 ? 0 : level.speed;
+      moveActor(opponent, delta.x, delta.y, speed, dt);
+      if (distance(opponent, ball) < 43 && opponent.x > ball.x + 4 && opponent.cooldown <= 0) kick(opponent, .3 + Math.random() * .5);
+    }
+    function updateKeeper(keeper, dt) {
+      const direction = keeper.team === 0 ? 1 : -1;
+      let target = H / 2 + (ball.y - H / 2) * .48;
+      if (ball.vx * direction < -30) {
+        const arrival = clamp((keeper.x - ball.x) / ball.vx, 0, .6);
+        target = ball.y + ball.vy * arrival;
+      } else if (Math.abs(ball.x - keeper.x) < 230) target = ball.y;
+      target = clamp(target, field.goalTop + 14, field.goalBottom - 14);
+      const speed = keeper.team === 0 ? 162 : levels[game.level].keeper;
+      const previousY = keeper.y;
+      keeper.y += clamp(target - keeper.y, -speed * dt, speed * dt);
+      keeper.vy = (keeper.y - previousY) / dt; keeper.step += Math.abs(keeper.vy) * dt * .07;
+    }
+    function shotDirection(actor) {
+      const targetX = actor.team === 0 ? field.right + 15 : field.left - 15;
+      const offset = actor.team === 0 ? game.aimY * 47 : (Math.random() - .5) * levels[game.level].error * 2;
+      return unit(targetX - ball.x, H / 2 + offset - ball.y);
+    }
+    function beginCharge() { if (game.state === 'playing' && !game.charging) { game.charging = true; game.charge = 0; } }
+    function releaseCharge() {
+      if (!game.charging) return;
+      const power = game.charge; game.charging = false; game.charge = 0;
+      if (game.state === 'playing') kick(player, power);
+    }
+    function kick(actor, power) {
+      if (actor.cooldown > 0) return false;
+      if (distance(actor, ball) > 46) {
+        if (actor === player) tip('Acercate a la pelota para patear.');
+        return false;
+      }
+      const direction = shotDirection(actor), speed = 490 + clamp(power, 0, 1) * 360;
+      ball.vx = direction.x * speed; ball.vy = direction.y * speed;
+      ball.ignore = actor.id; ball.grace = .16;
+      actor.cooldown = actor === player ? .25 : levels[game.level].cooldown;
+      game.shots[actor.team]++; burst(ball.x, ball.y, actor.team === 0 ? colors.home : colors.away, 9, 125);
+      tone(160, .09, 'triangle', .06, 0, 45); return true;
+    }
+    function separateActors() {
+      for (let i = 0; i < actors.length; i++) for (let j = i + 1; j < actors.length; j++) {
+        const a = actors[i], b = actors[j], d = distance(a, b), min = a.radius + b.radius;
+        if (d >= min || (a.keeper && b.keeper)) continue;
+        const nx = d ? (b.x - a.x) / d : 1, ny = d ? (b.y - a.y) / d : 0, overlap = min - d;
+        const aWeight = a.keeper ? 0 : b.keeper ? 1 : .5, bWeight = b.keeper ? 0 : a.keeper ? 1 : .5;
+        a.x -= nx * overlap * aWeight; a.y -= ny * overlap * aWeight;
+        b.x += nx * overlap * bWeight; b.y += ny * overlap * bWeight;
+      }
+      for (const actor of actors) {
+        actor.x = clamp(actor.x, field.left + actor.radius, field.right - actor.radius);
+        actor.y = clamp(actor.y, field.top + actor.radius, field.bottom - actor.radius);
+      }
+    }
+    function ballContact(actor) {
+      if (ball.grace > 0 && ball.ignore === actor.id) return;
+      const d = distance(actor, ball), minimum = actor.radius + ball.radius;
+      if (d >= minimum) return;
+      const nx = d ? (ball.x - actor.x) / d : (actor.team === 0 ? 1 : -1), ny = d ? (ball.y - actor.y) / d : 0;
+      ball.x = actor.x + nx * (minimum + .1); ball.y = actor.y + ny * (minimum + .1);
+      const inward = (ball.vx - actor.vx) * nx + (ball.vy - actor.vy) * ny;
+      if (actor.keeper) {
+        const direction = actor.team === 0 ? 1 : -1;
+        if (ball.vx * direction < -170 && actor.cooldown <= 0) {
+          game.saves[actor.team]++; actor.cooldown = .5;
+          burst(ball.x, ball.y, '#f0eacb', 7, 100); tone(110, .08, 'triangle', .04);
+        }
+        ball.vx = direction * Math.max(280, Math.abs(ball.vx) * .85);
+        ball.vy = clamp(ny * 260 + actor.vy * .4, -290, 290);
+        ball.ignore = actor.id; ball.grace = .12;
+      } else if (inward < 0) {
+        ball.vx -= 1.55 * inward * nx; ball.vy -= 1.55 * inward * ny;
+        if (Math.hypot(actor.vx, actor.vy) > 20 && Math.hypot(ball.vx, ball.vy) < 360) {
+          ball.vx = actor.vx * 1.1 + nx * 32; ball.vy = actor.vy * 1.1 + ny * 32;
+        }
+      }
+    }
+    function scoreGoal(team) {
+      if (game.state !== 'playing') return;
+      game.score[team]++; game.state = 'goal'; game.goalTime = 2; game.kickoff = 1 - team;
+      game.charging = false; game.charge = 0;
+      ball.x = team === 0 ? field.right + 20 : field.left - 20; ball.vx = ball.vy = 0;
+      $('goal-title').textContent = team === 0 ? '¡GOOOL!' : 'GOL RIVAL';
+      $('goal-title').style.color = team === 0 ? colors.accent : colors.away;
+      $('goal-subtitle').textContent = team === 0 ? 'La mandaste a guardar. ¡Vamos, celeste!' : 'Sacás vos. Todavía hay partido.';
+      $('goal-banner').hidden = false;
+      burst(ball.x, ball.y, team === 0 ? colors.home : colors.away, 65, 310);
+      [392, 494, 587, 784].forEach((note, index) => tone(team === 0 ? note : note * .65, .25, 'triangle', .045, index * .12));
+      announce(`${team === 0 ? '¡Gol tuyo!' : 'Gol del rival.'} Celeste ${game.score[0]}, Naranja ${game.score[1]}.`);
+      updateHUD();
+    }
+    function updateBall(dt) {
+      ball.grace = Math.max(0, ball.grace - dt);
+      ball.x += ball.vx * dt; ball.y += ball.vy * dt;
+      const friction = Math.exp(-.9 * dt); ball.vx *= friction; ball.vy *= friction;
+      ball.spin += Math.hypot(ball.vx, ball.vy) * dt * .065;
+      for (const actor of actors) ballContact(actor);
+      // Los postes son círculos físicos: un roce rebota, no cuenta como gol.
+      for (const x of [field.left, field.right]) for (const y of [field.goalTop, field.goalBottom]) {
+        const dx = ball.x - x, dy = ball.y - y, d = Math.hypot(dx, dy), minimum = ball.radius + 4;
+        if (d < minimum) {
+          const nx = d ? dx / d : (x === field.left ? 1 : -1), ny = d ? dy / d : 0;
+          ball.x = x + nx * minimum; ball.y = y + ny * minimum;
+          const dot = ball.vx * nx + ball.vy * ny;
+          if (dot < 0) { ball.vx -= 1.85 * dot * nx; ball.vy -= 1.85 * dot * ny; tone(440, .08, 'triangle', .025); }
+        }
+      }
+      if (ball.y < field.top + ball.radius) { ball.y = field.top + ball.radius; ball.vy = Math.abs(ball.vy) * .78; }
+      if (ball.y > field.bottom - ball.radius) { ball.y = field.bottom - ball.radius; ball.vy = -Math.abs(ball.vy) * .78; }
+      const inGoal = ball.y - ball.radius > field.goalTop && ball.y + ball.radius < field.goalBottom;
+      if (inGoal && ball.x - ball.radius > field.right) { scoreGoal(0); return; }
+      if (inGoal && ball.x + ball.radius < field.left) { scoreGoal(1); return; }
+      if (!inGoal) {
+        if (ball.x < field.left + ball.radius) { ball.x = field.left + ball.radius; ball.vx = Math.abs(ball.vx) * .78; }
+        if (ball.x > field.right - ball.radius) { ball.x = field.right - ball.radius; ball.vx = -Math.abs(ball.vx) * .78; }
+      }
+      if (Math.hypot(ball.vx, ball.vy) > 110 && !reducedMotion.matches) {
+        trail.push({ x: ball.x, y: ball.y, life: .17 });
+        if (trail.length > 25) trail.shift();
+      }
+    }
+    function burst(x, y, color, count, speed) {
+      if (reducedMotion.matches) return;
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2, velocity = (Math.random() * .8 + .2) * speed;
+        particles.push({ x, y, vx: Math.cos(angle) * velocity, vy: Math.sin(angle) * velocity, life: .5 + Math.random() * .8, color, size: 2 + Math.random() * 4 });
+      }
+    }
+    function update(dt) {
+      if (!['playing', 'goal'].includes(game.state)) return;
+      particles.forEach(p => { p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= Math.exp(-2 * dt); p.vy *= Math.exp(-2 * dt); p.life -= dt; });
+      particles = particles.filter(p => p.life > 0);
+      trail.forEach(p => p.life -= dt); trail = trail.filter(p => p.life > 0);
+      if (game.state === 'goal') {
+        game.goalTime -= dt;
+        if (game.goalTime <= 0) {
+          resetPositions(game.kickoff); game.state = 'playing'; $('goal-banner').hidden = true;
+          tip(game.kickoff === 0 ? 'Sacás vos. ¡Andá a buscar el gol!' : 'Saca Naranja. ¡A recuperar la pelota!', 3);
+        }
+        return;
+      }
+      game.time = Math.max(0, game.time - dt); game.elapsed += dt;
+      if (game.time <= 0) { finishMatch(); return; }
+      actors.forEach(actor => actor.cooldown = Math.max(0, actor.cooldown - dt));
+      const input = movement(), moving = Math.hypot(input.x, input.y) > .1;
+      if (moving) game.aimY = input.y;
+      const wantsSprint = keys.has('ShiftLeft') || keys.has('ShiftRight') || touch.sprint;
+      if (game.stamina >= 25) game.exhausted = false;
+      const sprinting = moving && wantsSprint && !game.exhausted && game.stamina > 0;
+      game.stamina = clamp(game.stamina + (sprinting ? -38 : 22) * dt, 0, 100);
+      if (game.stamina === 0) game.exhausted = true;
+      moveActor(player, input.x, input.y, (sprinting ? 318 : 215) * (game.charging ? .8 : 1), dt);
+      if (game.charging) game.charge = Math.min(1, game.charge + dt / .85);
+      updateOpponent(dt); updateKeeper(homeKeeper, dt); updateKeeper(awayKeeper, dt);
+      separateActors(); updateBall(dt);
+      if (game.tipTime > 0) {
+        game.tipTime -= dt;
+        if (game.tipTime <= 0) $('tip').textContent = 'Movete arriba o abajo para elegir la esquina del remate.';
+      }
+    }
+
+    // La cancha se dibuja una sola vez. La simulación usa pasos fijos de 1/120 s.
+    const pitch = document.createElement('canvas'); pitch.width = W * 2; pitch.height = H * 2;
+    const grass = pitch.getContext('2d'); grass.scale(2, 2);
+    function line(context, x1, y1, x2, y2) { context.beginPath(); context.moveTo(x1, y1); context.lineTo(x2, y2); context.stroke(); }
+    function circle(context, x, y, radius, fill, stroke = null) {
+      context.beginPath(); context.arc(x, y, radius, 0, Math.PI * 2);
+      if (fill) { context.fillStyle = fill; context.fill(); }
+      if (stroke) { context.strokeStyle = stroke; context.stroke(); }
+    }
+    function drawPitch() {
+      grass.fillStyle = '#14251b'; grass.fillRect(0, 0, W, H);
+      grass.fillStyle = '#203c28'; grass.fillRect(43, 32, 914, 496);
+      for (let i = 0; i < 10; i++) {
+        grass.fillStyle = i % 2 ? '#2c613b' : '#306840';
+        grass.fillRect(field.left + i * 87.2, field.top, 87.2, field.bottom - field.top);
+      }
+      // Textura determinista: no cambia ni parpadea entre cuadros.
+      let seed = 17;
+      for (let i = 0; i < 5000; i++) {
+        seed = (seed * 16807) % 2147483647; const x = field.left + seed % 872;
+        seed = (seed * 16807) % 2147483647; const y = field.top + seed % 464;
+        grass.fillStyle = i % 2 ? '#ffffff06' : '#0000000b'; grass.fillRect(x, y, 1, 3);
+      }
+      const light = grass.createRadialGradient(W / 2, H / 2, 60, W / 2, H / 2, 580);
+      light.addColorStop(0, '#c2e89a0a'); light.addColorStop(1, '#03110850');
+      grass.fillStyle = light; grass.fillRect(field.left, field.top, 872, 464);
+      grass.strokeStyle = colors.line; grass.lineWidth = 2;
+      grass.strokeRect(field.left, field.top, 872, 464);
+      line(grass, W / 2, field.top, W / 2, field.bottom);
+      circle(grass, W / 2, H / 2, 67, null, colors.line); circle(grass, W / 2, H / 2, 3, '#d8ecd1');
+      for (const side of [0, 1]) {
+        const x = side === 0 ? field.left : field.right, direction = side === 0 ? 1 : -1;
+        grass.strokeStyle = colors.line; grass.lineWidth = 2;
+        grass.strokeRect(side === 0 ? x : x - 129, H / 2 - 125, 129, 250);
+        grass.strokeRect(side === 0 ? x : x - 48, H / 2 - 78, 48, 156);
+        circle(grass, x + direction * 93, H / 2, 3, '#d8ecd1');
+        grass.beginPath(); grass.arc(x + direction * 93, H / 2, 62, side === 0 ? -1 : Math.PI - 1, side === 0 ? 1 : Math.PI + 1); grass.stroke();
+        const goalX = side === 0 ? x - 29 : x;
+        grass.fillStyle = '#b5d7c020'; grass.fillRect(goalX, field.goalTop, 29, 132);
+        grass.strokeStyle = '#d8ecd135'; grass.lineWidth = 1;
+        for (let gx = goalX; gx <= goalX + 29; gx += 7) line(grass, gx, field.goalTop, gx, field.goalBottom);
+        for (let gy = field.goalTop; gy <= field.goalBottom; gy += 8) line(grass, goalX, gy, goalX + 29, gy);
+        grass.strokeStyle = side === 0 ? colors.home : colors.away; grass.lineWidth = 3;
+        grass.strokeRect(goalX, field.goalTop, 29, 132);
+        grass.strokeStyle = '#f0f2d8'; grass.lineWidth = 4; line(grass, x, field.goalTop, x, field.goalBottom);
+      }
+      for (const x of [field.left, field.right]) for (const y of [field.top, field.bottom]) {
+        grass.strokeStyle = colors.line; grass.lineWidth = 2; grass.beginPath();
+        const angle = x === field.left ? (y === field.top ? 0 : -Math.PI / 2) : (y === field.top ? Math.PI / 2 : Math.PI);
+        grass.arc(x, y, 14, angle, angle + Math.PI / 2); grass.stroke();
+      }
+      for (let i = 0; i < 80; i++) {
+        const x = 64 + i * 11;
+        grass.fillStyle = ['#708263', '#b4b390', '#487054', '#4d6760', '#9b8569'][i % 5];
+        grass.fillRect(x, 14 + i % 3 * 2, 5, 5); grass.fillRect(x, 540 + i % 3 * 2, 5, 5);
+      }
+      grass.fillStyle = '#14251b'; grass.fillRect(380, 5, 240, 24); grass.fillRect(355, 532, 290, 24);
+      grass.textAlign = 'center'; grass.fillStyle = '#abc58d'; grass.font = 'bold 10px sans-serif';
+      grass.fillText('P O T R E R O   /   J U G Á   B O N I T O', W / 2, 21);
+      grass.fillStyle = '#829c79'; grass.font = '9px sans-serif'; grass.fillText('LA PELOTA SIEMPRE AL PIE.', W / 2, 548);
+    }
+    function drawActor(actor) {
+      const isPlayer = actor === player, color = actor.team === 0 ? colors.home : colors.away;
+      ctx.save(); ctx.translate(actor.x, actor.y);
+      if (isPlayer) {
+        ctx.lineWidth = 1.5; circle(ctx, 0, 0, 24, '#79d9ed0d', '#a4edfa80');
+        ctx.fillStyle = colors.home; ctx.beginPath(); ctx.moveTo(0, -33); ctx.lineTo(-5, -40); ctx.lineTo(5, -40); ctx.fill();
+        ctx.font = 'bold 9px sans-serif'; ctx.fillStyle = '#e7faff'; ctx.textAlign = 'center'; ctx.fillText('VOS', 0, -46);
+      }
+      ctx.fillStyle = '#07120d55'; ctx.beginPath(); ctx.ellipse(2, 7, 18, 12, 0, 0, Math.PI * 2); ctx.fill();
+      const stride = Math.sin(actor.step) * 3;
+      circle(ctx, -7, 12 + stride, 4, '#111d17'); circle(ctx, 7, 12 - stride, 4, '#111d17');
+      circle(ctx, -15, 1, 4, actor.keeper ? '#f4f0d8' : '#ddb89a');
+      circle(ctx, 15, 1, 4, actor.keeper ? '#f4f0d8' : '#ddb89a');
+      ctx.lineWidth = 1.5; circle(ctx, 0, 0, 14, actor.keeper ? '#dfca76' : color, '#e8f2dfb0');
+      ctx.fillStyle = '#ffffff55'; ctx.fillRect(-10, -6, 20, 3);
+      ctx.font = 'bold 11px sans-serif'; ctx.fillStyle = '#12303b'; ctx.textAlign = 'center'; ctx.fillText(actor.keeper ? '1' : isPlayer ? '10' : '9', 0, 8);
+      circle(ctx, 0, -11, 6, '#ddb89a');
+      ctx.fillStyle = '#362e25'; ctx.beginPath(); ctx.arc(0, -13, 5.4, Math.PI, Math.PI * 2); ctx.fill();
+      if (isPlayer && game.charging) {
+        ctx.fillStyle = '#102015'; ctx.fillRect(-23, 28, 46, 5);
+        ctx.fillStyle = game.charge > .8 ? colors.accent : colors.home; ctx.fillRect(-23, 28, 46 * game.charge, 5);
+      }
+      ctx.restore();
+    }
+    function render() {
+      ctx.setTransform(canvas.width / W, 0, 0, canvas.height / H, 0, 0);
+      ctx.drawImage(pitch, 0, 0, W, H);
+      if (game.state === 'playing' && distance(player, ball) < 64) {
+        const aim = shotDirection(player), length = game.charging ? 60 + game.charge * 48 : 37;
+        ctx.save(); ctx.strokeStyle = game.charging ? '#dcf78ca0' : '#c0edfa60'; ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]); line(ctx, ball.x, ball.y, ball.x + aim.x * length, ball.y + aim.y * length); ctx.restore();
+      }
+      for (const point of trail) { ctx.globalAlpha = Math.max(0, point.life / .17) * .2; circle(ctx, point.x, point.y, ball.radius * .65, '#e9f1d0'); }
+      ctx.globalAlpha = 1;
+      [...actors].sort((a, b) => a.y - b.y).forEach(drawActor);
+      circle(ctx, ball.x + 2, ball.y + 4, ball.radius + 1, '#07120d65');
+      ctx.save(); ctx.translate(ball.x, ball.y); ctx.rotate(ball.spin);
+      ctx.lineWidth = 1; circle(ctx, 0, 0, ball.radius, '#fffcef', '#b7c9b0');
+      ctx.fillStyle = '#273b33'; ctx.beginPath();
+      for (let i = 0; i < 5; i++) { const angle = i * Math.PI * 2 / 5; const x = Math.cos(angle) * 3.4, y = Math.sin(angle) * 3.4; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      ctx.closePath(); ctx.fill();
+      for (let i = 0; i < 5; i++) { const angle = i * Math.PI * 2 / 5; circle(ctx, Math.cos(angle) * 7.1, Math.sin(angle) * 7.1, 1.6, '#273b33'); }
+      ctx.restore();
+      for (const p of particles) { ctx.globalAlpha = clamp(p.life, 0, 1); ctx.fillStyle = p.color; ctx.fillRect(p.x, p.y, p.size, p.size * .65); }
+      ctx.globalAlpha = 1;
+      for (const x of [field.left, field.right]) for (const y of [field.goalTop, field.goalBottom]) {
+        ctx.lineWidth = 1; circle(ctx, x, y, 4, '#f8f5df', '#9cba98');
+      }
+    }
+    function resize() {
+      const width = canvas.getBoundingClientRect().width, scale = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * scale); canvas.height = Math.round(width * H / W * scale); render();
+    }
+    function frame(time) {
+      if (!lastTime) lastTime = time;
+      accumulator += Math.min((time - lastTime) / 1000, .1); lastTime = time;
+      while (accumulator >= 1 / 120) { update(1 / 120); accumulator -= 1 / 120; }
+      render(); updateHUD(); requestAnimationFrame(frame);
+    }
+    document.querySelectorAll('[data-level]').forEach(button => button.addEventListener('click', () => {
+      game.level = button.dataset.level; $('level-name').textContent = levels[game.level].name;
+      document.querySelectorAll('[data-level]').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
+    }));
+    $('play').addEventListener('click', () => modalAction === 'resume' ? resumeMatch() : startMatch());
+    $('cancel').addEventListener('click', resumeMatch);
+    $('pause').addEventListener('click', () => game.state === 'paused' ? resumeMatch() : pauseMatch());
+    $('restart').addEventListener('click', () => {
+      if (game.state === 'finished') { startMatch(); return; }
+      if (['playing', 'goal'].includes(game.state)) pauseMatch();
+      if (game.state === 'paused') showDialog('Volver a empezar', '¿Otro partido?', 'El marcador vuelve a cero y el reloj a 90 segundos.', 'Reiniciar partido →', 'start', false, true);
+    });
+    $('sound').addEventListener('click', () => {
+      sound = !sound; $('sound').textContent = sound ? 'Sonido: sí' : 'Sonido: no'; $('sound').setAttribute('aria-pressed', String(sound)); enableAudio();
+      if ($('overlay').hidden) canvas.focus({ preventScroll: true });
+    });
+    const controlCodes = ['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'ShiftLeft', 'ShiftRight'];
+    window.addEventListener('keydown', event => {
+      // Tab queda dentro del diálogo; los botones conservan Enter y Espacio nativos.
+      if (!$('overlay').hidden && event.code === 'Tab') {
+        const buttons = [...$('dialog').querySelectorAll('button')].filter(button => !button.hidden && !button.closest('[hidden]'));
+        const first = buttons[0], last = buttons[buttons.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        return;
+      }
+      if (['KeyP', 'Escape'].includes(event.code)) {
+        event.preventDefault(); if (!event.repeat) { if (game.state === 'paused') resumeMatch(); else pauseMatch(); } return;
+      }
+      if (document.activeElement?.tagName === 'BUTTON') return;
+      if (event.code === 'Enter' && ['menu', 'finished'].includes(game.state)) { event.preventDefault(); startMatch(); return; }
+      if (controlCodes.includes(event.code) && game.state === 'playing') {
+        event.preventDefault(); keys.add(event.code); if (event.code === 'Space' && !event.repeat) beginCharge();
+      }
+    });
+    window.addEventListener('keyup', event => { keys.delete(event.code); if (event.code === 'Space') releaseCharge(); });
+    canvas.addEventListener('pointerdown', () => { if ($('overlay').hidden) canvas.focus({ preventScroll: true }); });
+    window.addEventListener('blur', () => { pauseMatch(); clearInput(); });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) { pauseMatch(); clearInput(); } });
+    const joystick = $('joystick');
+    function moveStick(event) {
+      if (event.pointerId !== touch.joystickId) return;
+      const rect = joystick.getBoundingClientRect(), max = rect.width * .31;
+      const dx = event.clientX - rect.left - rect.width / 2, dy = event.clientY - rect.top - rect.height / 2;
+      const length = Math.hypot(dx, dy), scale = length > max ? max / length : 1;
+      touch.x = length < 6 ? 0 : dx * scale / max; touch.y = length < 6 ? 0 : dy * scale / max;
+      const visualScale = 112 / rect.width;
+      $('stick').style.transform = `translate(${dx * scale * visualScale}px, ${dy * scale * visualScale}px)`;
+    }
+    joystick.addEventListener('pointerdown', event => {
+      if (game.state !== 'playing' || touch.joystickId !== null) return;
+      event.preventDefault(); touch.joystickId = event.pointerId; joystick.setPointerCapture(event.pointerId); moveStick(event);
+    });
+    joystick.addEventListener('pointermove', moveStick);
+    function resetStick(event) { if (touch.joystickId === event.pointerId) { touch.x = touch.y = 0; touch.joystickId = null; $('stick').style.transform = ''; } }
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(name => joystick.addEventListener(name, resetStick));
+    function touchButton(id, press, release, cancel) {
+      const button = $(id); let pointerId = null;
+      button.addEventListener('pointerdown', event => {
+        if (game.state !== 'playing' || pointerId !== null) return;
+        event.preventDefault(); pointerId = event.pointerId; button.setPointerCapture(pointerId); button.classList.add('pressed'); press();
+      });
+      function end(event) {
+        if (event.pointerId !== pointerId) return;
+        pointerId = null; button.classList.remove('pressed');
+        if (event.type === 'pointerup') release(); else cancel();
+      }
+      ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(name => button.addEventListener(name, end));
+      button.addEventListener('click', event => { if (event.detail === 0) { press(); release(); } });
+    }
+    touchButton('shoot-touch', beginCharge, releaseCharge, () => { game.charging = false; game.charge = 0; });
+    touchButton('sprint-touch', () => touch.sprint = true, () => touch.sprint = false, () => touch.sprint = false);
+    drawPitch(); resetPositions(); resize(); new ResizeObserver(resize).observe(canvas);
+    canvas.tabIndex = -1; $('play').focus({ preventScroll: true }); requestAnimationFrame(frame);
+  </script>
+</body>
+</html>

@@ -28,7 +28,7 @@ perdió: son `node_modules`, cachés, toolchains y binarios que se regeneran con
 ## Empezar
 
 ```bash
-git clone https://github.com/USUARIO/mi-sistema.git
+git clone https://github.com/elpapu897/mi-sistema.git
 cd mi-sistema
 git lfs install && git lfs pull          # baja los 24,85 GB de video y audio
 bash scripts/restaurar.sh --dry-run      # ver qué haría, sin tocar nada

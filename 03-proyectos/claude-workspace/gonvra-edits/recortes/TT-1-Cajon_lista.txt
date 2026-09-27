@@ -1,0 +1,8 @@
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-1-Cajon_00.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-1-Cajon_01.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-1-Cajon_02.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-1-Cajon_03.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-1-Cajon_04.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-1-Cajon_05.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-1-Cajon_06.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-1-Cajon_99_end.mp4'

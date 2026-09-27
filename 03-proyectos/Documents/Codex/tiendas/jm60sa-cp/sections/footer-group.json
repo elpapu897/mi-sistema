@@ -1,0 +1,38 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "logo_width": 130,
+        "monogram": "H",
+        "wordmark": "HELIO",
+        "tagline": "Diseño portátil para una rutina que se mueve con vos.",
+        "nav_title": "Explorar",
+        "nav_label_1": "Inicio",
+        "nav_url_1": "/",
+        "nav_label_2": "Comprar",
+        "nav_url_2": "shopify://products/mini-usb-electric-shaver-long-lasting-portable-car-household-trimmer-rechargeable-washable-barber-hair-shaver-for-men-rv-hotel",
+        "nav_label_3": "Tecnología",
+        "nav_url_3": "/#tecnologia",
+        "nav_label_4": "Preguntas frecuentes",
+        "nav_url_4": "/#preguntas",
+        "nav_label_5": "Contacto",
+        "nav_url_5": "/pages/contact",
+        "nav_label_6": "",
+        "nav_url_6": "",
+        "about_title": "Diseño útil",
+        "about": "Creamos herramientas compactas para resolver mejor los pequeños momentos de todos los días.",
+        "cookies_url": "",
+        "legal_url": "",
+        "payment_enable": true,
+        "body_size": 15,
+        "background": "#06080C",
+        "padding_top": 88,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": ["footer"]
+}

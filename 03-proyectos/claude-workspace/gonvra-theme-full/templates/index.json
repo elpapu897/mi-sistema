@@ -1,0 +1,263 @@
+{
+  "sections": {
+    "portada": {
+      "type": "gv-home",
+      "blocks": {
+        "chip1": {
+          "type": "chip",
+          "settings": {
+            "text": "Envío a todo el país"
+          }
+        },
+        "chip2": {
+          "type": "chip",
+          "settings": {
+            "text": "Seguimiento del pedido"
+          }
+        },
+        "chip3": {
+          "type": "chip",
+          "settings": {
+            "text": "Pago protegido con Shopify"
+          }
+        },
+        "p1": {
+          "type": "punto",
+          "settings": {
+            "text": "Peines guía de 1, 3 y 5 mm"
+          }
+        },
+        "p2": {
+          "type": "punto",
+          "settings": {
+            "text": "Carga por USB"
+          }
+        },
+        "p3": {
+          "type": "punto",
+          "settings": {
+            "text": "Cabezal reemplazable"
+          }
+        }
+      },
+      "block_order": [
+        "chip1",
+        "chip2",
+        "chip3",
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "kicker": "Cuidado personal · Argentina",
+        "heading": "Tu rutina de corte, en un solo equipo.",
+        "sub": "Una rasuradora para rostro y cuerpo, con peines de 1, 3 y 5 mm y carga por USB. Sin cuchillas descartables ni aparatos de más.",
+        "cta_label": "Ver la rasuradora",
+        "cta2_label": "Cómo funciona",
+        "cta2_url": "#catalogo",
+        "product_handle": "face-body-electric-shaver",
+        "cat_kicker": "Catálogo",
+        "cat_heading": "Un producto, elegido y probado",
+        "card_tag": "Nuevo",
+        "card_eyebrow": "Rostro + cuerpo",
+        "card_text": "Recargable, compacta y con los peines incluidos. La misma máquina para barba, patillas y cuerpo.",
+        "card_cta": "Ver producto",
+        "wave_top": false,
+        "wave_bottom": false
+      }
+    },
+    "numeros": {
+      "type": "gv-datos",
+      "blocks": {
+        "n1": {
+          "type": "dato",
+          "settings": {
+            "number": "3",
+            "suffix": "",
+            "title": "Largos de corte",
+            "text": "Peines guía de 1, 3 y 5 mm incluidos en la caja."
+          }
+        },
+        "n2": {
+          "type": "dato",
+          "settings": {
+            "number": "2",
+            "suffix": "",
+            "title": "Zonas de uso",
+            "text": "Rostro y cuerpo con el mismo equipo."
+          }
+        },
+        "n3": {
+          "type": "dato",
+          "settings": {
+            "number": "0",
+            "suffix": "",
+            "title": "Cuchillas descartables",
+            "text": "Cabezal reemplazable y carga USB."
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ],
+      "settings": {
+        "heading": "Una sola herramienta, toda tu rutina",
+        "sub": "Datos del producto, no promesas.",
+        "foot": "Los resultados varían según el tipo y grosor del vello.",
+        "wave": false,
+        "bg": "#edf0e6",
+        "fg": "#101a16",
+        "muted": "#6b7570",
+        "accent": "#6d8b1c",
+        "line": "#dfe2da",
+        "wave_from": "#101a16"
+      }
+    },
+    "historia": {
+      "type": "gv-historia",
+      "blocks": {
+        "h1": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 1",
+            "title": "Elegí el largo que querés",
+            "text": "<p>Ponele el peine de 1, 3 o 5 mm según cuánto quieras dejar. Sin peine, el acabado queda más al ras.</p>",
+            "list": "Peines guía incluidos|Cambio de cabezal sin herramientas|Sirve para barba y para cuerpo",
+            "clip": "gv-paso-1.webp"
+          }
+        },
+        "h2": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 2",
+            "title": "Pasala en seco, sin espuma",
+            "text": "<p>Sobre piel limpia y seca, con movimientos suaves. No necesitás gel ni otra afeitadora.</p>",
+            "list": "Cabezal de acero inoxidable|Menos pasadas|Probá primero en un área chica",
+            "clip": "gv-paso-2.webp"
+          }
+        },
+        "h3": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 3",
+            "title": "Limpiala y cargala",
+            "text": "<p>Sacás los restos con el cepillo que viene incluido y la cargás con el cable USB de la caja. También podés enjuagar el cabezal bajo la canilla.</p>",
+            "list": "Cepillo de limpieza incluido|Se enchufa a cualquier cargador USB|El cabezal se enjuaga con agua",
+            "clip": "gv-paso-3.webp"
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "settings": {
+        "kicker": "Por qué esta rasuradora",
+        "heading": "¿Cansado de tener un aparato para cada zona?",
+        "intro": "<p>Una máquina para la barba, otra para el cuerpo, cuchillas que se gastan y un cajón lleno de cosas que casi no usás. Esta rasuradora resuelve todo con un solo equipo.</p>",
+        "cta_text": "Ver la rasuradora",
+        "cta_link": "/products/face-body-electric-shaver",
+        "wave": false
+      }
+    },
+    "preguntas": {
+      "type": "gv-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Hacen envíos a todo el país?",
+            "a": "<p>Sí, enviamos a todo el país. Despachamos en 24 a 48 h hábiles y la entrega estimada es de 12 a 20 días según la zona, siempre con código de seguimiento.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cómo puedo pagar?",
+            "a": "<p>El pago se hace en el checkout seguro de Shopify, con los medios que aparecen debajo del botón de compra. Antes de confirmar vas a ver el total final con envío.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Puedo cambiar o devolver el producto?",
+            "a": "<p>Sí. Si llega con una falla, escribinos y coordinamos el cambio o la devolución según la Ley 24.240 de Defensa del Consumidor.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "kicker": "Sobre la tienda",
+        "heading": "Preguntas frecuentes",
+        "sub": "Lo que más nos preguntan antes de comprar.",
+        "contact_text": "¿Otra duda? Escribinos",
+        "show_cta": true,
+        "product_handle": "face-body-electric-shaver",
+        "cta_kicker": "Empezá por acá",
+        "cta_heading": "Una sola rasuradora para toda tu rutina",
+        "cta_text": "Elegí tu pack, revisá el total antes de pagar y te llega con seguimiento.",
+        "cta_button": "Ver la rasuradora",
+        "cta_clip": "gv-cierre.webp"
+      }
+    },
+    "antes": {
+      "type": "gv-antes",
+      "blocks": {
+        "a1": {
+          "type": "punto",
+          "settings": {
+            "title": "Zona íntima, brazos, pecho y piernas",
+            "text": "La misma máquina para todo el cuerpo. Sin espuma, sin cuchillas descartables."
+          }
+        },
+        "a2": {
+          "type": "punto",
+          "settings": {
+            "title": "Vos elegís cuánto dejar",
+            "text": "Con el peine de 1, 3 o 5 mm queda parejo. Sin peine, el acabado es más al ras."
+          }
+        },
+        "a3": {
+          "type": "punto",
+          "settings": {
+            "title": "En una pasada",
+            "text": "El cabezal ancho cubre más superficie: menos idas y vueltas sobre la misma zona."
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {
+        "wave": true,
+        "wave_from": "#f7f6f1",
+        "wave_bottom": true,
+        "wave_to": "#edf0e6",
+        "kicker": "Antes y después",
+        "heading": "Deslizá y mirá la diferencia",
+        "sub": "Movés la línea con el dedo y ves la misma zona antes y después de pasar la rasuradora.",
+        "label_before": "Antes",
+        "label_after": "Después",
+        "cta_text": "Ver la rasuradora",
+        "cta_link": "/products/face-body-electric-shaver",
+        "foot": "Imágenes ilustrativas del uso del producto. El resultado es temporal y varía según el tipo y grosor del vello."
+      }
+    }
+  },
+  "order": [
+    "portada",
+    "antes",
+    "numeros",
+    "historia",
+    "preguntas"
+  ]
+}

@@ -1,0 +1,18 @@
+{%- comment -%}
+  Iconos de pago unificados. Mercado Pago usa el logo oficial (badge amarillo
+  con el óvalo celeste y el apretón de manos), guardado como archivo del tema
+  en assets/gv-mercadopago.svg. El resto son los iconos nativos de Shopify.
+  Se usa en: gv-producto (caja de compra), gv-marquee (banda del inicio) y
+  footer. Un solo lugar para mantenerlos.
+{%- endcomment -%}
+<img src="{{ 'gv-mercadopago.svg' | asset_url }}"
+     alt="Mercado Pago"
+     width="28" height="28" loading="lazy"
+     class="gv-pay-icon gv-pay-icon--mp"
+     style="width:28px;height:28px;object-fit:contain;border-radius:6px;">
+{{ 'visa' | payment_type_svg_tag: class: 'gv-pay-icon' }}
+{{ 'master' | payment_type_svg_tag: class: 'gv-pay-icon' }}
+{{ 'american_express' | payment_type_svg_tag: class: 'gv-pay-icon' }}
+{{ 'maestro' | payment_type_svg_tag: class: 'gv-pay-icon' }}
+{{ 'diners_club' | payment_type_svg_tag: class: 'gv-pay-icon' }}
+{{ 'discover' | payment_type_svg_tag: class: 'gv-pay-icon' }}

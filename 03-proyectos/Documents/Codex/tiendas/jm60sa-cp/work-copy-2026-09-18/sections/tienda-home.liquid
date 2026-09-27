@@ -1,0 +1,37 @@
+{% assign featured_product = all_products['face-body-electric-shaver'] %}
+<section class="th-home">
+  <div class="th-hero">
+    <img src="{{ 'gonvra-hero.webp' | asset_url }}" alt="Rasuradora integral recargable en una rutina de cuidado personal" width="1664" height="936" loading="eager">
+    <div class="th-hero__overlay"></div>
+    <div class="th-hero__content" data-th-reveal>
+      <p>RUTINA DIARIA / CUIDADO PERSONAL</p>
+      <h1>Tu rutina de corte<br>más simple.</h1>
+      <span>Una herramienta compacta para retocar rostro y cuerpo a tu ritmo.</span>
+      <a href="/products/face-body-electric-shaver">Conocer la rasuradora <b>↓</b></a>
+    </div>
+  </div>
+
+  <div class="th-wrap">
+    <section class="th-intro" data-th-reveal><p>Menos pasos. Más control.</p><h2>Un recorte pensado para encajar en tu día, no para complicarlo.</h2></section>
+    {% if featured_product != blank %}
+      <section class="th-catalog" id="catalogo" data-th-reveal>
+        <div class="th-catalog__heading"><p>CATÁLOGO</p><h2>La rasuradora integral</h2></div>
+        <article class="th-product-card">
+          <a class="th-product-card__image" href="{{ featured_product.url }}">{{ featured_product.featured_image | image_url: width: 1200 | image_tag: widths: '500, 800, 1200', sizes: '(min-width: 750px) 50vw, 100vw', loading: 'lazy', alt: featured_product.title }}</a>
+          <div class="th-product-card__body"><p>Rostro y cuerpo</p><h3>{{ featured_product.title | escape }}</h3><span>{{ featured_product.selected_or_first_available_variant.price | money }}</span><a href="{{ featured_product.url }}">Ver producto <b>→</b></a></div>
+        </article>
+      </section>
+    {% endif %}
+    <section class="th-steps" data-th-reveal><div><span>01</span><h3>Elegí el largo</h3><p>Peines guía de 1, 3 y 5 mm para adaptar el recorte.</p></div><div><span>02</span><h3>Usala en seco</h3><p>Para una rutina práctica sobre piel limpia y seca.</p></div><div><span>03</span><h3>Seguí tu día</h3><p>Limpiá, guardá y recargá por USB cuando lo necesites.</p></div></section>
+    <section class="th-checkout" data-th-reveal><div><p>COMPRA CON INFORMACIÓN CLARA</p><h2>Elegí el producto y revisá todo antes de pagar.</h2><span>Precio, unidades y medios disponibles aparecen antes de confirmar tu compra.</span></div>{% if shop.enabled_payment_types != blank %}<div class="th-payments" aria-label="Medios de pago disponibles">{% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag: class: 'th-payment-icon' }}{% endfor %}</div>{% endif %}</section>
+  </div>
+</section>
+{% stylesheet %}
+  .th-home { --ink:#16231d; --paper:#fafaf6; --muted:#64706a; --lime:#c8e54a; color:var(--ink); background:var(--paper); font-family:inherit; overflow:hidden; }.th-hero{position:relative; min-height:min(760px, calc(100vh - 64px)); display:grid; align-items:end;}.th-hero>img,.th-hero__overlay{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.th-hero__overlay{background:linear-gradient(90deg,rgba(17,33,26,.82) 0%,rgba(17,33,26,.45) 36%,rgba(17,33,26,.03) 72%)}.th-hero__content{position:relative;z-index:1;width:min(1220px,calc(100% - 38px));margin:auto;padding:110px 0;color:#fff}.th-hero__content p,.th-catalog__heading p,.th-checkout p{margin:0 0 12px;color:var(--lime);font-size:.72rem;font-weight:800;letter-spacing:.14em}.th-hero h1{margin:0;font-size:clamp(3.7rem,8vw,8.5rem);line-height:.87;letter-spacing:-.075em}.th-hero span{display:block;max-width:425px;margin:26px 0;color:#e4e9e5;font-size:1.07rem;line-height:1.55}.th-hero a{display:inline-flex;gap:14px;align-items:center;border-bottom:1px solid var(--lime);padding:0 0 8px;color:#fff;font-weight:800;text-decoration:none}.th-hero b{font-size:1.25rem}.th-wrap{width:min(1220px,calc(100% - 38px));margin:auto;padding:110px 0}.th-intro{max-width:900px;margin:0 0 115px}.th-intro p{margin:0 0 12px;color:#758e23;font-size:.8rem;font-weight:800;text-transform:uppercase}.th-intro h2{margin:0;font-size:clamp(2.2rem,5vw,5rem);line-height:.98;letter-spacing:-.06em}.th-catalog__heading{display:flex;justify-content:space-between;align-items:end;border-top:1px solid var(--ink);padding-top:20px}.th-catalog__heading h2{margin:0;font-size:clamp(1.9rem,3vw,3.1rem);letter-spacing:-.045em}.th-product-card{display:grid;grid-template-columns:1.25fr .75fr;margin-top:25px;background:#eef0e9}.th-product-card__image{min-height:500px;overflow:hidden}.th-product-card__image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}.th-product-card:hover img{transform:scale(1.025)}.th-product-card__body{display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,5vw,70px)}.th-product-card__body p{margin:0;color:#6e8820;font-size:.8rem;font-weight:800;text-transform:uppercase}.th-product-card h3{margin:14px 0;font-size:clamp(2rem,4vw,4rem);line-height:1;letter-spacing:-.06em}.th-product-card__body>span{font-weight:800}.th-product-card__body a{margin-top:auto;color:var(--ink);font-weight:800;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:7px}.th-product-card__body b{margin-left:9px;color:#6d8a1a}.th-steps{display:grid;grid-template-columns:repeat(3,1fr);margin:115px 0;border-top:1px solid #dce1da;border-bottom:1px solid #dce1da}.th-steps>div{padding:30px 24px 37px}.th-steps>div+div{border-left:1px solid #dce1da}.th-steps span{color:#75901c;font-size:.78rem;font-weight:800}.th-steps h3{margin:40px 0 9px;font-size:1.2rem}.th-steps p{max-width:260px;margin:0;color:var(--muted);line-height:1.5}.th-checkout{display:grid;grid-template-columns:1fr .8fr;gap:50px;align-items:end;padding:48px;background:var(--ink);color:#fff}.th-checkout p{color:var(--lime)}.th-checkout h2{max-width:600px;margin:0;font-size:clamp(2rem,4vw,4rem);line-height:.98;letter-spacing:-.06em}.th-checkout span{display:block;max-width:390px;margin-top:20px;color:#d6ded8;line-height:1.55}.th-payments{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px}.th-payment-icon{width:43px;height:28px}.th-home [data-th-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.th-home [data-th-reveal].is-visible{opacity:1;transform:none}@media(max-width:720px){.th-hero{min-height:610px}.th-hero__content,.th-wrap{width:min(100% - 24px,1220px)}.th-hero__content{padding:78px 0}.th-hero h1{font-size:clamp(3.15rem,16vw,5.2rem)}.th-wrap{padding:70px 0}.th-intro{margin-bottom:70px}.th-product-card,.th-checkout{grid-template-columns:1fr}.th-product-card__image{min-height:370px}.th-product-card__body{min-height:280px}.th-steps{grid-template-columns:1fr;margin:75px 0}.th-steps>div+div{border-top:1px solid #dce1da;border-left:0}.th-checkout{gap:30px;padding:30px 22px}.th-payments{justify-content:flex-start}}
+{% endstylesheet %}
+{% javascript %}
+  const homeObserver = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); homeObserver.unobserve(entry.target); } }); }, { threshold: 0.14 }); document.querySelectorAll('.th-home [data-th-reveal]').forEach((element) => homeObserver.observe(element));
+{% endjavascript %}
+{% schema %}
+{"name":"Inicio tienda","tag":"section","class":"section-tienda-home","settings":[]}
+{% endschema %}

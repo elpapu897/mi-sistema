@@ -1,0 +1,816 @@
+{
+ "generado": "27/09/2026 12:16",
+ "generado_iso": "2026-09-27T12:16:53.166134",
+ "tienda": {
+  "marca": "GONVRA",
+  "url": "https://gonvra.com",
+  "producto": "Rasuradora Integral Recargable",
+  "precio": "$36.900"
+ },
+ "modelos": {
+  "principal": "GPT-6 Astra (OpenAI Codex)",
+  "economico": "GPT-5.6 Sol (OpenAI Codex)",
+  "respaldo": "Kimi vía NVIDIA (Gemini quedó de última opción: lento/falla)",
+  "prohibidos": [
+   "API Next",
+   "DeepSeek"
+  ]
+ },
+ "servidor": {
+  "host": "esta laptop",
+  "ruta": "/home/matiigonzz/Claude/gonvra2",
+  "estado": "activo",
+  "nota": "El VPS 47.85.84.11 se cayo por falta de RAM (1 GiB). Todo corre local."
+ },
+ "kanban": {
+  "done": 20,
+  "running": 0,
+  "blocked": 0,
+  "ready": 0,
+  "tareas": [
+   {
+    "id": "t_2b988b3a",
+    "estado": "done",
+    "agente": "jefe",
+    "titulo": "Fase 1 — Auditoría bloqueantes — JEFE"
+   },
+   {
+    "id": "t_78b5ab99",
+    "estado": "done",
+    "agente": "analista",
+    "titulo": "Fase 1 — Auditoría bloqueantes — ANALISTA"
+   },
+   {
+    "id": "t_9c19ca7e",
+    "estado": "done",
+    "agente": "guardia",
+    "titulo": "Fase 1 — Auditoría bloqueantes — GUARDIA"
+   },
+   {
+    "id": "t_884fdb2e",
+    "estado": "done",
+    "agente": "tienda",
+    "titulo": "Fase 1 — Auditoría bloqueantes — TIENDA"
+   },
+   {
+    "id": "t_a9a0d466",
+    "estado": "done",
+    "agente": "tester",
+    "titulo": "Fase 1 — Auditoría bloqueantes — TESTER"
+   },
+   {
+    "id": "t_655399f2",
+    "estado": "done",
+    "agente": "legal",
+    "titulo": "Fase 1 — Auditoría bloqueantes — LEGAL"
+   },
+   {
+    "id": "t_8ae087fc",
+    "estado": "done",
+    "agente": "precios",
+    "titulo": "GONVRA2 — PRECIOS — margen real, CPA máximo y packs"
+   },
+   {
+    "id": "t_899adaba",
+    "estado": "done",
+    "agente": "creativo",
+    "titulo": "GONVRA2 — CREATIVO — producir placas Instagram y portada TikTok"
+   },
+   {
+    "id": "t_3fbc308a",
+    "estado": "done",
+    "agente": "cro",
+    "titulo": "GONVRA2 — CRO — auditoría móvil y un test semanal"
+   },
+   {
+    "id": "t_fcfa8794",
+    "estado": "done",
+    "agente": "tienda",
+    "titulo": "GONVRA2 — TIENDA — bloque local Antes/Después para fotos reales"
+   },
+   {
+    "id": "t_8c5c1e31",
+    "estado": "done",
+    "agente": "copy",
+    "titulo": "GONVRA2 Fase 1 — COPY — producción orgánica"
+   },
+   {
+    "id": "t_9b5ff120",
+    "estado": "done",
+    "agente": "tiktoker",
+    "titulo": "GONVRA2 Fase 1 — TIKTOKER — producción orgánica"
+   },
+   {
+    "id": "t_f84591b6",
+    "estado": "done",
+    "agente": "instagramer",
+    "titulo": "GONVRA2 Fase 1 — INSTAGRAMER — producción orgánica"
+   },
+   {
+    "id": "t_e2a4368c",
+    "estado": "done",
+    "agente": "espia",
+    "titulo": "GONVRA2 Fase 1 — ESPIA — producción orgánica"
+   },
+   {
+    "id": "t_104cb478",
+    "estado": "done",
+    "agente": "jefe",
+    "titulo": "GONVRA2 — JEFE — cierre corto de cuatro entregables"
+   },
+   {
+    "id": "t_8506d9bb",
+    "estado": "done",
+    "agente": "tienda",
+    "titulo": "GONVRA2 Fase 2 — TIENDA — ejecución orgánica"
+   },
+   {
+    "id": "t_c5ed3665",
+    "estado": "done",
+    "agente": "tiktoker",
+    "titulo": "GONVRA2 Fase 2 — TIKTOKER — ejecución orgánica"
+   },
+   {
+    "id": "t_eb24bcd8",
+    "estado": "done",
+    "agente": "instagramer",
+    "titulo": "GONVRA2 Fase 2 — INSTAGRAMER — ejecución orgánica"
+   },
+   {
+    "id": "t_2479914c",
+    "estado": "done",
+    "agente": "jefe",
+    "titulo": "GONVRA2 Fase 2 — JEFE — ejecución orgánica"
+   },
+   {
+    "id": "t_c8292f69",
+    "estado": "done",
+    "agente": "tienda",
+    "titulo": "GONVRA2 — aplicar COPY a plantilla activa product.json"
+   }
+  ]
+ },
+ "ventas": null,
+ "herramientas": [
+  {
+   "n": "Shopify CLI",
+   "est": "ok",
+   "d": "Edita el tema (theme pull/push)"
+  },
+  {
+   "n": "Meta Ads",
+   "est": "parcial",
+   "d": "Píxel conectado · pauta en pausa"
+  },
+  {
+   "n": "WhatsApp",
+   "est": "falta",
+   "d": "Sin conectar todavía"
+  },
+  {
+   "n": "TikTok API",
+   "est": "falta",
+   "d": "Falta aprobación de TikTok"
+  },
+  {
+   "n": "ffmpeg",
+   "est": "ok",
+   "d": "Arma y edita videos"
+  },
+  {
+   "n": "video-intel.py",
+   "est": "ok",
+   "d": "Espia videos sin gastar tokens"
+  },
+  {
+   "n": "genimage-replicate.py",
+   "est": "ok",
+   "d": "Genera imagenes"
+  },
+  {
+   "n": "Replicate",
+   "est": "ok",
+   "d": "Imagenes US$0.003 · video US$0.28"
+  },
+  {
+   "n": "Telegram",
+   "est": "ok",
+   "d": "Avisos y aprobaciones"
+  },
+  {
+   "n": "n8n",
+   "est": "ok",
+   "d": "8 automatizaciones corriendo"
+  },
+  {
+   "n": "Tunel publico",
+   "est": "ok",
+   "d": "Recibe ventas y comentarios al instante"
+  },
+  {
+   "n": "MCP: fbads",
+   "est": "parcial",
+   "d": "Conecta, pero Facebook lo bloquea (403 anti-bot)"
+  },
+  {
+   "n": "MCP: gmail",
+   "est": "ok",
+   "d": "15 herramientas · autorizado con gonvra0@gmail.com"
+  },
+  {
+   "n": "MCP: shopify",
+   "est": "ok",
+   "d": "14 herramientas · lee pedidos, clientes y carritos"
+  },
+  {
+   "n": "Instagram API",
+   "est": "ok",
+   "d": "@gonvra1 (BUSINESS) - puede publicar"
+  }
+ ],
+ "grupos": {
+  "nucleo": "Núcleo · coordinan y vigilan",
+  "plata": "Plata directa · convierten lo que ya entra",
+  "contenido": "Contenido · traen gente",
+  "pauta": "Pauta",
+  "operacion": "Operación"
+ },
+ "hechos_hoy": [
+  {
+   "agente": "ESPIA",
+   "emoji": "🕵️",
+   "archivo": "2026-09-27.md",
+   "hora": "02:10",
+   "que": "ESPIA GONVRA — competencia de rasuradoras y recortadoras en Argentina PARCIAL. Hoy la Biblioteca de Anuncios de Meta volvió a responder HTTP 403 al pa"
+  }
+ ],
+ "totales": {
+  "agentes": 15,
+  "entregables": 72,
+  "trabajaron_hoy": 1,
+  "ultima_actividad": "27/09 02:10"
+ },
+ "conversacion": [
+  {
+   "agente": "ESPIA",
+   "emoji": "🕵️",
+   "slug": "espia",
+   "para": "CREATIVO",
+   "hora": "02:15",
+   "iso": "",
+   "texto": "Encontré 7 anuncios de la competencia con más de 30 días activos. Los que más repiten son de \"una sola máquina para todo\"."
+  },
+  {
+   "agente": "ESPIA",
+   "emoji": "🕵️",
+   "slug": "espia",
+   "para": "JEFE",
+   "hora": "02:18",
+   "iso": "",
+   "texto": "El ángulo que más se repite en la competencia es el ahorro de tiempo, no el precio."
+  },
+  {
+   "agente": "ANALISTA",
+   "emoji": "📊",
+   "slug": "analista",
+   "para": null,
+   "hora": "06:30",
+   "iso": "",
+   "texto": "Sin ventas todavía. La tienda tuvo visitas pero el embudo se corta antes del carrito."
+  },
+  {
+   "agente": "COPY",
+   "emoji": "✍️",
+   "slug": "copy",
+   "para": "TIENDA",
+   "hora": "09:10",
+   "iso": "",
+   "texto": "Dejé los textos nuevos de la ficha listos para aplicar. Saqué las promesas que no podemos comprobar."
+  },
+  {
+   "agente": "TIKTOKER",
+   "emoji": "📱",
+   "slug": "tiktoker",
+   "para": "CREATIVO",
+   "hora": "10:05",
+   "iso": "",
+   "texto": "Necesito la portada del guion 1 en 9:16 para armar el video."
+  },
+  {
+   "agente": "TIKTOKER",
+   "emoji": "📱",
+   "slug": "tiktoker",
+   "para": "JEFE",
+   "hora": "10:40",
+   "iso": "",
+   "texto": "Los 3 guiones están listos. Ninguno necesita el producto en mano ni que Matías aparezca."
+  },
+  {
+   "agente": "INSTAGRAMER",
+   "emoji": "📸",
+   "slug": "instagramer",
+   "para": "CREATIVO",
+   "hora": "11:20",
+   "iso": "",
+   "texto": "Me faltan 2 placas del carrusel para cerrar el calendario de la semana."
+  },
+  {
+   "agente": "CRO",
+   "emoji": "🔬",
+   "slug": "cro",
+   "para": "TIENDA",
+   "hora": "13:15",
+   "iso": "",
+   "texto": "En celular el precio y el botón de comprar quedan abajo del pliegue. Hay que subirlos."
+  },
+  {
+   "agente": "CREATIVO",
+   "emoji": "🎨",
+   "slug": "creativo",
+   "para": "INSTAGRAMER",
+   "hora": "15:30",
+   "iso": "",
+   "texto": "Listas las 5 placas del carrusel y las 3 historias. Las dejo para aprobación."
+  },
+  {
+   "agente": "CAZADOR",
+   "emoji": "🎣",
+   "slug": "cazador",
+   "para": null,
+   "hora": "19:05",
+   "iso": "",
+   "texto": "Hay un checkout abandonado del 8/9. Preparo el mensaje de recuperación por si el cliente vuelve."
+  },
+  {
+   "agente": "JEFE",
+   "emoji": "🧠",
+   "slug": "jefe",
+   "para": "PRECIOS",
+   "hora": "21:00",
+   "iso": "",
+   "texto": "Prioridad de mañana: cerrar el CPA máximo. Sin eso MEDIABUYER sigue en pausa."
+  },
+  {
+   "agente": "JEFE",
+   "emoji": "🧠",
+   "slug": "jefe",
+   "para": null,
+   "hora": "21:02",
+   "iso": "",
+   "texto": "Falta que Matías grabe el video. Es lo único que nos separa de tener tráfico real."
+  }
+ ],
+ "agentes": [
+  {
+   "slug": "jefe",
+   "emoji": "🧠",
+   "nombre": "JEFE",
+   "rol": "Coordina y manda el resumen diario",
+   "grupo": "nucleo",
+   "personalidad": "Directo y breve. Prioriza por pesos, no por prolijidad. Odia el relleno.",
+   "modelo": {
+    "nombre": "GPT-6 Astra",
+    "prov": "OpenAI Codex",
+    "tipo": "potente"
+   },
+   "horas": [
+    21
+   ],
+   "agendado": true,
+   "cron_estado": "ok",
+   "cron_error": "",
+   "cron_ultima": "2026-09-23T21:00:50.008543-03:00",
+   "herramientas": [
+    "Lectura de informes",
+    "Telegram",
+    "Kanban"
+   ],
+   "entregables": 15,
+   "ultimo_archivo": "2026-09-26.md",
+   "ultima_fecha": "26/09 23:35",
+   "ultima_iso": "2026-09-26T23:35:52.645567",
+   "trabajo_hoy": false,
+   "resumen": "Hoy se publicaron 0 piezas. La cola también quedó en 0: no hay piezas esperando aprobación ni aprobadas sin publicar. @gonvra1 mantiene 6 publicaciones. Hubo 0 ventas y 0 carritos reales con mail; en una tienda nueva sin tráfico esto no es un bug. Qué quedó listo para atraer tráfico / conversión La única novedad de los 15 agentes activos fue ESPIA, con un entregable PARCIAL: verificó tres videos p…"
+  },
+  {
+   "slug": "analista",
+   "emoji": "📊",
+   "nombre": "ANALISTA",
+   "rol": "Números, embudo y carritos",
+   "grupo": "nucleo",
+   "personalidad": "Frío con los datos. Si no hay dato, dice 'no sé'. Nunca estima sin avisar.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [
+    6
+   ],
+   "agendado": true,
+   "cron_estado": "failed",
+   "cron_error": "RuntimeError: Hermes can't reach the model provider. You may be offline. Check your internet connection and try again.",
+   "cron_ultima": "2026-09-27T11:46:10.899751-03:00",
+   "herramientas": [
+    "Shopify API",
+    "Meta Events",
+    "Analytics"
+   ],
+   "entregables": 5,
+   "ultimo_archivo": "2026-09-26.md",
+   "ultima_fecha": "26/09 23:39",
+   "ultima_iso": "2026-09-26T23:39:05.235245",
+   "trabajo_hoy": false,
+   "resumen": "Hoy no hay un número real de visitas ni de eventos del píxel disponible. Por eso no corresponde decir “0 visitas”, calcular conversión ni afirmar dónde se corta el embudo. Sí hay números internos verificables: el Kanban tiene 20 tarjetas terminadas y 0 abiertas; antes de este informe había 64 entregables Markdown no vacíos en las carpetas de los 15 agentes activos. Con este informe pasan a 65. Ade…"
+  },
+  {
+   "slug": "guardia",
+   "emoji": "🚨",
+   "nombre": "GUARDIA",
+   "rol": "Vigila la tienda y avisa cada venta",
+   "grupo": "nucleo",
+   "personalidad": "Callado. Solo habla si hay un problema o entró una venta.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20
+   ],
+   "agendado": true,
+   "cron_estado": "ok",
+   "cron_error": "",
+   "cron_ultima": "2026-09-25T12:00:40.055490-03:00",
+   "herramientas": [
+    "HTTP/curl",
+    "Shopify API",
+    "Telegram"
+   ],
+   "entregables": 0,
+   "ultimo_archivo": null,
+   "ultima_fecha": null,
+   "ultima_iso": null,
+   "trabajo_hoy": false,
+   "resumen": ""
+  },
+  {
+   "slug": "cro",
+   "emoji": "🔬",
+   "nombre": "CRO",
+   "rol": "Sube la conversión: un test por vez",
+   "grupo": "plata",
+   "personalidad": "Obsesivo con el celular. Cuantifica todo en pesos. Un test por vez, sin dispersarse.",
+   "modelo": {
+    "nombre": "GPT-6 Astra",
+    "prov": "OpenAI Codex",
+    "tipo": "potente"
+   },
+   "horas": [
+    13
+   ],
+   "agendado": true,
+   "cron_estado": "ok",
+   "cron_error": "",
+   "cron_ultima": "2026-09-25T13:00:41.284668-03:00",
+   "herramientas": [
+    "Navegador",
+    "Shopify",
+    "Capturas"
+   ],
+   "entregables": 8,
+   "ultimo_archivo": "2026-09-26.md",
+   "ultima_fecha": "26/09 23:45",
+   "ultima_iso": "2026-09-26T23:45:30.002823",
+   "trabajo_hoy": false,
+   "resumen": "No se aplicó ningún cambio. No se tocó el tema LIVE. La ficha pública https://gonvra.com/products/face-body-electric-shaver no mostró el producto: Shopify respondió HTTP 402 y la página visible fue “Tienda no disponible”. Lo confirmé también intentando un theme pull de solo lectura del tema LIVE 148158414963; Shopify devolvió “Unavailable Shop” (402). Por eso hoy no fue posible revisar visualmente…"
+  },
+  {
+   "slug": "cazador",
+   "emoji": "🎣",
+   "nombre": "CAZADOR",
+   "rol": "Recupera carritos abandonados",
+   "grupo": "plata",
+   "personalidad": "Persuasivo pero no pesado. Escribe como una persona, no como un robot.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [
+    19
+   ],
+   "agendado": true,
+   "cron_estado": "ok",
+   "cron_error": "",
+   "cron_ultima": "2026-09-23T19:00:23.636648-03:00",
+   "herramientas": [
+    "Shopify (carritos)",
+    "Redacción"
+   ],
+   "entregables": 5,
+   "ultimo_archivo": "2026-09-26.md",
+   "ultima_fecha": "26/09 23:53",
+   "ultima_iso": "2026-09-26T23:53:46.020461",
+   "trabajo_hoy": false,
+   "resumen": "CAZADOR — 5 comunidades argentinas para conseguir tráfico orgánico Producto vigente: Rasuradora Integral Recargable — Rostro y Cuerpo Objetivo: encontrar conversaciones reales de hombres argentinos con problemas de afeitado/recorte y participar sin pauta ni spam. - No se consultaron pedidos ni carritos abandonados. - No se inventaron ventas, demanda, cantidad de miembros ni actividad. - No se publ…"
+  },
+  {
+   "slug": "precios",
+   "emoji": "🏷️",
+   "nombre": "PRECIOS",
+   "rol": "Margen real y CPA máximo",
+   "grupo": "plata",
+   "personalidad": "Desconfiado. Marca cada supuesto como supuesto. No autoriza gastar sin números.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [],
+   "agendado": false,
+   "cron_estado": "a pedido",
+   "cron_error": "",
+   "cron_ultima": null,
+   "herramientas": [
+    "Shopify (costos)",
+    "Cálculo de márgenes"
+   ],
+   "entregables": 2,
+   "ultimo_archivo": "2026-09-18.md",
+   "ultima_fecha": "19/09 16:42",
+   "ultima_iso": "2026-09-19T16:42:48.742818",
+   "trabajo_hoy": false,
+   "resumen": "Estado: PARCIAL / BLOQUEADO para habilitar pauta. Se calculó con el costo unitario informado por Matías y escenarios explícitos. No se modificó la tienda, no se publicó nada, no se gastó dinero y MEDIABUYER sigue en pausa. Precio individual  $36.900  Confirmado; ficha pública de producto (gonvra.com/products/face-body-electric-shaver), ARS Costo proveedor por unidad  $8.672,90  Confirmado por Matí…"
+  },
+  {
+   "slug": "copy",
+   "emoji": "✍️",
+   "nombre": "COPY",
+   "rol": "Textos de la web y objeciones",
+   "grupo": "contenido",
+   "personalidad": "Argentino, claro y honesto. Cero urgencia falsa. Escribe como habla la gente.",
+   "modelo": {
+    "nombre": "GPT-6 Astra",
+    "prov": "OpenAI Codex",
+    "tipo": "potente"
+   },
+   "horas": [
+    9
+   ],
+   "agendado": true,
+   "cron_estado": "error",
+   "cron_error": "RuntimeError: Hermes can't reach the model provider. You may be offline. Check your internet connection and try again.",
+   "cron_ultima": "2026-09-24T09:00:18.559374-03:00",
+   "herramientas": [
+    "Web",
+    "Shopify",
+    "Análisis de copy"
+   ],
+   "entregables": 7,
+   "ultimo_archivo": "2026-09-26.md",
+   "ultima_fecha": "26/09 23:40",
+   "ultima_iso": "2026-09-26T23:40:03.098414",
+   "trabajo_hoy": false,
+   "resumen": "Variante 1 — mismo ángulo que mejor rindió ¿Una máquina para la cara y otra para el cuerpo? Simplificá tu rutina con una sola rasuradora recargable. Envío gratis a todo el país. Barba, patillas, pecho, brazos, piernas y zona íntima: una sola máquina con peines regulables para elegir el largo. Una sola rasuradora para rostro y cuerpo, con envío gratis, seguimiento y atención real por WhatsApp. Cono…"
+  },
+  {
+   "slug": "creativo",
+   "emoji": "🎨",
+   "nombre": "CREATIVO",
+   "rol": "Imágenes, placas y videos",
+   "grupo": "contenido",
+   "personalidad": "Visual. Nunca entrega una sola opción: siempre variantes para elegir.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [
+    16
+   ],
+   "agendado": true,
+   "cron_estado": "ok",
+   "cron_error": "",
+   "cron_ultima": "2026-09-26T23:45:41.338246-03:00",
+   "herramientas": [
+    "Replicate",
+    "ffmpeg",
+    "genimage.py"
+   ],
+   "entregables": 7,
+   "ultimo_archivo": "2026-09-26.md",
+   "ultima_fecha": "26/09 23:47",
+   "ultima_iso": "2026-09-26T23:47:08.388171",
+   "trabajo_hoy": false,
+   "resumen": "GONVRA — 3 piezas visuales nuevas listas para producir Estado: LISTO PARA PRODUCIR · borrador, no publicado conocimiento/QUE-FUNCIONA.md tiene solo 6 publicaciones: todavía no alcanza para sacar conclusiones firmes. La única señal positiva es un Reel con 2 interacciones y el gancho “¿Cuántos aparatos tenés en el baño?”. Por eso las tres piezas son verticales para Reel: dos repiten ese ángulo con f…"
+  },
+  {
+   "slug": "tiktoker",
+   "emoji": "📱",
+   "nombre": "TIKTOKER",
+   "rol": "Guiones de video para TikTok",
+   "grupo": "contenido",
+   "personalidad": "Piensa en los primeros 2 segundos. Guiones grabables con celular, sin producción.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [
+    16
+   ],
+   "agendado": true,
+   "cron_estado": "ok",
+   "cron_error": "",
+   "cron_ultima": "2026-09-24T10:00:28.803515-03:00",
+   "herramientas": [
+    "video-intel.py",
+    "TikTok research"
+   ],
+   "entregables": 8,
+   "ultimo_archivo": "2026-09-26.md",
+   "ultima_fecha": "26/09 23:41",
+   "ultima_iso": "2026-09-26T23:41:29.438921",
+   "trabajo_hoy": false,
+   "resumen": "Estado: BORRADOR LISTO PARA PRODUCIR — NO PUBLICADO Formato: vertical 9:16 · 1080 × 1920 · 23 segundos Recursos: las tres fotos reales provistas en /home/matiigonzz/Claude/gonvra2/videos/src/ (foto1.png, foto2.png, foto3.png), texto en pantalla, subtítulos y voz en off. Matías no aparece y no hace falta tener el producto físico. Objetivo: generar comentarios con una variante del ángulo que mejor f…"
+  },
+  {
+   "slug": "instagramer",
+   "emoji": "📸",
+   "nombre": "INSTAGRAMER",
+   "rol": "Reels, carruseles e historias",
+   "grupo": "contenido",
+   "personalidad": "Cuida el feed como marca. Prioriza lo que la gente guarda, no lo que le gusta.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [
+    11
+   ],
+   "agendado": true,
+   "cron_estado": "error",
+   "cron_error": "RuntimeError: Hermes can't reach the model provider. You may be offline. Check your internet connection and try again.",
+   "cron_ultima": "2026-09-24T11:00:32.562342-03:00",
+   "herramientas": [
+    "video-intel.py",
+    "Instagram research"
+   ],
+   "entregables": 7,
+   "ultimo_archivo": "2026-09-26.md",
+   "ultima_fecha": "26/09 23:43",
+   "ultima_iso": "2026-09-26T23:43:21.847000",
+   "trabajo_hoy": false,
+   "resumen": "- Datos reales disponibles: 6 publicaciones. La única pieza con interacciones fue el Reel con el gancho “¿Cuántos aparatos tenés en el baño? 🪒”. - La muestra todavía es chica y los carruseles publicados no tuvieron interacciones. Por eso se repite el ángulo ganador, pero se prueba un desarrollo distinto: usos concretos + pregunta fácil de responder. - Estado: BORRADOR LISTO PARA APROBACIÓN. NO PUB…"
+  },
+  {
+   "slug": "espia",
+   "emoji": "🕵️",
+   "nombre": "ESPIA",
+   "rol": "Competencia y anuncios que funcionan",
+   "grupo": "contenido",
+   "personalidad": "Paciente. Busca anuncios con 30+ días activos: esos son los que dan plata.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [
+    2
+   ],
+   "agendado": true,
+   "cron_estado": "ok",
+   "cron_error": "",
+   "cron_ultima": "2026-09-24T02:00:02.771423-03:00",
+   "herramientas": [
+    "Biblioteca de anuncios Meta",
+    "Web",
+    "video-intel.py"
+   ],
+   "entregables": 7,
+   "ultimo_archivo": "2026-09-27.md",
+   "ultima_fecha": "27/09 02:10",
+   "ultima_iso": "2026-09-27T02:10:01.111269",
+   "trabajo_hoy": true,
+   "resumen": "ESPIA GONVRA — competencia de rasuradoras y recortadoras en Argentina PARCIAL. Hoy la Biblioteca de Anuncios de Meta volvió a responder HTTP 403 al parser, pero en la respuesta renderizada sí dejó visibles fichas con estado, ID, fecha, copy, duración y destino. Pude reconfirmar hoy como activos los anuncios exactos de Bacán y MyHUEVOS. La pieza exacta de Voltra fue verificada activa por última vez…"
+  },
+  {
+   "slug": "mediabuyer",
+   "emoji": "🎯",
+   "nombre": "MEDIABUYER",
+   "rol": "Campañas de Meta",
+   "grupo": "pauta",
+   "personalidad": "Disciplinado con el presupuesto. Arma campañas SIEMPRE en pausa. Nunca gasta solo.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [],
+   "agendado": false,
+   "cron_estado": "a pedido",
+   "cron_error": "",
+   "cron_ultima": null,
+   "herramientas": [
+    "Meta Ads API"
+   ],
+   "entregables": 0,
+   "ultimo_archivo": null,
+   "ultima_fecha": null,
+   "ultima_iso": null,
+   "trabajo_hoy": false,
+   "resumen": ""
+  },
+  {
+   "slug": "tienda",
+   "emoji": "🛠️",
+   "nombre": "TIENDA",
+   "rol": "Cambios en el tema de Shopify",
+   "grupo": "operacion",
+   "personalidad": "Prudente. Nunca toca el tema publicado: siempre sobre una copia.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [],
+   "agendado": false,
+   "cron_estado": "a pedido",
+   "cron_error": "",
+   "cron_ultima": null,
+   "herramientas": [
+    "Shopify CLI",
+    "Theme push/pull"
+   ],
+   "entregables": 1,
+   "ultimo_archivo": "2026-09-18.md",
+   "ultima_fecha": "19/09 16:39",
+   "ultima_iso": "2026-09-19T16:39:18.210140",
+   "trabajo_hoy": false,
+   "resumen": "GONVRA — bloque local “Antes y después” para fotos reales Estado: BORRADOR LOCAL. No se publicó nada ni se modificó LIVE. - Ejecuté primero el pull obligatorio del tema LIVE 148158414963 en una carpeta fresca: /home/matiigonzz/Claude/gonvra2/tienda/_pulls/theme-148158414963-20260919-163741/ - El pull terminó correctamente según Shopify CLI. - Inspeccioné la plantilla real templates/product.tienda.…"
+  },
+  {
+   "slug": "mensajero",
+   "emoji": "📬",
+   "nombre": "MENSAJERO",
+   "rol": "Gmail y WhatsApp",
+   "grupo": "operacion",
+   "personalidad": "Rápido con quien está por comprar. Redacta, nunca envía sin permiso.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [],
+   "agendado": false,
+   "cron_estado": "a pedido",
+   "cron_error": "",
+   "cron_ultima": null,
+   "herramientas": [
+    "Gmail API",
+    "WhatsApp"
+   ],
+   "entregables": 0,
+   "ultimo_archivo": null,
+   "ultima_fecha": null,
+   "ultima_iso": null,
+   "trabajo_hoy": false,
+   "resumen": ""
+  },
+  {
+   "slug": "legal",
+   "emoji": "⚖️",
+   "nombre": "LEGAL",
+   "rol": "Cumplimiento argentino",
+   "grupo": "operacion",
+   "personalidad": "Estricto. Prefiere sacar una promesa antes que arriesgar una multa.",
+   "modelo": {
+    "nombre": "GPT-5.6 Sol",
+    "prov": "OpenAI Codex",
+    "tipo": "económico"
+   },
+   "horas": [],
+   "agendado": false,
+   "cron_estado": "a pedido",
+   "cron_error": "",
+   "cron_ultima": null,
+   "herramientas": [
+    "Web",
+    "Lectura de políticas"
+   ],
+   "entregables": 0,
+   "ultimo_archivo": null,
+   "ultima_fecha": null,
+   "ultima_iso": null,
+   "trabajo_hoy": false,
+   "resumen": ""
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart-notification.js' | asset_url }}" defer></script>
+
+{% style %}
+  #shopify-section-{{ section.id }} .mt-site-header-wrap {
+    --mt-header-bg: {{ section.settings.background }};
+    --mt-header-text: {{ section.settings.text_color }};
+    --mt-logo-width: {{ section.settings.logo_width }}px;
+  }
+  #shopify-section-{{ section.id }} .mt-site-header__inner {
+    min-height: {{ section.settings.header_height }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  {% if section.settings.sticky %}
+    #shopify-section-{{ section.id }} { position: sticky; top: 0; z-index: 80; }
+  {% endif %}
+{% endstyle %}
+
+<div class="mt-site-header-wrap" data-sticky="{{ section.settings.sticky }}">
+  <header class="mt-site-header">
+    <div class="mt-site-header__inner">
+      <details class="mt-mobile-nav">
+        <summary class="mt-header-icon" aria-label="Abrir menú">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </summary>
+        <nav class="mt-mobile-panel" aria-label="Navegación móvil">
+          {%- for link in section.settings.menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+        </nav>
+      </details>
+
+      <a class="mt-brand" href="{{ routes.root_url }}" aria-label="{{ section.settings.wordmark }} — Inicio">
+        {%- if section.settings.logo != blank -%}
+          <img src="{{ section.settings.logo | image_url: width: 500 }}" alt="{{ section.settings.logo.alt | default: section.settings.wordmark | escape }}" width="{{ section.settings.logo_width }}" height="{{ section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio | round }}">
+        {%- else -%}
+          <span class="mt-brand__mark">{{ section.settings.monogram }}</span>
+          <span>{{ section.settings.wordmark }}</span>
+        {%- endif -%}
+      </a>
+
+      <nav class="mt-nav" aria-label="Navegación principal">
+        {%- for link in section.settings.menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+      </nav>
+
+      <div class="mt-header-actions">
+        {%- if section.settings.show_search -%}
+          <a class="mt-header-icon mt-header-icon--search" href="{{ routes.search_url }}" aria-label="Buscar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+          </a>
+        {%- endif -%}
+        {%- if section.settings.show_account and shop.customer_accounts_enabled -%}
+          <a class="mt-header-icon" href="{{ routes.account_url }}" aria-label="Mi cuenta">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-4 3-6 7-6s6.3 2 7 6"/></svg>
+          </a>
+        {%- endif -%}
+        <a class="mt-header-icon" href="{{ routes.cart_url }}" id="cart-icon-bubble" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+          {%- if cart.item_count > 0 -%}<span class="mt-cart-count" aria-hidden="true">{{ cart.item_count }}</span><span class="visually-hidden">{{ cart.item_count }} productos</span>{%- endif -%}
+        </a>
+      </div>
+    </div>
+  </header>
+</div>
+
+{%- if settings.cart_type == 'notification' -%}
+  {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: 'dropdown' -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cabecera Helio",
+  "class": "section-header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "range", "id": "logo_width", "label": "Ancho del logo (px)", "min": 70, "max": 220, "step": 5, "unit": "px", "default": 130 },
+    { "type": "text", "id": "monogram", "label": "Monograma sin imagen", "default": "H" },
+    { "type": "text", "id": "wordmark", "label": "Nombre sin imagen", "default": "HELIO" },
+    { "type": "link_list", "id": "menu", "label": "Menú", "default": "main-menu" },
+    { "type": "checkbox", "id": "sticky", "label": "Mantener cabecera visible", "default": true },
+    { "type": "checkbox", "id": "show_search", "label": "Mostrar búsqueda", "default": true },
+    { "type": "checkbox", "id": "show_account", "label": "Mostrar cuenta", "default": false },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#080A0F" },
+    { "type": "color", "id": "text_color", "label": "Color del texto", "default": "#F7FAFC" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Colores del carrito", "default": "scheme-1" },
+    { "type": "range", "id": "header_height", "label": "Altura mínima (px)", "min": 60, "max": 100, "step": 2, "unit": "px", "default": 74 },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 }
+  ]
+}
+{% endschema %}

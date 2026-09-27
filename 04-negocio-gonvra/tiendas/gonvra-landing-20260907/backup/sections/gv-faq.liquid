@@ -1,0 +1,146 @@
+{% liquid
+  assign p = all_products[section.settings.product_handle]
+  if p == blank
+    assign p = product
+  endif
+%}
+
+<section class="gvf" data-gvf>
+  <div class="gvf-wrap">
+    <div class="gvf-cols">
+      <header class="gvf-head" data-gvf-reveal>
+        {% if section.settings.kicker != blank %}<p class="gvf-kicker">{{ section.settings.kicker }}</p>{% endif %}
+        {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+        {% if section.settings.sub != blank %}<p class="gvf-sub">{{ section.settings.sub }}</p>{% endif %}
+        {% if section.settings.contact_text != blank %}
+          <a class="gvf-contact" href="{{ section.settings.contact_link }}">{{ section.settings.contact_text }}<span aria-hidden="true">→</span></a>
+        {% endif %}
+      </header>
+
+      <div class="gvf-list" data-gvf-reveal>
+        {% for block in section.blocks %}
+          <details {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.q }}<i aria-hidden="true"></i></summary>
+            <div class="gvf-a">{{ block.settings.a }}</div>
+          </details>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.show_cta %}
+      <div class="gvf-final" data-gvf-reveal>
+        <div>
+          <p class="gvf-final__kicker">{{ section.settings.cta_kicker }}</p>
+          <h2>{{ section.settings.cta_heading }}</h2>
+          {% if section.settings.cta_text != blank %}<p class="gvf-final__text">{{ section.settings.cta_text }}</p>{% endif %}
+          <a class="gvf-final__btn" href="{% if p != blank %}{{ p.url }}#comprar{% else %}{{ section.settings.cta_link }}{% endif %}">{{ section.settings.cta_button }}</a>
+          {% if shop.enabled_payment_types != blank %}
+            <div class="gvf-pays">{% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag: class: 'gvf-pay' }}{% endfor %}</div>
+          {% endif %}
+        </div>
+        {% if section.settings.cta_clip != blank %}
+          <figure><img src="{{ section.settings.cta_clip | asset_url }}" width="620" height="775" loading="lazy" decoding="async" alt="{{ p.title | escape }}"></figure>
+        {% elsif p != blank and p.featured_image != blank %}
+          <figure>{{ p.featured_image | image_url: width: 800 | image_tag: widths: '360, 560, 800', sizes: '(min-width: 900px) 34vw, 70vw', loading: 'lazy', alt: p.title }}</figure>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+.gvf{background:#f7f6f1;color:#101a16;font-family:inherit}
+.gvf-wrap{width:min(1280px,calc(100% - 36px));margin:auto;padding:clamp(52px,6.5vw,90px) 0}
+.gvf-cols{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,5vw,80px);align-items:start}
+.gvf-kicker{margin:0 0 11px;color:#6d8b1c;font-size:.68rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase}
+.gvf-head h2{margin:0;font-size:clamp(1.7rem,3.4vw,2.9rem);line-height:1.04;letter-spacing:-.035em}
+.gvf-sub{margin:15px 0 0;color:#6b7570;font-size:.94rem;line-height:1.6}
+.gvf-contact{display:inline-flex;align-items:center;gap:8px;margin:18px 0 0;color:#101a16;font-size:.83rem;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.gvf-list{border-top:1px solid #dfe2da}
+.gvf-list details{border-bottom:1px solid #dfe2da}
+.gvf-list summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 2px;font-size:1rem;font-weight:700;line-height:1.35;cursor:pointer;list-style:none}
+.gvf-list summary::-webkit-details-marker{display:none}
+.gvf-list summary i{position:relative;flex:0 0 13px;width:13px;height:13px}
+.gvf-list summary i::before,.gvf-list summary i::after{content:"";position:absolute;top:50%;left:0;width:13px;height:1.6px;background:#101a16;transition:transform .22s}
+.gvf-list summary i::after{transform:rotate(90deg)}
+.gvf-list details[open] summary i::after{transform:rotate(0)}
+.gvf-a{padding:0 2px 20px;color:#6b7570;font-size:.92rem;line-height:1.65}
+.gvf-a p{margin:0 0 10px}
+.gvf-a p:last-child{margin:0}
+.gvf-final{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,60px);align-items:center;margin:clamp(46px,6vw,86px) 0 0;padding:clamp(30px,4vw,56px);border-radius:22px;background:#101a16;color:#f4f5ef}
+.gvf-final__kicker{margin:0 0 12px;color:#c8e54a;font-size:.68rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase}
+.gvf-final h2{margin:0;font-size:clamp(1.6rem,3.4vw,2.7rem);line-height:1.05;letter-spacing:-.035em}
+.gvf-final__text{max-width:48ch;margin:15px 0 0;color:#a5b0a3;font-size:.95rem;line-height:1.6}
+.gvf-final__btn{display:inline-block;margin:24px 0 0;padding:17px 32px;border-radius:12px;background:#c8e54a;color:#1b2410;font-size:.8rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:transform .18s}
+.gvf-final__btn:hover{transform:translateY(-2px)}
+.gvf-pays{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 0}
+.gvf-pay{width:40px;height:26px;border-radius:5px}
+.gvf-final figure{margin:0;overflow:hidden;border-radius:16px;background:#1a2620;aspect-ratio:1/1}
+.gvf-final figure img{display:block;width:100%;height:100%;object-fit:cover}
+.gvf [data-gvf-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.gvf [data-gvf-reveal].is-in{opacity:1;transform:none}
+@media(max-width:860px){
+.gvf-wrap{width:min(100% - 24px,1280px)}
+.gvf-cols{grid-template-columns:1fr;gap:22px}
+.gvf-final{grid-template-columns:1fr}
+.gvf-final figure{order:-1;aspect-ratio:16/10}
+}
+{% endstylesheet %}
+
+{% javascript %}
+(() => {
+  document.querySelectorAll('[data-gvf]').forEach((root) => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: .1 });
+    root.querySelectorAll('[data-gvf-reveal]').forEach((el) => io.observe(el));
+  });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "GONVRA · Preguntas",
+  "tag": "section",
+  "class": "section-gv-faq",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Bajada corta", "default": "Antes de comprar" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Preguntas frecuentes" },
+    { "type": "text", "id": "sub", "label": "Bajada", "default": "Las dudas que más nos hacen, contestadas sin vueltas." },
+    { "type": "text", "id": "contact_text", "label": "Link de contacto", "default": "¿Te quedó otra duda? Escribinos" },
+    { "type": "url", "id": "contact_link", "label": "Destino del link" },
+    { "type": "header", "content": "Cierre" },
+    { "type": "checkbox", "id": "show_cta", "label": "Mostrar bloque final de compra", "default": true },
+    { "type": "text", "id": "product_handle", "label": "Handle del producto", "default": "face-body-electric-shaver" },
+    { "type": "text", "id": "cta_kicker", "label": "Cierre · bajada", "default": "Listo para probarla" },
+    { "type": "text", "id": "cta_heading", "label": "Cierre · título", "default": "Una sola rasuradora para toda tu rutina" },
+    { "type": "text", "id": "cta_text", "label": "Cierre · texto", "default": "Elegí tu pack, revisá el total antes de pagar y te llega con seguimiento." },
+    { "type": "text", "id": "cta_button", "label": "Cierre · botón", "default": "Ver packs y comprar" },
+    { "type": "text", "id": "cta_clip", "label": "Cierre · clip del tema" },
+    { "type": "url", "id": "cta_link", "label": "Cierre · link alternativo" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "q", "label": "Pregunta", "default": "¿Cuánto tarda en llegar?" },
+        { "type": "richtext", "id": "a", "label": "Respuesta", "default": "<p>Respondé acá.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GONVRA · Preguntas",
+      "blocks": [
+        { "type": "faq", "settings": { "q": "¿Cuánto tarda en llegar?", "a": "<p>Despachamos el pedido en 24 a 48 h hábiles y la entrega estimada es de 12 a 20 días según la zona. Apenas sale, te mandamos el código de seguimiento por mail para que lo sigas paso a paso.</p>" } },
+        { "type": "faq", "settings": { "q": "¿Sirve para la cara y para el cuerpo?", "a": "<p>Sí: es el mismo equipo para barba, patillas, brazos, piernas y pecho. Con los peines guía elegís el largo; sin peine el acabado queda más al ras. En zonas sensibles conviene probar primero en un área chica.</p>" } },
+        { "type": "faq", "settings": { "q": "¿Se puede usar en la ducha o con agua?", "a": "<p>Está pensada para uso en seco sobre piel limpia. No la sumerjas ni la uses bajo el agua: para limpiarla usá el cepillo que viene incluido.</p>" } },
+        { "type": "faq", "settings": { "q": "¿Cómo se carga? ¿Funciona con 220 V?", "a": "<p>Se carga con cable USB, así que te sirve el cargador del celular, la notebook o cualquier adaptador de pared. No necesitás transformador.</p>" } },
+        { "type": "faq", "settings": { "q": "¿Y si llega fallada o no es lo que esperaba?", "a": "<p>Escribinos y lo resolvemos. Si el producto llega con una falla, coordinamos el cambio o la devolución según la Ley de Defensa del Consumidor (24.240).</p>" } },
+        { "type": "faq", "settings": { "q": "¿Cómo pago?", "a": "<p>El pago se hace en el checkout de Shopify, con los medios que ves debajo del botón de compra. Antes de confirmar vas a ver el total final con envío.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,556 @@
+{
+  "sections": {
+    "ficha": {
+      "type": "gv-producto",
+      "blocks": {
+        "pack1": {
+          "type": "oferta",
+          "settings": {
+            "title": "Individual",
+            "subtitle": "Para probarla",
+            "qty": 1,
+            "discount": 0,
+            "preselect": true,
+            "tag": "",
+            "gift": ""
+          }
+        },
+        "pack2": {
+          "type": "oferta",
+          "settings": {
+            "title": "Dúo",
+            "subtitle": "Llevás 2 unidades",
+            "qty": 2,
+            "discount": 0,
+            "tag": "",
+            "gift": ""
+          }
+        },
+        "pack3": {
+          "type": "oferta",
+          "settings": {
+            "title": "Pack x3",
+            "subtitle": "Llevás 3 unidades",
+            "qty": 3,
+            "discount": 0,
+            "tag": "",
+            "gift": ""
+          }
+        },
+        "b1": {
+          "type": "beneficio",
+          "settings": {
+            "text": "Rostro y cuerpo con el mismo equipo: barba, patillas, brazos y piernas"
+          }
+        },
+        "b2": {
+          "type": "beneficio",
+          "settings": {
+            "text": "Peines guía de 1, 3 y 5 mm para elegir el largo exacto"
+          }
+        },
+        "b3": {
+          "type": "beneficio",
+          "settings": {
+            "text": "Recargable por USB con el cable incluido"
+          }
+        },
+        "b4": {
+          "type": "beneficio",
+          "settings": {
+            "text": "Cuchilla de acero inoxidable y cepillo de limpieza"
+          }
+        },
+        "d1": {
+          "type": "detalle",
+          "settings": {
+            "title": "Qué viene en la caja",
+            "body": "<p>Rasuradora, peines guía de 1, 3 y 5 mm, cable USB y cepillo de limpieza. Color negro y verde lima.</p>",
+            "open": false
+          }
+        },
+        "d2": {
+          "type": "detalle",
+          "settings": {
+            "title": "Envío y entrega",
+            "body": "<p>El costo del envío se calcula con tu dirección. Para confirmar los plazos de tu zona, <a href=\"mailto:gonvra0@gmail.com\">escribinos antes de comprar</a>.</p>",
+            "open": false
+          }
+        },
+        "d3": {
+          "type": "detalle",
+          "settings": {
+            "title": "Cómo se usa",
+            "body": "<p>1. Elegí el peine guía según el largo que quieras dejar.<br>2. Sobre piel limpia y seca, pasala con movimientos suaves.<br>3. Sacá los restos con el cepillo incluido y cargala por USB.</p><p>En zonas sensibles probá primero en un área chica. No usar sobre piel irritada o lastimada.</p>",
+            "open": false
+          }
+        },
+        "d4": {
+          "type": "detalle",
+          "settings": {
+            "title": "Cambios y devoluciones",
+            "body": "<p>Para consultas de cambios o devoluciones, escribinos a <a href=\"mailto:gonvra0@gmail.com\">gonvra0@gmail.com</a>. Si ya compraste, incluí tu número de pedido.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "pack1",
+        "pack2",
+        "pack3",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "settings": {
+        "kicker": "Rostro + cuerpo · Recargable",
+        "badge_1": "Envío a todo el país",
+        "price_note": "Precio en ARS. El envío se calcula al ingresar tu dirección.",
+        "rating_count": 0,
+        "rating_value": "4,8",
+        "rating_word": "reseñas",
+        "promo_title": "",
+        "promo_text": "",
+        "promo_code": "",
+        "offers_label": "Elegí tu pack",
+        "pill": "Rasuradora + peines + cable + cepillo",
+        "stock_text": "Disponible",
+        "low_stock": 15,
+        "cta_text": "Agregar al carrito",
+        "show_dynamic": false,
+        "show_timeline": false,
+        "cutoff_text": "Si hacés tu pedido dentro de",
+        "cutoff_hour": 17,
+        "ship_text": "24 a 48 h hábiles",
+        "deliver_text": "12 a 20 días",
+        "show_trustbar": true,
+        "trust_1_t": "Envíos",
+        "trust_1_s": "Consultá los plazos de tu zona",
+        "trust_2_t": "Atención por email",
+        "trust_2_s": "Antes y después de comprar",
+        "trust_3_t": "Pago en Shopify",
+        "trust_3_s": "Revisá el total antes de pagar",
+        "trust_4_t": "Contenido claro",
+        "trust_4_s": "Accesorios detallados",
+        "gallery_clip": "",
+        "discount_note": "",
+        "gallery_extra": ""
+      }
+    },
+    "numeros": {
+      "type": "gv-datos",
+      "blocks": {
+        "n1": {
+          "type": "dato",
+          "settings": {
+            "number": "3",
+            "suffix": "",
+            "title": "Largos de corte",
+            "text": "Peines guía de 1, 3 y 5 mm incluidos en la caja."
+          }
+        },
+        "n2": {
+          "type": "dato",
+          "settings": {
+            "number": "3",
+            "suffix": "",
+            "title": "Zonas de uso",
+            "text": "Rostro, cuerpo y zona íntima con el mismo equipo."
+          }
+        },
+        "n3": {
+          "type": "dato",
+          "settings": {
+            "number": "0",
+            "suffix": "",
+            "title": "Cuchillas descartables",
+            "text": "Cabezal reemplazable y carga USB: no comprás repuestos todos los meses."
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ],
+      "settings": {
+        "heading": "Una sola herramienta, toda tu rutina",
+        "sub": "Datos del producto, no promesas: esto es lo que viene y lo que hace.",
+        "foot": "Los resultados varían según el tipo y grosor del vello. Es una rasuradora de recorte: el efecto es temporal.",
+        "wave": true,
+        "wave_from": "#f7f6f1"
+      },
+      "disabled": true
+    },
+    "videos": {
+      "type": "gv-videos",
+      "blocks": {
+        "v1": {
+          "type": "clip",
+          "settings": {
+            "clip": "gv-clip-rostro.webp",
+            "title": "Rostro y patillas",
+            "text": "Recorte parejo en la línea de la barba."
+          }
+        },
+        "v2": {
+          "type": "clip",
+          "settings": {
+            "clip": "gv-clip-cuerpo.webp",
+            "title": "Cuerpo",
+            "text": "Pecho, axilas, brazos y piernas con la misma máquina."
+          }
+        },
+        "v3": {
+          "type": "clip",
+          "settings": {
+            "clip": "gv-clip-caja.webp",
+            "title": "Qué trae la caja",
+            "text": "Peines guía, cabezales, cable USB y cepillo."
+          }
+        },
+        "v4": {
+          "type": "clip",
+          "settings": {
+            "clip": "gv-clip-agua.webp",
+            "title": "Se enjuaga",
+            "text": "El cabezal se limpia bajo la canilla."
+          }
+        },
+        "v5": {
+          "type": "clip",
+          "settings": {
+            "clip": "gv-clip-filo.webp",
+            "title": "El filo de cerca",
+            "text": "Lámina de acero entre el filo y la piel."
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4",
+        "v5"
+      ],
+      "settings": {
+        "kicker": "En movimiento",
+        "heading": "Mirá cómo se usa",
+        "sub": "Videos del producto: cómo queda el recorte en la cara y el cuerpo, qué trae la caja y cómo se limpia.",
+        "note": "Videos propios de GONVRA.",
+        "bg": "#16241d"
+      },
+      "disabled": true
+    },
+    "historia": {
+      "type": "gv-historia",
+      "blocks": {
+        "h1": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 1",
+            "title": "Elegí el largo que querés",
+            "text": "<p>Ponele el peine de 1, 3 o 5 mm según cuánto quieras dejar. Sin peine, el acabado queda más al ras.</p>",
+            "list": "Peines de 1, 3 y 5 mm|Para barba y vello corporal",
+            "clip": "",
+            "image": "shopify://shop_images/rasuradora-integral-accesorios-v1.png"
+          }
+        },
+        "h2": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 2",
+            "title": "Pasala en seco, sin espuma",
+            "text": "<p>Usala sobre piel limpia y seca, sin presionar. En zonas sensibles, probá primero en un área pequeña.</p>",
+            "list": "Movimientos suaves|No usar sobre piel irritada",
+            "clip": "",
+            "image": "shopify://shop_images/rasuradora-integral-uso-v1.png"
+          }
+        },
+        "h3": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 3",
+            "title": "Limpiala y cargala",
+            "text": "<p>Retirá los restos de vello con el cepillo incluido. Recargala con el cable USB y seguí las indicaciones del manual.</p>",
+            "list": "Cepillo y cable incluidos|Limpieza en seco",
+            "clip": "",
+            "image": "shopify://shop_images/rasuradora-integral-hero-v1.png"
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "settings": {
+        "kicker": "Cómo funciona",
+        "heading": "Tu rutina, en tres pasos.",
+        "intro": "<p>Elegí el peine, recortá con movimientos suaves y dejala lista para el próximo uso.</p>",
+        "cta_text": "",
+        "cta_link": "/products/face-body-electric-shaver",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "comparativa": {
+      "type": "gv-comparativa",
+      "blocks": {
+        "c1": {
+          "type": "fila",
+          "settings": {
+            "feature": "Rostro y cuerpo con el mismo equipo",
+            "mine": true,
+            "other": false
+          }
+        },
+        "c2": {
+          "type": "fila",
+          "settings": {
+            "feature": "Peines de 1, 3 y 5 mm incluidos",
+            "mine": true,
+            "mine_note": "3 largos",
+            "other": false
+          }
+        },
+        "c3": {
+          "type": "fila",
+          "settings": {
+            "feature": "Carga por USB",
+            "mine": true,
+            "other": false,
+            "other_note": "Suele ser a pila"
+          }
+        },
+        "c4": {
+          "type": "fila",
+          "settings": {
+            "feature": "Uso en seco, sin espuma",
+            "mine": true,
+            "other": true
+          }
+        },
+        "c5": {
+          "type": "fila",
+          "settings": {
+            "feature": "Cabezal reemplazable",
+            "mine": true,
+            "other": false
+          }
+        },
+        "c6": {
+          "type": "fila",
+          "settings": {
+            "feature": "Tamaño de viaje",
+            "mine": true,
+            "other": false
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
+      "settings": {
+        "kicker": "Comparación honesta",
+        "heading": "Esta rasuradora vs. una máquina común",
+        "sub": "Comparamos características del producto, no marcas. Fijate si te sirve antes de comprar.",
+        "col_0": "Característica",
+        "col_1": "Rasuradora integral",
+        "col_2": "Máquina común",
+        "foot": "Comparación basada en las características declaradas del producto."
+      },
+      "disabled": true
+    },
+    "resenas": {
+      "type": "gv-resenas",
+      "settings": {
+        "kicker": "Opiniones",
+        "heading": "Qué dicen quienes la compraron",
+        "empty_title": "Todavía no hay reseñas de este producto",
+        "empty_text": "Somos una tienda nueva y preferimos no inventar opiniones. Si comprás, te vamos a pedir la tuya: esa es la que va a ayudar al que venga después.",
+        "empty_cta": "Ver packs",
+        "foot": "Publicamos las reseñas tal como las recibimos de clientes que compraron en esta tienda.",
+        "wave": false
+      },
+      "disabled": true
+    },
+    "preguntas": {
+      "type": "gv-faq",
+      "blocks": {
+        "q0": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Sirve para rostro y cuerpo?",
+            "a": "<p>Está pensada para recortar barba y vello corporal. Elegí el peine apropiado y usá movimientos suaves. En zonas sensibles, probá primero en un área pequeña.</p>"
+          }
+        },
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Qué viene en la caja?",
+            "a": "<p>Incluye rasuradora, peines guía de 1, 3 y 5 mm, cable de carga USB y cepillo de limpieza. La variante disponible es negro y verde lima.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Se puede usar en la ducha?",
+            "a": "<p>La ficha disponible no certifica uso bajo el agua. Usala en seco y seguí el manual para su limpieza y carga.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cómo consulto el envío?",
+            "a": "<p>El costo se calcula al ingresar tu dirección durante la compra. Para confirmar los plazos de tu zona antes de pagar, escribinos a gonvra0@gmail.com.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cuánto pago si llevo más de una?",
+            "a": "<p>Elegís una, dos o tres unidades en la página del producto. El precio del pack corresponde a esa cantidad; podés revisar el total y el envío antes de confirmar la compra.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Dónde consulto por cambios o devoluciones?",
+            "a": "<p>Escribinos a gonvra0@gmail.com con tu consulta. Si ya compraste, incluí el número de pedido para que podamos identificarlo.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
+      "settings": {
+        "kicker": "Antes de decidir",
+        "heading": "Preguntas frecuentes",
+        "sub": "El producto, el pedido y las respuestas que necesitás.",
+        "contact_text": "¿Otra duda? Escribinos",
+        "show_cta": false,
+        "product_handle": "face-body-electric-shaver",
+        "cta_kicker": "Empezá por acá",
+        "cta_heading": "Más simple desde el próximo recorte.",
+        "cta_text": "Revisá la rasuradora, elegí cuántas necesitás y conocé el total antes de pagar.",
+        "cta_button": "Elegir mi rasuradora",
+        "cta_clip": "",
+        "contact_link": "mailto:gonvra0@gmail.com",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "antes": {
+      "type": "gv-antes",
+      "blocks": {
+        "a1": {
+          "type": "punto",
+          "settings": {
+            "title": "Sin espuma ni gel",
+            "text": "Se usa en seco: apoyás, deslizás y listo. No hace falta preparar la piel."
+          }
+        },
+        "a2": {
+          "type": "punto",
+          "settings": {
+            "title": "El largo lo elegís vos",
+            "text": "Con peine queda parejo al largo que elijas; sin peine, el acabado es más al ras."
+          }
+        },
+        "a3": {
+          "type": "punto",
+          "settings": {
+            "title": "Rostro y cuerpo",
+            "text": "La misma máquina para la barba, el pecho, los brazos y las piernas."
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {
+        "wave": false,
+        "wave_from": "#f7f6f1",
+        "kicker": "Antes y después",
+        "heading": "Deslizá y mirá la diferencia",
+        "sub": "Movés la línea con el dedo para ver cómo queda la zona antes y después de pasar la rasuradora.",
+        "label_before": "Antes",
+        "label_after": "Después",
+        "cta_text": "Quiero probarla",
+        "cta_link": "#comprar",
+        "foot": "Imágenes ilustrativas del uso del producto. El resultado es temporal y varía según el tipo y grosor del vello.",
+        "wave_bottom": true
+      },
+      "disabled": true
+    },
+    "beneficios": {
+      "type": "gv-beneficios",
+      "blocks": {
+        "b0": {
+          "type": "item",
+          "settings": {
+            "number": "01",
+            "title": "Elegí tu largo",
+            "text": "Peines guía de 1, 3 y 5 mm para mantener el largo que buscás."
+          }
+        },
+        "b1": {
+          "type": "item",
+          "settings": {
+            "number": "02",
+            "title": "Rostro y cuerpo",
+            "text": "Un mismo equipo para los retoques de barba y el recorte de vello corporal."
+          }
+        },
+        "b2": {
+          "type": "item",
+          "settings": {
+            "number": "03",
+            "title": "Cargá y seguí",
+            "text": "Cable USB incluido y un formato compacto para tener a mano o llevar de viaje."
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2"
+      ],
+      "settings": {
+        "anchor": "beneficios",
+        "kicker": "Menos aparatos. Más simple.",
+        "heading": "Cuidado personal a tu manera.",
+        "intro": "Tres detalles que hacen más práctica la rutina de todos los días."
+      }
+    }
+  },
+  "order": [
+    "ficha",
+    "beneficios",
+    "historia",
+    "preguntas",
+    "numeros",
+    "videos",
+    "comparativa",
+    "resenas",
+    "antes"
+  ]
+}

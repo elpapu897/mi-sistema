@@ -1,0 +1,21 @@
+TITLE: TT-3-Que-Trae
+FCM: NON-DROP FRAME
+
+001  HAND_PIC V     C        00:00:00:00 00:00:03:05 00:00:00:00 00:00:03:05
+* FROM CLIP NAME: Hand_picking_up_comb_guard_202609062254.mp4
+* COMMENT: CARTEL t3_c1
+
+002  HAND_PIC V     C        00:00:03:05 00:00:06:00 00:00:03:05 00:00:06:00
+* FROM CLIP NAME: Hand_picking_up_comb_guard_202609062254.mp4
+* COMMENT: CARTEL t3_c2
+
+003  HANDS_BR V     C        00:00:00:05 00:00:03:10 00:00:06:00 00:00:09:05
+* FROM CLIP NAME: Hands_brushing_blade_and_pluggin…_202609071553.mp4
+* COMMENT: CARTEL t3_c3
+
+004  HANDS_BR V     C        00:00:04:14 00:00:08:05 00:00:09:05 00:00:12:19
+* FROM CLIP NAME: Hands_brushing_blade_and_pluggin…_202609071553.mp4
+* COMMENT: CARTEL t3_c4
+
+005  ENDCARD  V     C        00:00:00:00 00:00:02:05 00:00:12:19 00:00:15:00
+* FROM CLIP NAME: endcard.png

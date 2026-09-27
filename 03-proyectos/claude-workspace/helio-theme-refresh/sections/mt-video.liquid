@@ -1,0 +1,141 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .mtp-video__head .mt-h2 { font-size: clamp(34px, 5vw, {{ section.settings.heading_size }}px); }
+  #shopify-section-{{ section.id }} .mtp-video__stage { --mtp-ratio: {{ section.settings.ratio }}; }
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} { padding-top: min({{ section.settings.padding_top }}px, 72px); padding-bottom: min({{ section.settings.padding_bottom }}px, 72px); }
+    #shopify-section-{{ section.id }} .mtp-video__stage { --mtp-ratio: {{ section.settings.ratio_mobile }}; }
+  }
+{% endstyle %}
+
+{%- liquid
+  assign embed_url = blank
+  assign raw = section.settings.external_video | default: ''
+  if raw contains 'youtu'
+    assign yt_id = ''
+    if raw contains 'youtu.be/'
+      assign yt_id = raw | split: 'youtu.be/' | last | split: '?' | first | split: '&' | first
+    elsif raw contains 'v='
+      assign yt_id = raw | split: 'v=' | last | split: '&' | first
+    elsif raw contains '/embed/'
+      assign yt_id = raw | split: '/embed/' | last | split: '?' | first
+    endif
+    if yt_id != ''
+      assign embed_url = 'https://www.youtube.com/embed/' | append: yt_id | append: '?autoplay=1&rel=0&modestbranding=1&playsinline=1'
+    endif
+  elsif raw contains 'vimeo'
+    assign vm_id = raw | split: 'vimeo.com/' | last | split: '?' | first | split: '/' | first
+    if vm_id != ''
+      assign embed_url = 'https://player.vimeo.com/video/' | append: vm_id | append: '?autoplay=1'
+    endif
+  endif
+-%}
+
+<section class="mtp-video mt-section" id="{{ section.settings.anchor | default: 'como-funciona' | handle }}">
+  <div class="mt-container">
+    <header class="mtp-video__head">
+      <div>
+        {%- if section.settings.kicker != blank -%}<p class="mt-kicker mtp-fade">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 class="mt-h2 mtp-fade" data-d="1" data-mtp-split>{{ section.settings.headline }}</h2>
+      </div>
+      {%- if section.settings.body != blank -%}
+        <p class="mt-body mtp-fade" data-d="2">{{ section.settings.body }}</p>
+      {%- endif -%}
+    </header>
+
+    <div class="mtp-video__stage mtp-fade"
+         data-mtp-video
+         {% if embed_url != blank %}data-mtp-embed="{{ embed_url }}"{% endif %}
+         data-mtp-title="{{ section.settings.headline | escape }}">
+
+      {%- if section.settings.video != blank -%}
+        {{ section.settings.video
+           | video_tag: image_size: '1600x', playsinline: true, controls: true, muted: false, preload: 'metadata' }}
+      {%- endif -%}
+
+      <button type="button" class="mtp-video__poster" aria-label="{{ 'Reproducir video' }}">
+        <span class="mtp-video__poster-media">
+          {%- if section.settings.poster != blank -%}
+            <img src="{{ section.settings.poster | image_url: width: 1800 }}" alt="{{ section.settings.poster.alt | default: section.settings.headline | escape }}" loading="lazy" width="{{ section.settings.poster.width }}" height="{{ section.settings.poster.height }}">
+          {%- else -%}
+            <img src="{{ 'mt-cta-wide.webp' | asset_url }}" alt="{{ section.settings.headline | escape }}" loading="lazy" width="2033" height="774">
+          {%- endif -%}
+        </span>
+        <span class="mtp-video__play">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"/></svg>
+        </span>
+        {%- if section.settings.caption != blank -%}
+          <span class="mtp-video__caption">{{ section.settings.caption }}</span>
+        {%- endif -%}
+      </button>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="mtp-video__steps">
+        {%- for block in section.blocks -%}
+          <article class="mtp-vstep mtp-fade mtp-glow" data-d="{{ forloop.index }}" {{ block.shopify_attributes }}>
+            <span class="mtp-vstep__n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            {%- if block.settings.body != blank -%}<p>{{ block.settings.body }}</p>{%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Cómo funciona",
+  "tag": "section",
+  "max_blocks": 3,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla del enlace (sin espacios)", "default": "como-funciona" },
+    { "type": "text", "id": "kicker", "label": "Antetítulo", "default": "VELO EN MOVIMIENTO" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "Así se usa, en menos de un minuto." },
+    { "type": "textarea", "id": "body", "label": "Texto", "default": "Encendé, deslizá y enjuagá. Sin espuma, sin cables y sin complicarte la mañana." },
+    { "type": "header", "content": "Video" },
+    { "type": "video", "id": "video", "label": "Subir un video a Shopify" },
+    { "type": "text", "id": "external_video", "label": "…o pegar un enlace de YouTube / Vimeo" },
+    { "type": "image_picker", "id": "poster", "label": "Imagen de portada del video" },
+    { "type": "text", "id": "caption", "label": "Etiqueta sobre el video", "default": "Demostración real del producto" },
+    { "type": "select", "id": "ratio", "label": "Formato en computadora", "default": "16 / 9", "options": [
+      {"value":"16 / 9","label":"Apaisado (16:9)"},
+      {"value":"21 / 9","label":"Panorámico (21:9)"},
+      {"value":"4 / 3","label":"Clásico (4:3)"},
+      {"value":"1 / 1","label":"Cuadrado (1:1)"}
+    ] },
+    { "type": "select", "id": "ratio_mobile", "label": "Formato en celular", "default": "4 / 5", "options": [
+      {"value":"4 / 5","label":"Vertical suave (4:5)"},
+      {"value":"9 / 16","label":"Vertical completo (9:16)"},
+      {"value":"1 / 1","label":"Cuadrado (1:1)"},
+      {"value":"16 / 9","label":"Apaisado (16:9)"}
+    ] },
+    { "type": "header", "content": "Espaciado y color" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 32, "max": 76, "step": 2, "unit": "px", "default": 58 },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#080A0F" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 176, "step": 8, "unit": "px", "default": 112 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 176, "step": 8, "unit": "px", "default": 120 }
+  ],
+  "blocks": [
+    {
+      "type": "paso",
+      "name": "Paso",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Encendé" },
+        { "type": "textarea", "id": "body", "label": "Texto", "default": "Un toque en el botón lateral y la pantalla te muestra el nivel de carga." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Cómo funciona",
+      "blocks": [{"type":"paso"},{"type":"paso"},{"type":"paso"}]
+    }
+  ]
+}
+{% endschema %}

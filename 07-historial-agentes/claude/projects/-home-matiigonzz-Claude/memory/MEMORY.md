@@ -1,0 +1,13 @@
+- [macOS dark desktop theme](macos-desktop-theme.md) — Fedora 44/GNOME 50 themed as dark macOS (WhiteSur-Dark + Reversal-black-dark)
+- [GONVRA Shopify store](gonvra-shopify-store.md) — user's pet-supplies store (gonvra.com); theme edit workflow (duplicate → upsert → user publishes)
+- [HELIO Shopify store](helio-shopify-store.md) — 2ª tienda (afeitadora mini, jm60sa-cp); CLI ya autenticado, tema live #147833946227; trampas de schema/push de Shopify
+- [GONVRA pagos/checkout](gonvra-pagos-checkout.md) — nunca se cobró una tarjeta; la opción "tarjeta" es PayPal y no procesa ARS
+- [GONVRA Meta Ads](gonvra-meta-ads.md) — Meta account IDs, dormant pixel, min budget ~$1.497/día; prospección campaign created PAUSED (id 120250360311680505)
+- [Antigravity setup](antigravity-setup.md) — reinstalado 2026-08-13 en ~/Aplicaciones/antigravity (v2.8.1); UI solo en inglés; Permission Preset (Default/Full machine/Turbo) se guarda en la nube, no en disco
+- [Codex setup](codex-setup.md) — lanzador ptyxis + icono propio en hicolor; idioma vía ~/.codex/AGENTS.md; CLI reinstalado con npm i -g @openai/codex (se pierde al cambiar de Node en nvm)
+- [ChatGPT Desktop Linux](chatgpt-desktop-linux.md) — codex-desktop-linux compilado en ~/Descargas; RPM en dist/; sudo pide contraseña (lo instala el usuario); Rust vía rustup en ~/.cargo
+- [Hermes Agent setup](hermes-setup.md) — reemplazó a OpenClaw (2026-08-14); v0.20.1, Python propio vía uv, 347 skills; PENDIENTE `hermes setup` (no hay API keys en ~/.hermes/.env)
+- [Skills y plugins](skills-setup.md) — 257 skills canónicas en ~/.agents/skills, symlinks a todos los agentes vía ~/Claude/scripts/sync-skills.sh; ojo anti-duplicados en Codex; Codex tiene ~30 plugins vs 2 de Claude Code
+- [Juego BATALLA REAL](juego-batalla-real.md) — battle royale web (batalla-real.html); solo PC, estilo voxel cuadrado, trampa del plano cercano
+- [Generar imágenes](generar-imagenes.md) — script Replicate listo (~/Claude/scripts/genimage-replicate.py), token en ~/.replicate-env; nano-banana para 4:5 y referencias; siempre cerrar prompts con "no text"
+- [Investigación de productos](investigacion-productos.md) — pipeline en ~/Claude/investigacion-productos; AutoDS NO conectado (MCP se carga sólo al iniciar sesión); AliExpress: la cabecera Cookie dispara el anti-bot y la concurrencia banea la IP

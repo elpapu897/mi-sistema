@@ -1,0 +1,577 @@
+Concepciones acerca del Estado:
+
+1.1. Delimitación Conceptual del Estado
+
+El Estado constituye una de las formas de organización socio-política más complejas y
+determinantes en la historia de la humanidad. Aunque en la vida cotidiana solemos
+utilizar expresiones como "el Estado", "el Gobierno" o "la Nación" de manera indistinta,
+desde la Ciencia Política y la Sociología Jurídica resulta imprescindible establecer
+distinciones analíticas rigurosas.
+En términos generales, el Estado se define como una institución política soberana que
+ejerce la autoridad suprema y la dominación legal sobre una comunidad humana
+asentada de manera permanente en un territorio geográfico determinado. El Estado es
+una abstracción jurídica y un aparato institucional que perdura a través del tiempo,
+independientemente de quiénes ocupen temporalmente sus cargos de gestión.
+
+1.2. Diferenciación de Conceptos Clave
+
+Para comprender la dinámica del Estado en el marco del programa de la Nueva
+Escuela Secundaria (NES) de la Ciudad Autónoma de Buenos Aires, es vital
+desarticular el uso ambiguo de los siguientes conceptos:
+  ● Estado: Es la estructura permanente de poder institucionalizado. Posee el
+     monopolio legítimo de la fuerza y el orden normativo. Ejemplo: El Estado
+     Argentino.
+  ● Gobierno: Es el conjunto de personas e instituciones políticas que administran
+     transitoriamente el poder del Estado durante un período determinado. Los
+     gobiernos cambian mediante elecciones u otros mecanismos políticos, mientras
+     que la estructura del Estado permanece. Ejemplo: Las diferentes
+     administraciones presidenciales.
+  ● Nación: Es un concepto predominantemente socio-cultural. Refiere a una
+     comunidad de personas vinculadas por lazos afectivos, lingüísticos, históricos,
+     culturales, memorias compartidas y, frecuentemente, una proyección de futuro
+     común. Una nación puede existir sin tener un Estado propio (como el pueblo
+     kurdo o los gitanos), y existen Estados plurinacionales (como el Estado
+     Plurinacional de Bolivia).
+
+
+
+
+                                           1
+1.3. La Centralidad de la Dominación Legal y el Poder Político
+
+Max Weber, uno de los sociólogos más influyentes del siglo XX, enfatizó que lo
+característico del Estado no son los fines que persigue —ya que los Estados han
+perseguido casi todos los fines imaginables—, sino el medio específico que utiliza: la
+violencia física legítima.
+No obstante, la fuerza bruta por sí sola no genera estabilidad política. El poder estatal
+requiere obligatoriamente de legitimidad, entendida como la creencia o el
+consentimiento por parte de los gobernados de que las órdenes dictadas por los
+gobernantes son válidas y merecen ser obedecidas. Cuando un Estado pierde su
+legitimidad, debe recurrir de manera sistemática a la coerción, lo que suele devenir en
+crisis de gobernabilidad o regímenes autoritarios.
+
+
+
+LOS ELEMENTOS CONSTITUTIVOS DEL ESTADO
+
+Para que exista jurídicamente un Estado en la comunidad internacional, la ciencia
+política sostiene que tienen que existir la presencia simultánea e interrelacionada de
+tres elementos constitutivos estructurales:
+
+      Territorio: Espacio físico tridimensional (suelo, subsuelo, espacio aéreo y mar
+       territorial).
+      Población: Grupo humano que habita el territorio de manera permanente. Se
+       distingue entre "población" (concepto demográfico) y "pueblo" (concepto político
+       de ciudadanos con derechos).
+      Poder / Gobierno: Organización política interna, estructura de autoridades e
+       instituciones encargadas de dictar y hacer cumplir las leyes.
+
+
+2.1. El Elemento Humano: Población, Pueblo y Ciudadanía
+
+La Población representa el aspecto cuantitativo y demográfico del Estado. Incluye a la
+totalidad de los habitantes que residen dentro de sus fronteras físicas,
+independientemente de su nacionalidad o condición legal (nacionales, extranjeros,
+residentes temporales, refugiados).
+Por otro lado, el término **Pueblo** adquiere una connotación estrictamente política y
+jurídica. Se refiere a aquel conjunto de la población que goza de la plenitud de los
+derechos políticos (el cuerpo electoral). El pueblo es la fuente originaria de la soberanía
+en las democracias modernas. De este concepto deriva la **Ciudadanía**, que expresa
+el vínculo jurídico-político formal entre un individuo y el Estado, del cual emanan
+derechos civiles, políticos y sociales, así como obligaciones (cumplir las leyes, pagar
+
+
+                                            2
+impuestos, defender la patria).
+
+2.2. El Ámbito Físico: El Territorio Tripartito
+
+El **Territorio** es la base física e insustituible del Estado. Ningún Estado puede existir
+hipotéticamente "en el aire" o sin una delimitación geográfica tangible. El territorio
+estatal no es solo la superficie terrestre que observamos en un mapa político;
+comprende tres dimensiones integradas:
+  1. Territorio Terrestre y Subsuelo: Abarca la corteza terrestre delimitada por
+      fronteras naturales o artificiales, y se extiende en forma de cono invertido hacia el
+      centro de la Tierra, otorgando al Estado el dominio sobre las riquezas mineras,
+      hídricas y petroleras del subsuelo.
+  2. Espacio Aéreo: Columna de aire que se levanta sobre el territorio terrestre y el
+      mar territorial. Su regulación es crucial para la seguridad nacional y el tráfico
+      aéreo comercial.
+  3. Mar Territorial y Plataforma Continental (para Estados con litoral marítimo):
+      Abarca las franjas marítimas adyacentes a las costas (hasta las 12 millas náuticas
+      para el mar territorial y hasta las 200 millas náuticas para la Zona Económica
+      Exclusiva), regulando la pesca, la navegación y la explotación de recursos.
+
+
+2.3. El Poder Político y la Burocracia Estatal
+
+El **Poder Político** es la facultad o capacidad de la cual están investidas las
+instituciones del Estado para coordinar la vida comunitaria, dictar normas jurídicas
+universales y obligatorias, y aplicar sanciones en caso de incumplimiento. Este poder
+se instrumenta a través de la **Burocracia Estatal**, entendida (en el sentido
+weberiano) como un cuerpo profesionalizado de funcionarios que administran los
+servicios públicos, la recaudación fiscal, la justicia y la seguridad de acuerdo con reglas
+formales e impersonales.
+
+
+2.4. La Soberanía y el Monopolio de la Coerción Legítima
+
+La **Soberanía** posee dos caras indisolubles:
+  ● Soberanía Interna: Es la facultad del Estado para imponer su autoridad sobre cualquier
+      otro grupo, poder o individuo dentro de sus fronteras. Ningún poder interno (un grupo
+      económico, una milicia privada o una organización religiosa) puede situarse por encima
+      del Estado.
+  ● Soberanía Externa (Independencia): Es la capacidad de actuar libremente en la
+      comunidad internacional, en igualdad jurídica con los demás Estados soberanos, sin
+      sometimiento a dominación o injerencia extranjera.
+
+                                              3
+El instrumento central para sostener la soberanía es el **Monopolio del Uso Legítimo de la
+Fuerza**. Esto significa que solo las instituciones autorizadas del Estado (Policía, Fuerzas
+Armadas, Prefectura, Gendarmería) tienen el permiso legal para emplear la coerción física. Si
+un particular utiliza la fuerza de forma arbitraria, incurre en un delito penal, ya que el Estado ha
+desarmado a la sociedad civil para evitar la justicia por mano propia.
+
+
+ORIGEN Y FUNDAMENTACIÓN DEL ESTADO MODERNIZADO
+(EL CONTRACTUALISMO)
+
+¿Por qué los seres humanos aceptamos obedecer las leyes de un Estado? ¿Cómo se
+justifica que una institución ejerza el poder sobre millones de personas? Para
+responder a estas preguntas, durante los siglos XVII y XVIII surgió una corriente de
+pensamiento sociopolítico clave denominada Contractualismo.
+Los filósofos contractualistas no pretendían hacer una descripción histórica exacta del
+pasado, sino proponer un **experimento mental** basado en tres conceptos sucesivos:
+
+
+3.1. Thomas Hobbes: La Búsqueda de Seguridad y el Estado Absoluto
+
+En su obra célebre Leviatán (1651), redactada en el contexto de las sangrientas
+guerras civiles inglesas, **Thomas Hobbes** plantea una visión marcadamente
+pesimista de la naturaleza humana. Para Hobbes, en el Estado de Naturaleza no
+existen leyes, ni gobierno, ni propiedad privada. Los seres humanos son guiados por
+sus pasiones, el egoísmo y el deseo incesante de poder.
+En este escenario, Hobbes sintetiza la condición humana con las famosas frases: "El
+hombre es el lobo del hombre" (Homo homini lupus) y la vida es "solitaria, pobre,
+desagradable, brutal y corta". Rige una "guerra de todos contra todos" impulsada por el
+miedo constante a sufrir una muerte violenta.
+Para salir de este infierno insostenible, la razón humana impulsa a los individuos a
+celebrar un **Pacto Social**. Mediante este acuerdo, cada persona renuncia totalmente
+a su libertad natural y al uso individual de la fuerza, transfiriéndoselos a un tercero: el
+**Soberano (el Leviatán)**. A cambio de esta entrega absoluta de poder, el Leviatán
+garantiza la paz, la seguridad física y el orden. El Estado resultante es el **Estado
+Absolutista**, donde el soberano está por encima de las leyes y no puede ser
+despojado de su poder por los súbditos.
+
+3.2. John Locke: Los Derechos Naturales y el Estado Liberal
+
+**John Locke**, considerado el padre del Liberalismo Político, ofrece en sus Dos
+Tratados sobre el Gobierno Civil (1689) una perspectiva radicalmente distinta. En el
+**Estado de Naturaleza** de Locke, la humanidad no vive en guerra perpetua, sino en
+
+
+                                                 4
+una condición de relativa paz y libertad, regida por la "Ley Natural". Bajo esta ley, cada
+individuo posee por nacimiento **Derechos Naturales** inalienables: la vida, la libertad
+y la propiedad privada.
+Sin embargo, en dicho estado de naturaleza surgen inconvenientes: cuando la
+propiedad de alguien es atacada, cada individuo actúa como juez en su propia causa,
+lo que suele derivar en venganzas desproporcionadas y desorden. Para solucionar esta
+falta de un juez imparcial, los hombres deciden realizar un **Contrato Social**.
+A diferencia de Hobbes, en el modelo de Locke los ciudadanos **no renuncian a sus
+derechos naturales**, sino únicamente al derecho de hacer justicia por mano propia.
+Entregan al Estado la función de legislar y castigar. El producto de este pacto es un
+**Estado Liberal y Representativo**, cuyo poder está severamente limitado. Si el
+gobernante viola los derechos naturales de los ciudadanos o se transforma en un
+tirano, el pueblo conserva el **Derecho de Resistencia a la Opresión** y la facultad
+legítima de destituir al gobierno.
+
+
+3.3. Jean-Jacques Rousseau: La Voluntad General y la Democracia
+Directa
+
+En El Contrato Social (1762), el filósofo ginebrino **Jean-Jacques Rousseau** sostiene
+una tesis opuesta a la de Hobbes. Rousseau afirma que el ser humano nace libre,
+piadoso y bueno por naturaleza (la hipótesis del "buen salvaje"), pero es la sociedad
+corrompida y la aparición de la **propiedad privada** lo que genera la desigualdad, la
+codicia, la envidia y las guerras.
+La frase con la que Rousseau inmortaliza esta transición es: "El primer hombre al que,
+tras haber cercado un terreno, se le ocurrió decir 'Esto es mío' y encontró personas lo
+bastante simples para creerle, fue el verdadero fundador de la sociedad civil".
+Para superar la corrupción de las sociedades existentes y recuperar la libertad perdida,
+Rousseau propone un nuevo **Pacto Social**. En este contrato, cada asociado se
+aliena totalmente con todos sus derechos a la comunidad entera. Al entregarse a todos,
+no se entrega a nadie en particular. Se constituye así un cuerpo político colectivo
+guiado por la **Voluntad General** (que no es la simple suma de los intereses egoístas
+de la mayoría, sino la búsqueda del bien común soberano).
+El Estado resultante en la teoría rousseauniana es un **Estado Democrático y
+Participativo**, donde la soberanía es inalienable e indivisible y recae de forma directa
+en el pueblo legislador.
+
+
+
+
+                                            5
+Dimensión de        Thomas Hobbes           John Locke            Jean-Jacques
+Análisis                                                          Rousseau
+
+
+
+
+Estado de           Guerra permanente       Paz relativa.         Libertad,
+Naturaleza          de todos contra         Existencia de         aislamiento pacífico
+                    todos. Miedo            derechos naturales    y bondad natural
+                    constante.              previos.              ("Buen salvaje").
+
+
+Motivo del          Evitar la muerte        Proteger la           Superar las
+Contrato            violenta y lograr       propiedad privada y   desigualdades
+                    seguridad física.       disponer de un juez   originadas por la
+                                            imparcial.            propiedad privada.
+
+
+Cesión de           Cesión total y          Cesión limitada:      Cesión total de los
+Derechos            definitiva de           solo el derecho de    derechos a la
+                    derechos y              hacer justicia por    comunidad para
+                    libertades.             mano propia.          ganar libertad civil.
+
+
+Modelo de Estado    Estado                  Estado Liberal        Estado
+                    Absolutista             (Poderes limitados    Democrático
+                    (Monarquía con          y división de         Directo (Soberanía
+                    poder ilimitado).       poderes).             popular y voluntad
+                                                                  general).
+
+
+
+
+CONCEPCIONES CONTEMPORÁNEAS SOBRE EL ESTADO
+
+Además de las teorías contractualistas, a lo largo de los siglos XIX y XX se
+estructuraron potentes marcos interpretativos que continúan debatiéndose en la
+actualidad política.
+
+
+
+
+                                        6
+4.1. La Concepción Liberal-Pluralista
+
+Heredera del pensamiento de Locke, Montesquieu y Adam Smith, la concepción liberal
+concibe al Estado como un árbitro neutral cuya tarea fundamental es salvaguardar el
+marco legal para que los individuos puedan perseguir libremente sus planes de vida en
+el mercado y en la sociedad civil.
+   ● Principios Centrales: El Estado debe estar sometido de forma irrestricta al
+     **Imperio de la Ley** (Estado de Derecho). El poder debe dividirse (Ejecutivo,
+     Legislativo y Judicial) para evitar excesos de autoridad.
+   ● Rol Económico: Minimización de las intervenciones estatales en el libre
+     mercado. Mantenimiento del orden público, la defensa contra agresiones externas
+     y el respeto sagrado a la propiedad privada.
+   ● Pluralismo Político: El Estado es una arena pública abierta donde compiten
+     pacíficamente diversos grupos de interés y partidos políticos respetando el
+     resultado de las urnas.
+
+4.2. La Concepción Marxista-Crítica
+
+Desarrollada originariamente por **Karl Marx** y **Friedrich Engels** en el siglo XIX, y
+continuada por pensadores como Antonio Gramsci en el siglo XX, esta perspectiva
+refuta la supuesta neutralidad del Estado liberal.
+  ● El Estado como Instrumento de Clase: En el marco del modo de producción
+      capitalista, el Estado no representa el interés general, sino que constituye el
+      "comité de administración de los negocios comunes de la burguesía". Es una
+      estructura jurídica y política fundada sobre la base económica para legitimar y
+      reproducir la explotación de la clase trabajadora (proletariado).
+  ● Aparato Represivo e Ideológico: El Estado mantiene el orden dominante
+      mediante dos vías: la fuerza directa (policía, ejército, cárceles) y la hegemonía
+      ideológica (sistema escolar, medios de comunicación, leyes que naturalizan la
+      propiedad privada).
+  ● Horizonte Político: Para el marxismo, la clase obrera debe tomar el poder del
+      Estado mediante la revolución, instaurar una fase transitoria (Dictadura del
+      Proletariado) y avanzar hacia la abolición de las clases sociales, punto en el cual
+      el Estado —como aparato de dominación— se extinguirá por completo.
+
+
+
+
+                                           7
+4.3. La Concepción Social-Demócrata / Keynesiana
+
+Surgida con fuerza a mediados del siglo XX, esta perspectiva sostiene que el libre
+mercado desregulado genera profundas desigualdades e inestabilidades económicas
+que destruyen la cohesión social.
+  ● El Estado Interventor y Garante de Derechos: El Estado no debe limitarse a
+     actuar como un "policía pasivo", sino que debe intervenir decididamente en la
+     economía (regulando mercados, redistribuyendo riqueza mediante impuestos
+     progresivos) para garantizar el pleno empleo y asegurar a todos los ciudadanos
+     un nivel básico de bienestar.
+  ● Ciudadanía Social: Amplía los derechos civiles y políticos tradicionales
+     incorporando los **Derechos Sociales, Económicos y Culturales** (salud pública,
+     educación gratuita, jubilaciones, convenios colectivos de trabajo).
+
+
+
+MÓDULO 5: EVOLUCIÓN HISTÓRICA Y TIPOS DE ESTADO
+
+Las formas institucionales del Estado han cambiado radicalmente a medida que se
+transformaban las relaciones económicas, las demandas sociales y las guerras a lo
+largo de la historia occidental. A continuación, analizamos los tipos históricos
+fundamentales de Estado.
+
+5.1. El Estado Absolutista (Siglos XVI a XVIII)
+
+Surgido en Europa al final de la Edad Media con la consolidación de las grandes
+monarquías nacionales (como en Francia e España), el Estado Absolutista centralizó el
+poder político, eliminando el fraccionamiento feudal.
+  ● Concentración del Poder: La figura del Rey o Soberano encarnaba la totalidad
+     de los poderes del Estado (legislaba, ejecutaba las leyes y juzgaba). La célebre
+     frase atribuida al rey Luis XIV de Francia, "El Estado soy yo" (L'État, c'est moi),
+     retrata con exactitud esta época.
+  ● Origen Divino de la Autoridad: Se sostenía que el poder del Monarca provenía
+     directamente de Dios, por lo que no debía rendir cuentas de sus actos ante los
+     seres humanos ni ante ningún parlamento.
+  ● Condición de los Habitantes: Las personas eran consideradas Súbditos.
+     carecían de derechos políticos o civiles frente al monarca; su deber principal era
+     la obediencia absoluta y el pago de tributos.
+
+
+                                           8
+5.2. El Estado Liberal de Derecho (Siglos XVIII a principios del XX)
+
+El Estado Absolutista colapsó a raíz de las grandes Revoluciones Burguesas: la
+Revolución Inglesa (1688), la Revolución Americana (1776) y fundamentalmente la
+**Revolución Francesa (1789)**. Estas transformaciones dieron paso al Estado Liberal.
+  ● Soberanía Popular y División de Poderes: El poder ya no reside en el Rey por
+     mandato divino, sino en la **Nación/Pueblo**. Se adopta la división tripartite del
+     poder ideada por Montesquieu para evitar abusos autoritarios.
+  ● Nacimiento del Ciudadano y Constitucionalismo: Se dictan Constituciones
+     escritas que protegen los derechos individuales primarios (igualdad ante la ley,
+     libertad de expresión, de comercio, de tránsito, de propiedad). Los súbditos se
+     transforman en **Ciudadanos**.
+  ● Modelo de Estado Mínimo (Laissez Faire): Bajo la máxima del pensamiento
+     económico clásico de "dejar hacer, dejar pasar", el Estado no interviene en las
+     relaciones económicas ni laborales, considerando que la oferta y la demanda
+     autorregulan el mercado.
+
+5.3. El Estado Social / Estado de Bienestar (Mediados del Siglo XX a
+1970)
+
+El modelo del Estado Liberal colapsó tras los devastadores efectos de la Primera
+Guerra Mundial, la Gran Depresión económica de 1929 y el surgimiento del fascismo.
+Se evidenció que la sola "igualdad ante la ley" no impedía que millones de trabajadores
+cayeran en la pobreza extrema e insalubridad.
+  ● Surgimiento e Influencia: Inspirado en las políticas del *New Deal* de Franklin
+     D. Roosevelt en EE. UU. y las teorías económicas de **John Maynard Keynes**,
+     el Estado asume una función activa y planificadora.
+  ● Redistribución de la Riqueza e Inclusión: Se expanden masivamente la
+     educación pública, la cobertura médica estatal, las viviendas sociales, los seguros
+     de desempleo y las leyes de protección laboral (jornada de 8 horas, vacaciones
+     pagadas, aguinaldo).
+  ● Experiencia en Argentina: En nuestro país, el Estado de Bienestar alcanzó su
+     máxima expresión durante los gobiernos peronistas (1946-1955), consolidando el
+     desarrollo industrial de sustitución de importaciones y la constitucionalización de
+     los derechos del trabajador (Artículo 14 bis).
+
+
+
+
+                                           9
+5.4. El Estado Neoliberal (Fines del Siglo XX - Década de 1990)
+
+En la década de 1970, la crisis mundial del petróleo y los altos índices de inflación
+llevaron a una severa crítica del Estado de Bienestar por parte de economistas de la
+Escuela de Chicago (como Milton Friedman). Se argumentaba que el Estado
+interventor era demasiado ineficiente, gravoso y burocrático.
+   ● Privatizaciones y Desregulación: Promueve la venta masiva de empresas
+      públicas (servicios de energía, agua, teléfonos, transporte) al sector privado. Se
+      desregula el sistema financiero y el comercio exterior.
+   ● Reducción del Gasto Público: Recorte de partidas destinadas a programas
+      sociales, salud y educación con el objetivo de lograr el equilibrio fiscal.
+   ● Flexibilización Laboral: Modificación de las leyes del trabajo para abaratar los
+      costos de contratación y despido, buscando atraer inversiones privadas
+      internacionales. En Argentina, este modelo se aplicó intensamente durante la
+      década de 1990.
+
+
+
+5.5. Tipos de Estados:
+
+1) Según su Organización Territorial
+Refiere al modo en que se distribuye el poder político en relación con la geografía o las
+regiones del territorio.
+
+1. Estado Unitario
+Existe un único centro de poder político que toma las decisiones para todo el territorio.
+Las divisiones administrativas (departamentos o provincias) son meras delegaciones
+ejecutivas sin autonomía legislativa propia (Ejemplos: Uruguay, Chile, Francia).
+
+2. Estado Federal
+El poder político se distribuye de manera descentralizada entre un gobierno central
+(nacional) y diversos estados o provincias autónomas. Las provincias dictan sus
+propias leyes y eligen a sus autoridades, compartiendo la soberanía según lo fijado en
+la Constitución Nacional (Ejemplos: Argentina, Brasil, EE. UU.).
+
+3. Confederación
+Unión de Estados independientes y soberanos que se agrupan mediante un tratado
+internacional para fines específicos (defensa común, comercio). Cada Estado conserva
+el derecho de separación (secesión) (Ejemplo histórico: Confederación Argentina de
+1831 a 1852).
+
+
+
+                                           10
+    2) Según su Organización Política
+    Es indispensable diferenciar los Estados democráticos de aquellos regímenes que anulan las
+    libertades fundamentales:
+
+    a) Estado Democrático
+
+           Soberanía Popular: El poder emana del pueblo a través del voto libre, periódico
+            y universal.
+           División de Poderes: Separación de funciones en Poder Ejecutivo, Legislativo y
+            Judicial.
+           Estado de Derecho: Todos los ciudadanos y los gobernantes están sujetos a la
+            Constitución.
+
+
+    b) Estados Autocráticos:
+
+      ●    Estado Autoritario: Un grupo jerárquico o militar monopoliza el poder político,
+           restringe severamente las libertades de oposición y suspende las elecciones
+           competitivas, aunque sin pretender controlar la totalidad de la vida privada y
+           cultural de las personas (ejemplo: las dictaduras militares en América Latina
+           durante el siglo XX).
+
+      ●    Estado Totalitario: El Estado busca un control absoluto y microscópico sobre
+           todas las esferas de la vida colectiva e individual (la economía, la educación, el
+           arte, la religión, la familia y el pensamiento). Existe un partido único de masas
+           articulado con una ideología oficial dogmática, el culto a la personalidad del líder y
+           el uso sistemático del terror estatal a través de la policía secreta (ejemplos
+           históricos: la Alemania nazi bajo Hitler y la Unión Soviética bajo Stalin).
+
+
+    A su vez existen diferentes formas de gobierno: Se refiere a ¿quién manda).
+
+   Repúblicas presidencialistas. Son aquellas en las que el poder ejecutivo es ejercido
+    por un presidente elegido directamente por el pueblo en elecciones democráticas,
+    encargado de dirigir políticamente el país y cuyos poderes son delimitados por los otros
+    dos poderes públicos. Este es el caso de países como Venezuela, Argentina, Brasil,
+    México o Filipinas.
+   Repúblicas semipresidencialistas. Son aquellas en las que el presidente, elegido por
+    el voto popular, comparte el poder ejecutivo con un primer ministro, a menudo
+    designado por el presidente pero que debe responder ante el Parlamento. Este es el
+    caso de países como Senegal, Haití, Francia, Rusia o Taiwán.
+
+
+                                                 11
+   Repúblicas parlamentarias. Son aquellas en las que el poder ejecutivo no recae en
+    un presidente, aun cuando este sea el jefe del Estado, sino en un primer ministro,
+    elegido entre los partidos que integran el Parlamento. Esto significa que la población
+    vota indirectamente por su primer ministro y que el poder ejecutivo y la conducción del
+    Estado se someten en mayor medida al poder legislativo y al debate entre las distintas
+    fuerzas políticas del país. Este es el caso de países como Alemania, Croacia, Italia,
+    Israel o India.
+   Monarquías absolutas. Son aquellas en las que el poder político y la soberanía se
+    concentran enteramente en la figura de un rey o monarca, sin que existan leyes ni una
+    separación de poderes que lo limiten o contradigan. También pueden existir
+    instituciones públicas (como un Parlamento o unos tribunales) cuyo poder jamás puede
+    contradecir ni superponerse al del rey. Este es el caso de Brunéi, Omán, Esuatini
+    (antigua Suazilandia) o Arabia Saudita.
+   Monarquías parlamentarias. Son aquellas en las que rigen los principios legales de
+    las monarquías constitucionales pero con la salvedad de que el monarca desempeña
+    un papel puramente ceremonial y representativo, mientras que el poder ejecutivo lo
+    ejerce un primer ministro elegido entre los partidos que integran el Parlamento, aunque
+    al mismo tiempo avalado por el rey. Es el caso del Reino Unido, Japón, España,
+    Suecia, Bélgica o Malasia.
+
+
+
+    3) Según su Relación con la Sociedad
+    Esta clasificación se enfoca en el grado y modalidad de intervención estatal en la
+    economía y en el ámbito social.
+
+    a) Estado Liberal Tradicional
+
+          Se limita a sus funciones mínimas indispensables: defensa nacional,
+           mantenimiento del orden interno y justicia.
+          Aplica el principio de laissez faire (dejar hacer): no interviene en la regulación de
+           la economía ni en la provisión de bienestar social.
+
+
+    b) Estado Social / De Bienestar (Welfare State)
+
+          Considera que la libertad formal no es suficiente si no hay condiciones de vida
+           dignas para la población.
+          Garantiza derechos sociales básicos mediante salud universal, educación
+           gratuita, seguros de desempleo y jubilaciones.
+          Interviene como regulador económico para amortiguar las crisis del capitalismo.
+
+
+
+    c) Estado Neoliberal
+
+
+                                                12
+      Promueve el repliegue de la intervención pública, privatización de servicios
+       públicos y flexibilización laboral.
+      Sostiene que la asignación eficiente de recursos la realiza de mejor manera el
+       libre mercado sin interferencias del Estado.
+
+
+
+
+EL ESTADO ARGENTINO Y LA CONSTITUCIÓN NACIONAL
+6.1. La Forma de Gobierno y de Estado en el Artículo 1.°
+
+La Constitución de la Nación Argentina (1853 y sus posteriores reformas) establece en
+su emblemático Artículo 1.°:
+
+"La Nación Argentina adopta para su gobierno la forma representativa republicana
+federal, según la establece la presente Constitución."
+
+Esta declaración define tres dimensiones normativas clave:
+
+  1. Forma Representativa: El pueblo es el titular soberano del poder, pero no
+     delibera ni gobierna directamente, sino a través de sus representantes
+     legítimamente elegidos mediante el voto (Artículo 22 de la Constitución Nacional).
+  2. Forma Republicana: Se basa en la división e independencia de los tres Poderes
+     del Estado (Ejecutivo, Legislativo y Judicial), la periodicidad en los cargos
+     públicos, la publicidad de los actos de gobierno, la responsabilidad de los
+     funcionarios y la igualdad ante la ley.
+  3. Forma Federal (Tipo de Estado): El poder no está concentrado en un único
+     centro nacional, sino que se distribuye territorialmente entre el Gobierno Nacional
+     (Central) y las 23 Provincias autónomas más la Ciudad Autónoma de Buenos
+     Aires (CABA). Las provincias conservan todo el poder no delegado expresamente
+     a la Nación (Artículo 121).
+
+6.2. La Ciudad Autónoma de Buenos Aires (CABA) en la Estructura Federal
+
+Tras la Reforma Constitucional de 1994, el **Artículo 129** otorgó a la Ciudad de
+Buenos Aires un estatus jurídico especial: un régimen de autonomía con facultades
+propias de legislación y jurisdicción, situándose a un nivel equiparable al de las
+provincias dentro del sistema federal argentino.
+
+
+
+
+                                          13
+Bibliografía:
+
+  ●   Abal Medina, Juan Manuel. (2010). Manual de Ciencia Política. Buenos Aires: Editorial
+      Eudeba.
+  ●   Bobbio, Norberto. (1999). Estado, Gobierno y Sociedad: Por una teoría general de la
+      política. México D.F.: Fondo de Cultura Económica.
+  ●   Constitución de la Nación Argentina. (1994). Texto oficial jurado con las reformas de
+      1994. Buenos Aires: Congreso de la Nación.
+  ●   Gobierno de la Ciudad Autónoma de Buenos Aires - Ministerio de Educación.
+      (2015). Diseño Curricular para la Nueva Escuela Secundaria (NES): Ciclo Básico del
+      Nivel Secundario. CABA.
+  ●   O'Donnell, Guillermo. (2007). Hacia un Estado de y para la Democracia. Buenos Aires:
+      PNUD Argentina.
+  ●   Caro Figueroa, Ramiro (2007). Manual de Teoría del Estado. Ed. Universidad
+      Argentina J.F. Kennedy.
+
+
+
+
+                                             14
+

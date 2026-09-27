@@ -1,0 +1,328 @@
+{
+  "sections": {
+    "hero": {
+      "type": "gv-hero",
+      "settings": {
+        "eyebrow": "Todo para perros y gatos",
+        "title": "Cuidado premium para quienes más querés",
+        "subtitle": "Camas, juguetes, higiene y accesorios elegidos uno por uno. Envío GRATIS a todo el país con seguimiento y garantía de 10 días.",
+        "title_size": 62,
+        "tema": "claro",
+        "boton1_texto": "Ver la tienda",
+        "boton1_url": "",
+        "boton2_texto": "Explorar categorías",
+        "boton2_url": "",
+        "trust1": "Envío GRATIS a todo el país",
+        "trust2": "Pago 100% seguro",
+        "trust3": "Atención personalizada",
+        "imagen": "shopify://shop_images/rn-image_picker_lib_temp_d4c4ebb7-9629-42e2-9a5a-b9df6ce1e843.png",
+        "mostrar_visual": true,
+        "imagen_visual": "shopify://shop_images/brown-dog-looks-up-to-small-kitten-in-a-persons-hands.jpg",
+        "badge_titulo": "",
+        "badge_texto": "Con seguimiento del pedido",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "marquee": {
+      "type": "gv-marquee",
+      "blocks": {
+        "frase_iWB8dV": {
+          "type": "frase",
+          "settings": {
+            "texto": "Envío GRATIS a todo el país"
+          }
+        },
+        "m1": {
+          "type": "frase",
+          "settings": {
+            "texto": "Envío GRATIS a todo el país"
+          }
+        },
+        "m2": {
+          "type": "frase",
+          "settings": {
+            "texto": "Garantía de 10 días"
+          }
+        },
+        "m3": {
+          "type": "frase",
+          "settings": {
+            "texto": "Pago 100% seguro"
+          }
+        },
+        "m4": {
+          "type": "frase",
+          "settings": {
+            "texto": "Atención personalizada"
+          }
+        },
+        "m5": {
+          "type": "frase",
+          "settings": {
+            "texto": "Productos revisados uno por uno"
+          }
+        },
+        "m6": {
+          "type": "frase",
+          "settings": {
+            "texto": "Seguimiento de tu pedido"
+          }
+        }
+      },
+      "block_order": [
+        "frase_iWB8dV",
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6"
+      ],
+      "settings": {
+        "velocidad": 45,
+        "fondo": "#f5faf8",
+        "mostrar_pagos": false,
+        "pagos_texto": "Pagá como más te convenga",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "beneficios": {
+      "type": "gv-beneficios",
+      "blocks": {
+        "b1": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "envio",
+            "titulo": "Envío GRATIS a todo el país",
+            "texto": "Sin mínimo de compra. Recibí tu pedido en casa con seguimiento."
+          }
+        },
+        "b2": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "escudo",
+            "titulo": "Garantía de satisfacción",
+            "texto": "Productos elegidos y probados pensando en tu mascota."
+          }
+        },
+        "b3": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "candado",
+            "titulo": "Pago 100% seguro",
+            "texto": "Comprá con tranquilidad con todos los medios de pago."
+          }
+        },
+        "b4": {
+          "type": "beneficio",
+          "settings": {
+            "icono": "chat",
+            "titulo": "Atención personalizada",
+            "texto": "Te ayudamos a elegir lo mejor para tu compañero."
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
+      "settings": {
+        "title_size": 20,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "categorias": {
+      "type": "gv-categorias",
+      "blocks": {
+        "c1": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "perros",
+            "titulo": "Perros",
+            "texto": "Bienestar, entretenimiento y comodidad para tu perro.",
+            "cta": "Ver productos para perros"
+          }
+        },
+        "c2": {
+          "type": "categoria",
+          "settings": {
+            "coleccion": "gatos",
+            "titulo": "Gatos",
+            "texto": "Estímulo, juego, descanso y bienestar para tu gato.",
+            "cta": "Ver productos para gatos"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2"
+      ],
+      "settings": {
+        "eyebrow": "Explorá por categoría",
+        "title": "Encontrá justo lo que necesitás",
+        "subtitle": "Todo organizado para que llegues rápido a lo que tu mascota necesita.",
+        "title_size": 40,
+        "layout": "tarjetas",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "destacados": {
+      "type": "gv-destacados",
+      "settings": {
+        "coleccion": "los-favoritos",
+        "cantidad": 8,
+        "eyebrow": "Lo más elegido",
+        "title": "Nuestros favoritos",
+        "subtitle": "Los productos que más recomiendan nuestros clientes para sus mascotas.",
+        "title_size": 40,
+        "boton_texto": "Agregar al carrito",
+        "boton_texto_opciones": "Ver producto",
+        "boton_ver_texto": "Ver toda la tienda",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "banda": {
+      "type": "gv-banda",
+      "blocks": {
+        "p1": {
+          "type": "punto",
+          "settings": {
+            "texto": "Materiales seleccionados y suaves al tacto"
+          }
+        },
+        "p2": {
+          "type": "punto",
+          "settings": {
+            "texto": "Productos útiles para el día a día"
+          }
+        },
+        "p3": {
+          "type": "punto",
+          "settings": {
+            "texto": "Envío gratis a todo el país con seguimiento"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "imagen": "shopify://shop_images/rn-image_picker_lib_temp_52595faf-24d1-4640-87ce-2fa6c7c5b204.png",
+        "imagen_derecha": false,
+        "eyebrow": "Por qué GONVRA",
+        "title": "Pensado para el bienestar de tu mascota",
+        "texto": "Seleccionamos cada producto con criterio: Materiales seleccionados, comodidad real y utilidad para el día a día. Porque tu mascota merece lo mejor.",
+        "title_size": 38,
+        "fondo": "#f5faf8",
+        "boton_texto": "Conocé la tienda",
+        "boton_url": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "testimonios": {
+      "type": "gv-testimonios",
+      "blocks": {
+        "r1": {
+          "type": "resena",
+          "settings": {
+            "texto": "La cama que compré es hermosa y súper cómoda. Mi perro no se baja más de ahí. La atención fue impecable.",
+            "nombre": "María L.",
+            "detalle": "Córdoba · dueña de Toby",
+            "verificado": false
+          }
+        },
+        "r2": {
+          "type": "resena",
+          "settings": {
+            "texto": "Llegó antes de lo previsto y la calidad es mucho mejor de lo que esperaba. Vuelvo a comprar seguro.",
+            "nombre": "Diego R.",
+            "detalle": "Rosario · dueño de Michi",
+            "verificado": false
+          }
+        },
+        "r3": {
+          "type": "resena",
+          "settings": {
+            "texto": "Me asesoraron para elegir el juguete ideal para mi gato. Se nota que saben de mascotas. Recomendadísimo.",
+            "nombre": "Carla S.",
+            "detalle": "Buenos Aires · dueña de Luna",
+            "verificado": false
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "eyebrow": "Opiniones",
+        "title": "Lo que dicen nuestros clientes",
+        "subtitle": "Comentarios de quienes ya compraron en GONVRA.",
+        "title_size": 40,
+        "mostrar_resumen": false,
+        "resumen_score": "4,8",
+        "resumen_texto": "Según las opiniones de nuestros clientes",
+        "verificado_texto": "Compra verificada",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "cta": {
+      "type": "gv-cta",
+      "settings": {
+        "eyebrow": "Empezá hoy",
+        "title": "Consentí a tu mascota como se merece",
+        "subtitle": "Descubrí toda nuestra selección de productos y hacé que cada día sea especial para tu compañero.",
+        "title_size": 42,
+        "boton1_texto": "Ver la tienda",
+        "boton1_url": "",
+        "boton2_texto": "Escribinos",
+        "boton2_url": "mailto:contacto@gonvra.com?subject=Consulta desde GONVRA",
+        "padding_top": 24,
+        "padding_bottom": 0
+      }
+    },
+    "contador": {
+      "type": "gv-contador",
+      "settings": {
+        "fecha_fin": "2026-08-03 23:59",
+        "titulo": "La promo de lanzamiento termina en:",
+        "subtitulo": "10% OFF con el código + envío gratis a todo el país.",
+        "codigo": "LANZAMIENTO10",
+        "lbl_dias": "Días",
+        "lbl_horas": "Horas",
+        "lbl_min": "Min",
+        "lbl_seg": "Seg",
+        "fondo_a": "#0E2A47",
+        "fondo_b": "#2E7FB0",
+        "color_texto": "#FFFFFF",
+        "color_caja": "#FFE600",
+        "color_numero": "#0E2A47",
+        "padding_top": 8,
+        "padding_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "contador",
+    "marquee",
+    "beneficios",
+    "categorias",
+    "destacados",
+    "banda",
+    "testimonios",
+    "cta"
+  ]
+}

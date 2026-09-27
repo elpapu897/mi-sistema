@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antártida — El Continente Blanco</title>
+<style>
+  :root{
+    --bg:#050b16;
+    --bg2:#081426;
+    --ice:#bfe9ff;
+    --ice-deep:#4aa3d9;
+    --aurora1:#4dffc3;
+    --aurora2:#5b8cff;
+    --aurora3:#c084fc;
+    --text:#e8f2ff;
+    --muted:#8ba6c4;
+    --line:rgba(140,190,235,.18);
+    --card:rgba(14,30,52,.55);
+    --max:1180px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ice-deep);color:#02101f}
+
+  /* ---------- scrollbar ---------- */
+  ::-webkit-scrollbar{width:10px}
+  ::-webkit-scrollbar-track{background:#04091200}
+  ::-webkit-scrollbar-thumb{background:#1d3b5c;border-radius:20px}
+  ::-webkit-scrollbar-thumb:hover{background:#2c557f}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+  /* ================= NAV ================= */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:16px 0;
+    transition:background .4s, backdrop-filter .4s, padding .4s, border-color .4s;
+    border-bottom:1px solid transparent;
+  }
+  nav.solid{
+    background:rgba(5,11,22,.78);
+    backdrop-filter:blur(18px) saturate(140%);
+    border-bottom-color:var(--line);
+    padding:10px 0;
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.14em;font-size:.82rem;text-transform:uppercase}
+  .brand svg{width:26px;height:26px;flex:none}
+  .navlinks{display:flex;gap:6px;list-style:none;flex-wrap:wrap}
+  .navlinks a{
+    color:var(--muted);text-decoration:none;font-size:.83rem;font-weight:500;
+    padding:7px 13px;border-radius:999px;transition:.25s;display:block;
+  }
+  .navlinks a:hover{color:var(--text);background:rgba(120,180,240,.12)}
+  .burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:7px 10px;cursor:pointer}
+
+  /* ================= HERO ================= */
+  header.hero{
+    position:relative;min-height:100svh;display:flex;align-items:center;
+    overflow:hidden;isolation:isolate;
+  }
+  .sky{
+    position:absolute;inset:0;z-index:-3;
+    background:
+      radial-gradient(120% 80% at 50% 100%, #123a5c 0%, transparent 60%),
+      linear-gradient(180deg,#02060f 0%,#061529 45%,#0b2b45 100%);
+  }
+  /* estrellas */
+  .stars,.stars2{position:absolute;inset:0;z-index:-2}
+  .stars{
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 18%, #fff, transparent),
+      radial-gradient(1.2px 1.2px at 28% 9%, #dff1ff, transparent),
+      radial-gradient(1.6px 1.6px at 45% 24%, #fff, transparent),
+      radial-gradient(1.1px 1.1px at 63% 12%, #cfe8ff, transparent),
+      radial-gradient(1.5px 1.5px at 78% 28%, #fff, transparent),
+      radial-gradient(1.2px 1.2px at 88% 8%, #e9f6ff, transparent),
+      radial-gradient(1.3px 1.3px at 8% 40%, #fff, transparent),
+      radial-gradient(1px 1px at 35% 44%, #cfe8ff, transparent),
+      radial-gradient(1.4px 1.4px at 70% 40%, #fff, transparent),
+      radial-gradient(1.1px 1.1px at 95% 46%, #dff1ff, transparent);
+    animation:twinkle 5s ease-in-out infinite alternate;
+  }
+  .stars2{
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 52% 6%, #fff, transparent),
+      radial-gradient(1px 1px at 82% 36%, #fff, transparent),
+      radial-gradient(1px 1px at 5% 14%, #fff, transparent),
+      radial-gradient(1px 1px at 68% 20%, #fff, transparent);
+    opacity:.55;animation:twinkle 3.4s ease-in-out .8s infinite alternate;
+  }
+  @keyframes twinkle{from{opacity:.35}to{opacity:.95}}
+
+  /* aurora */
+  .aurora{position:absolute;top:-10%;left:-20%;right:-20%;height:75%;z-index:-2;filter:blur(46px);opacity:.62;pointer-events:none}
+  .band{position:absolute;left:0;right:0;height:230px;border-radius:50%;mix-blend-mode:screen}
+  .b1{top:6%;background:linear-gradient(90deg,transparent,var(--aurora1),transparent);animation:drift 17s ease-in-out infinite}
+  .b2{top:20%;background:linear-gradient(90deg,transparent,var(--aurora2),transparent);animation:drift 23s ease-in-out -6s infinite reverse}
+  .b3{top:34%;background:linear-gradient(90deg,transparent,var(--aurora3),transparent);opacity:.6;animation:drift 29s ease-in-out -12s infinite}
+  @keyframes drift{
+    0%,100%{transform:translateX(-8%) skewY(-3deg) scaleY(1)}
+    50%{transform:translateX(9%) skewY(4deg) scaleY(1.28)}
+  }
+
+  /* montañas / glaciares SVG */
+  .range{position:absolute;left:0;right:0;bottom:0;z-index:-1;width:100%;display:block}
+  .range.far{bottom:26%;opacity:.45}
+  .range.mid{bottom:14%;opacity:.7}
+
+  .hero-inner{position:relative;z-index:2;padding:120px 0 180px;max-width:760px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ice);
+    border:1px solid var(--line);background:rgba(10,25,45,.5);backdrop-filter:blur(8px);
+    padding:8px 16px;border-radius:999px;margin-bottom:26px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--aurora1);box-shadow:0 0 12px var(--aurora1);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+
+  h1{
+    font-size:clamp(3rem,9.5vw,6.6rem);
+    line-height:.94;font-weight:800;letter-spacing:-.035em;margin-bottom:22px;
+  }
+  h1 .glow{
+    background:linear-gradient(120deg,#ffffff 0%,var(--ice) 40%,var(--ice-deep) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 34px rgba(120,200,255,.32));
+  }
+  .lead{font-size:clamp(1.02rem,2.1vw,1.28rem);color:#c3d9f0;max-width:600px;margin-bottom:36px}
+  .cta{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;font-size:.94rem;
+    padding:14px 26px;border-radius:999px;transition:.28s;border:1px solid transparent;
+  }
+  .btn-p{background:linear-gradient(120deg,#dff2ff,#7cc4f0);color:#04182b;box-shadow:0 10px 34px -10px rgba(124,196,240,.65)}
+  .btn-p:hover{transform:translateY(-3px);box-shadow:0 18px 44px -10px rgba(124,196,240,.8)}
+  .btn-s{border-color:var(--line);color:var(--text);background:rgba(12,28,48,.4);backdrop-filter:blur(8px)}
+  .btn-s:hover{border-color:var(--ice-deep);background:rgba(30,70,110,.45);transform:translateY(-3px)}
+
+  .scroll-hint{
+    position:absolute;bottom:38px;left:50%;transform:translateX(-50%);z-index:3;
+    color:var(--muted);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .mouse{width:22px;height:36px;border:1.5px solid var(--line);border-radius:12px;position:relative}
+  .mouse::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;border-radius:2px;background:var(--ice);transform:translateX(-50%);animation:wheel 1.8s infinite}
+  @keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,13px)}}
+
+  /* ================= SECCIONES ================= */
+  section{padding:110px 0;position:relative}
+  .sec-head{max-width:720px;margin-bottom:56px}
+  .tag{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ice-deep);font-weight:700;display:block;margin-bottom:14px}
+  h2{font-size:clamp(1.9rem,4.4vw,3.1rem);line-height:1.1;letter-spacing:-.028em;font-weight:750;margin-bottom:18px}
+  h2 em{font-style:normal;color:var(--ice-deep)}
+  .sec-head p{color:var(--muted);font-size:1.05rem}
+
+  /* fade-in */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---- stats ---- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .stat{background:linear-gradient(180deg,rgba(11,26,45,.92),rgba(6,16,30,.92));padding:34px 26px;transition:.35s}
+  .stat:hover{background:linear-gradient(180deg,rgba(20,48,80,.95),rgba(8,22,40,.95))}
+  .stat .num{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;letter-spacing:-.03em;
+    background:linear-gradient(120deg,#fff,var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.05}
+  .stat .num small{font-size:.42em;font-weight:600;color:var(--ice-deep);-webkit-text-fill-color:var(--ice-deep);margin-left:4px}
+  .stat .lbl{color:var(--muted);font-size:.82rem;margin-top:8px;letter-spacing:.04em}
+
+  /* ---- grid tarjetas ---- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;
+    backdrop-filter:blur(10px);transition:.4s;position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;border-radius:20px;padding:1px;
+    background:linear-gradient(140deg,rgba(140,210,255,.5),transparent 45%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.4s;
+  }
+  .card:hover{transform:translateY(-7px);background:rgba(18,40,68,.7);box-shadow:0 24px 60px -22px rgba(0,0,0,.8)}
+  .card:hover::before{opacity:1}
+  .ico{
+    width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;
+    background:linear-gradient(140deg,rgba(90,170,230,.28),rgba(90,170,230,.06));
+    border:1px solid rgba(140,210,255,.22);
+  }
+  .ico svg{width:24px;height:24px;stroke:var(--ice);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .card h3{font-size:1.12rem;margin-bottom:9px;font-weight:680;letter-spacing:-.01em}
+  .card p{color:var(--muted);font-size:.93rem}
+
+  /* ---- fauna ---- */
+  .fauna{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .beast{
+    border:1px solid var(--line);border-radius:22px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(12,30,52,.8),rgba(6,15,28,.9));transition:.4s;
+  }
+  .beast:hover{transform:translateY(-8px) scale(1.015);border-color:rgba(140,210,255,.4);box-shadow:0 28px 60px -25px #000}
+  .beast .art{height:170px;position:relative;overflow:hidden;background:linear-gradient(180deg,#12395c,#0a2138)}
+  .beast .art svg{position:absolute;inset:0;width:100%;height:100%}
+  .beast .txt{padding:20px 22px 24px}
+  .beast h4{font-size:1.03rem;margin-bottom:5px}
+  .beast .sci{font-size:.75rem;font-style:italic;color:var(--ice-deep);margin-bottom:10px;letter-spacing:.02em}
+  .beast p{font-size:.87rem;color:var(--muted)}
+
+  /* ---- timeline ---- */
+  .tl{position:relative;padding-left:34px;margin-top:10px}
+  .tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(180deg,transparent,var(--ice-deep) 12%,var(--ice-deep) 88%,transparent)}
+  .ev{position:relative;padding:0 0 38px 8px}
+  .ev:last-child{padding-bottom:0}
+  .ev::before{content:"";position:absolute;left:-31px;top:7px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--ice-deep);box-shadow:0 0 0 4px rgba(74,163,217,.12);transition:.3s}
+  .ev:hover::before{background:var(--ice);box-shadow:0 0 0 7px rgba(74,163,217,.2)}
+  .ev .yr{font-size:.78rem;font-weight:750;letter-spacing:.16em;color:var(--ice-deep)}
+  .ev h4{font-size:1.06rem;margin:3px 0 6px}
+  .ev p{color:var(--muted);font-size:.92rem;max-width:620px}
+
+  /* ---- clima destacado ---- */
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .panel{
+    border:1px solid var(--line);border-radius:24px;padding:34px;
+    background:linear-gradient(160deg,rgba(16,38,64,.75),rgba(6,15,28,.85));backdrop-filter:blur(10px);
+  }
+  .bar{margin-bottom:22px}
+  .bar:last-child{margin-bottom:0}
+  .bar .top{display:flex;justify-content:space-between;font-size:.87rem;margin-bottom:9px}
+  .bar .top span:last-child{color:var(--ice);font-weight:650;font-variant-numeric:tabular-nums}
+  .track{height:8px;border-radius:99px;background:rgba(140,190,235,.13);overflow:hidden}
+  .fill{height:100%;border-radius:99px;width:0;transition:width 1.6s cubic-bezier(.2,.8,.2,1);
+    background:linear-gradient(90deg,var(--ice-deep),var(--ice))}
+
+  .quote{
+    border-left:3px solid var(--ice-deep);padding:6px 0 6px 26px;margin:34px 0 0;
+    font-size:1.14rem;line-height:1.6;color:#d5e7f8;font-weight:400;
+  }
+  .quote cite{display:block;margin-top:12px;font-size:.82rem;font-style:normal;color:var(--muted);letter-spacing:.04em}
+
+  /* ---- tratado / franja ---- */
+  .banner{
+    border-radius:28px;padding:56px 46px;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#0d2b4a,#071a30 60%,#0a2038);
+    border:1px solid var(--line);
+  }
+  .banner::after{
+    content:"";position:absolute;top:-60%;right:-10%;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(77,255,195,.16),transparent 65%);pointer-events:none
+  }
+  .banner h2{max-width:640px}
+  .banner p{color:#b9d2e9;max-width:620px}
+  .pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+  .pill{border:1px solid var(--line);background:rgba(5,15,28,.55);padding:8px 16px;border-radius:999px;font-size:.82rem;color:var(--ice)}
+
+  /* ---- footer ---- */
+  footer{border-top:1px solid var(--line);padding:52px 0 40px;background:#030811}
+  .fgrid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-start}
+  footer p{color:var(--muted);font-size:.85rem;max-width:420px}
+  .flinks{display:flex;gap:22px;flex-wrap:wrap}
+  .flinks a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:.25s}
+  .flinks a:hover{color:var(--ice)}
+  .fbot{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:#5f7996}
+
+  /* nieve */
+  .snow{position:fixed;inset:0;pointer-events:none;z-index:50}
+  .flake{position:absolute;top:-12px;border-radius:50%;background:#fff;opacity:.6;animation:fall linear infinite}
+  @keyframes fall{
+    0%{transform:translate3d(0,-12px,0) rotate(0)}
+    100%{transform:translate3d(var(--dx,20px),105vh,0) rotate(360deg)}
+  }
+
+  @media(max-width:900px){
+    .split{grid-template-columns:1fr;gap:34px}
+  }
+  @media(max-width:760px){
+    .navlinks{
+      display:none;position:absolute;top:100%;left:14px;right:14px;flex-direction:column;gap:2px;
+      background:rgba(6,16,30,.97);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:16px;padding:12px;
+    }
+    .navlinks.open{display:flex}
+    .burger{display:block}
+    section{padding:78px 0}
+    .banner{padding:38px 26px}
+    .hero-inner{padding:110px 0 150px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition-duration:.01ms!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav id="nav">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#bfe9ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/>
+      </svg>
+      Antártida
+    </div>
+    <ul class="navlinks" id="menu">
+      <li><a href="#continente">El continente</a></li>
+      <li><a href="#clima">Clima</a></li>
+      <li><a href="#vida">Vida</a></li>
+      <li><a href="#ciencia">Ciencia</a></li>
+      <li><a href="#historia">Historia</a></li>
+      <li><a href="#futuro">Futuro</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menú">☰</button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="sky"></div>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="aurora">
+    <div class="band b1"></div><div class="band b2"></div><div class="band b3"></div>
+  </div>
+
+  <!-- cordillera lejana -->
+  <svg class="range far" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 260 L0 180 L120 96 L210 150 L330 60 L450 148 L560 100 L690 170 L800 110 L930 168 L1050 92 L1170 156 L1290 104 L1440 172 L1440 260 Z" fill="#1b4a70"/>
+  </svg>
+  <!-- cordillera media -->
+  <svg class="range mid" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 240 L0 168 L150 104 L260 166 L400 88 L520 160 L640 118 L780 178 L900 124 L1030 180 L1160 118 L1300 172 L1440 130 L1440 240 Z" fill="#12354f"/>
+  </svg>
+  <!-- barrera de hielo -->
+  <svg class="range" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="ice" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#dff3ff"/><stop offset="55%" stop-color="#8fc9ea"/><stop offset="100%" stop-color="#2b6a93"/>
+      </linearGradient>
+    </defs>
+    <path d="M0 220 L0 120 L90 78 L180 118 L300 66 L420 116 L540 84 L660 126 L790 74 L910 124 L1040 88 L1160 130 L1290 82 L1440 122 L1440 220 Z" fill="url(#ice)" opacity=".95"/>
+    <path d="M0 220 L0 168 L1440 150 L1440 220 Z" fill="#06182b" opacity=".85"/>
+  </svg>
+
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><span class="dot"></span>90° Sur · El fin del mundo</span>
+    <h1>El continente<br><span class="glow">de hielo y silencio</span></h1>
+    <p class="lead">
+      Catorce millones de kilómetros cuadrados sin países, sin ciudades y sin habitantes permanentes.
+      El lugar más frío, más seco, más ventoso y más alto de la Tierra — y el archivo climático
+      más valioso que tenemos.
+    </p>
+    <div class="cta">
+      <a href="#continente" class="btn btn-p">Explorar el continente →</a>
+      <a href="#futuro" class="btn btn-s">Por qué importa hoy</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint"><div class="mouse"></div>Desliza</div>
+</header>
+
+<!-- ================= CIFRAS ================= -->
+<section id="continente">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">01 — El continente</span>
+      <h2>Un desierto <em>hecho de agua dulce</em></h2>
+      <p>
+        La Antártida rodea el Polo Sur y está cubierta por una capa de hielo con un espesor medio
+        cercano a los 2 km. Aunque contiene la mayor reserva de agua dulce del planeta, técnicamente
+        es un desierto: en el interior casi nunca nieva.
+      </p>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="num" data-count="14" data-suffix="M">0</div><div class="lbl">km² de superficie</div></div>
+      <div class="stat"><div class="num" data-count="90" data-suffix="%">0</div><div class="lbl">del hielo del mundo</div></div>
+      <div class="stat"><div class="num" data-count="70" data-suffix="%">0</div><div class="lbl">del agua dulce</div></div>
+      <div class="stat"><div class="num" data-count="4776" data-raw="1">0</div><div class="lbl">m de hielo, espesor máximo</div></div>
+      <div class="stat"><div class="num">−89,2<small>°C</small></div><div class="lbl">récord de frío (Vostok, 1983)</div></div>
+    </div>
+
+    <div class="grid reveal" style="margin-top:26px">
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2v20M12 2l4 4M12 2L8 6M12 22l4-4M12 22l-4-4M3.5 7l17 10M3.5 7l1.5 5.5M3.5 7 9 5.5M20.5 17 19 11.5M20.5 17 15 18.5M20.5 7l-17 10M20.5 7 15 5.5M20.5 7 19 12.5M3.5 17 9 18.5M3.5 17 5 11.5"/></svg></div>
+        <h3>Dos Antártidas en una</h3>
+        <p>Los montes Transantárticos parten el continente: la Antártida Oriental es una meseta
+        gigante y estable; la Occidental, más baja, se apoya en gran parte sobre lecho rocoso
+        bajo el nivel del mar, lo que la hace mucho más vulnerable.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M2 20h20M4 20l4-9 4 5 3-7 5 11"/><circle cx="12" cy="5" r="2"/></svg></div>
+        <h3>El continente más alto</h3>
+        <p>Su altitud media supera los 2.000 m gracias al propio hielo. El Macizo Vinson,
+        con 4.892 m, es su techo y una de las Siete Cumbres.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 8c3-2 5 2 8 0s5-2 8 0M3 14c3-2 5 2 8 0s5-2 8 0M3 20c3-2 5 2 8 0s5-2 8 0"/></svg></div>
+        <h3>Lagos bajo el hielo</h3>
+        <p>Bajo kilómetros de hielo existen más de 400 lagos subglaciales. El mayor, el lago
+        Vostok, lleva aislado de la atmósfera cientos de miles de años.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 18h16M6 18V9l6-5 6 5v9M10 18v-5h4v5"/></svg></div>
+        <h3>Barreras de hielo</h3>
+        <p>Plataformas flotantes como Ross o Filchner-Ronne actúan de freno del hielo continental.
+        La de Ross sola es casi tan grande como Francia.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CLIMA ================= -->
+<section id="clima">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <span class="tag">02 — Clima</span>
+        <h2>Frío, seco y <em>brutalmente ventoso</em></h2>
+        <p style="color:var(--muted);font-size:1.05rem">
+          En la costa el termómetro ronda los −10 °C en verano; en la meseta interior el invierno
+          se instala por debajo de −60 °C durante meses de oscuridad total. Los vientos catabáticos
+          —aire helado que se desploma desde la meseta por gravedad— superan con frecuencia los
+          200 km/h en algunos puntos de la costa.
+        </p>
+        <blockquote class="quote">
+          «Grandes cosas se logran superando pequeñas cosas. La Antártida no perdona el descuido:
+          allí, el clima siempre tiene la última palabra.»
+          <cite>— Espíritu de la era heroica de la exploración polar</cite>
+        </blockquote>
+      </div>
+
+      <div class="panel reveal">
+        <h3 style="font-size:1.05rem;margin-bottom:24px;letter-spacing:.02em">Extremos registrados</h3>
+        <div class="bar"><div class="top"><span>Temperatura mínima</span><span>−89,2 °C</span></div><div class="track"><div class="fill" data-w="100"></div></div></div>
+        <div class="bar"><div class="top"><span>Racha de viento máxima</span><span>~327 km/h</span></div><div class="track"><div class="fill" data-w="92"></div></div></div>
+        <div class="bar"><div class="top"><span>Precipitación interior anual</span><span>&lt; 50 mm</span></div><div class="track"><div class="fill" data-w="12"></div></div></div>
+        <div class="bar"><div class="top"><span>Noche polar continua</span><span>hasta 6 meses</span></div><div class="track"><div class="fill" data-w="78"></div></div></div>
+        <div class="bar"><div class="top"><span>Hielo marino (máx. invernal)</span><span>~18 M km²</span></div><div class="track"><div class="fill" data-w="88"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VIDA ================= -->
+<section id="vida">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">03 — Vida</span>
+      <h2>Casi toda la vida <em>vive en el mar</em></h2>
+      <p>
+        En tierra firme apenas hay musgos, líquenes, dos plantas con flor y un mosquito sin alas.
+        Pero el Océano Austral, rico en krill, sostiene una de las cadenas alimentarias más
+        productivas del planeta.
+      </p>
+    </div>
+
+    <div class="fauna reveal">
+
+      <article class="beast">
+        <div class="art">
+          <svg viewBox="0 0 240 170" preserveAspectRatio="xMidYMid slice">
+            <rect width="240" height="170" fill="#0e2f4d"/>
+            <ellipse cx="120" cy="152" rx="150" ry="30" fill="#e6f4ff" opacity=".9"/>
+            <!-- pingüino grande -->
+            <ellipse cx="120" cy="96" rx="30" ry="44" fill="#121a24"/>
+            <ellipse cx="120" cy="104" rx="20" ry="34" fill="#f7fbff"/>
+            <circle cx="120" cy="52" r="19" fill="#121a24"/>
+            <path d="M112 60q8 12 16 0q-8 6-16 0" fill="#f9d976"/>
+            <circle cx="113" cy="49" r="2.4" fill="#fff"/><circle cx="127" cy="49" r="2.4" fill="#fff"/>
+            <path d="M120 58l11 4-11 4z" fill="#e8a13a"/>
+            <path d="M95 82q-9 26 3 44" stroke="#121a24" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M145 82q9 26-3 44" stroke="#121a24" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M108 138h12l-4 8h-12z" fill="#e8a13a"/><path d="M132 138h-12l4 8h12z" fill="#e8a13a"/>
+            <!-- polluelo -->
+            <ellipse cx="176" cy="118" rx="17" ry="22" fill="#9fb3c4"/>
+            <circle cx="176" cy="92" r="12" fill="#26313d"/>
+            <circle cx="172" cy="90" r="1.8" fill="#fff"/><circle cx="181" cy="90" r="1.8" fill="#fff"/>
+            <path d="M176 96l7 3-7 3z" fill="#d8d2c6"/>
+            <ellipse cx="176" cy="88" rx="9" ry="6" fill="#eef4f8"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h4>Pingüino emperador</h4>
+          <div class="sci">Aptenodytes forsteri</div>
+          <p>El único animal que cría en pleno invierno antártico. Los machos incuban el huevo
+          sobre sus patas durante ~65 días sin comer, apiñados a −40 °C.</p>
+        </div>
+      </article>
+
+      <article class="beast">
+        <div class="art">
+          <svg viewBox="0 0 240 170" preserveAspectRatio="xMidYMid slice">
+            <rect width="240" height="170" fill="#0a2a45"/>
+                    <path d="M0 46q60 12 120 0t120 0v124H0z" fill="#0d3455"/>
+            <path d="M0 46q60 12 120 0t120 0v10q-60 12-120 0T0 56z" fill="#7fc4e8" opacity=".35"/>
+            <!-- ballena -->
+            <path d="M40 118q52-34 108-16 34 11 52-4-8 20-30 26-56 16-96 6-22-5-34-12z" fill="#1d2b3a"/>
+            <path d="M60 126q40 12 92 4-30 14-70 8-14-3-22-12z" fill="#57708a"/>
+            <path d="M196 96q14-16 26-14-6 16-18 22z" fill="#1d2b3a"/>
+            <path d="M92 122q10 18 2 26-16-6-18-20z" fill="#16222e"/>
+            <circle cx="66" cy="110" r="2.6" fill="#dff1ff"/>
+            <path d="M44 112q-8 4-14 12" stroke="#16222e" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <circle cx="200" cy="34" r="3" fill="#bfe9ff" opacity=".5"/>
+            <circle cx="216" cy="52" r="2" fill="#bfe9ff" opacity=".4"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h4>Ballena azul</h4>
+          <div class="sci">Balaenoptera musculus</div>
+          <p>El animal más grande que ha existido, hasta 30 m y 150 t. Baja al Océano Austral
+          en verano a engullir toneladas de krill cada día.</p>
+        </div>
+      </article>
+
+      <article class="beast">
+        <div class="art">
+          <svg viewBox="0 0 240 170" preserveAspectRatio="xMidYMid slice">
+            <rect width="240" height="170" fill="#123a5c"/>
+            <ellipse cx="120" cy="150" rx="160" ry="34" fill="#dceeff"/>
+            <!-- foca -->
+            <ellipse cx="118" cy="118" rx="72" ry="26" fill="#5a6f82"/>
+            <ellipse cx="118" cy="124" rx="66" ry="18" fill="#8598aa"/>
+            <ellipse cx="52" cy="102" rx="24" ry="18" fill="#5a6f82"/>
+            <circle cx="42" cy="98" r="3.2" fill="#101820"/>
+            <circle cx="60" cy="97" r="3.2" fill="#101820"/>
+            <ellipse cx="34" cy="106" rx="6" ry="4.5" fill="#3d4d5c"/>
+            <path d="M30 108q-12 2-18 6M30 111q-12 4-16 9" stroke="#e8f3ff" stroke-width="1.3" fill="none" opacity=".7"/>
+            <path d="M186 108q22-10 34 2-16 12-34 10z" fill="#5a6f82"/>
+            <ellipse cx="100" cy="112" rx="5" ry="3.2" fill="#43566a" opacity=".6"/>
+            <ellipse cx="132" cy="118" rx="5" ry="3.2" fill="#43566a" opacity=".6"/>
+            <ellipse cx="156" cy="110" rx="5" ry="3.2" fill="#43566a" opacity=".6"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h4>Foca de Weddell</h4>
+          <div class="sci">Leptonychotes weddellii</div>
+          <p>El mamífero que vive más al sur. Mantiene abiertos sus agujeros de respiración
+          royendo el hielo con los dientes y bucea más de 600 m.</p>
+        </div>
+      </article>
+
+      <article class="beast">
+        <div class="art">
+          <svg viewBox="0 0 240 170" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="krillg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ffb37a"/><stop offset="100%" stop-color="#e8663f"/>
+              </linearGradient>
+            </defs>
+            <rect width="240" height="170" fill="#08243c"/>
+            <g opacity=".9">
+              <g transform="translate(60 60) rotate(-14)">
+                <ellipse cx="0" cy="0" rx="34" ry="10" fill="url(#krillg)"/>
+                <circle cx="-30" cy="-3" r="3" fill="#2b1a12"/>
+                <path d="M28 0l14-8v16z" fill="#ffcf9e"/>
+                <path d="M-14 8l-4 10M-4 8l-4 10M6 8l-4 10M16 8l-4 10" stroke="#ffcf9e" stroke-width="2" stroke-linecap="round"/>
+              </g>
+              <g transform="translate(150 110) rotate(10)">
+                <ellipse cx="0" cy="0" rx="30" ry="9" fill="url(#krillg)"/>
+                <circle cx="-26" cy="-3" r="2.6" fill="#2b1a12"/>
+                <path d="M25 0l12-7v14z" fill="#ffcf9e"/>
+                <path d="M-12 7l-4 9M-3 7l-4 9M6 7l-4 9M15 7l-4 9" stroke="#ffcf9e" stroke-width="1.8" stroke-linecap="round"/>
+              </g>
+              <g transform="translate(170 44) rotate(-26) scale(.7)">
+                <ellipse cx="0" cy="0" rx="30" ry="9" fill="url(#krillg)"/>
+                <circle cx="-26" cy="-3" r="2.6" fill="#2b1a12"/>
+                <path d="M25 0l12-7v14z" fill="#ffcf9e"/>
+              </g>
+              <g transform="translate(64 132) rotate(6) scale(.62)">
+                <ellipse cx="0" cy="0" rx="30" ry="9" fill="url(#krillg)"/>
+                <circle cx="-26" cy="-3" r="2.6" fill="#2b1a12"/>
+                <path d="M25 0l12-7v14z" fill="#ffcf9e"/>
+              </g>
+            </g>
+            <circle cx="30" cy="30" r="2" fill="#9fd9ff" opacity=".4"/>
+            <circle cx="210" cy="150" r="2.4" fill="#9fd9ff" opacity=".35"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h4>Krill antártico</h4>
+          <div class="sci">Euphausia superba</div>
+          <p>Mide 6 cm y sostiene el ecosistema entero. Su biomasa total se estima en cientos de
+          millones de toneladas: probablemente la especie más abundante del planeta.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= CIENCIA ================= -->
+<section id="ciencia">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">04 — Ciencia</span>
+      <h2>Un laboratorio del <em>tamaño de un continente</em></h2>
+      <p>
+        Unas 70 bases permanentes de más de 30 países alojan entre 1.000 personas en invierno y
+        5.000 en verano. Nadie nace ciudadano de la Antártida: todos son visitantes.
+      </p>
+    </div>
+
+    <div class="grid reveal">
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 2v6L4.5 18A2.5 2.5 0 0 0 7 21h10a2.5 2.5 0 0 0 2.5-3L15 8V2M8 2h8M7.5 14h9"/></svg></div>
+        <h3>Testigos de hielo</h3>
+        <p>Perforando el manto se extraen cilindros con burbujas de aire atrapado. Los más antiguos
+        recuperados guardan un registro directo de la atmósfera de hace más de 800.000 años.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg></div>
+        <h3>El agujero de ozono</h3>
+        <p>Detectado sobre la Antártida en 1985, provocó el Protocolo de Montreal, el acuerdo
+        ambiental más exitoso de la historia. La capa se está recuperando lentamente.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6L20 9.6l-4 4.1 1 5.9-5-3-5 3 1-5.9-4-4.1 5.8-1z"/></svg></div>
+        <h3>Astronomía y neutrinos</h3>
+        <p>El aire ultraseco y estable convierte la meseta en un observatorio ideal. En el Polo Sur,
+        IceCube usa un kilómetro cúbico de hielo como detector de neutrinos cósmicos.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4.9 19.1A10 10 0 1 1 19.1 4.9 10 10 0 0 1 4.9 19.1z"/><path d="M12 8v4l3 2"/></svg></div>
+        <h3>Meteoritos y análogos</h3>
+        <p>El hielo azul concentra meteoritos, fáciles de ver sobre el blanco. Y los valles secos
+        de McMurdo sirven de ensayo para misiones a Marte.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HISTORIA ================= -->
+<section id="historia">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">05 — Historia</span>
+      <h2>De mito griego a <em>frontera científica</em></h2>
+      <p>Durante siglos fue solo una hipótesis: la <em style="color:var(--ice)">Terra Australis Incognita</em>
+      que debía equilibrar las tierras del norte. Tardó 2.000 años en dejarse ver.</p>
+    </div>
+
+    <div class="tl reveal">
+      <div class="ev"><div class="yr">1773</div><h4>Cook cruza el Círculo Polar</h4>
+        <p>James Cook es el primero en atravesar el Círculo Polar Antártico. El hielo lo detiene
+        antes de avistar tierra, pero demuestra que si existe un continente, está más al sur.</p></div>
+      <div class="ev"><div class="yr">1820</div><h4>El primer avistamiento</h4>
+        <p>Expediciones rusas, británicas y estadounidenses divisan el continente casi en paralelo.
+        La Antártida deja de ser una conjetura.</p></div>
+      <div class="ev"><div class="yr">1911</div><h4>Amundsen llega al Polo Sur</h4>
+        <p>El 14 de diciembre, el noruego Roald Amundsen alcanza los 90° S con trineos de perros.
+        Scott llega 34 días después y muere con su equipo en el regreso.</p></div>
+      <div class="ev"><div class="yr">1915</div><h4>El naufragio del Endurance</h4>
+        <p>El barco de Shackleton queda atrapado y aplastado por el hielo del mar de Weddell.
+        Tras casi dos años a la deriva, salva a sus 27 hombres sin perder a ninguno.</p></div>
+      <div class="ev"><div class="yr">1957</div><h4>Año Geofísico Internacional</h4>
+        <p>Doce países instalan bases y cooperan a escala continental. Nace el modelo de
+        Antártida científica y compartida.</p></div>
+      <div class="ev"><div class="yr">1959</div><h4>Tratado Antártico</h4>
+        <p>Firmado en Washington, congela las reclamaciones territoriales y reserva el continente
+        para la paz y la ciencia. Entra en vigor en 1961.</p></div>
+      <div class="ev"><div class="yr">1998</div><h4>Protocolo de Madrid</h4>
+        <p>Prohíbe cualquier actividad minera y declara la Antártida «reserva natural consagrada
+        a la paz y a la ciencia».</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRATADO ================= -->
+<section>
+  <div class="wrap">
+    <div class="banner reveal">
+      <span class="tag">06 — Gobernanza</span>
+      <h2>Un continente <em>sin dueño</em></h2>
+      <p>
+        El Tratado Antártico es uno de los acuerdos internacionales más singulares que existen:
+        suspende las reclamaciones territoriales, prohíbe toda actividad militar y las pruebas
+        nucleares, y garantiza la libertad de investigación científica y la inspección mutua.
+        De 12 firmantes iniciales ha pasado a más de 50 Estados parte.
+      </p>
+      <div class="pills">
+        <span class="pill">Solo uso pacífico</span>
+        <span class="pill">Libertad científica</span>
+        <span class="pill">Sin minería</span>
+        <span class="pill">Sin armas nucleares</span>
+        <span class="pill">Inspección abierta</span>
+        <span class="pill">+50 países parte</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FUTURO ================= -->
+<section id="futuro">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="tag">07 — Futuro</span>
+      <h2>Lo que pasa allí <em>no se queda allí</em></h2>
+      <p>
+        La Antártida regula la circulación oceánica global y guarda suficiente hielo como para
+        cambiar la línea de costa de todos los continentes. Es el sistema del que más depende
+        el nivel del mar del próximo siglo.
+      </p>
+    </div>
+
+    <div class="grid reveal">
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 16c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 11c2-2 4-2 6 0s4 2 6 0 4-2 6 0M3 6c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg></div>
+        <h3>+58 metros de mar</h3>
+        <p>Es lo que subiría el nivel del océano si se derritiera todo el hielo antártico. No es un
+        escenario a corto plazo, pero da la escala de lo que está en juego.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 9l7-6 7 6M7 21h10"/></svg></div>
+        <h3>Glaciares en retirada</h3>
+        <p>Thwaites, en la Antártida Occidental, es del tamaño de Gran Bretaña y actúa como tapón
+        de una cuenca entera. Su desestabilización es una de las grandes incógnitas del clima.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Hielo marino en mínimos</h3>
+        <p>Tras décadas relativamente estables, la extensión del hielo marino antártico ha marcado
+        mínimos históricos en los últimos años, con efectos sobre pingüinos y focas.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Qué se puede hacer</h3>
+        <p>Reducir emisiones sigue siendo la única palanca real; junto a ello, proteger áreas
+        marinas, limitar la pesca de krill y sostener el turismo dentro de límites estrictos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="brand" style="margin-bottom:12px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#bfe9ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/>
+          </svg>
+          Antártida
+        </div>
+        <p>Página divulgativa sobre el continente antártico: geografía, clima, biodiversidad,
+        investigación científica, historia de la exploración y desafíos climáticos.</p>
+      </div>
+      <div class="flinks">
+        <a href="#continente">El continente</a>
+        <a href="#clima">Clima</a>
+        <a href="#vida">Vida</a>
+        <a href="#ciencia">Ciencia</a>
+        <a href="#historia">Historia</a>
+        <a href="#futuro">Futuro</a>
+      </div>
+    </div>
+    <div class="fbot">Contenido divulgativo con fines educativos · Ilustraciones vectoriales originales · 2026</div>
+  </div>
+</footer>
+
+<div class="snow" id="snow" aria-hidden="true"></div>
+
+<script>
+/* ---------- nav ---------- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40), {passive:true});
+
+const burger = document.getElementById('burger'), menu = document.getElementById('menu');
+burger.addEventListener('click', () => menu.classList.toggle('open'));
+menu.addEventListener('click', e => { if(e.target.tagName === 'A') menu.classList.remove('open'); });
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if(!en.isIntersecting) return;
+    en.target.classList.add('in');
+    io.unobserve(en.target);
+    en.target.querySelectorAll('.fill').forEach((f,i) =>
+      setTimeout(() => f.style.width = f.dataset.w + '%', 120 * i));
+    en.target.querySelectorAll('[data-count]').forEach(countUp);
+  });
+}, {threshold:.16, rootMargin:'0px 0px -60px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- contadores ---------- */
+function countUp(el){
+  const target = +el.dataset.count, suffix = el.dataset.suffix || '';
+  const raw = el.dataset.raw === '1', dur = 1500, t0 = performance.now();
+  (function step(t){
+    const p = Math.min((t - t0) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    const v = Math.round(target * e);
+    el.textContent = (raw ? v.toLocaleString('es-ES') : v) + suffix;
+    if(p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ---------- nieve ---------- */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const snow = document.getElementById('snow'), n = innerWidth < 700 ? 26 : 55;
+  for(let i = 0; i < n; i++){
+    const f = document.createElement('div');
+    f.className = 'flake';
+    const s = Math.random() * 3.4 + 1.2;
+    f.style.width = f.style.height = s + 'px';
+    f.style.left = Math.random() * 100 + '%';
+    f.style.opacity = (Math.random() * .5 + .18).toFixed(2);
+    f.style.animationDuration = (Math.random() * 12 + 9) + 's';
+    f.style.animationDelay = (-Math.random() * 20) + 's';
+    f.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px');
+    snow.appendChild(f);
+  }
+})();
+</script>
+</body>
+</html>

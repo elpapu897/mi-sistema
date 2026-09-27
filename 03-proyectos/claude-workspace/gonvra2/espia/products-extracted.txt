@@ -1,0 +1,27 @@
+
+=== bacan-home.html ===
+URL https://bacanbymantra.com/productos/razor-body-afeitadora-corporal-zonas-intimas-barba-y-pelo/
+URL https://bacanbymantra.com/productos/razor-body-afeitadora-zonas-intimas-cuerpo-barba-y-pelo/
+URL https://bacanbymantra.com/productos/razor-body-pro1/
+URL https://bacanbymantra.com/razor-body-pro/
+ITEM Razor Body (Negro) 83990
+ITEM Razor Body (Blanco) 83990
+ITEM Razor Body PRO 135992
+ITEM Razor Body (Negro) 83990
+ITEM Razor Body (Blanco) 83990
+ITEM Razor Body PRO 135992
+ITEM Razor Body (Negro) 83990
+ITEM Razor Body (Blanco) 83990
+ITEM Razor Body PRO 135992
+SNIP Razor Body (Negro)","item_variant":"Negro","price":83990,"item_category":"OFERTAS BOMBA"},"source":{"product_id":"147447280","variant_id":"993414697"}},{"info":{"item_id":"1016613113","item_brand":"Bacan","item_name":"Razor Body (Blanco)","item_variant":"Blanco","price":83990,"item_category":"OFERTAS BOMBA"},"source":{"product_id":"230850727","variant_id":"1016613113"}},{"info":{"item_id":"1122096985","item_name":"Kit al ras (Negro)","item_variant":"Negro","price":107091.6,"item_category":"OFERTAS BOMBA"},"source":{"product_id":"254088842","variant_id":"1122096985"}},{"info":{"item_id":"1404927257","item_brand":"Bacan by Mantra","item_name":"Razor Body PRO","price":135992,"item_category":"OFERTAS BOMB
+SNIP 83990,"item_category":"OFERTAS BOMBA"},"source":{"product_id":"147447280","variant_id":"993414697"}},{"info":{"item_id":"1016613113","item_brand":"Bacan","item_name":"Razor Body (Blanco)","item_variant":"Blanco","price":83990,"item_category":"OFERTAS BOMBA"},"source":{"product_id":"230850727","variant_id":"1016613113"}},{"info":{"item_id":"1122096985","item_name":"Kit al ras (Negro)","item_variant":"Negro","price":107091.6,"item_category":"OFERTAS BOMBA"},"source":{"product_id":"254088842","variant_id":"1122096985"}},{"info":{"item_id":"1404927257","item_brand":"Bacan by Mantra","item_name":"Razor Body PRO","price":135992,"item_category":"OFERTAS BOMBA"},"source":{"product_id":"259235375","varian
+
+=== gadnic-list.html ===
+{"id": "DEPI0009", "name": "Afeitadora Eléctrica Gadnic DW2000 Inalámbrica Recargable", "url": "https://www.gadnic.com.ar/afeitadoras/afeitadora-electrica-gadnic-dw2000-inalambrica-recargable", "image": "https://static.bidcom.com.ar/publicacionesML/productos/DEPI0009/768x926-DEPI0009-1.jpg", "quantity": 1, "item_price": 43749}
+{"id": "CORTPE56", "name": "Máquina Multi Afeitadora Gadnic RZR 9K Display Digital", "url": "https://www.gadnic.com.ar/afeitadoras/maquina-multi-afeitadora-gadnic-rzr-9k-display-digital", "image": "https://static.bidcom.com.ar/publicacionesML/productos/CORTPE56/1200x900-CORTPE56-1.jpg", "quantity": 1, "item_price": 49149}
+{"id": "KCORTP44", "name": "Set de Peluquería Barbería Care By Gadnic BRAZ 2000 Cortadora de Pelo Afeitadora", "url": "https://www.gadnic.com.ar/afeitadoras/set-de-peluqueria-barberia-care-by-gadnic-braz-2000-cortadora-de-pelo-afeitadora", "image": "https://static.bidcom.com.ar/publicacionesML/productos/KCORTP44/768x926-KCORTP44-1.jpg", "quantity": 1, "item_price": 119999}
+{"id": "DEPI0014", "name": "Afeitadora y Cortadora de Pelo 5 en 1 Care By Gadnic  Uso Húmedo Seco", "url": "https://www.gadnic.com.ar/afeitadoras/afeitadora-y-cortadora-de-pelo-5-en-1-gadnic", "image": "https://static.bidcom.com.ar/publicacionesML/productos/DEPI0014/768x926-DEPI0014-1.jpg", "quantity": 1, "item_price": 55099}
+{"id": "CORTPE11", "name": "Maquina De Afeitar Care By Gadnic T8000 Base Recargable Carga Rápida Cuchillas Ceramica Luz LED Inalambrica  Accesorios", "url": "https://www.gadnic.com.ar/afeitadoras/maquina-de-afeitar-gadnic-t8000-base-usb-de-carga-rapida", "image": "https://static.bidcom.com.ar/publicacionesML/productos/CORTPE11/768x926-CORTPE11-1.jpg", "quantity": 1, "item_price": 52748}
+{"id": "CORTPE38", "name": "Cortadora de Pelo Gadnic Trimz Acero Inoxidable", "url": "https://www.gadnic.com.ar/afeitadoras/afeitadora-gadnic-trimz-acero-inoxidable", "image": "https://static.bidcom.com.ar/publicacionesML/productos/CORTPE38/1200x900-CORTPE38-1.jpg", "quantity": 1, "item_price": 24999}
+
+=== philips-list.html ===

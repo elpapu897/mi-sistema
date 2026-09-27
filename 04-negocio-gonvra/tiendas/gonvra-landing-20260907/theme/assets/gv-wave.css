@@ -1,0 +1,8 @@
+.gvw{position:relative;line-height:0;margin-bottom:-1px;overflow:hidden}
+.gvw-svg{display:block;width:100%;height:clamp(52px,7vw,110px)}
+.gvw-p{will-change:transform}
+.gvw-p1{opacity:.34;animation:gvw-slide 19s linear infinite}
+.gvw-p2{opacity:.55;animation:gvw-slide 13s linear infinite reverse}
+.gvw-p3{animation:gvw-slide 26s linear infinite}
+@keyframes gvw-slide{from{transform:translateX(0)}to{transform:translateX(-1440px)}}
+@media (prefers-reduced-motion:reduce){.gvw-p{animation:none}}

@@ -1,0 +1,65 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+{% endstyle %}
+
+<section class="mtp-trust mt-section">
+  <div class="mt-container">
+    {%- if section.settings.headline != blank -%}
+      <h2 class="mt-h3 mtp-fade" style="margin-bottom:26px;">{{ section.settings.headline }}</h2>
+    {%- endif -%}
+    <div class="mtp-trust__grid">
+      {%- for block in section.blocks -%}
+        <div class="mtp-trust__item mtp-fade mtp-glow" data-d="{{ forloop.index }}" {{ block.shopify_attributes }}>
+          {% render 'mt-icon', name: block.settings.icon %}
+          <strong>{{ block.settings.title }}</strong>
+          {%- if block.settings.body != blank -%}<span>{{ block.settings.body }}</span>{%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Barra de confianza",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "headline", "label": "Título (opcional)" },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#080A0F" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Elemento",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icono", "default": "envio",
+          "options": [
+            {"value":"envio","label":"Envío"},
+            {"value":"escudo","label":"Garantía"},
+            {"value":"tarjeta","label":"Pago"},
+            {"value":"chat","label":"Atención"},
+            {"value":"rayo","label":"Rapidez"},
+            {"value":"lupa","label":"Selección"}
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Título", "default": "Envío a todo el país" },
+        { "type": "textarea", "id": "body", "label": "Texto", "default": "Con seguimiento desde que sale hasta que llega." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Barra de confianza",
+      "blocks": [{"type":"item"},{"type":"item"},{"type":"item"},{"type":"item"}]
+    }
+  ]
+}
+{% endschema %}

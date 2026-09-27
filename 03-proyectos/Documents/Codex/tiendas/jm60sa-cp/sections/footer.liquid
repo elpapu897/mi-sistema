@@ -1,0 +1,104 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .mt-footer { background: {{ section.settings.background }}; --mt-logo-width: {{ section.settings.logo_width }}px; }
+  #shopify-section-{{ section.id }} .mt-footer__brand p,
+  #shopify-section-{{ section.id }} .mt-footer__about { font-size: {{ section.settings.body_size }}px; }
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} { padding-top: min({{ section.settings.padding_top }}px, 64px); padding-bottom: min({{ section.settings.padding_bottom }}px, 48px); }
+  }
+{% endstyle %}
+
+<footer class="mt-footer mt-section">
+  <div class="mt-container">
+    <div class="mt-footer__top">
+      <div class="mt-footer__brand">
+        <a class="mt-brand" href="{{ routes.root_url }}" aria-label="{{ section.settings.wordmark }} — Inicio">
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo | image_url: width: 500 }}" alt="{{ section.settings.logo.alt | default: section.settings.wordmark | escape }}" width="{{ section.settings.logo_width }}" height="{{ section.settings.logo_width | divided_by: section.settings.logo.aspect_ratio | round }}">
+          {%- else -%}
+            <span class="mt-brand__mark">{{ section.settings.monogram }}</span><span>{{ section.settings.wordmark }}</span>
+          {%- endif -%}
+        </a>
+        <p>{{ section.settings.tagline | newline_to_br }}</p>
+      </div>
+
+      <div>
+        <h2 class="mt-footer__title">{{ section.settings.nav_title }}</h2>
+        <nav class="mt-footer__nav" aria-label="{{ section.settings.nav_title | escape }}">
+          {%- for i in (1..6) -%}
+            {%- assign label_key = 'nav_label_' | append: i -%}
+            {%- assign url_key = 'nav_url_' | append: i -%}
+            {%- if section.settings[label_key] != blank -%}<a href="{{ section.settings[url_key] | default: '#' }}">{{ section.settings[label_key] }}</a>{%- endif -%}
+          {%- endfor -%}
+        </nav>
+      </div>
+
+      <div>
+        <h2 class="mt-footer__title">{{ section.settings.about_title }}</h2>
+        <div class="mt-footer__about">{{ section.settings.about | newline_to_br }}</div>
+      </div>
+    </div>
+
+    <div class="mt-footer__bottom">
+      <div>
+        <span>© {{ 'now' | date: '%Y' }} {{ section.settings.wordmark }}.</span>
+        <nav class="mt-footer__legal" aria-label="Información legal">
+          <a href="{{ shop.privacy_policy.url | default: '/policies/privacy-policy' }}">Privacidad</a>
+          <a href="{{ shop.terms_of_service.url | default: '/policies/terms-of-service' }}">Términos</a>
+          <a href="{{ shop.refund_policy.url | default: '/policies/refund-policy' }}">Devoluciones</a>
+          <a href="{{ shop.shipping_policy.url | default: '/policies/shipping-policy' }}">Envíos</a>
+          {%- if section.settings.cookies_url != blank -%}<a href="{{ section.settings.cookies_url }}">Cookies</a>{%- endif -%}
+          {%- if section.settings.legal_url != blank -%}<a href="{{ section.settings.legal_url }}">Aviso legal</a>{%- endif -%}
+        </nav>
+      </div>
+      {%- if section.settings.payment_enable and shop.enabled_payment_types.size > 0 -%}
+        <div class="mt-footer__payments" aria-label="Métodos de pago">
+          {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag }}{%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Pie Helio",
+  "class": "section-footer",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "range", "id": "logo_width", "label": "Ancho del logo (px)", "min": 70, "max": 220, "step": 5, "unit": "px", "default": 130 },
+    { "type": "text", "id": "monogram", "label": "Monograma sin imagen", "default": "H" },
+    { "type": "text", "id": "wordmark", "label": "Nombre sin imagen", "default": "HELIO" },
+    { "type": "textarea", "id": "tagline", "label": "Frase de marca", "default": "Diseño portátil para una rutina que se mueve con vos." },
+    { "type": "header", "content": "Navegación" },
+    { "type": "text", "id": "nav_title", "label": "Título de navegación", "default": "Explorar" },
+    { "type": "text", "id": "nav_label_1", "label": "Enlace 1 — texto", "default": "Inicio" },
+    { "type": "url", "id": "nav_url_1", "label": "Enlace 1 — destino" },
+    { "type": "text", "id": "nav_label_2", "label": "Enlace 2 — texto", "default": "Comprar" },
+    { "type": "url", "id": "nav_url_2", "label": "Enlace 2 — destino" },
+    { "type": "text", "id": "nav_label_3", "label": "Enlace 3 — texto", "default": "Tecnología" },
+    { "type": "url", "id": "nav_url_3", "label": "Enlace 3 — destino" },
+    { "type": "text", "id": "nav_label_4", "label": "Enlace 4 — texto", "default": "Preguntas frecuentes" },
+    { "type": "url", "id": "nav_url_4", "label": "Enlace 4 — destino" },
+    { "type": "text", "id": "nav_label_5", "label": "Enlace 5 — texto", "default": "Contacto" },
+    { "type": "url", "id": "nav_url_5", "label": "Enlace 5 — destino" },
+    { "type": "text", "id": "nav_label_6", "label": "Enlace 6 — texto" },
+    { "type": "url", "id": "nav_url_6", "label": "Enlace 6 — destino" },
+    { "type": "header", "content": "Sobre la marca" },
+    { "type": "text", "id": "about_title", "label": "Título", "default": "Diseño útil" },
+    { "type": "textarea", "id": "about", "label": "Texto", "default": "Creamos herramientas compactas para resolver mejor los pequeños momentos de todos los días." },
+    { "type": "header", "content": "Legales y pagos" },
+    { "type": "url", "id": "cookies_url", "label": "Página de cookies" },
+    { "type": "url", "id": "legal_url", "label": "Página de aviso legal" },
+    { "type": "checkbox", "id": "payment_enable", "label": "Mostrar métodos de pago", "default": true },
+    { "type": "range", "id": "body_size", "label": "Tamaño del texto (px)", "min": 13, "max": 21, "step": 1, "unit": "px", "default": 15 },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#06080C" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 40 }
+  ]
+}
+{% endschema %}

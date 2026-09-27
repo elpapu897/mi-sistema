@@ -1,0 +1,30 @@
+{
+  "consultado_en": "2026-09-14",
+  "fuente": "GET público",
+  "url": "https://gonvra.com/products/face-body-electric-shaver.js",
+  "http_status": 200,
+  "datos": {
+    "title": "Rasuradora Integral Recargable — Rostro y Cuerpo",
+    "handle": "face-body-electric-shaver",
+    "price_raw_ars_centavos": 3690000,
+    "precio_ARS": "$36.900",
+    "available": true,
+    "variant": "Negro y verde lima",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0722/4652/6067/files/rasuradora-integral-hero-v1.png?v=1788666616",
+      "https://cdn.shopify.com/s/files/1/0722/4652/6067/files/rasuradora-integral-uso-v1.png?v=1788666623",
+      "https://cdn.shopify.com/s/files/1/0722/4652/6067/files/rasuradora-integral-accesorios-v1.png?v=1788666630"
+    ],
+    "variants": [{
+      "option": "Negro y verde lima",
+      "price_raw_ars_centavos": 3690000,
+      "available": true
+    }]
+  },
+  "limitaciones": [
+    "La consulta confirma ficha, precio, disponibilidad e imágenes públicas; no confirma stock físico real.",
+    "No hay muestra física disponible para filmar: las piezas proponen usar las imágenes públicas o una maqueta tipográfica, sin simular uso real.",
+    "No se afirma batería, potencia, impermeabilidad, cero irritación ni resultados garantizados.",
+    "No se usa compare_at_price como descuento ni se comunica escasez."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "approval": {
+    "id": 3,
+    "kind": "publicacion",
+    "title": "TikTok GONVRA — pieza orgánica Guion 1",
+    "snapshot_hash": "1a637b003e47bbf2c8f0f9093731cf55f25c108a21f130f237251ccb375402ae",
+    "status": "ready_to_execute",
+    "resolved_by": "7697535044",
+    "snapshot": {
+      "accion": "publicacion",
+      "caption": "¿Otro aparato más? Una opción más simple para rostro y cuerpo, presentada sin venderte resultados que todavía no puedo comprobar. Conocé los detalles reales en gonvra.com. #GONVRA #AfeitadoMasculino #CuidadoPersonalMasculino #Argentina",
+      "control": "No publicar ni editar hasta aprobación expresa de Matías por Telegram; no ejecutar acciones pendientes en el broker.",
+      "costo_ars": 0,
+      "cta": "Entrá a gonvra.com/products/face-body-electric-shaver y revisá la ficha completa.",
+      "momento_sugerido": "hoy/esta noche, sujeto a aprobación de Matías",
+      "pieza": "Video vertical 9:16, duración aproximada 24 segundos, adaptación del Guion 1 aprobado. Mostrar únicamente objetos neutros y grabación de pantalla pública de gonvra.com; no uso real, resultado ni testimonio.",
+      "red": "TikTok",
+      "texto_en_pantalla": [
+        "¿Otro aparato más?",
+        "Una opción más simple para rostro y cuerpo.",
+        "Todavía no tengo la muestra para probarla.",
+        "Conocé los detalles en gonvra.com",
+        "Entrá a la ficha completa"
+      ],
+      "voz": "¿Otro aparato más? Si hoy usás uno distinto para cada parte del cuerpo, te muestro una opción más simple para rostro y cuerpo: la Rasuradora Integral Recargable de GONVRA. Todavía no tengo la muestra para probarla, así que esto es una presentación, no un testimonio. Conocé los detalles reales en gonvra.com y entrá a la ficha completa."
+    }
+  },
+  "source": "/home/matiigonzz/Claude/gonvra2/tiktoker/2026-09-18.md",
+  "source_sha256": "bc5d056247aa072c2155c76f3ce9b5395fa727efadaf530b2bb9c4bda8131808",
+  "prepared_at": 1789741945.051215
+}

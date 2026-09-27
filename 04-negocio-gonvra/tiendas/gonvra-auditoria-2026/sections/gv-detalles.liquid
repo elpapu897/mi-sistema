@@ -1,0 +1,104 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+  #shopify-section-{{ section.id }} .gv-h2 { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+<section class="gv-details gv-section">
+  <div class="gv-container">
+    <div class="gv-details__inner {% if section.settings.imagen_derecha %}gv-band--flip{% endif %}">
+      <div class="gv-details__media gv-reveal">
+        {%- if section.settings.imagen != blank -%}
+          <img src="{{ section.settings.imagen | image_url: width: 1000 }}" alt="{{ section.settings.imagen.alt | escape }}" loading="lazy">
+        {%- elsif product.featured_image != blank -%}
+          <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ 'gv-band-default.jpg' | asset_url }}" alt="" loading="lazy">
+        {%- endif -%}
+      </div>
+      <div class="gv-reveal" data-delay="1">
+        {%- if section.settings.eyebrow != blank -%}<span class="gv-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2 class="gv-h2">{{ section.settings.title }}</h2>
+        {%- if section.settings.texto != blank -%}<p class="gv-lead">{{ section.settings.texto | newline_to_br }}</p>{%- endif -%}
+        <ul class="gv-details__list">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>
+              <span class="gv-details__ico">
+                {%- case block.settings.icono -%}
+                  {%- when 'corazon' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                  {%- when 'escudo' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+                  {%- when 'hoja' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg>
+                  {%- when 'agua' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-4-7-13-7-13S5 11 5 15a7 7 0 0 0 7 7Z"/></svg>
+                  {%- when 'pata' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="4" cy="8" r="2"/><path d="M9 10c-2 0-4 2-4 4.5 0 2 1.5 3.5 3.5 3.5 1 0 1.5-.5 2.5-.5s1.5.5 2.5.5c2 0 3.5-1.5 3.5-3.5C19 12 17 10 15 10c-1.5 0-2 .8-3 .8S10.5 10 9 10Z"/></svg>
+                  {%- when 'reloj' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                {%- endcase -%}
+              </span>
+              <span>
+                <span class="gv-details__t">{{ block.settings.titulo }}</span>
+                {%- if block.settings.texto != blank -%}<span class="gv-details__d">{{ block.settings.texto }}</span>{%- endif -%}
+              </span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Detalles",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "image_picker", "id": "imagen", "label": "Imagen (si se deja vacío usa la foto del producto)" },
+    { "type": "checkbox", "id": "imagen_derecha", "label": "Poner la imagen a la derecha", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Los detalles" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Por qué te va a gustar" },
+    { "type": "textarea", "id": "texto", "label": "Texto (opcional)" },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 22, "max": 52, "step": 2, "unit": "px", "default": 36 },
+    { "type": "color", "id": "fondo", "label": "Color de fondo", "default": "#ffffff" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    {
+      "type": "detalle",
+      "name": "Detalle",
+      "settings": [
+        { "type": "select", "id": "icono", "label": "Icono", "default": "check",
+          "options": [
+            {"value": "check", "label": "Tilde"},
+            {"value": "corazon", "label": "Corazón"},
+            {"value": "escudo", "label": "Escudo"},
+            {"value": "hoja", "label": "Hoja / natural"},
+            {"value": "agua", "label": "Lavable / agua"},
+            {"value": "pata", "label": "Huella"},
+            {"value": "reloj", "label": "Reloj / duración"}
+          ] },
+        { "type": "text", "id": "titulo", "label": "Título corto", "default": "Detalle destacado" },
+        { "type": "textarea", "id": "texto", "label": "Explicación breve" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GV – Detalles",
+      "blocks": [
+        { "type": "detalle", "settings": { "icono": "corazon", "titulo": "Cómodo de verdad", "texto": "Pensado para que descanse y se sienta seguro." } },
+        { "type": "detalle", "settings": { "icono": "agua", "titulo": "Fácil de limpiar", "texto": "Se lava sin perder forma ni suavidad." } },
+        { "type": "detalle", "settings": { "icono": "escudo", "titulo": "Materiales seguros", "texto": "Sin bordes duros ni piezas que se desprendan." } },
+        { "type": "detalle", "settings": { "icono": "reloj", "titulo": "Aguanta el uso diario", "texto": "Resiste el día a día sin deformarse." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

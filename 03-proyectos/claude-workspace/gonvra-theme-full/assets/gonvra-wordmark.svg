@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 160" role="img" aria-labelledby="title desc">
+  <title id="title">GONVRA</title>
+  <desc id="desc">Logotipo minimalista de GONVRA</desc>
+  <rect width="760" height="160" rx="24" fill="#0D201A"/>
+  <path d="M92 40a40 40 0 1 0 0 80c15 0 28-7 35-17V82H92v16h17c-4 5-10 7-17 7a24 24 0 1 1 19-38l12-11A40 40 0 0 0 92 40Z" fill="#F7F8F2"/>
+  <circle cx="133" cy="47" r="8" fill="#C8E54A"/>
+  <text x="180" y="103" fill="#F7F8F2" font-family="Arial, Helvetica, sans-serif" font-size="62" font-weight="700" letter-spacing="9">GONVRA</text>
+</svg>

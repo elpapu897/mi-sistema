@@ -1,0 +1,356 @@
+{
+  "sections": {
+    "principal": {
+      "type": "gv-producto",
+      "blocks": {
+        "f1": {
+          "type": "caracteristica",
+          "settings": {
+            "icono": "corazon",
+            "titulo": "Pensado para su comodidad",
+            "texto": "Materiales suaves y seguros para el día a día de tu mascota."
+          }
+        },
+        "f2": {
+          "type": "caracteristica",
+          "settings": {
+            "icono": "escudo",
+            "titulo": "Calidad revisada",
+            "texto": "Revisamos cada pedido antes de enviarlo a tu casa."
+          }
+        },
+        "f3": {
+          "type": "caracteristica",
+          "settings": {
+            "icono": "estrella",
+            "titulo": "De los más pedidos",
+            "texto": "Uno de los productos que más eligen en la tienda."
+          }
+        },
+        "a1": {
+          "type": "apartado",
+          "settings": {
+            "icono": "descripcion",
+            "titulo": "Descripción",
+            "usar_descripcion": true,
+            "abierto": false
+          }
+        },
+        "a2": {
+          "type": "apartado",
+          "settings": {
+            "icono": "beneficios",
+            "titulo": "Beneficios",
+            "contenido": "<ul><li>Pensado para el uso diario de tu mascota.</li><li>Materiales suaves y seguros.</li><li>Fácil de limpiar y mantener.</li><li>Práctico de guardar en casa.</li></ul>"
+          }
+        },
+        "a3": {
+          "type": "apartado",
+          "settings": {
+            "icono": "caracteristicas",
+            "titulo": "Características",
+            "contenido": "<ul><li>Apto para perros y gatos.</li><li>Revisado antes del envío.</li><li>Disponible en varios colores según stock.</li></ul>"
+          }
+        },
+        "a4": {
+          "type": "apartado",
+          "settings": {
+            "icono": "envios",
+            "titulo": "Envíos y devoluciones",
+            "contenido": "<p>El envío es GRATIS a todo el país, sin mínimo de compra, y con seguimiento del pedido. El tiempo de entrega depende de tu localidad.</p><p>Si el producto no es lo que esperabas, escribinos dentro de los 7 días de recibirlo y lo resolvemos.</p>"
+          }
+        },
+        "a5": {
+          "type": "apartado",
+          "settings": {
+            "icono": "faq",
+            "titulo": "Preguntas frecuentes (FAQ)",
+            "contenido": "<p><strong>¿Cuánto tarda en llegar?</strong><br>Depende de tu localidad; te enviamos el seguimiento apenas despachamos.</p><p><strong>¿Puedo cambiarlo si no me gusta?</strong><br>Sí, tenés 7 días desde que lo recibís para escribirnos.</p><p><strong>¿Cómo lo limpio?</strong><br>Seguí las indicaciones de la descripción de cada producto.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "a5",
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "settings": {
+        "mostrar_vendor": true,
+        "mostrar_viral": true,
+        "viral_texto": "PRODUCTO VIRAL | STOCK BAJO",
+        "viral_fondo": "#2E7FB0",
+        "viral_color": "#FFFFFF",
+        "chip1": "Alivia la dentición",
+        "chip2": "Para cachorros",
+        "mostrar_rating": false,
+        "rating_texto": "Valorado por nuestros clientes",
+        "mostrar_ofertas": true,
+        "ofertas_titulo": "Elegí tu oferta",
+        "oferta1_label": "Llevá 1 unidad",
+        "oferta1_sub": "Precio regular",
+        "oferta2_label": "Llevá 2 unidades",
+        "oferta2_off": 30,
+        "oferta2_tag": "MÁS ELEGIDO",
+        "mostrar_oferta3": false,
+        "boton_texto": "Conseguilo ahora",
+        "boton_agotado": "Agotado",
+        "mostrar_sticky": true,
+        "mostrar_stock": true,
+        "stock_texto": "¡Pocas unidades disponibles!",
+        "mostrar_pagos": true,
+        "pagos_texto": "Pago seguro con Mercado Pago y todas las tarjetas",
+        "badge1_titulo": "Envío GRATIS",
+        "badge1_sub": "A todo el país, sin mínimo",
+        "badge2_titulo": "Garantía 10 días",
+        "badge2_sub": "Compra protegida",
+        "badge3_titulo": "Pago seguro",
+        "badge3_sub": "Datos protegidos",
+        "seal_titulo": "Garantía de 10 días",
+        "seal_texto": "Si no quedás conforme, escribinos dentro de los 7 días y lo resolvemos. Comprá con total tranquilidad.",
+        "mostrar_desc_larga": false,
+        "desc_titulo": "Sobre este producto",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "videos": {
+      "type": "gv-videos",
+      "blocks": {
+        "v1": {
+          "type": "video",
+          "settings": {
+            "titulo": "Así se usa"
+          }
+        },
+        "v2": {
+          "type": "video",
+          "settings": {
+            "titulo": "En casa, día a día"
+          }
+        },
+        "v3": {
+          "type": "video",
+          "settings": {
+            "titulo": "Resultado real"
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3"
+      ],
+      "settings": {
+        "eyebrow": "En movimiento",
+        "title": "Mirá cómo funciona",
+        "subtitle": "Videos cortos para que veas el producto en uso antes de comprarlo.",
+        "fondo": "#EFF7F3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "detalles": {
+      "type": "gv-detalles",
+      "blocks": {
+        "d1": {
+          "type": "detalle",
+          "settings": {
+            "icono": "corazon",
+            "titulo": "Alivia la dentición",
+            "texto": "La goma flexible masajea las encías del cachorro cuando más lo necesita."
+          }
+        },
+        "d2": {
+          "type": "detalle",
+          "settings": {
+            "icono": "check",
+            "titulo": "Limpia mientras juega",
+            "texto": "El relieve ayuda a reducir el sarro con cada mordida."
+          }
+        },
+        "d3": {
+          "type": "detalle",
+          "settings": {
+            "icono": "escudo",
+            "titulo": "Aguanta mordidas",
+            "texto": "Goma resistente pensada para el uso de todos los días."
+          }
+        },
+        "d4": {
+          "type": "detalle",
+          "settings": {
+            "icono": "pata",
+            "titulo": "Tamaño para los más chicos",
+            "texto": "Ideal para cachorros y razas pequeñas."
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "settings": {
+        "imagen_derecha": false,
+        "eyebrow": "Los detalles",
+        "title": "Por qué te va a gustar",
+        "title_size": 36,
+        "fondo": "#F5FAF8",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "garantia": {
+      "type": "gv-garantia",
+      "settings": {
+        "medal_top": "Garantía",
+        "medal_num": "7",
+        "medal_unit": "Días",
+        "eyebrow": "Comprá tranquilo",
+        "title": "7 días para probarlo sin riesgo",
+        "texto": "Si el producto no es lo que esperabas, escribinos dentro de los 7 días de recibirlo y lo solucionamos. Sin vueltas ni letra chica.",
+        "title_size": 34,
+        "fondo": "#EFF7F3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "resenas": {
+      "type": "apps",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "relacionados": {
+      "type": "related-products",
+      "settings": {
+        "heading": "También te puede gustar",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "cierre": {
+      "type": "gv-cta",
+      "settings": {
+        "eyebrow": "Seguí explorando",
+        "title": "Descubrí todo lo que tenemos para tu mascota",
+        "subtitle": "Camas, juguetes, higiene y mucho más, con envío a todo el país.",
+        "boton1_texto": "Ver toda la tienda",
+        "boton2_texto": "Volver al inicio",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "comparacion": {
+      "type": "gv-comparacion",
+      "blocks": {
+        "r1": {
+          "type": "fila",
+          "settings": {
+            "texto": "Productos elegidos y revisados uno por uno",
+            "gonvra": true,
+            "competidor": false
+          }
+        },
+        "r2": {
+          "type": "fila",
+          "settings": {
+            "texto": "Atención personalizada: te asesoramos para tu mascota",
+            "gonvra": true,
+            "competidor": false
+          }
+        },
+        "r3": {
+          "type": "fila",
+          "settings": {
+            "texto": "Garantía de 10 días directa con la tienda",
+            "gonvra": true,
+            "competidor": false
+          }
+        },
+        "r4": {
+          "type": "fila",
+          "settings": {
+            "texto": "Especialistas solo en mascotas",
+            "gonvra": true,
+            "competidor": false
+          }
+        },
+        "r5": {
+          "type": "fila",
+          "settings": {
+            "texto": "Envío a todo el país con seguimiento",
+            "gonvra": true,
+            "competidor": true
+          }
+        },
+        "r6": {
+          "type": "fila",
+          "settings": {
+            "texto": "Pago 100% seguro con Mercado Pago",
+            "gonvra": true,
+            "competidor": true
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "settings": {}
+    },
+    "contador": {
+      "type": "gv-contador",
+      "settings": {
+        "fecha_fin": "2026-08-03 23:59",
+        "titulo": "La promo de lanzamiento termina en:",
+        "subtitulo": "10% OFF con el código + envío gratis a todo el país.",
+        "codigo": "LANZAMIENTO10",
+        "lbl_dias": "Días",
+        "lbl_horas": "Horas",
+        "lbl_min": "Min",
+        "lbl_seg": "Seg",
+        "fondo_a": "#0E2A47",
+        "fondo_b": "#2E7FB0",
+        "color_texto": "#FFFFFF",
+        "color_caja": "#FFE600",
+        "color_numero": "#0E2A47",
+        "padding_top": 8,
+        "padding_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "principal",
+    "contador",
+    "videos",
+    "detalles",
+    "comparacion",
+    "garantia",
+    "resenas",
+    "relacionados",
+    "cierre"
+  ]
+}

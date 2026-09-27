@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "landing": {
+      "type": "rasuradora-integral-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "landing"
+  ]
+}

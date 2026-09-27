@@ -1,0 +1,296 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "portada": {
+      "type": "gv-home",
+      "blocks": {
+        "chip1": {
+          "type": "chip",
+          "settings": {
+            "text": "Envío gratis a todo el país, con seguimiento"
+          }
+        },
+        "chip2": {
+          "type": "chip",
+          "settings": {
+            "text": "Seguimiento del pedido"
+          }
+        },
+        "chip3": {
+          "type": "chip",
+          "settings": {
+            "text": "Pagá con tarjeta o Mercado Pago"
+          }
+        },
+        "p1": {
+          "type": "punto",
+          "settings": {
+            "text": "Peines para elegir el largo"
+          }
+        },
+        "p2": {
+          "type": "punto",
+          "settings": {
+            "text": "Equipo recargable"
+          }
+        },
+        "p3": {
+          "type": "punto",
+          "settings": {
+            "text": "Atención real por WhatsApp"
+          }
+        }
+      },
+      "block_order": [
+        "chip1",
+        "chip2",
+        "chip3",
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "kicker": "ROSTRO + CUERPO · UN SOLO EQUIPO",
+        "heading": "Una sola rasuradora para toda tu rutina.",
+        "sub": "Barba, patillas y cuerpo: un equipo recargable con peines para elegir el largo y simplificar tu rutina.",
+        "cta_label": "Quiero mi rasuradora",
+        "cta2_label": "Ver cómo se usa",
+        "cta2_url": "#catalogo",
+        "product_handle": "face-body-electric-shaver",
+        "cat_kicker": "Catálogo",
+        "cat_heading": "Rostro y cuerpo, con un solo equipo.",
+        "card_tag": "",
+        "card_eyebrow": "Rostro + cuerpo",
+        "card_text": "Un equipo recargable para rostro y cuerpo, con peines para elegir el largo. Consultá las indicaciones del fabricante antes de usarlo.",
+        "card_cta": "Ver producto",
+        "wave_top": false,
+        "wave_bottom": false
+      }
+    },
+    "numeros": {
+      "type": "gv-datos",
+      "blocks": {
+        "n1": {
+          "type": "dato",
+          "settings": {
+            "number": "",
+            "suffix": "",
+            "title": "Peines para elegir el largo",
+            "text": "Consultá las opciones incluidas antes de comprar."
+          }
+        },
+        "n2": {
+          "type": "dato",
+          "settings": {
+            "number": "",
+            "suffix": "",
+            "title": "Rostro y cuerpo",
+            "text": "Una misma rasuradora para distintas zonas, respetando las precauciones del fabricante."
+          }
+        },
+        "n3": {
+          "type": "dato",
+          "settings": {
+            "number": "",
+            "suffix": "",
+            "title": "Equipo recargable",
+            "text": "Seguí el método de carga indicado por el fabricante."
+          }
+        }
+      },
+      "block_order": [
+        "n1",
+        "n2",
+        "n3"
+      ],
+      "settings": {
+        "heading": "Rostro y cuerpo, con un solo equipo.",
+        "sub": "Una opción para simplificar tu rutina.",
+        "foot": "Seguí las indicaciones del fabricante para el uso, la limpieza y la carga.",
+        "wave": false,
+        "bg": "#edf0e6",
+        "fg": "#101a16",
+        "muted": "#6b7570",
+        "accent": "#6d8b1c",
+        "line": "#dfe2da",
+        "wave_from": "#101a16"
+      }
+    },
+    "historia": {
+      "type": "gv-historia",
+      "blocks": {
+        "h1": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 1",
+            "title": "Elegí el largo",
+            "text": "<p>Consultá los peines incluidos y elegí la opción de largo siguiendo el manual del fabricante.</p>",
+            "list": "Peines para elegir el largo|Seguí las instrucciones del fabricante|Consultanos si tenés dudas",
+            "clip": "gv-paso-1.webp"
+          }
+        },
+        "h2": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 2",
+            "title": "Seguí las indicaciones de uso",
+            "text": "<p>Revisá las instrucciones y precauciones del fabricante para cada zona antes de usarla.</p>",
+            "list": "Leé el manual antes del primer uso|Respetá las precauciones|Si tenés dudas, consultanos",
+            "clip": "gv-paso-2.webp"
+          }
+        },
+        "h3": {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 3",
+            "title": "Cuidá el equipo",
+            "text": "<p>Seguí las instrucciones del fabricante para limpieza y carga. No lo mojes ni lo enjuagues sin una indicación expresa del manual para este modelo.</p>",
+            "list": "Limpieza según el fabricante|Carga según el fabricante|No improvises métodos de mantenimiento",
+            "clip": "gv-paso-3.webp"
+          }
+        }
+      },
+      "block_order": [
+        "h1",
+        "h2",
+        "h3"
+      ],
+      "settings": {
+        "kicker": "Cómo usar",
+        "heading": "Conocé el equipo antes de usarlo.",
+        "intro": "<p>Una opción para simplificar tu rutina de rostro y cuerpo. Leé el manual antes del primer uso.</p>",
+        "cta_text": "Quiero mi rasuradora",
+        "cta_link": "/products/face-body-electric-shaver",
+        "wave": false
+      }
+    },
+    "preguntas": {
+      "type": "gv-faq",
+      "blocks": {
+        "q1": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Sirve para rostro y cuerpo?",
+            "a": "<p>Está presentada para rostro y cuerpo, con peines para elegir el largo. Seguí las precauciones del fabricante para cada zona, especialmente las sensibles.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cómo se usa?",
+            "a": "<p>Seguí el manual del fabricante y elegí el peine apropiado. Consultanos si necesitás información de uso antes de comprar.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Qué largos puedo elegir?",
+            "a": "<p>Incluye peines para elegir el largo. Las medidas exactas deben confirmarse para el modelo entregado antes de publicarlas.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cómo se limpia y se carga?",
+            "a": "<p>Seguí las instrucciones del fabricante. No lo mojes ni enjuagues el cabezal sin confirmación expresa del manual de este modelo.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cuánto tarda en llegar?",
+            "a": "<p>Despachamos en 24–48 h hábiles. La entrega estimada es de 12–20 días según la zona. El envío es gratis a todo el país y te mandamos código de seguimiento.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq",
+          "settings": {
+            "q": "¿Cómo puedo pagar?",
+            "a": "<p>Con tarjeta o Mercado Pago. El total final se muestra antes de confirmar la compra.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "kicker": "Antes de comprar",
+        "heading": "Preguntas frecuentes",
+        "sub": "Las dudas que más nos hacen, contestadas sin vueltas.",
+        "contact_text": "¿Otra duda? Escribinos",
+        "show_cta": true,
+        "product_handle": "face-body-electric-shaver",
+        "cta_kicker": "Empezá por acá",
+        "cta_heading": "Resolvé tu rutina sin vueltas.",
+        "cta_text": "Una rasuradora para rostro y cuerpo, con el largo que elegís y envío gratis con seguimiento a todo el país.",
+        "cta_button": "Quiero mi rasuradora",
+        "cta_clip": "gv-cierre.webp"
+      }
+    },
+    "antes": {
+      "type": "gv-antes",
+      "blocks": {
+        "a1": {
+          "type": "punto",
+          "settings": {
+            "title": "Zona íntima, brazos, pecho y piernas",
+            "text": "La misma máquina para todo el cuerpo. Sin espuma, sin cuchillas descartables."
+          }
+        },
+        "a2": {
+          "type": "punto",
+          "settings": {
+            "title": "Vos elegís cuánto dejar",
+            "text": "Con el peine de 1, 3 o 5 mm queda parejo. Sin peine, el acabado es más al ras."
+          }
+        },
+        "a3": {
+          "type": "punto",
+          "settings": {
+            "title": "En una pasada",
+            "text": "El cabezal ancho cubre más superficie: menos idas y vueltas sobre la misma zona."
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {
+        "wave": true,
+        "wave_from": "#f7f6f1",
+        "wave_bottom": true,
+        "wave_to": "#edf0e6",
+        "kicker": "Antes y después",
+        "heading": "Deslizá y mirá la diferencia",
+        "sub": "Movés la línea con el dedo y ves la misma zona antes y después de pasar la rasuradora.",
+        "label_before": "Antes",
+        "label_after": "Después",
+        "cta_text": "Ver la rasuradora",
+        "cta_link": "/products/face-body-electric-shaver",
+        "foot": "Imágenes ilustrativas del uso del producto. El resultado es temporal y varía según el tipo y grosor del vello."
+      }
+    }
+  },
+  "order": [
+    "portada",
+    "antes",
+    "numeros",
+    "historia",
+    "preguntas"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "GONVRA — Errores (avisa si algo se rompe)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "err-trigger",
+      "name": "Cuando falla algo",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Arma un aviso legible de que se rompio y donde.\nconst e = $input.first().json || {};\nconst wf  = (e.workflow && e.workflow.name) || 'workflow desconocido';\nconst exe = e.execution || {};\nconst err = exe.error || {};\n\nconst lineas = [\n  'SE ROMPIO UNA AUTOMATIZACION DE GONVRA',\n  '',\n  `Automatizacion: ${wf}`,\n  `Nodo que fallo: ${exe.lastNodeExecuted || '?'}`,\n  `Error: ${(err.message || 'sin mensaje').slice(0, 300)}`,\n  `Cuando: ${new Date().toLocaleString('es-AR')}`,\n  ''\n];\n\nif (exe.url) lineas.push(`Ver detalle: ${exe.url}`);\nlineas.push('');\nlineas.push('Si es un error de red, suele arreglarse solo en el proximo intento.');\nlineas.push('Si se repite, anotalo en BITACORA-ERRORES.md');\n\nreturn [{ json: { texto: lineas.join('\\n') } }];"
+      },
+      "id": "err-code",
+      "name": "Armar el aviso",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [240, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "chat_id", "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}" },
+            { "name": "text", "value": "={{ $json.texto }}" }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "id": "err-tg",
+      "name": "Avisar por Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "position": [480, 0]
+    }
+  ],
+  "connections": {
+    "Cuando falla algo": { "main": [[{ "node": "Armar el aviso", "type": "main", "index": 0 }]] },
+    "Armar el aviso": { "main": [[{ "node": "Avisar por Telegram", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

@@ -1,0 +1,164 @@
+{
+  "proyecto": "GONVRA · anuncios TikTok",
+  "creado": "2026-09-11",
+  "fps": 24,
+  "resolucion": "1080x1920",
+  "nota": "Las rutas apuntan a los originales; no se duplico material.",
+  "fuentes": {
+    "cajon": {
+      "ruta": "/home/matiigonzz/Claude/gonvra-brand/clips-utiles/hook-cajon-desordenado.mp4",
+      "existe": true,
+      "sha1_12": "595a331ac306",
+      "bytes": 602772
+    },
+    "cajon2": {
+      "ruta": "/home/matiigonzz/Descargas/videos para gonvra/Man_organizing_cluttered_bathroo…_202609061304.mp4",
+      "existe": true,
+      "sha1_12": "90490f753451",
+      "bytes": 955731
+    },
+    "brazo": {
+      "ruta": "/home/matiigonzz/Descargas/GONVRA - flow/brazo-corregido.mp4",
+      "existe": true,
+      "sha1_12": "cae448f40c1f",
+      "bytes": 1673728
+    },
+    "blade": {
+      "ruta": "/home/matiigonzz/Descargas/videos para la tienda/Shaver_blade_texture_lighting_720p_202609062312.mp4",
+      "existe": true,
+      "sha1_12": "ce00ef806674",
+      "bytes": 2938873
+    },
+    "rinse": {
+      "ruta": "/home/matiigonzz/Descargas/Hand_rinsing_shaver_under_water_202609071535.mp4",
+      "existe": true,
+      "sha1_12": "3f9b0717d17b",
+      "bytes": 3936209
+    },
+    "kit": {
+      "ruta": "/home/matiigonzz/Descargas/videos para la tienda/Hand_picking_up_comb_guard_202609062254.mp4",
+      "existe": true,
+      "sha1_12": "58d161711710",
+      "bytes": 1866425
+    },
+    "limpieza": {
+      "ruta": "/home/matiigonzz/Descargas/Hands_brushing_blade_and_pluggin…_202609071553.mp4",
+      "existe": true,
+      "sha1_12": "42b217a9618d",
+      "bytes": 5279796
+    }
+  },
+  "anuncios": {
+    "TT-1-Cajon": {
+      "mp4": "/home/matiigonzz/Claude/gonvra-edits/finales/TT-1-Cajon.mp4",
+      "srt": "/home/matiigonzz/Claude/gonvra-edits/finales/TT-1-Cajon.srt",
+      "edl": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-1-Cajon.edl",
+      "fcpxml": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-1-Cajon.fcpxml",
+      "drp": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-1-Cajon.drp",
+      "cortes": [
+        {
+          "fuente": "/home/matiigonzz/Claude/gonvra-brand/clips-utiles/hook-cajon-desordenado.mp4",
+          "desde_s": 0.0,
+          "hasta_s": 2.8,
+          "cartel": "t1_c1"
+        },
+        {
+          "fuente": "/home/matiigonzz/Claude/gonvra-brand/clips-utiles/hook-cajon-desordenado.mp4",
+          "desde_s": 2.8,
+          "hasta_s": 4.29,
+          "cartel": "t1_c2"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/videos para la tienda/Shaver_blade_texture_lighting_720p_202609062312.mp4",
+          "desde_s": 0.0,
+          "hasta_s": 2.9,
+          "cartel": "t1_c3"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/GONVRA - flow/brazo-corregido.mp4",
+          "desde_s": 1.2,
+          "hasta_s": 3.6,
+          "cartel": "t1_c3"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/Hand_rinsing_shaver_under_water_202609071535.mp4",
+          "desde_s": 0.0,
+          "hasta_s": 2.05,
+          "cartel": "t1_c4"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/videos para la tienda/Hand_picking_up_comb_guard_202609062254.mp4",
+          "desde_s": 0.6,
+          "hasta_s": 2.3,
+          "cartel": null
+        }
+      ]
+    },
+    "TT-2-Lamina": {
+      "mp4": "/home/matiigonzz/Claude/gonvra-edits/finales/TT-2-Lamina.mp4",
+      "srt": "/home/matiigonzz/Claude/gonvra-edits/finales/TT-2-Lamina.srt",
+      "edl": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-2-Lamina.edl",
+      "fcpxml": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-2-Lamina.fcpxml",
+      "drp": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-2-Lamina.drp",
+      "cortes": [
+        {
+          "fuente": "/home/matiigonzz/Descargas/GONVRA - flow/brazo-corregido.mp4",
+          "desde_s": 0.2,
+          "hasta_s": 3.4,
+          "cartel": "t2_c1"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/GONVRA - flow/brazo-corregido.mp4",
+          "desde_s": 3.4,
+          "hasta_s": 6.2,
+          "cartel": "t2_c2"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/videos para la tienda/Shaver_blade_texture_lighting_720p_202609062312.mp4",
+          "desde_s": 1.8,
+          "hasta_s": 6.2,
+          "cartel": "t2_c3"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/Hand_rinsing_shaver_under_water_202609071535.mp4",
+          "desde_s": 0.0,
+          "hasta_s": 2.05,
+          "cartel": "t2_c4"
+        }
+      ]
+    },
+    "TT-3-Que-Trae": {
+      "mp4": "/home/matiigonzz/Claude/gonvra-edits/finales/TT-3-Que-Trae.mp4",
+      "srt": "/home/matiigonzz/Claude/gonvra-edits/finales/TT-3-Que-Trae.srt",
+      "edl": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-3-Que-Trae.edl",
+      "fcpxml": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-3-Que-Trae.fcpxml",
+      "drp": "/home/matiigonzz/Claude/gonvra-edits/proyecto/TT-3-Que-Trae.drp",
+      "cortes": [
+        {
+          "fuente": "/home/matiigonzz/Descargas/videos para la tienda/Hand_picking_up_comb_guard_202609062254.mp4",
+          "desde_s": 0.0,
+          "hasta_s": 3.2,
+          "cartel": "t3_c1"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/videos para la tienda/Hand_picking_up_comb_guard_202609062254.mp4",
+          "desde_s": 3.2,
+          "hasta_s": 6.0,
+          "cartel": "t3_c2"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/Hands_brushing_blade_and_pluggin…_202609071553.mp4",
+          "desde_s": 0.2,
+          "hasta_s": 3.4,
+          "cartel": "t3_c3"
+        },
+        {
+          "fuente": "/home/matiigonzz/Descargas/Hands_brushing_blade_and_pluggin…_202609071553.mp4",
+          "desde_s": 4.6,
+          "hasta_s": 8.2,
+          "cartel": "t3_c4"
+        }
+      ]
+    }
+  }
+}

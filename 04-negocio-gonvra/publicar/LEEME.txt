@@ -1,0 +1,60 @@
+COMO PUBLICAR EN INSTAGRAM (@gonvra1)
+======================================
+
+Se pueden publicar TRES formatos:
+
+  FOTO SOLA      -> poné la imagen .png o .jpg
+  CARRUSEL       -> poné una CARPETA con 2 a 10 fotos adentro
+  REEL (video)   -> poné el archivo .mp4
+
+--------------------------------------
+PASO 1 — Poner el contenido en 1-PENDIENTE
+--------------------------------------
+
+Para una FOTO o un VIDEO:
+   1-PENDIENTE/mi-post.png
+   1-PENDIENTE/mi-post.txt     <- el texto del post (mismo nombre)
+
+Para un CARRUSEL:
+   1-PENDIENTE/mi-carrusel/01-primera.png
+   1-PENDIENTE/mi-carrusel/02-segunda.png
+   1-PENDIENTE/mi-carrusel/03-tercera.png
+   1-PENDIENTE/mi-carrusel/texto.txt      <- el texto va ADENTRO de la carpeta
+
+   Las fotos salen en orden alfabético. Por eso conviene numerarlas: 01, 02, 03...
+
+--------------------------------------
+PASO 2 — Te llega un aviso
+--------------------------------------
+Cada 30 minutos te llega un Telegram diciendo qué hay esperando,
+de qué tipo es (foto / carrusel / reel) y con qué texto saldría.
+
+--------------------------------------
+PASO 3 — Aprobar
+--------------------------------------
+Si te gusta, MOVÉ el archivo (o la carpeta entera) a  2-APROBADO
+Eso es tu aprobación. NADA se publica sin que lo muevas vos.
+
+--------------------------------------
+PASO 4 — Se publica solo
+--------------------------------------
+A los 10 minutos sale en @gonvra1 y el archivo pasa a 3-PUBLICADO.
+Te llega el link del post por Telegram.
+
+======================================
+REGLAS Y LÍMITES
+======================================
+- Fotos: JPG o PNG. Proporción entre 4:5 (vertical) y 1.91:1 (horizontal).
+  Lo que mejor rinde en el feed es 1080x1350.
+- Carrusel: mínimo 2 fotos, máximo 10.
+- Video: MP4, vertical 9:16 (1080x1920), hasta 90 segundos para Reels.
+- Si no hay .txt, se publica sin texto.
+- Si algo falla, te avisa por Telegram y el archivo NO se mueve: se reintenta.
+- Límite de Instagram: 50 publicaciones por día. De sobra.
+
+======================================
+YA PUBLICADO (23/09/2026)
+======================================
+  FOTO     https://www.instagram.com/p/DdngkoQEfWP/
+  CARRUSEL https://www.instagram.com/p/DdnkyOKEZJa/   (5 placas)
+  REEL     https://www.instagram.com/reel/Ddnk3cWiHa5/

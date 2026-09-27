@@ -1,0 +1,185 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign featured_image = product.featured_image
+%}
+
+<section class="ri-landing" data-ri-landing="{{ section.id }}">
+  <div class="ri-shell">
+    <div class="ri-hero">
+      <div class="ri-hero__media">
+        {% if featured_image != blank %}
+          {{ featured_image | image_url: width: 1600 | image_tag: widths: '480, 720, 960, 1200, 1600', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'eager', class: 'ri-hero__image', alt: product.title }}
+        {% endif %}
+        <span class="ri-pill ri-pill--media">Recargable por USB</span>
+      </div>
+
+      <div class="ri-hero__copy">
+        <p class="ri-eyebrow">Cuidado personal, sin complicarte</p>
+        <h1>{{ product.title | escape }}</h1>
+        <p class="ri-lead">Un solo equipo para retocar barba, patillas y vello corporal. Elegí el peine guía, recortá con calma y seguí con tu día.</p>
+
+        <div class="ri-proof" role="list">
+          <span role="listitem">Peines guía 1, 3 y 5 mm</span>
+          <span role="listitem">Cuchilla de acero inoxidable</span>
+          <span role="listitem">Color negro y verde lima</span>
+        </div>
+
+        {% form 'product', product, class: 'ri-buybox' %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          <div class="ri-buybox__top">
+            <div>
+              <span class="ri-label">Precio</span>
+              <strong class="ri-price">{{ current_variant.price | money }}</strong>
+            </div>
+            <label class="ri-quantity">
+              <span class="ri-label">Unidades</span>
+              <input type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Cantidad">
+            </label>
+          </div>
+          <div class="ri-color" aria-label="Color disponible">
+            <span class="ri-color__dot" aria-hidden="true"></span>
+            <span><strong>Color:</strong> Negro y verde lima</span>
+          </div>
+          <button class="ri-button" type="submit" {% unless current_variant.available %}disabled{% endunless %}>
+            {% if current_variant.available %}Agregar al carrito{% else %}Sin stock{% endif %}
+          </button>
+          <p class="ri-buybox__note">Revisá costo y plazo de entrega antes de finalizar la compra.</p>
+        {% endform %}
+      </div>
+    </div>
+
+    <div class="ri-benefits" aria-label="Beneficios principales">
+      <article><span>01</span><h2>Elegí el largo</h2><p>Usala sin peine para un recorte cercano o con guía para mantener una medida uniforme.</p></article>
+      <article><span>02</span><h2>Recortá a tu ritmo</h2><p>El formato compacto ayuda a resolver los retoques de la rutina sin sumar otro aparato grande.</p></article>
+      <article><span>03</span><h2>Limpiá y guardá</h2><p>Retirá los restos de vello con el cepillo y guardala lista para el próximo uso.</p></article>
+    </div>
+
+    <div class="ri-compare-section">
+      <div class="ri-section-heading">
+        <p class="ri-eyebrow">Comparación interactiva</p>
+        <h2>Deslizá para ver un recorte más prolijo</h2>
+        <p>Una demostración ilustrativa de largo de vello. El resultado real puede variar según el tipo de vello y la técnica de uso.</p>
+      </div>
+      <div class="ri-compare" data-ri-compare style="--ri-position: 50%;">
+        <img src="https://cdn.shopify.com/s/files/1/0722/4652/6067/files/rasuradora-integral-antes-v1.png?v=1788667109" alt="Demostración ilustrativa de vello corporal antes del recorte" loading="lazy" width="1024" height="1280">
+        <div class="ri-compare__after">
+          <img src="https://cdn.shopify.com/s/files/1/0722/4652/6067/files/rasuradora-integral-despues-v1.png?v=1788667116" alt="Demostración ilustrativa de vello corporal luego de un recorte" loading="lazy" width="1024" height="1280">
+        </div>
+        <span class="ri-compare__tag ri-compare__tag--before">Antes</span>
+        <span class="ri-compare__tag ri-compare__tag--after">Después</span>
+        <span class="ri-compare__line" aria-hidden="true"><span>↔</span></span>
+        <input class="ri-compare__range" type="range" min="0" max="100" value="50" aria-label="Mover para comparar antes y después">
+      </div>
+    </div>
+
+    <div class="ri-details">
+      <div class="ri-details__copy">
+        <p class="ri-eyebrow">Hecha para tu rutina</p>
+        <h2>Menos accesorios sueltos. Más control sobre el largo.</h2>
+        <p>Los peines guía de 1, 3 y 5 mm te permiten pasar de un retoque corto a un mantenimiento parejo. Es una rasuradora de recorte: no es depilación definitiva.</p>
+      </div>
+      <div class="ri-details__list">
+        <div><strong>Incluye</strong><span>Rasuradora, peines guía, cable USB y cepillo de limpieza.</span></div>
+        <div><strong>Uso recomendado</strong><span>Sobre piel limpia y seca. Probá primero en un área pequeña si tu piel es sensible.</span></div>
+        <div><strong>Importante</strong><span>La información disponible no certifica uso bajo el agua.</span></div>
+      </div>
+    </div>
+
+    <div class="ri-faq">
+      <div class="ri-section-heading">
+        <p class="ri-eyebrow">Preguntas frecuentes</p>
+        <h2>Lo que conviene saber antes de comprar</h2>
+      </div>
+      <details open><summary>¿Sirve para rostro y cuerpo?</summary><p>Está diseñada para recortar vello de rostro y cuerpo. En áreas sensibles, usala con cuidado y hacé una prueba previa.</p></details>
+      <details><summary>¿Puedo elegir otro color?</summary><p>Por ahora, Zendrop tiene vinculada únicamente la versión negro y verde lima. No mostramos colores que no se puedan despachar.</p></details>
+      <details><summary>¿Cómo elijo más de una unidad?</summary><p>Usá el selector de unidades de arriba antes de agregar el producto al carrito.</p></details>
+      <details><summary>¿Por qué comprar en esta tienda?</summary><p>La ficha muestra la variante y los accesorios concretos. Mercado Libre también es útil para comparar: antes de decidir, contrastá siempre precio final, plazo y políticas vigentes.</p></details>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ri-landing { --ri-ink: #163728; --ri-muted: #627166; --ri-sand: #f7f4ec; --ri-lime: #c4df2b; --ri-line: #d8ddd4; background: var(--ri-sand); color: var(--ri-ink); font-family: inherit; }
+  .ri-shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; padding: 56px 0 80px; }
+  .ri-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .92fr); gap: clamp(32px, 7vw, 90px); align-items: center; }
+  .ri-hero__media { min-height: 510px; position: relative; overflow: hidden; border-radius: 28px; background: #e8ebdf; }
+  .ri-hero__image { display: block; width: 100%; height: 100%; min-height: 510px; object-fit: cover; }
+  .ri-pill { position: absolute; left: 20px; bottom: 20px; padding: 9px 13px; border-radius: 999px; background: rgba(255, 255, 255, .92); color: var(--ri-ink); font-size: .82rem; font-weight: 700; }
+  .ri-eyebrow { margin: 0 0 10px; color: #5d751b; font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .ri-hero h1, .ri-section-heading h2, .ri-details h2 { margin: 0; color: var(--ri-ink); line-height: 1.04; letter-spacing: -.045em; }
+  .ri-hero h1 { font-size: clamp(2.55rem, 5vw, 4.65rem); }
+  .ri-lead { max-width: 540px; margin: 20px 0; color: var(--ri-muted); font-size: 1.08rem; line-height: 1.6; }
+  .ri-proof { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+  .ri-proof span { border: 1px solid var(--ri-line); border-radius: 999px; padding: 8px 10px; font-size: .8rem; }
+  .ri-buybox { padding: 20px; border: 1px solid var(--ri-line); border-radius: 18px; background: #fff; box-shadow: 0 12px 30px rgba(22, 55, 40, .07); }
+  .ri-buybox__top { display: flex; justify-content: space-between; gap: 18px; align-items: end; }
+  .ri-label { display: block; margin-bottom: 3px; color: var(--ri-muted); font-size: .76rem; }
+  .ri-price { font-size: 1.45rem; }
+  .ri-quantity input { box-sizing: border-box; width: 68px; border: 1px solid var(--ri-line); border-radius: 8px; padding: 8px; color: var(--ri-ink); font: inherit; }
+  .ri-color { display: flex; align-items: center; gap: 9px; margin: 17px 0; font-size: .9rem; }
+  .ri-color__dot { width: 18px; height: 18px; border: 3px solid #1d2320; border-radius: 50%; background: var(--ri-lime); box-sizing: border-box; }
+  .ri-button { width: 100%; border: 0; border-radius: 10px; padding: 15px; cursor: pointer; background: var(--ri-ink); color: #fff; font: inherit; font-weight: 800; transition: transform .2s ease, background .2s ease; }
+  .ri-button:hover { background: #28533d; transform: translateY(-1px); }
+  .ri-button:disabled { cursor: not-allowed; opacity: .5; }
+  .ri-buybox__note { margin: 11px 0 0; color: var(--ri-muted); font-size: .77rem; line-height: 1.4; }
+  .ri-benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 76px 0; background: var(--ri-line); border: 1px solid var(--ri-line); }
+  .ri-benefits article { min-height: 190px; padding: 26px; background: var(--ri-sand); }
+  .ri-benefits span { color: #77951c; font-size: .78rem; font-weight: 800; }
+  .ri-benefits h2 { margin: 20px 0 9px; font-size: 1.15rem; }
+  .ri-benefits p, .ri-details p { margin: 0; color: var(--ri-muted); font-size: .93rem; line-height: 1.55; }
+  .ri-compare-section { margin: 90px 0; }
+  .ri-section-heading { max-width: 700px; margin-bottom: 28px; }
+  .ri-section-heading h2, .ri-details h2 { font-size: clamp(2rem, 4vw, 3.35rem); }
+  .ri-section-heading > p:last-child { color: var(--ri-muted); line-height: 1.55; }
+  .ri-compare { position: relative; aspect-ratio: 4 / 5; max-width: 780px; margin: 0 auto; overflow: hidden; border-radius: 24px; background: #e9e5da; user-select: none; }
+  .ri-compare img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ri-compare__after { position: absolute; inset: 0; width: var(--ri-position); overflow: hidden; }
+  .ri-compare__after img { width: 100%; max-width: none; }
+  .ri-compare__tag { position: absolute; top: 18px; z-index: 2; border-radius: 999px; padding: 8px 12px; background: rgba(22, 55, 40, .86); color: #fff; font-size: .78rem; font-weight: 800; }
+  .ri-compare__tag--before { right: 18px; }
+  .ri-compare__tag--after { left: 18px; }
+  .ri-compare__line { position: absolute; top: 0; bottom: 0; left: var(--ri-position); z-index: 2; width: 2px; background: #fff; transform: translateX(-1px); pointer-events: none; }
+  .ri-compare__line span { position: absolute; top: 50%; left: 50%; display: grid; width: 42px; height: 42px; place-items: center; border: 2px solid #fff; border-radius: 50%; background: var(--ri-ink); color: #fff; transform: translate(-50%, -50%); font-size: 1.15rem; }
+  .ri-compare__range { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; margin: 0; cursor: ew-resize; opacity: 0; }
+  .ri-details { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(30px, 8vw, 120px); align-items: start; margin: 90px 0; padding: 54px; border-radius: 26px; background: var(--ri-ink); color: #fff; }
+  .ri-details h2 { color: #fff; }
+  .ri-details .ri-eyebrow { color: var(--ri-lime); }
+  .ri-details p { margin-top: 20px; color: #dce6df; }
+  .ri-details__list { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,.2); }
+  .ri-details__list div { display: grid; grid-template-columns: 145px 1fr; gap: 18px; padding: 17px 0; border-bottom: 1px solid rgba(255,255,255,.2); }
+  .ri-details__list strong { color: var(--ri-lime); font-size: .86rem; }
+  .ri-details__list span { color: #e1e9e3; font-size: .9rem; line-height: 1.45; }
+  .ri-faq { max-width: 850px; margin: 0 auto; }
+  .ri-faq details { border-top: 1px solid var(--ri-line); }
+  .ri-faq details:last-child { border-bottom: 1px solid var(--ri-line); }
+  .ri-faq summary { display: flex; justify-content: space-between; gap: 16px; padding: 19px 0; cursor: pointer; color: var(--ri-ink); font-weight: 750; list-style: none; }
+  .ri-faq summary::-webkit-details-marker { display: none; }
+  .ri-faq summary::after { content: '+'; color: #74921a; font-size: 1.3rem; }
+  .ri-faq details[open] summary::after { content: '−'; }
+  .ri-faq p { max-width: 700px; margin: -2px 0 19px; color: var(--ri-muted); line-height: 1.55; }
+  @media (max-width: 749px) { .ri-shell { width: min(100% - 24px, 1180px); padding: 32px 0 50px; } .ri-hero, .ri-details { grid-template-columns: 1fr; } .ri-hero__media, .ri-hero__image { min-height: 405px; } .ri-benefits { grid-template-columns: 1fr; margin: 52px 0; } .ri-benefits article { min-height: auto; } .ri-details { margin: 58px 0; padding: 30px 22px; } .ri-details__list div { grid-template-columns: 1fr; gap: 5px; } .ri-compare-section { margin: 60px 0; } }
+{% endstylesheet %}
+
+{% javascript %}
+  document.querySelectorAll('[data-ri-compare]').forEach((comparison) => {
+    const range = comparison.querySelector('.ri-compare__range');
+    if (!range) return;
+    const updatePosition = () => comparison.style.setProperty('--ri-position', `${range.value}%`);
+    range.addEventListener('input', updatePosition);
+    updatePosition();
+  });
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Landing rasuradora",
+  "tag": "section",
+  "class": "section-rasuradora-integral-landing",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Landing rasuradora"
+    }
+  ]
+}
+{% endschema %}

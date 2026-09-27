@@ -1,0 +1,94 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .gv-h2 { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+{%- if section.settings.coleccion != blank -%}
+  {%- assign gv_col = section.settings.coleccion -%}
+{%- else -%}
+  {%- assign gv_col = collections['all'] -%}
+{%- endif -%}
+
+<section class="gv-featured gv-section">
+  <div class="gv-container">
+    <div class="gv-head gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<span class="gv-eyebrow gv-center">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="gv-h2">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="gv-lead">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+
+    <div class="gv-featured__grid" data-gv-carousel data-auto="4500" data-arrows>
+      {%- for product in gv_col.products limit: section.settings.cantidad -%}
+        <div class="gv-card gv-reveal" data-delay="{{ forloop.index0 | modulo: 4 | plus: 1 }}">
+          <a class="gv-card__media" href="{{ product.url }}">
+            {%- if product.featured_image != blank -%}
+              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+            {%- else -%}
+              <img src="{{ 'gv-band-default.jpg' | asset_url }}" alt="" loading="lazy">
+            {%- endif -%}
+            {%- if product.compare_at_price > product.price -%}
+              <span class="gv-card__tag">Oferta</span>
+            {%- elsif product.available == false -%}
+              <span class="gv-card__tag">Agotado</span>
+            {%- endif -%}
+          </a>
+          <div class="gv-card__body">
+            <a class="gv-card__name" href="{{ product.url }}">{{ product.title }}</a>
+            <div class="gv-card__price">
+              <span class="now">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}
+                <span class="was">{{ product.compare_at_price | money }}</span>
+              {%- endif -%}
+            </div>
+            {%- if product.has_only_default_variant and product.available -%}
+              {%- form 'product', product, class: 'gv-card__form' -%}
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button type="submit" name="add" class="gv-card__btn">{{ section.settings.boton_texto | default: 'Agregar al carrito' }}</button>
+              {%- endform -%}
+            {%- else -%}
+              <a class="gv-card__btn" href="{{ product.url }}">{{ section.settings.boton_texto_opciones | default: 'Ver producto' }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- else -%}
+        <p class="gv-lead">Aún no hay productos para mostrar aquí.</p>
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.boton_ver_texto != blank -%}
+      <div class="gv-featured__more gv-reveal">
+        <a class="gv-btn gv-btn--ghost-dark" href="{{ gv_col.url | default: '/collections/all' }}">{{ section.settings.boton_ver_texto }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Productos destacados",
+  "tag": "section",
+  "settings": [
+    { "type": "collection", "id": "coleccion", "label": "Colección a mostrar (si se deja vacío, muestra todos)" },
+    { "type": "range", "id": "cantidad", "label": "Cuántos productos mostrar", "min": 3, "max": 12, "step": 1, "default": 8 },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Lo más elegido" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Nuestros favoritos" },
+    { "type": "textarea", "id": "subtitle", "label": "Texto bajo el título", "default": "Los productos que más recomiendan nuestros clientes para sus mascotas." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 24, "max": 56, "step": 2, "unit": "px", "default": 40 },
+    { "type": "header", "content": "Botones de las tarjetas" },
+    { "type": "text", "id": "boton_texto", "label": "Botón (producto simple)", "default": "Agregar al carrito" },
+    { "type": "text", "id": "boton_texto_opciones", "label": "Botón (con variantes)", "default": "Ver producto" },
+    { "type": "header", "content": "Botón inferior" },
+    { "type": "text", "id": "boton_ver_texto", "label": "Texto del botón (vacío = oculto)", "default": "Ver toda la tienda" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 }
+  ],
+  "presets": [ { "name": "GV – Productos destacados" } ]
+}
+{% endschema %}

@@ -1,0 +1,394 @@
+{
+  "sections": {
+    "principal": {
+      "type": "mt-producto",
+      "blocks": {
+        "caracteristica_1": {
+          "type": "caracteristica",
+          "settings": {
+            "title": "Doble cabezal autoafilable",
+            "body": "Dos discos de corte que trabajan a la vez"
+          }
+        },
+        "caracteristica_2": {
+          "type": "caracteristica",
+          "settings": {
+            "title": "Cabezales flotantes 0°–6°",
+            "body": "Siguen el contorno del mentón y el cuello"
+          }
+        },
+        "caracteristica_3": {
+          "type": "caracteristica",
+          "settings": {
+            "title": "Pantalla con % de carga",
+            "body": "Sabés cuánto queda antes de salir"
+          }
+        },
+        "caracteristica_4": {
+          "type": "caracteristica",
+          "settings": {
+            "title": "Cuerpo de aleación metálica",
+            "body": "Acabado sólido, no plástico"
+          }
+        },
+        "caracteristica_5": {
+          "type": "caracteristica",
+          "settings": {
+            "title": "Carga por USB",
+            "body": "El mismo cable del celular"
+          }
+        },
+        "caracteristica_6": {
+          "type": "caracteristica",
+          "settings": {
+            "title": "Cabezales lavables",
+            "body": "Se enjuagan bajo el agua"
+          }
+        }
+      },
+      "block_order": [
+        "caracteristica_1",
+        "caracteristica_2",
+        "caracteristica_3",
+        "caracteristica_4",
+        "caracteristica_5",
+        "caracteristica_6"
+      ],
+      "settings": {
+        "gallery_badge": "HELIO MINI · DOBLE CABEZAL",
+        "kicker": "AFEITADORA PORTÁTIL",
+        "fallback_title": "Afeitadora Portátil Helio Mini",
+        "intro": "Doble cabezal autoafilable, cabezales que se inclinan hasta 6° para seguir tu contorno y una pantalla que marca el porcentaje exacto de carga. Cuerpo de aleación metálica del tamaño de la palma.",
+        "status_label": "DOS COLORES",
+        "status_detail": "Plateado o verde",
+        "in_stock_text": "En stock",
+        "out_of_stock_text": "Agotado",
+        "button_text": "Agregar al carrito",
+        "button_multiple_text": "Agregar [cantidad] unidades al carrito",
+        "sold_out_text": "Agotado",
+        "unavailable_text": "Combinación no disponible",
+        "trust_1": "Envío a todo el país con seguimiento",
+        "trust_2": "Si llega fallada, la cambiamos",
+        "trust_3": "Pago protegido por Shopify",
+        "details_title": "Descripción",
+        "description_fallback": "Afeitadora eléctrica recargable de doble cabezal, con cabezales flotantes, pantalla de carga y cuerpo de aleación metálica.",
+        "features_title": "Ficha técnica",
+        "includes_title": "Qué incluye",
+        "includes": "1 afeitadora Helio Mini\nCable de carga USB\nPresentación en caja",
+        "text_align": "left",
+        "heading_size": 58,
+        "body_size": 17,
+        "background": "#F4F7FA",
+        "padding_top": 96,
+        "padding_bottom": 112,
+        "show_viral": true,
+        "viral_text": "PRODUCTO DESTACADO",
+        "show_stock": true,
+        "stock_threshold": 25
+      }
+    },
+    "beneficios": {
+      "type": "mt-beneficios",
+      "blocks": {
+        "beneficio_1": {
+          "type": "beneficio",
+          "settings": {
+            "title": "Dos cabezales, una pasada",
+            "body": "Los discos autoafilables giran a la vez y cubren el doble de superficie.",
+            "text_align": "left",
+            "title_size": 27,
+            "body_size": 15
+          }
+        },
+        "beneficio_2": {
+          "type": "beneficio",
+          "settings": {
+            "title": "Se adapta sola",
+            "body": "Cada cabezal se inclina hasta 6° para seguir la curva de la cara.",
+            "text_align": "left",
+            "title_size": 27,
+            "body_size": 15
+          }
+        },
+        "beneficio_3": {
+          "type": "beneficio",
+          "settings": {
+            "title": "Nunca te deja a mitad",
+            "body": "La pantalla frontal marca el porcentaje exacto de carga restante.",
+            "text_align": "left",
+            "title_size": 27,
+            "body_size": 15
+          }
+        }
+      },
+      "block_order": [
+        "beneficio_1",
+        "beneficio_2",
+        "beneficio_3"
+      ],
+      "settings": {
+        "kicker": "DETALLES QUE RESUELVEN",
+        "headline": "Diseñada alrededor de la rutina.",
+        "body": "Cada decisión busca que usarla, guardarla y volver a ponerla en marcha sea simple.",
+        "text_align": "center",
+        "heading_size": 58,
+        "body_size": 17,
+        "card_height": 500,
+        "gap": 20,
+        "tilt": 4,
+        "background": "#F7FAFC",
+        "padding_top": 104,
+        "padding_bottom": 112
+      }
+    },
+    "preguntas": {
+      "type": "mt-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cuánto dura la batería?",
+            "answer": "La pantalla frontal te muestra el porcentaje exacto que queda, así que nunca te agarra desprevenido. Estamos confirmando la autonomía exacta con el fabricante y la publicamos acá apenas la tengamos por escrito: preferimos no darte un número que no podamos sostener."
+          }
+        },
+        "faq_2": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cómo se carga?",
+            "answer": "Con el mismo cable USB que usás para el celular: cargador de pared, notebook o batería portátil. No necesita una base ni un cargador propietario."
+          }
+        },
+        "faq_3": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Se puede limpiar con agua?",
+            "answer": "Sí: los cabezales se retiran y se enjuagan bajo el agua corriente. Seguí las indicaciones del fabricante y evitá sumergir el cuerpo completo del equipo."
+          }
+        },
+        "faq_4": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Qué son los cabezales flotantes?",
+            "answer": "Cada uno de los dos cabezales va montado sobre una base que se inclina hasta 6 grados, así siguen la curva de la mandíbula y el cuello sin que tengas que girar la muñeca."
+          }
+        },
+        "faq_5": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Para qué largo de barba sirve?",
+            "answer": "Está pensada para barba corta y retoques frecuentes. Si la tenés larga, recortala primero y usá Helio Mini para el acabado."
+          }
+        },
+        "faq_6": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Qué color elijo?",
+            "answer": "Plateado o verde menta: cambia solo la terminación exterior. Los cabezales, la pantalla y el interior son idénticos."
+          }
+        },
+        "faq_7": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Qué incluye la caja?",
+            "answer": "La afeitadora Helio Mini, el cable de carga USB y su caja de presentación."
+          }
+        },
+        "faq_8": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cuánto tarda el envío?",
+            "answer": "Enviamos a todo el país con seguimiento. El plazo y el costo se calculan al finalizar la compra según tu dirección, antes de que confirmes el pago."
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8"
+      ],
+      "settings": {
+        "kicker": "ANTES DE SUMARLA A TU RUTINA",
+        "headline": "Preguntas claras. Respuestas directas.",
+        "body": "Todo lo esencial para elegir tu Helio Mini con confianza.",
+        "open_first": true,
+        "text_align": "left",
+        "heading_size": 56,
+        "body_size": 17,
+        "question_size": 21,
+        "answer_size": 16,
+        "background": "#EDF2F6",
+        "padding_top": 112,
+        "padding_bottom": 120
+      }
+    },
+    "confianza": {
+      "type": "mt-confianza",
+      "blocks": {
+        "c1": {
+          "type": "item",
+          "settings": {
+            "icon": "envio",
+            "title": "Envío a todo el país",
+            "body": "Con número de seguimiento desde que sale."
+          }
+        },
+        "c2": {
+          "type": "item",
+          "settings": {
+            "icon": "escudo",
+            "title": "Llega fallada, la cambiamos",
+            "body": "Si viene con un defecto, lo resolvemos."
+          }
+        },
+        "c3": {
+          "type": "item",
+          "settings": {
+            "icon": "tarjeta",
+            "title": "Pago protegido",
+            "body": "Procesado por Shopify con cifrado."
+          }
+        },
+        "c4": {
+          "type": "item",
+          "settings": {
+            "icon": "chat",
+            "title": "Atención de verdad",
+            "body": "Te responde una persona del equipo."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "background": "#080A0F",
+        "padding_top": 80,
+        "padding_bottom": 88
+      }
+    },
+    "ficha": {
+      "type": "mt-specs",
+      "blocks": {
+        "s1": {
+          "type": "spec",
+          "settings": {
+            "icon": "cabezal",
+            "title": "Doble cabezal autoafilable",
+            "body": "Dos discos de corte trabajando a la vez. El propio roce mantiene el filo con el uso.",
+            "value": "2 cabezales",
+            "show_pin": true,
+            "pin_x": 40,
+            "pin_y": 13
+          }
+        },
+        "s2": {
+          "type": "spec",
+          "settings": {
+            "icon": "flotante",
+            "title": "Cabezales flotantes 0°–6°",
+            "body": "Cada cabezal se inclina por su cuenta para acompañar el mentón, la mandíbula y el cuello.",
+            "value": "Hasta 6° de giro",
+            "show_pin": true,
+            "pin_x": 63,
+            "pin_y": 15
+          }
+        },
+        "s3": {
+          "type": "spec",
+          "settings": {
+            "icon": "pantalla",
+            "title": "Pantalla circular con % de carga",
+            "body": "El frente muestra el porcentaje exacto que queda. Se acabó el adivinar.",
+            "value": "Lectura en tiempo real",
+            "show_pin": true,
+            "pin_x": 52,
+            "pin_y": 62
+          }
+        },
+        "s4": {
+          "type": "spec",
+          "settings": {
+            "icon": "metal",
+            "title": "Cuerpo de aleación metálica",
+            "body": "Carcasa fundida con acabado tipo mecha. Se siente sólida en la mano.",
+            "show_pin": true,
+            "pin_x": 29,
+            "pin_y": 46
+          }
+        },
+        "s5": {
+          "type": "spec",
+          "settings": {
+            "icon": "usb",
+            "title": "Carga por USB",
+            "body": "El mismo cable que ya tenés para el celular.",
+            "value": "Sin cargador propietario",
+            "show_pin": false,
+            "pin_x": 50,
+            "pin_y": 50
+          }
+        },
+        "s6": {
+          "type": "spec",
+          "settings": {
+            "icon": "agua",
+            "title": "Cabezales lavables",
+            "body": "Se sacan y se enjuagan bajo el agua. No sumerjas el cuerpo completo.",
+            "show_pin": false,
+            "pin_x": 50,
+            "pin_y": 50
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "settings": {
+        "anchor": "ficha-producto",
+        "kicker": "POR DENTRO Y POR FUERA",
+        "headline": "Cada detalle, a la vista.",
+        "body": "Tocá los puntos de la foto para ver qué hay detrás de cada pieza.",
+        "text_align": "left",
+        "heading_size": 58,
+        "body_size": 17,
+        "image_alt": "Afeitadora Helio Mini con sus piezas señaladas",
+        "show_stats": true,
+        "stat_1_number": "2",
+        "stat_1_suffix": "×",
+        "stat_1_label": "cabezales autoafilables",
+        "stat_2_number": "6",
+        "stat_2_suffix": "°",
+        "stat_2_label": "de inclinación por cabezal",
+        "stat_3_number": "100",
+        "stat_3_suffix": "%",
+        "stat_3_label": "de carga visible en pantalla",
+        "stat_4_number": "2",
+        "stat_4_suffix": "",
+        "stat_4_label": "colores: plata y verde",
+        "background": "#080A0F",
+        "padding_top": 112,
+        "padding_bottom": 120
+      }
+    }
+  },
+  "order": [
+    "principal",
+    "confianza",
+    "beneficios",
+    "ficha",
+    "preguntas"
+  ]
+}

@@ -1,0 +1,775 @@
+{
+  "sections": {
+    "mt_hero": {
+      "type": "mt-hero",
+      "settings": {
+    "kicker": "UN RETOQUE LISTO CUANDO LO NECESITÁS",
+        "image_position": "right center",
+    "headline": "Un afeitado prolijo, sin llevar de más.",
+    "outline_line": "En casa. En viaje. Antes de salir.",
+    "body": "Dos cabezales de corte, pantalla con porcentaje de carga y conexión USB en un formato compacto para resolver el retoque de todos los días.",
+        "primary_label": "Comprar Helio Mini",
+        "primary_link": "shopify://products/mini-usb-electric-shaver-long-lasting-portable-car-household-trimmer-rechargeable-washable-barber-hair-shaver-for-men-rv-hotel",
+        "secondary_label": "Ver cómo funciona",
+        "secondary_link": "#como-funciona",
+    "trust_1": "Doble cabezal",
+    "trust_2": "Carga visible en pantalla",
+        "trust_3": "Carga por USB",
+        "min_height": 660,
+        "parallax": 10,
+        "heading_size": 84,
+        "body_size": 18,
+        "text_align": "left",
+        "background": "#080A0F",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "mt_banda": {
+      "type": "mt-banda",
+      "blocks": {
+        "f1": {
+          "type": "frase",
+          "settings": {
+            "text": "DOBLE CABEZAL AUTOAFILABLE"
+          }
+        },
+        "f2": {
+          "type": "frase",
+          "settings": {
+            "text": "CABEZALES FLOTANTES 0°–6°"
+          }
+        },
+        "f3": {
+          "type": "frase",
+          "settings": {
+            "text": "PANTALLA CON % DE CARGA"
+          }
+        },
+        "f4": {
+          "type": "frase",
+          "settings": {
+            "text": "CARGA POR USB"
+          }
+        },
+        "f5": {
+          "type": "frase",
+          "settings": {
+            "text": "CUERPO DE ALEACIÓN METÁLICA"
+          }
+        },
+        "f6": {
+          "type": "frase",
+          "settings": {
+            "text": "PLATA O VERDE"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6"
+      ],
+      "settings": {
+        "speed": 38,
+        "text_size": 19,
+        "background": "#0B1018",
+        "text_color": "#F7FAFC",
+        "dot_color": "#65F29A"
+      }
+    },
+    "mt_beneficios": {
+      "type": "mt-beneficios",
+      "blocks": {
+        "beneficio_1": {
+          "type": "beneficio",
+          "settings": {
+        "title": "Dos cabezales para el retoque diario",
+        "body": "Dos superficies de corte en un solo equipo compacto.",
+            "text_align": "left",
+            "title_size": 28,
+            "body_size": 16
+          }
+        },
+        "beneficio_2": {
+          "type": "beneficio",
+          "settings": {
+        "title": "Llevá tu rutina con vos",
+        "body": "Formato compacto para guardar en el neceser, el bolso o el cajón de la oficina.",
+            "text_align": "left",
+            "title_size": 28,
+            "body_size": 16
+          }
+        },
+        "beneficio_3": {
+          "type": "beneficio",
+          "settings": {
+        "title": "La carga, siempre a la vista",
+        "body": "La pantalla frontal muestra el porcentaje antes de que salgas.",
+            "text_align": "left",
+            "title_size": 28,
+            "body_size": 16
+          }
+        }
+      },
+      "block_order": [
+        "beneficio_1",
+        "beneficio_2",
+        "beneficio_3"
+      ],
+      "settings": {
+    "kicker": "PENSADA PARA EL DÍA A DÍA",
+    "headline": "Lo esencial, en un formato chico.",
+    "body": "Una herramienta simple para mantener el retoque al día sin sumar una máquina grande a tu rutina.",
+        "text_align": "center",
+        "heading_size": 62,
+        "body_size": 18,
+    "card_height": 480,
+    "gap": 18,
+    "tilt": 3,
+        "background": "#F7FAFC",
+        "padding_top": 112,
+        "padding_bottom": 128
+      }
+    },
+    "mt_specs": {
+      "type": "mt-specs",
+      "blocks": {
+        "s1": {
+          "type": "spec",
+          "settings": {
+            "icon": "cabezal",
+            "title": "Doble cabezal autoafilable",
+            "body": "Dos discos de corte en un solo cabezal. El fabricante los describe como autoafilables.",
+            "value": "2 cabezales",
+            "show_pin": true,
+            "pin_x": 40,
+            "pin_y": 13
+          }
+        },
+        "s2": {
+          "type": "spec",
+          "settings": {
+            "icon": "flotante",
+            "title": "Cabezales flotantes 0°–6°",
+            "body": "Cada cabezal se inclina por su cuenta para acompañar el mentón, la mandíbula y el cuello sin que tengas que forzar la muñeca.",
+            "value": "Hasta 6° de giro",
+            "show_pin": true,
+            "pin_x": 63,
+            "pin_y": 15
+          }
+        },
+        "s3": {
+          "type": "spec",
+          "settings": {
+            "icon": "pantalla",
+            "title": "Pantalla circular con % de carga",
+            "body": "El frente muestra el porcentaje que queda para que sepas cuándo conviene cargarla.",
+            "value": "Lectura en tiempo real",
+            "show_pin": true,
+            "pin_x": 52,
+            "pin_y": 62
+          }
+        },
+        "s4": {
+          "type": "spec",
+          "settings": {
+            "icon": "metal",
+            "title": "Cuerpo con acabado metálico",
+            "body": "Una terminación sobria pensada para acompañar el uso cotidiano.",
+            "show_pin": true,
+            "pin_x": 29,
+            "pin_y": 46
+          }
+        },
+        "s5": {
+          "type": "spec",
+          "settings": {
+            "icon": "usb",
+            "title": "Carga por USB",
+            "body": "El mismo cable que ya tenés para el celular. Sirve un cargador de pared, la notebook o una batería portátil.",
+            "value": "Sin cargador propietario",
+            "show_pin": false,
+            "pin_x": 50,
+            "pin_y": 50
+          }
+        },
+        "s6": {
+          "type": "spec",
+          "settings": {
+            "icon": "agua",
+            "title": "Limpieza con agua",
+            "body": "Los cabezales se retiran y se enjuagan bajo el agua. No sumerjas el cuerpo completo.",
+            "show_pin": false,
+            "pin_x": 50,
+            "pin_y": 50
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "settings": {
+        "anchor": "ficha",
+        "kicker": "POR DENTRO Y POR FUERA",
+        "headline": "Cada detalle, a la vista.",
+    "body": "Tocá los puntos en celular o pasá el cursor en computadora para ver cada detalle.",
+        "text_align": "left",
+        "heading_size": 62,
+        "body_size": 18,
+        "image_alt": "Afeitadora Helio Mini vista de frente con sus piezas señaladas",
+        "show_stats": true,
+        "stat_1_number": "2",
+        "stat_1_suffix": "×",
+        "stat_1_label": "cabezales autoafilables",
+        "stat_2_number": "6",
+        "stat_2_suffix": "°",
+        "stat_2_label": "de inclinación para seguir el contorno",
+        "stat_3_number": "100",
+        "stat_3_suffix": "%",
+        "stat_3_label": "de carga visible en la pantalla",
+        "stat_4_number": "2",
+        "stat_4_suffix": "",
+        "stat_4_label": "colores: plata y verde",
+        "stats_align": "center",
+        "stat_number_size": 60,
+        "stat_label_size": 15,
+        "background": "#080A0F",
+        "padding_top": 120,
+        "padding_bottom": 128
+      }
+    },
+    "mt_angulos": {
+      "type": "mt-angulos",
+      "blocks": {
+        "punto_1": {
+          "type": "punto",
+          "settings": {
+            "tag": "DOBLE CABEZAL",
+            "title": "Dos superficies de corte",
+            "body": "Dos discos autoafilables dispuestos lado a lado dentro de un cuerpo que cabe en la palma.",
+            "title_size": 21,
+            "body_size": 15
+          }
+        },
+        "punto_2": {
+          "type": "punto",
+          "settings": {
+            "tag": "ENERGÍA",
+            "title": "Cargala desde un puerto USB",
+            "body": "La conexión USB simplifica la carga en casa, en el trabajo o durante un viaje.",
+            "title_size": 21,
+            "body_size": 15
+          }
+        },
+        "punto_3": {
+          "type": "punto",
+          "settings": {
+            "tag": "DISEÑO",
+            "title": "Pantalla y controles al frente",
+            "body": "Porcentaje de carga visible, botón lateral accesible y lectura directa desde el frente.",
+            "title_size": 21,
+            "body_size": 15
+          }
+        }
+      },
+      "block_order": [
+        "punto_1",
+        "punto_2",
+        "punto_3"
+      ],
+      "settings": {
+        "image_alt": "Afeitadora Helio Mini observada desde tres ángulos",
+        "sticky": true,
+        "image_height": 520,
+        "kicker": "DISEÑADA DESDE TODOS LOS ÁNGULOS",
+        "headline": "Doble cabezal. Formato compacto.",
+        "body": "Una arquitectura de doble cabezal dentro de un cuerpo que cabe en la palma. Lista para el baño, el bolso o el próximo viaje.",
+        "text_align": "left",
+        "heading_size": 58,
+        "body_size": 18,
+        "stat_1_number": 2,
+        "stat_1_suffix": "×",
+        "stat_1_label": "cabezales de corte",
+        "stat_2_number": 2,
+        "stat_2_suffix": "",
+        "stat_2_label": "colores para elegir",
+        "background": "#080A0F",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "mt_video": {
+      "type": "mt-video",
+      "blocks": {
+        "p1": {
+          "type": "paso",
+          "settings": {
+            "title": "Encendé",
+            "body": "Un toque en el botón lateral. La pantalla se ilumina y te muestra el porcentaje de carga exacto."
+          }
+        },
+        "p2": {
+          "type": "paso",
+          "settings": {
+            "title": "Deslizá",
+            "body": "Movimientos cortos y circulares. Los cabezales se inclinan solos para seguir el contorno de la cara."
+          }
+        },
+        "p3": {
+          "type": "paso",
+          "settings": {
+            "title": "Enjuagá",
+        "body": "Retirá los cabezales, enjuagalos bajo el agua y dejalos secar antes del próximo uso."
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "anchor": "como-funciona",
+    "kicker": "CÓMO SE USA",
+    "headline": "Tres gestos. Una rutina más simple.",
+    "body": "Encendé, deslizá y limpiá los cabezales. Todo lo importante, explicado sin vueltas.",
+    "caption": "Vistas del producto",
+    "preview_alt": "Tres vistas de la afeitadora portátil: frente, cabezales y formato de viaje",
+        "ratio": "16 / 9",
+        "ratio_mobile": "4 / 5",
+        "heading_size": 58,
+        "background": "#080A0F",
+        "padding_top": 112,
+        "padding_bottom": 120
+      }
+    },
+    "mt_pasos": {
+      "type": "mt-pasos",
+      "blocks": {
+        "paso_1": {
+          "type": "paso",
+          "settings": {
+            "number": "01",
+            "title": "Cargá",
+            "body": "Conectala por USB y comprobá el porcentaje desde su pantalla frontal.",
+            "text_align": "left",
+            "title_size": 28,
+            "body_size": 15
+          }
+        },
+        "paso_2": {
+          "type": "paso",
+          "settings": {
+            "number": "02",
+            "title": "Afeitá",
+            "body": "Deslizá los dos cabezales con movimientos suaves sobre la barba corta.",
+            "text_align": "left",
+            "title_size": 28,
+            "body_size": 15
+          }
+        },
+        "paso_3": {
+          "type": "paso",
+          "settings": {
+            "number": "03",
+            "title": "Limpiá",
+        "body": "Retirá y enjuagá los cabezales. No sumerjas el cuerpo completo.",
+            "text_align": "left",
+            "title_size": 28,
+            "body_size": 15
+          }
+        }
+      },
+      "block_order": [
+        "paso_1",
+        "paso_2",
+        "paso_3"
+      ],
+      "settings": {
+        "kicker": "TU RUTINA, SIMPLIFICADA",
+        "headline": "Lista en tres movimientos.",
+        "body": "Cargá, afeitá y limpiá. Sin una rutina complicada ni accesorios innecesarios.",
+        "text_align": "left",
+        "heading_size": 62,
+        "body_size": 17,
+        "gap": 20,
+        "background": "#EDF2F6",
+        "padding_top": 120,
+        "padding_bottom": 128
+      }
+    },
+    "mt_carrusel": {
+      "type": "mt-carrusel",
+      "blocks": {
+        "t1": {
+          "type": "toma",
+          "settings": {
+            "tag": "FRENTE",
+        "title": "Carga visible, sin sorpresas",
+        "body": "El porcentaje aparece al frente para que sepas cuándo cargarla."
+          }
+        },
+        "t2": {
+          "type": "toma",
+          "settings": {
+            "tag": "MACRO",
+        "title": "Dos cabezales de corte",
+        "body": "Dos superficies de corte para el retoque de barba corta."
+          }
+        },
+        "t3": {
+          "type": "toma",
+          "settings": {
+            "tag": "COLOR",
+        "title": "Dos terminaciones",
+        "body": "Plateado o verde menta: elegís el color que preferís."
+          }
+        },
+        "t4": {
+          "type": "toma",
+          "settings": {
+            "tag": "PERFIL",
+        "title": "Formato compacto",
+        "body": "Un tamaño pensado para guardar sin ocupar de más."
+          }
+        },
+        "t5": {
+          "type": "toma",
+          "settings": {
+            "tag": "EN VIAJE",
+        "title": "Lista para llevar",
+        "body": "Para tener a mano en el neceser, el bolso o la oficina."
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5"
+      ],
+      "settings": {
+        "anchor": "galeria",
+    "kicker": "MIRALA DE CERCA",
+    "headline": "Detalles que hacen la diferencia.",
+    "body": "Una vista clara del frente, los cabezales, las terminaciones y el formato de viaje.",
+    "mobile_hint": "Deslizá con el dedo para ver cada detalle.",
+    "slide_width": 300,
+        "ratio": "4 / 5",
+        "show_bar": true,
+        "heading_size": 56,
+        "background": "#111827",
+        "padding_top": 112,
+        "padding_bottom": 120
+      }
+    },
+    "mt_viaje": {
+      "type": "mt-viaje",
+      "settings": {
+        "image_alt": "Afeitadora Helio Mini junto a objetos de viaje",
+        "reverse": false,
+        "kicker": "HECHA PARA MOVERSE",
+        "headline": "Tu rutina no ocupa lugar.",
+        "body": "En el baño de casa, en el neceser o en una habitación de hotel: Helio Mini está pensada para estar lista sin cargar con más de la cuenta.",
+        "check_1": "Formato compacto para bolso o neceser",
+        "check_2": "Se carga con el mismo cable del celular",
+        "check_3": "Cabezales lavables bajo el agua",
+        "button_label": "Quiero la mía",
+        "button_link": "shopify://products/mini-usb-electric-shaver-long-lasting-portable-car-household-trimmer-rechargeable-washable-barber-hair-shaver-for-men-rv-hotel",
+        "text_align": "left",
+        "heading_size": 60,
+        "body_size": 17,
+        "background": "#F7FAFC",
+        "padding_top": 112,
+        "padding_bottom": 120
+      }
+    },
+    "mt_razones": {
+      "type": "mt-resenas",
+      "blocks": {
+        "razon_1": {
+          "type": "razon",
+          "settings": {
+            "tag": "RUTINA DIARIA",
+            "quote": "Un repaso rápido antes de salir, sin preparar todo el baño.",
+            "source": "Todos los días",
+            "detail": "en casa"
+          }
+        },
+        "razon_2": {
+          "type": "razon",
+          "settings": {
+            "tag": "VIAJES",
+            "quote": "El formato justo para llevar una solución real dentro del neceser.",
+            "source": "Equipaje liviano",
+            "detail": "en movimiento"
+          }
+        },
+        "razon_3": {
+          "type": "razon",
+          "settings": {
+            "tag": "TRABAJO",
+            "quote": "Una forma simple de llegar prolijo a una reunión o a un evento.",
+            "source": "Último ajuste",
+            "detail": "antes de entrar"
+          }
+        },
+        "razon_4": {
+          "type": "razon",
+          "settings": {
+            "tag": "DISEÑO",
+            "quote": "Pantalla con el porcentaje de carga y un botón. Nada más que aprender.",
+            "source": "Control directo",
+            "detail": "sin distracciones"
+          }
+        }
+      },
+      "block_order": [
+        "razon_1",
+        "razon_2",
+        "razon_3",
+        "razon_4"
+      ],
+      "settings": {
+    "kicker": "CUANDO EL TIEMPO APREMIA",
+    "headline": "Para los momentos en que un retoque suma.",
+    "body": "Una herramienta compacta para resolver la barba corta sin alterar el resto del día.",
+        "text_align": "left",
+        "heading_size": 60,
+        "body_size": 17,
+        "card_text_size": 20,
+        "speed": 46,
+        "background": "#111827",
+        "padding_top": 112,
+        "padding_bottom": 96
+      }
+    },
+    "mt_nosotros": {
+      "type": "mt-nosotros",
+      "blocks": {
+        "pi1": {
+          "type": "pilar",
+          "settings": {
+            "icon": "lupa",
+            "title": "Un producto, no un catálogo",
+            "body": "Comparamos modelos hasta quedarnos con uno solo por categoría: el que usaríamos nosotros."
+          }
+        },
+        "pi2": {
+          "type": "pilar",
+          "settings": {
+            "icon": "escudo",
+            "title": "Solo decimos lo que podemos comprobar",
+            "body": "Si un dato no lo confirma el fabricante, no lo publicamos. Ni cifras infladas ni promesas raras."
+          }
+        },
+        "pi3": {
+          "type": "pilar",
+          "settings": {
+            "icon": "chat",
+            "title": "Te contesta una persona",
+            "body": "Escribinos y responde alguien del equipo. Antes y después de la compra."
+          }
+        }
+      },
+      "block_order": [
+        "pi1",
+        "pi2",
+        "pi3"
+      ],
+      "settings": {
+        "anchor": "nosotros",
+        "kicker": "QUIÉNES ESTAMOS DETRÁS",
+        "headline": "Elegimos pocos productos. Y los elegimos bien.",
+        "lead": "Helio nació de una idea simple: en vez de vender mil cosas, vender una que valga la pena y explicarla de verdad.",
+        "text": "<p>Somos un equipo chico en Buenos Aires. Probamos, comparamos y descartamos hasta quedarnos con un solo producto por categoría: el que usaríamos nosotros todos los días.</p><p>No inventamos promesas ni inflamos características. Si un dato no lo podemos comprobar, no lo escribimos. Preferimos que compres sabiendo exactamente qué recibís, y que si algo no funciona nos lo digas directamente.</p>",
+        "signature": "El equipo de Helio — Buenos Aires, Argentina",
+        "image_alt": "Helio Mini sobre un escritorio junto a objetos personales",
+        "reverse": false,
+        "badge_title": "Un producto. Cero relleno.",
+        "badge_body": "Preferimos una página honesta antes que un catálogo interminable.",
+        "heading_size": 56,
+        "background": "#080A0F",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "mt_confianza": {
+      "type": "mt-confianza",
+      "blocks": {
+        "c1": {
+          "type": "item",
+          "settings": {
+            "icon": "envio",
+            "title": "Envío a todo el país",
+            "body": "Con número de seguimiento desde que sale hasta que llega a tu puerta."
+          }
+        },
+        "c2": {
+          "type": "item",
+          "settings": {
+            "icon": "escudo",
+            "title": "Llega fallada, la cambiamos",
+            "body": "Si el producto viene con un defecto, escribinos y lo resolvemos."
+          }
+        },
+        "c3": {
+          "type": "item",
+          "settings": {
+            "icon": "tarjeta",
+            "title": "Pago protegido",
+            "body": "El cobro lo procesa Shopify con cifrado. Tus datos de tarjeta no pasan por nosotros."
+          }
+        },
+        "c4": {
+          "type": "item",
+          "settings": {
+            "icon": "chat",
+            "title": "Atención de verdad",
+            "body": "Consultas por correo, respondidas por una persona del equipo."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "background": "#0B1018",
+        "padding_top": 88,
+        "padding_bottom": 96
+      }
+    },
+    "mt_faq": {
+      "type": "mt-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cuánto dura la batería?",
+            "answer": "Se recarga por USB y la pantalla frontal te muestra el porcentaje exacto que queda, así que nunca te agarra por sorpresa. Estamos confirmando la autonomía exacta con el fabricante y la publicamos acá en cuanto la tengamos por escrito: preferimos no darte un número que no podamos sostener."
+          }
+        },
+        "faq_2": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cómo se carga?",
+            "answer": "Con el mismo cable USB que ya usás para el celular. Podés enchufarla a un cargador de pared, a la notebook o a una batería portátil. No necesita un cargador propietario ni una base especial."
+          }
+        },
+        "faq_3": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Se puede limpiar con agua?",
+            "answer": "Sí: los cabezales se retiran y se enjuagan bajo el agua corriente para sacar los restos. Seguí siempre las indicaciones del fabricante y evitá sumergir el cuerpo completo del equipo."
+          }
+        },
+        "faq_4": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Para qué largo de barba funciona mejor?",
+            "answer": "Está pensada para barba corta y retoques frecuentes: el doble cabezal autoafilable cubre bien el mentón, la mandíbula y el cuello. Si la barba está larga, recortala primero y después usá Helio Mini para el acabado."
+          }
+        },
+        "faq_5": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Qué es eso de los cabezales flotantes?",
+            "answer": "Cada uno de los dos cabezales está montado sobre una base que se inclina hasta 6 grados. Eso hace que sigan la curva de la cara sin que tengas que girar la muñeca ni apretar contra la piel."
+          }
+        },
+        "faq_6": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Qué colores hay y en qué se diferencian?",
+            "answer": "Plateado y verde menta. Es solo la terminación exterior: el interior, los cabezales y la pantalla son idénticos en los dos. Elegís el color desde el selector de la página de producto."
+          }
+        },
+        "faq_7": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Cuánto tarda el envío?",
+            "answer": "Enviamos a todo el país con seguimiento. Los plazos y el costo se calculan al finalizar la compra según tu dirección, antes de que confirmes el pago."
+          }
+        },
+        "faq_8": {
+          "type": "pregunta",
+          "settings": {
+            "question": "¿Y si me llega con un problema?",
+            "answer": "Escribinos contando qué pasó y te lo resolvemos. Si el producto llegó con un defecto de fábrica, lo cambiamos."
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8"
+      ],
+      "settings": {
+        "kicker": "SIN DUDAS",
+        "headline": "Lo importante, antes de elegir.",
+        "body": "Reunimos las respuestas esenciales para que sepas exactamente qué esperar de Helio Mini.",
+        "open_first": true,
+        "text_align": "left",
+        "heading_size": 58,
+        "body_size": 17,
+        "question_size": 22,
+        "answer_size": 16,
+        "background": "#EDF2F6",
+        "padding_top": 112,
+        "padding_bottom": 120
+      }
+    },
+    "mt_cta": {
+      "type": "mt-cta",
+      "settings": {
+        "image_position": "center center",
+        "min_height": 560,
+        "kicker": "MENOS TIEMPO. MÁS PROLIJO.",
+        "headline": "Tu próximo afeitado cabe en la mano.",
+        "body": "Elegí tu color y llevá tu rutina de afeitado a cualquier parte.",
+        "button_label": "Comprar Helio Mini",
+        "button_link": "shopify://products/mini-usb-electric-shaver-long-lasting-portable-car-household-trimmer-rechargeable-washable-barber-hair-shaver-for-men-rv-hotel",
+        "text_align": "left",
+        "heading_size": 64,
+        "body_size": 18,
+        "background": "#080A0F",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "mt_hero",
+    "mt_banda",
+    "mt_beneficios",
+    "mt_specs",
+    "mt_angulos",
+    "mt_video",
+    "mt_pasos",
+    "mt_carrusel",
+    "mt_viaje",
+    "mt_razones",
+    "mt_nosotros",
+    "mt_confianza",
+    "mt_faq",
+    "mt_cta"
+  ]
+}

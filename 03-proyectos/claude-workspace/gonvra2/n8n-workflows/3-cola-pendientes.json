@@ -1,0 +1,100 @@
+{
+  "name": "GONVRA — Cola IG: avisar lo que espera tu OK",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [ { "field": "minutes", "minutesInterval": 30 } ] }
+      },
+      "id": "sch-3",
+      "name": "Cada 30 min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "command": "bash /home/matiigonzz/.hermes/scripts/gonvra-pendientes.sh"
+      },
+      "id": "cmd-3",
+      "name": "Mirar 1-PENDIENTE",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "onError": "continueErrorOutput",
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "version": 2 },
+          "conditions": [
+            {
+              "id": "hay-algo",
+              "leftValue": "={{ $json.stdout }}",
+              "rightValue": "",
+              "operator": { "type": "string", "operation": "notEmpty", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-3",
+      "name": "Hay algo esperando?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "chat_id", "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}" },
+            { "name": "text", "value": "={{ $json.stdout }}" }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "id": "tg-3",
+      "name": "Pedirte el OK",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "position": [680, -100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "chat_id", "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}" },
+            { "name": "text", "value": "=GONVRA: fallo al revisar la carpeta de pendientes.\n{{ $json.error || $json.stderr || 'sin detalle' }}" }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "id": "tg-3e",
+      "name": "Avisar el fallo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 160]
+    }
+  ],
+  "connections": {
+    "Cada 30 min": { "main": [[{ "node": "Mirar 1-PENDIENTE", "type": "main", "index": 0 }]] },
+    "Mirar 1-PENDIENTE": {
+      "main": [
+        [{ "node": "Hay algo esperando?", "type": "main", "index": 0 }],
+        [{ "node": "Avisar el fallo", "type": "main", "index": 0 }]
+      ]
+    },
+    "Hay algo esperando?": { "main": [[{ "node": "Pedirte el OK", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xmeml>
+<xmeml version="5">
+  <sequence id="TT-3-Que-Trae">
+    <name>TT-3-Que-Trae</name>
+    <duration>360</duration>
+    <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+    <media>
+      <video>
+        <format><samplecharacteristics>
+          <width>1080</width><height>1920</height>
+          <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+        </samplecharacteristics></format>
+        <track>
+          <clipitem id="clip-1">
+            <name>Hand_picking_up_comb_guard_202609062254.mp4</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>0</start>
+            <end>77</end>
+            <in>0</in>
+            <out>77</out>
+            <file id="file-1">
+              <name>Hand_picking_up_comb_guard_202609062254.mp4</name>
+              <pathurl>file:///home/matiigonzz/Descargas/videos para la tienda/Hand_picking_up_comb_guard_202609062254.mp4</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="clip-2">
+            <name>Hand_picking_up_comb_guard_202609062254.mp4</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>77</start>
+            <end>144</end>
+            <in>77</in>
+            <out>144</out><file id="file-1"/>
+          </clipitem>
+          <clipitem id="clip-3">
+            <name>Hands_brushing_blade_and_pluggin…_202609071553.mp4</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>144</start>
+            <end>221</end>
+            <in>5</in>
+            <out>82</out>
+            <file id="file-2">
+              <name>Hands_brushing_blade_and_pluggin…_202609071553.mp4</name>
+              <pathurl>file:///home/matiigonzz/Descargas/Hands_brushing_blade_and_pluggin…_202609071553.mp4</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="clip-4">
+            <name>Hands_brushing_blade_and_pluggin…_202609071553.mp4</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>221</start>
+            <end>307</end>
+            <in>110</in>
+            <out>197</out><file id="file-2"/>
+          </clipitem>
+          <clipitem id="clip-5">
+            <name>endcard.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>307</start>
+            <end>360</end>
+            <in>0</in>
+            <out>53</out>
+            <file id="file-3">
+              <name>endcard.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/endcard.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+        </track>
+        <track>
+          <clipitem id="card-1">
+            <name>t3_c1.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>0</start>
+            <end>77</end>
+            <in>0</in>
+            <out>77</out>
+            <file id="card-file-1">
+              <name>t3_c1.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/t3_c1.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="card-2">
+            <name>t3_c2.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>77</start>
+            <end>144</end>
+            <in>0</in>
+            <out>67</out>
+            <file id="card-file-2">
+              <name>t3_c2.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/t3_c2.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="card-3">
+            <name>t3_c3.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>144</start>
+            <end>221</end>
+            <in>0</in>
+            <out>77</out>
+            <file id="card-file-3">
+              <name>t3_c3.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/t3_c3.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+          <clipitem id="card-4">
+            <name>t3_c4.png</name>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>221</start>
+            <end>307</end>
+            <in>0</in>
+            <out>86</out>
+            <file id="card-file-4">
+              <name>t3_c4.png</name>
+              <pathurl>file:///home/matiigonzz/Claude/gonvra-edits/carteles/t3_c4.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics>
+                <width>1080</width><height>1920</height>
+              </samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+        </track>
+      </video>
+    </media>
+  </sequence>
+</xmeml>

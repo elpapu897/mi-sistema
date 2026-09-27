@@ -1,0 +1,10 @@
+# Competidores a vigilar — uno por línea, solo el dominio.
+# Tienen que ser tiendas Shopify (se prueba con /products.json).
+# Para agregar uno: escribilo abajo y listo, el espía lo toma solo.
+#
+# Encontrados por ESPIA el 22/09:
+https://myhuevos.com.ar
+#
+# Para probar si una tienda sirve, abrí en el navegador:
+#   https://LATIENDA.com/products.json
+# Si muestra un texto con productos y precios, sirve. Si da 404, no es Shopify.

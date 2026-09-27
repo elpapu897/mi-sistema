@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sound Blue Project — Escuchar · Aprender</title>
+<meta name="description" content="Proyecto STEAM de la EEM N° 5 D.E. 15 «Monseñor Enrique Angelelli» (Saavedra, CABA): contaminación acústica escolar, autismo e inclusión. Semáforo de ruido con micro:bit, el cuento «El Oso Milo» y auriculares en 3D.">
+<meta name="theme-color" content="#0b3fa8">
+<meta property="og:title" content="Sound Blue Project — Escuchar · Aprender">
+<meta property="og:description" content="Contaminación acústica escolar, autismo e inclusión. Un semáforo de ruido con micro:bit, un cuento y una campaña, hechos por estudiantes de secundaria.">
+<meta property="og:image" content="assets/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/favicon.png">
+<style>
+/* ==========================================================================
+   SOUND BLUE PROJECT — tema oscuro
+   Plano y legible, pero con la iluminación del semáforo que es la marca
+   visual del proyecto. Sin degradados en los títulos ni animaciones de fondo.
+   ========================================================================== */
+:root{
+  --fondo:#0b1220;
+  --fondo-2:#101a2e;
+  --panel:#16203a;
+  --panel-2:#1c2947;
+  --tinta:#e9eefb;
+  --tinta-2:#a8b6d1;
+  --tinta-3:#7d8caa;
+  --azul:#5b9bff;
+  --azul-osc:#3b7de0;
+  --azul-claro:#1a2c50;
+  --verde:#4ade80;
+  --verde-luz:#22c55e;
+  --ambar:#fbbf24;
+  --ambar-luz:#f5c518;
+  --rojo:#fb7185;
+  --rojo-luz:#ef4444;
+  --linea:#243352;
+  --linea-2:#1b2742;
+  --max:1120px;
+  --r:10px;
+  --fuente:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+/* el atributo hidden debe ganarle a cualquier display: flex/grid del CSS */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--fondo);color:var(--tinta);font-family:var(--fuente);
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--azul)}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px;border-radius:4px}
+.saltar{position:absolute;left:-9999px;background:var(--azul);color:#08122a;padding:12px 18px;z-index:999;font-weight:700}
+.saltar:focus{left:0;top:0}
+h1,h2,h3,h4{line-height:1.2;margin:0 0 .5em;font-weight:750;letter-spacing:-.015em}
+h2{font-size:clamp(1.6rem,3.6vw,2.3rem)}
+h3{font-size:clamp(1.15rem,2.2vw,1.4rem)}
+h4{font-size:1.02rem;margin-bottom:.35em}
+p{margin:0 0 1em}
+.env{width:min(100% - 36px,var(--max));margin-inline:auto}
+
+/* ---------- secciones numeradas ---------- */
+.seccion{padding:clamp(46px,7vw,80px) 0;border-top:1px solid var(--linea)}
+.seccion.alt{background:var(--fondo-2)}
+.rotulo{display:flex;align-items:baseline;gap:11px;margin:0 0 12px;
+  font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-3)}
+.rotulo b{font-size:1.45rem;letter-spacing:-.02em;color:var(--azul);font-variant-numeric:tabular-nums;line-height:1}
+.bajada{font-size:clamp(1rem,1.5vw,1.08rem);color:var(--tinta-2);max-width:68ch}
+
+/* ---------- piezas ---------- */
+.tarjeta{background:var(--panel);border:1px solid var(--linea);border-radius:var(--r);padding:20px}
+.seccion.alt .tarjeta{background:var(--panel-2)}
+.tarjeta p{font-size:.91rem;color:var(--tinta-2);margin:0}
+.tarjeta p + p{margin-top:9px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(255px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(225px,1fr))}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:48px;padding:12px 22px;border-radius:8px;font:inherit;font-weight:700;font-size:.96rem;
+  text-decoration:none;border:1.5px solid transparent;cursor:pointer}
+.btn-1{background:var(--azul);color:#08122a}
+.btn-1:hover{background:#7ab0ff}
+.btn-2{background:transparent;color:var(--azul);border-color:#31456e}
+.btn-2:hover{background:var(--azul-claro)}
+.btn-3{background:transparent;color:var(--tinta-2);border-color:var(--linea);min-height:40px;padding:8px 15px;font-size:.85rem}
+.btn-3:hover{background:var(--panel-2);color:var(--tinta)}
+kbd{font:inherit;font-size:.85em;background:var(--panel-2);border:1px solid var(--linea);
+  border-bottom-width:2px;border-radius:5px;padding:1px 6px}
+
+/* ---------- navegación ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(11,18,32,.94);border-bottom:1px solid var(--linea);
+  backdrop-filter:saturate(140%) blur(8px)}
+.nav-in{display:flex;align-items:center;gap:13px;width:min(100% - 28px,var(--max));margin-inline:auto;padding:9px 0}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tinta);flex-shrink:0}
+.marca img{width:36px;height:36px;border-radius:8px}
+.marca b{display:block;font-size:.94rem;line-height:1.15}
+.marca span{font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:var(--tinta-3)}
+.nav-links{display:flex;gap:2px;list-style:none;margin:0;padding:0;overflow-x:auto;flex:1;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{display:block;padding:9px 10px;border-radius:7px;text-decoration:none;color:var(--tinta-2);
+  font-size:.84rem;font-weight:600;white-space:nowrap}
+.nav-links a:hover{background:var(--panel);color:var(--tinta)}
+.nav-links a.on{background:var(--azul-claro);color:#cfe0ff}
+.nav-acc{display:flex;gap:6px;flex-shrink:0}
+.chip-btn{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 12px;border-radius:7px;
+  background:var(--panel);border:1px solid var(--linea);color:var(--tinta-2);font:inherit;font-size:.79rem;
+  font-weight:700;cursor:pointer;white-space:nowrap}
+.chip-btn:hover{background:var(--panel-2);color:var(--tinta)}
+.chip-btn .pip{width:9px;height:9px;border-radius:50%;background:#41527a}
+body.calma .chip-btn.calma{background:#14361f;border-color:#2f7a48;color:#a7f3c0}
+body.calma .chip-btn.calma .pip{background:var(--verde);box-shadow:0 0 8px var(--verde)}
+body.presentando .chip-btn.pres{background:var(--azul);border-color:var(--azul);color:#08122a}
+body.presentando .chip-btn.pres .pip{background:#08122a}
+
+/* ---------- portada ---------- */
+.portada{background:var(--fondo-2);padding:clamp(32px,5vw,58px) 0 clamp(38px,6vw,66px)}
+.portada-in{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,50px);align-items:center}
+.portada h1{font-size:clamp(2rem,5.2vw,3.2rem);letter-spacing:-.03em;margin-bottom:.3em}
+.kicker{font-size:.77rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--azul);margin:0 0 12px}
+.pitch{font-size:clamp(1.04rem,1.8vw,1.2rem);color:var(--tinta-2);max-width:50ch;margin-bottom:16px}
+.escuela{font-size:.92rem;color:var(--tinta-3);max-width:52ch;padding-left:14px;
+  border-left:3px solid var(--azul-claro);margin-bottom:24px}
+.portada-btns{display:flex;gap:10px;flex-wrap:wrap}
+.portada-logo img{border-radius:14px;border:1px solid var(--linea);width:100%}
+.portada-logo{animation:flotar-logo 7s ease-in-out infinite}
+
+@keyframes flotar-logo{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes respirar-luz{0%,100%{filter:brightness(1)}50%{filter:brightness(1.13)}}
+@keyframes respirar-led{0%,100%{opacity:.84}50%{opacity:1}}
+@keyframes barrido{0%,32%{transform:translateX(-160%)}68%,100%{transform:translateX(330%)}}
+
+/* ---------- recorrido ---------- */
+.pasos{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.paso{display:grid;grid-template-columns:40px 1fr auto auto;gap:13px;align-items:start;
+  background:var(--panel);border:1px solid var(--linea);border-radius:var(--r);padding:14px 15px}
+.seccion.alt .paso{background:var(--panel-2)}
+.paso-n{width:32px;height:32px;border-radius:8px;background:var(--azul-claro);color:#cfe0ff;
+  display:grid;place-items:center;font-weight:800;font-size:.92rem;font-variant-numeric:tabular-nums}
+.paso h4{margin:0 0 2px}
+.paso p{margin:0;font-size:.9rem;color:var(--tinta-2)}
+.paso .min{font-size:.75rem;font-weight:700;color:var(--tinta-3);white-space:nowrap;padding-top:7px}
+.paso .ir{font-size:.85rem;font-weight:700;text-decoration:none;white-space:nowrap;padding-top:6px}
+
+/* ---------- barra de presentación ---------- */
+#presbar{position:fixed;left:0;right:0;bottom:0;z-index:70;background:#0a1730;color:#fff;
+  display:none;padding:10px 0;border-top:1px solid #2a3f66}
+body.presentando #presbar{display:block}
+body.presentando{padding-bottom:120px}
+.pres-in{width:min(100% - 28px,var(--max));margin-inline:auto;display:grid;
+  grid-template-columns:auto 1fr auto;gap:13px;align-items:center}
+.pres-n{background:rgba(91,155,255,.18);border-radius:8px;padding:7px 12px;font-weight:800;
+  font-size:.84rem;white-space:nowrap;color:#cfe0ff}
+.pres-txt b{display:block;font-size:.97rem;line-height:1.3}
+.pres-txt span{display:block;font-size:.85rem;color:#a8b6d1;line-height:1.4}
+.pres-btns{display:flex;gap:6px}
+.pres-btns button{min-width:44px;min-height:44px;border-radius:8px;border:1px solid #334873;
+  background:rgba(255,255,255,.07);color:#fff;font:inherit;font-size:1.05rem;font-weight:700;cursor:pointer}
+.pres-btns button:hover{background:var(--azul);color:#08122a}
+.pres-btns button:disabled{opacity:.3;cursor:not-allowed}
+
+/* ---------- datos ---------- */
+.dato{background:var(--panel);border:1px solid var(--linea);border-radius:var(--r);padding:18px}
+.seccion.alt .dato{background:var(--panel-2)}
+.dato .v{font-size:2.2rem;font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--azul)}
+.dato .v small{font-size:.88rem;font-weight:700;color:var(--tinta-3);margin-left:3px}
+.dato h4{margin:10px 0 4px}
+.dato p{margin:0;font-size:.88rem;color:var(--tinta-2)}
+
+/* ---------- semáforo (con la iluminación de siempre) ---------- */
+.sem-wrap{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:start}
+.semaforo{background:#0a0f1c;border:1px solid var(--linea);border-radius:16px;padding:20px 16px;
+  display:flex;flex-direction:column;gap:15px;align-items:center;position:relative;isolation:isolate;
+  transition:border-color .45s ease,box-shadow .45s ease}
+.semaforo::before{content:"";position:absolute;inset:-18px;border-radius:22px;z-index:-1;opacity:0;
+  pointer-events:none;filter:blur(20px);transition:opacity .45s ease,background .45s ease}
+.semaforo[data-estado="verde"]{border-color:rgba(74,222,128,.65);box-shadow:inset 0 0 34px rgba(34,197,94,.14),0 0 36px rgba(34,197,94,.18)}
+.semaforo[data-estado="verde"]::before{opacity:1;background:radial-gradient(circle at 50% 20%,rgba(74,222,128,.32),transparent 66%)}
+.semaforo[data-estado="amarillo"]{border-color:rgba(251,191,36,.65);box-shadow:inset 0 0 34px rgba(245,197,24,.13),0 0 34px rgba(245,197,24,.16)}
+.semaforo[data-estado="amarillo"]::before{opacity:1;background:radial-gradient(circle at 50% 45%,rgba(251,191,36,.28),transparent 66%)}
+.semaforo[data-estado="rojo"]{border-color:rgba(251,113,133,.7);box-shadow:inset 0 0 34px rgba(239,68,68,.14),0 0 36px rgba(239,68,68,.17)}
+.semaforo[data-estado="rojo"]::before{opacity:1;background:radial-gradient(circle at 50% 68%,rgba(251,113,133,.28),transparent 66%)}
+.luz{width:76px;aspect-ratio:1;border-radius:50%;background:#141c30;border:2px solid #202c48;
+  display:grid;place-items:center;font-size:.64rem;font-weight:800;letter-spacing:.07em;
+  text-transform:uppercase;color:#4a5878;
+  transition:background .3s,box-shadow .3s,color .3s,border-color .3s,transform .3s}
+.luz.on{color:rgba(0,0,0,.7);transform:scale(1.04);animation:respirar-luz 2.8s ease-in-out infinite}
+.luz.v.on{background:radial-gradient(circle at 35% 30%,#86efac,var(--verde-luz));
+  box-shadow:0 0 42px 5px rgba(34,197,94,.55);border-color:#86efac}
+.luz.a.on{background:radial-gradient(circle at 35% 30%,#fde68a,var(--ambar-luz));
+  box-shadow:0 0 42px 5px rgba(245,197,24,.55);border-color:#fde68a}
+.luz.r.on{background:radial-gradient(circle at 35% 30%,#fca5a5,var(--rojo-luz));
+  box-shadow:0 0 42px 5px rgba(239,68,68,.55);border-color:#fca5a5}
+.sem-estado{text-align:center;border-top:1px solid #1e2942;padding-top:12px;width:100%;color:#fff}
+.sem-estado b{display:block;font-size:1.03rem}
+.sem-estado span{font-size:.81rem;color:#8b9ab8}
+.medidor{background:var(--panel);border:1px solid var(--linea);border-radius:var(--r);padding:19px}
+.seccion.alt .medidor{background:var(--panel-2)}
+.lect{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end;margin-bottom:15px}
+.lect small{display:block;font-size:.69rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--tinta-3);margin-bottom:3px}
+.lect .n1{font-size:2.7rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.lect .n2{font-size:1.28rem;font-weight:700;color:var(--tinta-2);font-variant-numeric:tabular-nums}
+/* el contenedor NO recorta, así las etiquetas 115/150/175 se ven debajo */
+.barra-wrap{position:relative;padding-bottom:19px}
+.barra{height:24px;border-radius:6px;background:#0a1122;overflow:hidden;border:1px solid var(--linea)}
+.barra-f{height:100%;width:0;background:var(--verde-luz);transition:width .08s linear,background .3s;position:relative;overflow:hidden}
+.barra-f::after{content:"";position:absolute;inset:0;width:42%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:translateX(-160%);animation:barrido 2.6s ease-in-out infinite}
+.marca-u{position:absolute;top:0;height:26px;width:2px;background:rgba(233,238,251,.35)}
+.marca-u::after{content:attr(data-l);position:absolute;top:calc(100% + 3px);left:50%;transform:translateX(-50%);
+  font-size:.68rem;font-weight:700;color:var(--tinta-3)}
+.escala{display:flex;justify-content:space-between;font-size:.71rem;color:var(--tinta-3);margin-top:5px}
+.med-btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
+.aviso{font-size:.84rem;color:var(--tinta-2);background:#2a2210;border:1px solid #574410;
+  border-left:4px solid var(--ambar-luz);border-radius:0 8px 8px 0;padding:11px 14px;margin-top:15px}
+.aviso strong{color:#fde68a}
+.aviso code{color:#fde68a}
+.demo-box{margin-top:15px;padding-top:15px;border-top:1px solid var(--linea);display:none}
+.demo-box.on{display:block}
+.demo-box label{display:block;font-size:.84rem;font-weight:700;margin-bottom:8px}
+input[type=range]{width:100%;accent-color:var(--azul);height:34px;cursor:pointer}
+.led-panel{display:flex;gap:17px;align-items:center;flex-wrap:wrap;margin-top:17px;padding-top:17px;
+  border-top:1px solid var(--linea)}
+.led{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:#08090c;padding:10px;
+  border-radius:9px;border:1px solid #1c2540;position:relative;isolation:isolate;transition:box-shadow .35s,border-color .35s}
+.led::before{content:"";position:absolute;inset:-8px;border-radius:12px;z-index:-1;background:rgba(255,59,33,.28);
+  filter:blur(12px);opacity:.65;transition:opacity .35s}
+.led i{width:14px;height:18px;border-radius:2px;background:#2a1010}
+.led i.on{background:#ff3b21;box-shadow:0 0 12px #ff3b21,0 0 22px rgba(255,59,33,.6);animation:respirar-led 2.1s ease-in-out infinite}
+.led-txt b{display:block;font-size:.92rem}
+.led-txt span{font-size:.84rem;color:var(--tinta-2)}
+.estado-card{background:var(--panel);border:1px solid var(--linea);border-left-width:5px;
+  border-radius:var(--r);padding:15px 17px}
+.seccion.alt .estado-card{background:var(--panel-2)}
+.estado-card h4{margin:0 0 5px}
+.estado-card p{margin:0;font-size:.89rem;color:var(--tinta-2)}
+
+/* ---------- código ---------- */
+.code-wrap{background:#080e1c;border:1px solid var(--linea);border-radius:var(--r);overflow:hidden}
+.code-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;
+  border-bottom:1px solid var(--linea)}
+.code-top span{font-family:var(--mono);font-size:.77rem;color:var(--tinta-3)}
+pre{margin:0;padding:17px;overflow-x:auto;font-family:var(--mono);font-size:.79rem;line-height:1.75;
+  color:#dbe4f5;scrollbar-width:thin}
+pre::-webkit-scrollbar{height:9px}
+pre::-webkit-scrollbar-thumb{background:#334873;border-radius:9px}
+.k{color:#c792ea}.f{color:#82aaff}.n{color:#f78c6c}.p{color:#89ddff}
+
+/* ---------- cuento ---------- */
+.libro{display:grid;grid-template-columns:1fr 310px;gap:24px;align-items:start}
+.pag-vis{position:relative;background:#080e1c;border:1px solid var(--linea);border-radius:var(--r);
+  overflow:hidden;aspect-ratio:4/5;display:grid;place-items:center}
+.pag-vis img{width:100%;height:100%;object-fit:contain}
+.flecha{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;
+  background:rgba(16,26,46,.92);border:1px solid var(--linea);color:var(--tinta);font-size:1.3rem;
+  cursor:pointer;display:grid;place-items:center;z-index:2}
+.flecha:hover{background:var(--azul);color:#08122a;border-color:var(--azul)}
+.flecha:disabled{opacity:.28;cursor:not-allowed}
+.flecha.izq{left:10px}.flecha.der{right:10px}
+.pag-num{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:2;
+  background:rgba(16,26,46,.92);border:1px solid var(--linea);padding:4px 13px;border-radius:99px;
+  font-size:.75rem;font-weight:700}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:13px}
+.mini button{padding:0;border:2px solid transparent;border-radius:7px;overflow:hidden;background:none;
+  cursor:pointer;aspect-ratio:4/5}
+.mini button img{width:100%;height:100%;object-fit:cover}
+.mini button.on{border-color:var(--azul)}
+
+/* ---------- visor 3D ---------- */
+.visor3d{position:relative;background:#080e1c;border:1px solid var(--linea);border-radius:var(--r);
+  overflow:hidden;aspect-ratio:4/3;touch-action:none}
+.visor3d canvas{width:100%;height:100%;display:block;cursor:grab}
+.visor3d canvas:active{cursor:grabbing}
+.visor3d .hint{position:absolute;left:9px;bottom:9px;background:rgba(16,26,46,.92);
+  border:1px solid var(--linea);border-radius:7px;padding:5px 10px;font-size:.75rem;color:var(--tinta-2)}
+.visor3d .ctrl{position:absolute;right:9px;top:9px;display:flex;gap:6px}
+.visor3d .ctrl button{width:40px;height:40px;border-radius:7px;background:rgba(16,26,46,.92);
+  border:1px solid var(--linea);cursor:pointer;font-size:1rem;font-weight:700;color:var(--tinta)}
+.visor3d .ctrl button:hover{background:var(--azul);color:#08122a}
+.sin-modelo{padding:24px;text-align:center;color:var(--tinta-2);display:grid;place-content:center;
+  gap:10px;height:100%}
+.sin-modelo b{color:var(--tinta);font-size:1rem}
+.sin-modelo p{margin:0;font-size:.9rem}
+.sin-modelo code{background:var(--panel);border:1px solid var(--linea);border-radius:5px;
+  padding:2px 7px;font-family:var(--mono);font-size:.85em}
+
+/* ---------- galerías ---------- */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:10px}
+.gal figure{margin:0;position:relative;overflow:hidden;border-radius:8px;cursor:zoom-in;
+  background:#0a1122;border:1px solid var(--linea);aspect-ratio:4/3}
+.gal img{width:100%;height:100%;object-fit:cover}
+/* Sin texto encima de las fotos: la descripción va en el aria-label (lectores de
+   pantalla) y en el visor ampliado. Acá sólo un acercamiento suave al pasar. */
+.gal img{transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.gal figure:hover img,.gal figure:focus-visible img{transform:scale(1.07)}
+.gal figure::after{content:"";position:absolute;inset:0;background:#5b9bff;
+  opacity:0;transition:opacity .3s;pointer-events:none;mix-blend-mode:overlay}
+.gal figure:hover::after,.gal figure:focus-visible::after{opacity:.18}
+body.calma .gal figure:hover img{transform:none}
+body.calma .gal figure:hover::after{opacity:0}
+.gal.duo{grid-template-columns:1fr 1fr}
+.foto-ancha{margin:0;border:1px solid var(--linea);border-radius:var(--r);overflow:hidden;
+  background:var(--panel);cursor:zoom-in;max-width:880px}
+.seccion.alt .foto-ancha{background:var(--panel-2)}
+.foto-ancha figcaption{padding:11px 15px;font-size:.86rem;color:var(--tinta-2);border-top:1px solid var(--linea)}
+
+/* ---------- gráfico dB ---------- */
+.db-fila{display:grid;grid-template-columns:minmax(115px,170px) 1fr 72px;gap:11px;align-items:center;
+  font-size:.86rem;margin-bottom:9px}
+.db-fila .et{color:var(--tinta-2);font-weight:600}
+.db-track{height:15px;background:#0a1122;border-radius:99px;overflow:hidden;border:1px solid var(--linea)}
+.db-fill{height:100%;width:0;border-radius:99px;transition:width .8s ease}
+.db-fila .db-val{font-weight:800;text-align:right;font-variant-numeric:tabular-nums;font-size:.84rem}
+.db-fila.hito .et,.db-fila.hito .db-val{color:var(--ambar)}
+
+/* ---------- fases ---------- */
+.fase{border-left:3px solid var(--azul-claro);padding:0 0 18px 17px;position:relative}
+.fase::before{content:"";position:absolute;left:-8px;top:5px;width:13px;height:13px;border-radius:50%;
+  background:var(--azul);border:3px solid var(--fondo)}
+.seccion.alt .fase::before{border-color:var(--fondo-2)}
+.fase .cuando{font-size:.72rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--azul)}
+.fase h4{margin:2px 0 4px}
+.fase p{margin:0;font-size:.91rem;color:var(--tinta-2)}
+
+/* ---------- simulador ---------- */
+.sim-card{border:1px solid #5b2230;background:#2a1220;border-radius:var(--r);padding:clamp(20px,3vw,30px)}
+#sobrecarga{position:fixed;inset:0;z-index:200;display:none;place-items:center;background:#05080f;
+  color:#fff;text-align:center;padding:22px;overflow:hidden}
+#sobrecarga.on{display:grid}
+.sc-capa{position:absolute;inset:0;pointer-events:none}
+.sc-txt{position:absolute;font-weight:800;color:rgba(255,255,255,.4);white-space:nowrap;
+  font-size:clamp(1rem,3vw,1.8rem);opacity:0;transition:opacity .9s}
+.sc-mid{position:relative;z-index:3;max-width:520px}
+#sc-tiempo{font-size:2.7rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.sc-mid h3{margin:10px 0}
+.sc-mid p{color:#b9c4d8}
+
+/* ---------- lightbox ---------- */
+#lb{position:fixed;inset:0;z-index:180;background:rgba(3,7,15,.96);display:none;place-items:center;padding:20px}
+#lb.on{display:grid}
+#lb img{max-width:100%;max-height:76vh;border-radius:8px}
+#lb figcaption{text-align:center;margin-top:13px;color:#c8d3e8;font-size:.89rem}
+#lb button{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
+  color:#fff;border-radius:8px;cursor:pointer;min-width:48px;min-height:48px;font-size:1.3rem}
+#lb button:hover{background:var(--azul);color:#08122a}
+#lb .cerrar{top:16px;right:16px}
+#lb .p-izq{left:14px;top:50%;transform:translateY(-50%)}
+#lb .p-der{right:14px;top:50%;transform:translateY(-50%)}
+
+/* ---------- pie ---------- */
+footer{background:#070d1a;border-top:1px solid var(--linea);color:var(--tinta-2);padding:42px 0 28px;font-size:.89rem}
+footer h4{color:var(--tinta);font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:11px}
+footer a{color:var(--azul);text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.pie-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:28px;margin-bottom:26px}
+.pie-fin{border-top:1px solid var(--linea);padding-top:17px;display:flex;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;font-size:.81rem;color:var(--tinta-3)}
+
+/* ---------- modo calma ----------
+   Apaga la iluminación, el movimiento y los sonidos. En un tema oscuro se nota
+   de verdad: se van los halos del semáforo, los LED dejan de brillar y el
+   contraste baja a algo más suave. */
+body.calma *{animation:none!important;transition:none!important}
+body.calma{--fondo:#101722;--fondo-2:#141c29;--panel:#182130;--panel-2:#1c2636;--linea:#28323f}
+body.calma .luz.on{box-shadow:none!important;transform:none!important;background-image:none!important}
+body.calma .luz.v.on{background:#3f9c5f}
+body.calma .luz.a.on{background:#b39429}
+body.calma .luz.r.on{background:#b04a4a}
+body.calma .led i.on{box-shadow:none;background:#c0392b}
+body.calma .semaforo{box-shadow:none!important;border-color:var(--linea)!important}
+body.calma .semaforo::before,body.calma .led::before{opacity:0}
+body.calma .led{box-shadow:none;border-color:#1c2540}
+body.calma .barra-f::after{display:none}
+body.calma .nav{backdrop-filter:none}
+body.calma .sim-card{display:none}
+body.calma .visor3d .hint{opacity:.7}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- celular ---------- */
+@media(max-width:900px){
+  body{font-size:16px}
+  .portada-in{grid-template-columns:1fr}
+  .portada-logo{max-width:220px;order:-1}
+  .sem-wrap{grid-template-columns:1fr}
+  .semaforo{flex-direction:row;justify-content:center;flex-wrap:wrap}
+  .sem-estado{border-top:0;border-left:1px solid #1e2942;padding:0 0 0 14px;width:auto;text-align:left}
+  .libro{grid-template-columns:1fr}
+  .col2{grid-template-columns:1fr!important}
+  .pie-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:1400px){ .nav .marca-txt{display:none} }
+@media(max-width:620px){
+  .env{width:calc(100% - 28px)}
+  .paso{grid-template-columns:36px 1fr;gap:11px}
+  .paso .min{display:none}
+  .paso .ir{grid-column:2;padding-top:3px}
+  .db-fila{grid-template-columns:1fr auto;gap:3px 10px}
+  .db-fila .db-track{grid-column:1/-1;order:3}
+  .gal{grid-template-columns:1fr 1fr;gap:8px}
+  .gal.duo{grid-template-columns:1fr}
+  .pie-grid{grid-template-columns:1fr}
+  .lect{gap:16px}
+  .lect .n1{font-size:2.2rem}
+  .pres-in{grid-template-columns:1fr;gap:9px}
+  .pres-btns button{flex:1}
+  body.presentando{padding-bottom:190px}
+}
+/* ---------- impresión: forzamos claro ---------- */
+@media print{
+  .nav,#presbar,#lb,#sobrecarga,.sim-card,.med-btns,.flecha,.visor3d .ctrl{display:none!important}
+  body{background:#fff!important;color:#000!important;font-size:11pt}
+  .seccion,.seccion.alt,.tarjeta,.dato,.paso,.medidor,.estado-card{background:#fff!important;color:#000!important}
+  .bajada,.tarjeta p,.dato p,.paso p,.fase p{color:#333!important}
+  .seccion{break-inside:avoid;border-top:1px solid #ccc}
+}
+</style>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<nav class="nav" aria-label="Secciones">
+  <div class="nav-in">
+    <a class="marca" href="#portada">
+      <img src="assets/img/favicon.png" alt="" width="36" height="36">
+      <span class="marca-txt"><b>Sound Blue</b><span>Escuchar · Aprender</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#problema">Problema</a></li>
+      <li><a href="#semaforo">Semáforo</a></li>
+      <li><a href="#microbit">Código</a></li>
+      <li><a href="#cuento">El Oso Milo</a></li>
+      <li><a href="#auriculares">Auriculares 3D</a></li>
+      <li><a href="#merceditas">Merceditas</a></li>
+      <li><a href="#river">River</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#fuentes">Fuentes</a></li>
+    </ul>
+    <div class="nav-acc">
+      <button class="chip-btn pres" id="btn-pres" aria-pressed="false" title="Guía paso a paso para presentar">
+        <span class="pip" aria-hidden="true"></span> Presentar
+      </button>
+      <button class="chip-btn calma" id="btn-calma" aria-pressed="false" title="Menos movimiento y sin sonidos">
+        <span class="pip" aria-hidden="true"></span> Calma
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="contenido">
+
+<header class="portada" id="portada">
+  <div class="env portada-in">
+    <div>
+      <p class="kicker">Escuchar · Aprender</p>
+      <h1>Sound Blue Project</h1>
+      <p class="pitch">
+        El ruido no se ve, pero se siente. Y para muchas personas dentro del Espectro Autista,
+        un aula ruidosa no es una molestia: es una barrera.
+      </p>
+      <p class="escuela">
+        Proyecto STEAM de estudiantes de 3.°, 4.° y 5.° año de la
+        <strong>EEM N.° 5 D.E. 15 «Monseñor Enrique Angelelli»</strong>, Saavedra, CABA.
+        En articulación con el JII N.° 2 D.E. 10 «Merceditas».
+      </p>
+      <div class="portada-btns">
+        <a class="btn btn-1" href="#semaforo">Probar el semáforo</a>
+        <button class="btn btn-2" id="btn-pres-hero" type="button">Modo presentar</button>
+      </div>
+    </div>
+    <div class="portada-logo">
+      <picture>
+        <source type="image/webp" srcset="assets/img/logo-md.webp">
+        <img src="assets/img/logo-md.jpg" width="560" height="560"
+             alt="Logo de Sound Blue Project: una oreja de la que salen tres ondas de sonido verde, amarilla y roja.">
+      </picture>
+    </div>
+  </div>
+</header>
+
+<!-- 01 · PROBLEMA -->
+<section class="seccion alt" id="problema">
+  <div class="env">
+    <p class="rotulo"><b>01</b> El problema</p>
+    <h2>La contaminación acústica también es un problema de inclusión</h2>
+    <p class="bajada" style="margin-bottom:26px">
+      Detectamos que el ruido dentro de las escuelas afecta la salud, la concentración y la convivencia
+      de toda la comunidad, y que impacta con mucha más fuerza en personas neurodivergentes y dentro del
+      Espectro Autista (TEA). Nuestra meta: una <strong>convivencia acústica</strong> equilibrada.
+    </p>
+    <div class="grid g2" style="margin-bottom:32px">
+      <div class="dato"><div class="v">35<small>dB</small></div><h4>El techo que recomienda la OMS</h4>
+        <p>Ruido de fondo máximo sugerido dentro de un aula mientras se dicta clase, para que el mensaje del docente se entienda sin esfuerzo.</p></div>
+      <div class="dato"><div class="v">55<small>dB</small></div><h4>Patios y áreas de juego</h4>
+        <p>Referencia de la OMS para ruido exterior en espacios de recreo escolares.</p></div>
+      <div class="dato"><div class="v">85<small>dB</small></div><h4>Zona de riesgo auditivo</h4>
+        <p>A partir de este nivel la exposición sostenida puede dañar la audición. Un comedor escolar en hora pico puede rozarlo.</p></div>
+      <div class="dato"><div class="v">4</div><h4>Líneas de trabajo</h4>
+        <p>Un semáforo de ruido, un cuento impreso, auriculares diseñados en 3D y trabajo de campo con la comunidad.</p></div>
+    </div>
+    <div class="tarjeta" style="margin:-10px 0 32px;border-color:#2f4f8a;background:var(--azul-claro)">
+      <h4>Niveles: cómo leerlos y de dónde salen</h4>
+      <p><strong>35 dB(A)</strong> es una referencia para aulas de la <a href="https://www.who.int/Europe/news-room/fact-sheets/item/noise" target="_blank" rel="noopener">OMS</a>. <strong>0–255</strong> es la escala de <code>input.soundLevel()</code> de la micro:bit. Los valores <strong>115 / 150 / 175</strong> son umbrales de nuestro código: sirven para el prototipo y no se presentan como límites médicos universales. Todas las fuentes y documentos están reunidos al final de la página.</p>
+    </div>
+    <h3>Qué construimos</h3>
+    <div class="grid g2">
+      <article class="tarjeta"><h4>Semáforo de ruido</h4>
+        <p>Prototipo con <strong>micro:bit</strong> que mide el nivel sonoro y lo traduce a una señal visual que cualquier chico entiende sin explicación.</p>
+        <p><a href="#semaforo">Probarlo →</a></p></article>
+      <article class="tarjeta"><h4>«El Oso Milo»</h4>
+        <p>Cuento original, escrito e ilustrado por el equipo e impreso en papel, sobre un panda que percibe los sonidos con otra intensidad.</p>
+        <p><a href="#cuento">Leerlo →</a></p></article>
+      <article class="tarjeta"><h4>Auriculares canceladores</h4>
+        <p>Modelado propio en <strong>Tinkercad</strong> para impresión 3D: una herramienta de autorregulación accesible y replicable.</p>
+        <p><a href="#auriculares">Ver el modelo →</a></p></article>
+      <article class="tarjeta"><h4>Trabajo de campo</h4>
+        <p>Visita al Jardín Merceditas, relevamiento de sonido, actividades con los chicos y registro fotográfico del proceso.</p>
+        <p><a href="#merceditas">Ver el trabajo de campo →</a></p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · SEMÁFORO -->
+<section class="seccion" id="semaforo">
+  <div class="env">
+    <p class="rotulo"><b>02</b> Demostración en vivo</p>
+    <h2>El semáforo sensorial</h2>
+    <p class="bajada" style="margin-bottom:22px">
+      Este es el mismo comportamiento que programamos en la placa micro:bit, corriendo en el navegador.
+      Activá el micrófono y pedile a la persona que hable, aplauda o grite.
+    </p>
+    <div class="sem-wrap">
+      <div class="semaforo">
+        <div class="luz r" id="luz-r">Rojo</div>
+        <div class="luz a" id="luz-a">Amar.</div>
+        <div class="luz v on" id="luz-v">Verde</div>
+        <div class="sem-estado">
+          <b id="sem-titulo">Tranquilo</b>
+          <span id="sem-accion">Entorno adecuado. Se puede jugar, hablar y aprender.</span>
+        </div>
+      </div>
+      <div class="medidor">
+        <div class="lect">
+          <div><small>Nivel micro:bit (0–255)</small><div class="n1" id="val-nivel">0</div></div>
+          <div><small>dB estimados</small><div class="n2" id="val-db">— dB</div></div>
+          <div><small>Pico de la sesión</small><div class="n2" id="val-pico">0</div></div>
+        </div>
+        <div class="barra-wrap">
+          <div class="barra"><div class="barra-f" id="barra"></div></div>
+          <div class="marca-u" style="left:45.1%" data-l="115"></div>
+          <div class="marca-u" style="left:58.8%" data-l="150"></div>
+          <div class="marca-u" style="left:68.6%" data-l="175"></div>
+        </div>
+        <div class="escala"><span>0 · silencio</span><span>255 · saturación</span></div>
+        <div class="med-btns">
+          <button class="btn btn-1" id="btn-mic">Activar micrófono</button>
+          <button class="btn btn-2" id="btn-demo">Modo demo</button>
+          <button class="btn btn-3" id="btn-reset">Reiniciar pico</button>
+        </div>
+        <div class="demo-box" id="demo-box">
+          <label for="rango">Movés vos el nivel — útil si el salón está muy ruidoso</label>
+          <input type="range" id="rango" min="0" max="255" value="60">
+        </div>
+        <p class="aviso" id="aviso-mic">
+          <strong>Sobre la medición:</strong> el navegador no puede dar decibeles calibrados
+          (para eso está el sonómetro que usamos en el jardín). El valor <strong>0–255</strong> es la
+          misma escala que devuelve <code>input.soundLevel()</code> en la micro:bit y es la que gobierna
+          el semáforo. Los dB son una estimación de referencia.
+        </p>
+        <div class="led-panel">
+          <div class="led" id="led" role="img" aria-labelledby="led-desc"></div>
+          <div class="led-txt"><b>Pantalla de la micro:bit</b>
+            <span id="led-desc">Cara feliz — el nivel está por debajo de 115.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid g3" style="margin-top:22px">
+      <article class="estado-card" style="border-left-color:var(--verde-luz)">
+        <h4 style="color:var(--verde)">Verde · Tranquilo</h4>
+        <p><strong>Nivel &lt; 115.</strong> Entorno adecuado. Se escucha a la maestra y se puede jugar sin esfuerzo.</p></article>
+      <article class="estado-card" style="border-left-color:var(--ambar-luz)">
+        <h4 style="color:var(--ambar)">Amarillo · Alerta</h4>
+        <p><strong>Nivel ≥ 150.</strong> Sobrecarga moderada. Pausa, bajar los estímulos, respirar.</p></article>
+      <article class="estado-card" style="border-left-color:var(--rojo-luz)">
+        <h4 style="color:var(--rojo)">Rojo · Saturación</h4>
+        <p><strong>Nivel ≥ 175.</strong> Riesgo de crisis. Espacio calmo, silencio y acompañamiento.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · CÓDIGO -->
+<section class="seccion alt" id="microbit">
+  <div class="env">
+    <p class="rotulo"><b>03</b> La tecnología</p>
+    <h2>Nueve líneas de código</h2>
+    <p class="bajada" style="margin-bottom:22px">
+      Lo importante no es la cantidad, sino la decisión pedagógica detrás de cada umbral:
+      el dispositivo <strong>no reta a nadie</strong>, sólo muestra una carita.
+    </p>
+    <div class="grid col2" style="grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start">
+      <div class="code-wrap">
+        <div class="code-top">
+          <span>semaforo-de-ruido.js</span>
+          <button class="btn btn-3" id="btn-copiar">Copiar</button>
+        </div>
+<pre id="codigo"><code><span class="f">basic</span>.<span class="f">forever</span>(<span class="k">function</span> () {
+    <span class="k">if</span> (<span class="f">input</span>.<span class="f">soundLevel</span>() &lt; <span class="n">115</span>) {
+        <span class="f">basic</span>.<span class="f">showIcon</span>(<span class="p">IconNames</span>.<span class="p">Happy</span>)
+    } <span class="k">else if</span> (<span class="f">input</span>.<span class="f">soundLevel</span>() &gt;= <span class="n">150</span>) {
+        <span class="f">basic</span>.<span class="f">showIcon</span>(<span class="p">IconNames</span>.<span class="p">Asleep</span>)
+        <span class="k">if</span> (<span class="f">input</span>.<span class="f">soundLevel</span>() &gt;= <span class="n">175</span>) {
+            <span class="f">basic</span>.<span class="f">showIcon</span>(<span class="p">IconNames</span>.<span class="p">Sad</span>)
+            <span class="f">music</span>.<span class="f">play</span>(<span class="f">music</span>.<span class="f">tonePlayable</span>(<span class="n">294</span>, <span class="f">music</span>.<span class="f">beat</span>(<span class="p">BeatFraction</span>.<span class="p">Whole</span>)), <span class="f">music</span>.<span class="p">PlaybackMode</span>.<span class="p">UntilDone</span>)
+        }
+    }
+})</code></pre>
+      </div>
+      <div class="grid" style="gap:12px">
+        <div class="tarjeta"><h4>Por qué una carita y no un número</h4>
+          <p>En una sala de jardín nadie lee «178 dB». Pero todos entienden una cara triste. Traducir el dato a una emoción fue la decisión de diseño más importante del proyecto.</p></div>
+        <div class="tarjeta"><h4>El tono de 294 Hz</h4>
+          <p>Al pasar 175 la placa emite un <strong>Re</strong> grave y sostenido. Es deliberadamente suave: una alarma estridente sería contraproducente en plena sobrecarga sensorial.</p>
+          <p><button class="btn btn-3" id="btn-tono">Escuchar el tono</button></p></div>
+        <div class="tarjeta" style="border-color:#574410;background:#2a2210">
+          <h4>Un detalle que descubrimos leyendo el código</h4>
+          <p>Entre <strong>115 y 149</strong> el programa no ejecuta ninguna rama: la pantalla mantiene el último ícono. Es un comportamiento que registramos al leer el código; en una próxima prueba queremos decidir con docentes si conviene conservarlo o definir una señal específica para ese rango.</p></div>
+        <a class="btn btn-2" href="https://makecode.microbit.org/S79337-86713-05223-83164" target="_blank" rel="noopener">Abrir en MakeCode ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · CUENTO -->
+<section class="seccion" id="cuento">
+  <div class="env">
+    <p class="rotulo"><b>04</b> Cuento pedagógico</p>
+    <h2>«El Oso Milo»</h2>
+    <p class="bajada" style="margin-bottom:22px">
+      Escrito e ilustrado por el equipo e impreso en papel para dejar en el jardín. Milo es un panda al
+      que los sonidos fuertes lo abruman, y sus amigos aprenden que ayudar no siempre es abrazar: a veces
+      es preguntar primero. Pasá las páginas con <kbd>←</kbd> <kbd>→</kbd> o deslizando.
+    </p>
+    <div class="libro">
+      <div>
+        <div class="pag-vis" id="pag-vis">
+          <img id="pag-img" src="assets/img/cuento-portada-md.jpg" decoding="async" alt="Portada del cuento El Oso Milo">
+          <button class="flecha izq" id="pag-prev" aria-label="Página anterior">‹</button>
+          <button class="flecha der" id="pag-next" aria-label="Página siguiente">›</button>
+          <div class="pag-num" id="pag-num">Portada</div>
+        </div>
+        <div class="mini" id="mini"></div>
+      </div>
+      <div>
+        <div class="tarjeta" style="margin-bottom:13px">
+          <h3 id="pag-titulo" style="margin-bottom:8px">Portada</h3>
+          <p id="pag-texto">Milo en su cuarto, con los auriculares puestos y la música que sí eligió escuchar.</p>
+        </div>
+        <div style="display:grid;gap:9px">
+          <a class="btn btn-1" href="https://www.calameo.com/read/004454581afafc5dc460e" target="_blank" rel="noopener">Leer el cuento completo ↗</a>
+          <button class="btn btn-2" id="btn-calameo">Ver acá dentro (necesita internet)</button>
+        </div>
+        <div id="calameo-box" style="margin-top:13px"></div>
+      </div>
+    </div>
+    <figure class="foto-ancha lb-item" style="margin-top:28px"
+            data-src="assets/img/cuento-impreso.jpg"
+            data-cap="Los ejemplares de «El Oso Milo» impresos y anillados, listos para llevar al Jardín Merceditas.">
+      <picture>
+        <source type="image/webp" srcset="assets/img/cuento-impreso-md.webp">
+        <img src="assets/img/cuento-impreso-md.jpg" width="960" height="653" loading="lazy" decoding="async"
+             alt="Cuatro ejemplares impresos y anillados del cuento El Oso Milo sobre una mesa">
+      </picture>
+      <figcaption>Del archivo digital al papel: los ejemplares quedaron en el jardín como material de trabajo permanente de las docentes.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 06 · AURICULARES 3D -->
+<section class="seccion alt" id="auriculares">
+  <div class="env">
+    <p class="rotulo"><b>05</b> Diseño e impresión 3D</p>
+    <h2>Auriculares de autorregulación</h2>
+    <p class="bajada" style="margin-bottom:22px">
+      Los auriculares que atenúan el ruido son una de las herramientas de autorregulación más usadas por
+      personas con hipersensibilidad auditiva, y también de las más caras. Por eso los modelamos nosotros,
+      pensando en un objeto que cualquier escuela con impresora 3D pueda fabricar.
+    </p>
+    <div class="grid col2" style="grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start">
+      <div class="visor3d" id="visor3d">
+        <div class="sin-modelo" id="sin-modelo" hidden></div>
+        <div class="ctrl" id="ctrl3d" hidden>
+          <button id="b3d-girar" title="Pausar o reanudar el giro" aria-label="Pausar el giro">II</button>
+          <button id="b3d-reset" title="Volver a la vista inicial" aria-label="Vista inicial">⌂</button>
+        </div>
+        <div class="hint" id="hint3d" hidden>Arrastrá para girar · rueda o pellizco para acercar</div>
+      </div>
+      <div class="grid" style="gap:12px">
+        <div class="tarjeta"><h4>Por qué importa que sea replicable</h4>
+          <p>Un prototipo que sólo funciona en una escuela es una demostración. Un archivo que se descarga y se imprime en cualquier lado es una solución.</p></div>
+        <div class="tarjeta"><h4>Atenuar, no aislar</h4>
+          <p>El objetivo no es que el chico quede incomunicado, sino bajar el pico de estímulo para que pueda seguir participando de la sala. Autorregularse es poder quedarse.</p></div>
+        <a class="btn btn-2" href="https://www.tinkercad.com/" target="_blank" rel="noopener">Abrir Tinkercad ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · MERCEDITAS -->
+<section class="seccion" id="merceditas">
+  <div class="env">
+    <p class="rotulo"><b>06</b> Trabajo de campo</p>
+    <h2>Mapeo sonoro en el Jardín Merceditas</h2>
+    <p class="bajada" style="margin-bottom:24px">
+      Salimos del aula. En el <strong>JII N.° 2 D.E. 10 «Merceditas»</strong> recorrimos las salas con
+      sonómetro en mano, mapeamos los niveles de ruido a distintas horas, entrevistamos a los chicos sobre
+      qué sonidos les molestan y trabajamos con ellos en talleres de dibujo. Después instalamos el semáforo.
+    </p>
+    <div class="grid col2" style="grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px;align-items:start;margin-bottom:26px">
+      <div class="tarjeta">
+        <h3 style="margin-top:0">Escala de referencia sonora</h3>
+        <p style="margin-bottom:16px">Valores orientativos de la OMS y rangos típicos, para dimensionar contra qué medimos.</p>
+        <div id="db-chart">
+          <div class="db-fila hito" data-db="35"><span class="et">Aula en clase · límite OMS</span><div class="db-track"><div class="db-fill"></div></div><span class="db-val">35 dB</span></div>
+          <div class="db-fila" data-db="40"><span class="et">Biblioteca en silencio</span><div class="db-track"><div class="db-fill"></div></div><span class="db-val">40 dB</span></div>
+          <div class="db-fila hito" data-db="55"><span class="et">Patio de juegos · ref. OMS</span><div class="db-track"><div class="db-fill"></div></div><span class="db-val">55 dB</span></div>
+          <div class="db-fila" data-db="60"><span class="et">Conversación normal</span><div class="db-track"><div class="db-fill"></div></div><span class="db-val">60 dB</span></div>
+          <div class="db-fila" data-db="80"><span class="et">Sala de jardín en hora pico</span><div class="db-track"><div class="db-fill"></div></div><span class="db-val">70–85 dB</span></div>
+          <div class="db-fila hito" data-db="85"><span class="et">Umbral de riesgo auditivo</span><div class="db-track"><div class="db-fill"></div></div><span class="db-val">85 dB</span></div>
+          <div class="db-fila" data-db="105"><span class="et">Tribuna de un estadio</span><div class="db-track"><div class="db-fill"></div></div><span class="db-val">100–110 dB</span></div>
+          <div class="db-fila" data-db="120"><span class="et">Umbral de dolor</span><div class="db-track"><div class="db-fill"></div></div><span class="db-val">120 dB</span></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--tinta-3);margin:15px 0 0;border-top:1px solid var(--linea);padding-top:12px">
+          Fuente: <em>Guidelines for Community Noise</em> (OMS) y rangos habituales. Es la vara con la que
+          comparamos: <strong>no son nuestras mediciones</strong>.
+        </p>
+      </div>
+      <div class="grid" style="gap:11px">
+        <div class="tarjeta"><h4>Medimos</h4><p>Sonómetro y aplicación en simultáneo, recorriendo salas, pasillos y patio en distintos momentos de la jornada.</p></div>
+        <div class="tarjeta"><h4>Entrevistamos</h4><p>Preguntas abiertas a los chicos: qué ruido les molesta en el recreo, cuándo se sienten peor, cómo sería su espacio tranquilo ideal.</p></div>
+        <div class="tarjeta"><h4>Trabajamos con ellos</h4><p>Talleres de dibujo y lectura del cuento en la sala. No fueron sujetos de estudio: fueron parte del equipo de diseño.</p></div>
+        <div class="tarjeta"><h4>Instalamos</h4><p>El semáforo quedó funcionando en el jardín, junto con los ejemplares impresos del cuento.</p></div>
+      </div>
+    </div>
+    <div class="gal" id="gal-jardin"></div>
+  </div>
+</section>
+
+<!-- 08 · RIVER -->
+<section class="seccion alt" id="river">
+  <div class="env">
+    <p class="rotulo"><b>07</b> Inclusión a escala real</p>
+    <h2>El palco sensorial del Estadio Monumental</h2>
+    <p class="bajada" style="margin-bottom:22px">
+      Fuimos al Club Atlético River Plate a relevar su palco sensorial: un espacio pensado para que una
+      persona dentro del Espectro Autista pueda ver un partido con setenta mil personas gritando alrededor.
+    </p>
+    <div class="grid g3" style="margin-bottom:22px">
+      <div class="tarjeta"><h4>Aislamiento acústico</h4><p>Filtra la presión sonora de la tribuna sin desconectar del partido: se sigue viviendo el clima, pero sin el golpe del ruido.</p></div>
+      <div class="tarjeta"><h4>Control de iluminación</h4><p>La luz se regula desde adentro, para evitar los estímulos visuales bruscos de reflectores y pantallas.</p></div>
+      <div class="tarjeta"><h4>Autorregulación</h4><p>Pufs, texturas y elementos de estimulación al alcance de la mano, para regularse sin abandonar el estadio.</p></div>
+      <div class="tarjeta" style="border-color:#2f4f8a;background:var(--azul-claro)"><h4>La conclusión</h4>
+        <p style="color:var(--azul-osc)">Si un estadio de fútbol puede adaptarse, una sala de jardín también. Ese fue el argumento que nos llevamos.</p></div>
+    </div>
+    <div class="gal duo" id="gal-river"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section class="seccion alt" id="vivilo">
+  <div class="env">
+    <div class="sim-card">
+      <p class="rotulo" style="color:var(--rojo)"><b>+</b> Experiencia · 20 segundos</p>
+      <h2 style="margin-bottom:12px">¿Y si lo sentís en carne propia?</h2>
+      <p class="bajada" style="margin-bottom:14px">
+        Explicar la sobrecarga sensorial con palabras nunca alcanza. Esta simulación muestra, por veinte
+        segundos, una versión suavizada de lo que puede significar entrar a un espacio que no está pensado para vos.
+      </p>
+      <p style="font-size:.85rem;color:var(--tinta-3);max-width:66ch">
+        <strong>Antes de empezar:</strong> hay sonido y movimiento en pantalla. No hay destellos rápidos ni
+        luces estroboscópicas. Se sale cuando quieras con el botón o con <kbd>Esc</kbd>.
+      </p>
+      <button class="btn btn-1" id="btn-sim">Vivir la experiencia</button>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · EQUIPO -->
+<section class="seccion" id="equipo">
+  <div class="env">
+    <p class="rotulo"><b>08</b> Quiénes somos</p>
+    <h2>Un proyecto hecho por estudiantes de secundaria</h2>
+    <p class="bajada" style="margin-bottom:22px">
+      Somos estudiantes de 3.°, 4.° y 5.° año de la <strong>EEM N.° 5 D.E. 15 «Monseñor Enrique
+      Angelelli»</strong>, en Saavedra. Trabajamos con enfoque STEAM y metodología de
+      <strong>Aprendizaje Servicio</strong>: no investigamos un problema ajeno, intervenimos en uno propio
+      y dejamos algo funcionando.
+    </p>
+    <figure class="foto-ancha lb-item" style="margin-bottom:24px" data-src="assets/img/feria-05.jpg"
+            data-cap="El equipo de Sound Blue Project durante la feria: estudiantes que investigaron, diseñaron y presentaron el proyecto.">
+      <picture>
+        <source type="image/webp" srcset="assets/img/feria-05-md.webp">
+        <img src="assets/img/feria-05-md.jpg" width="960" height="540" loading="lazy" decoding="async"
+             alt="El equipo de Sound Blue Project durante la feria escolar">
+      </picture>
+      <figcaption>Estudiantes de Sound Blue Project durante la feria escolar.</figcaption>
+    </figure>
+    <div class="gal" id="gal-feria" style="margin-bottom:24px"></div>
+    <div class="grid g3">
+      <div class="tarjeta"><h4>STEAM</h4><p>Ciencia, tecnología, ingeniería, arte y matemática trabajando juntas sobre un mismo problema concreto del barrio.</p></div>
+      <div class="tarjeta"><h4>Aprendizaje Servicio</h4><p>Aprendemos contenidos curriculares mientras damos una respuesta real a una necesidad de la comunidad. Las dos cosas a la vez.</p></div>
+      <div class="tarjeta"><h4>Design Thinking</h4><p>Empatizar, definir, idear, prototipar y testear. Por eso primero fuimos a escuchar al jardín y recién después construimos el dispositivo.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FUENTES -->
+<section class="seccion alt" id="fuentes">
+  <div class="env">
+    <p class="rotulo"><b>09</b> Fuentes y materiales</p>
+    <h2>De dónde sale la información</h2>
+    <p class="bajada" style="margin-bottom:22px">
+      Esta página distingue entre material producido por el equipo, documentos de trabajo y referencias externas.
+      Las cifras de referencia no reemplazan las mediciones que realizamos con sonómetro en el jardín.
+    </p>
+    <div class="grid g3">
+      <article class="tarjeta"><h4>Material del equipo</h4>
+        <p>Resumen General Sound Blue Project, proyecto de concientización, fotos de las visitas, cuento «El Oso Milo» y registro del trabajo en el Jardín Merceditas.</p>
+        <p><a href="assets/documentos/Resumen_General_Sound_Blue.pdf" target="_blank" rel="noopener">Abrir resumen del proyecto ↗</a></p>
+        <p><a href="assets/documentos/Proyecto_Autismo_El_Oso_Milo_y_Palco_Sensorial.docx" download>Descargar documento de trabajo</a></p>
+      </article>
+      <article class="tarjeta"><h4>Tecnología del prototipo</h4>
+        <p>El comportamiento del semáforo se basa en el código original programado por el equipo con micro:bit. El modelo se exportó desde Tinkercad en formato STL.</p>
+        <p><a href="https://makecode.microbit.org/S79337-86713-05223-83164" target="_blank" rel="noopener">Abrir el código en MakeCode ↗</a></p>
+        <p><a href="assets/modelo.stl" download>Descargar modelo STL</a></p>
+      </article>
+      <article class="tarjeta"><h4>Referencia sobre ruido</h4>
+        <p>La OMS señala menos de 35 dB(A) en aulas como referencia para favorecer buenas condiciones de enseñanza y aprendizaje. Es una guía internacional, no una medición propia.</p>
+        <p><a href="https://www.who.int/Europe/news-room/fact-sheets/item/noise" target="_blank" rel="noopener">OMS · Noise ↗</a></p>
+        <p><a href="https://www.calameo.com/read/004454581afafc5dc460e" target="_blank" rel="noopener">Cuento en Calaméo ↗</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="env">
+    <div class="pie-grid">
+      <div>
+        <p style="color:#fff;font-weight:700;margin-bottom:6px">Sound Blue Project</p>
+        <p style="margin:0">Escuchar · Aprender.<br>EEM N.° 5 D.E. 15 «Monseñor Enrique Angelelli», Saavedra, CABA.<br>En articulación con el JII N.° 2 D.E. 10 «Merceditas».</p>
+      </div>
+      <div><h4>El proyecto</h4>
+        <ul>
+          <li><a href="#semaforo">Semáforo sensorial</a></li>
+          <li><a href="#cuento">El Oso Milo</a></li>
+          <li><a href="#auriculares">Auriculares 3D</a></li>
+          <li><a href="#fuentes">Fuentes y materiales</a></li>
+        </ul></div>
+      <div><h4>Enlaces</h4>
+        <ul>
+          <li><a href="https://makecode.microbit.org/S79337-86713-05223-83164" target="_blank" rel="noopener">MakeCode ↗</a></li>
+          <li><a href="https://www.calameo.com/read/004454581afafc5dc460e" target="_blank" rel="noopener">Cuento en Calaméo ↗</a></li>
+          <li><a href="assets/modelo.stl" download>Modelo 3D (STL)</a></li>
+        </ul></div>
+    </div>
+    <div class="pie-fin">
+      <span id="pie-anio">© Sound Blue Project</span>
+      <span>Hecho para que el ruido deje de ser una barrera.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="presbar" role="region" aria-label="Guía de presentación">
+  <div class="pres-in">
+    <div class="pres-n" id="pres-n">Paso 1 / 7</div>
+    <div class="pres-txt"><b id="pres-t"></b><span id="pres-d"></span></div>
+    <div class="pres-btns">
+      <button id="pres-prev" aria-label="Paso anterior">‹</button>
+      <button id="pres-next" aria-label="Paso siguiente">›</button>
+      <button id="pres-salir" style="font-size:.84rem">Salir</button>
+    </div>
+  </div>
+</div>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="cerrar" id="lb-cerrar" aria-label="Cerrar">✕</button>
+  <button class="p-izq" id="lb-prev" aria-label="Anterior">‹</button>
+  <button class="p-der" id="lb-next" aria-label="Siguiente">›</button>
+  <figure style="margin:0;text-align:center"><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
+</div>
+
+<div id="sobrecarga" role="dialog" aria-modal="true" aria-label="Simulación de sobrecarga sensorial">
+  <div class="sc-capa" id="sc-capa" aria-hidden="true"></div>
+  <div class="sc-mid">
+    <div id="sc-tiempo">20</div>
+    <h3 id="sc-frase">Todo empieza normal…</h3>
+    <p>Esto es una versión suavizada. Imaginate que no podés apretar el botón.</p>
+    <button class="btn" id="sc-salir" style="background:#fff;color:#0b1220">Salir ahora (Esc)</button>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ==========================================================================
+   SOUND BLUE PROJECT — vanilla JS, sin dependencias, funciona sin internet.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CONFIGURACIÓN — lo único que hace falta tocar
+   -------------------------------------------------------------------------- */
+
+// Modelo 3D de los auriculares.
+// En Tinkercad:  Exportar → .STL  y guardalo como  assets/modelo.stl
+// Si además tenés el link público, pegalo en `tinkercad` y se usa de respaldo.
+const MODELO_3D = {
+  stl: 'assets/modelo.stl',
+  tinkercad: ''          // ej: 'https://www.tinkercad.com/embed/XXXXXXXXXX'
+};
+
+// Mediciones propias del jardín (cuando las tengas):  {et:'Sala Amarilla · 10:30', db:78}
+const MEDICIONES_PROPIAS = [];
+
+// Guion del stand: qué mostrar y qué contar en cada parada.
+const PASOS = [
+  {id:'problema',    t:'Planteá el problema', min:'1 min',
+   d:'Contá que el ruido escolar no es sólo molesto: para una persona con autismo puede ser una barrera. Apoyate en el número de la OMS: 35 dB dentro del aula.'},
+  {id:'semaforo',    t:'Mostrá el semáforo en vivo', min:'2 min',
+   d:'Activá el micrófono. Pedile a la persona que hable normal (verde) y después que aplauda (rojo). Dejala probar: este es el momento que engancha.'},
+  {id:'microbit',    t:'Explicá cómo lo programamos', min:'1 min',
+   d:'Mostrá las nueve líneas. Lo importante: elegimos una carita y no un número, porque en una sala de jardín nadie lee «178 dB».'},
+  {id:'cuento',      t:'Pasá el cuento', min:'2 min',
+   d:'Pasá las páginas de «El Oso Milo». Aclará que lo escribimos, ilustramos e imprimimos nosotros, y que quedó en el jardín para las docentes.'},
+  {id:'auriculares', t:'Mostrá el modelo 3D', min:'1 min',
+   d:'Hacé girar los auriculares con el dedo. La idea clave: cualquier escuela con una impresora 3D lo puede fabricar.'},
+  {id:'merceditas',  t:'Contá el trabajo de campo', min:'2 min',
+   d:'Fuimos al Jardín Merceditas con sonómetro, entrevistamos a los chicos, hicimos talleres de dibujo e instalamos el semáforo. No fue un trabajo de escritorio.'},
+  {id:'river',       t:'Cerrá con River', min:'1 min',
+   d:'La visita al palco sensorial muestra que la inclusión también se diseña en lugares masivos. Después, cerrá invitando a revisar las fuentes o a probar el semáforo.'}
+];
+
+/* ---------- utilidades ---------- */
+const $  = (s,c)=>(c||document).querySelector(s);
+const $$ = (s,c)=>Array.from((c||document).querySelectorAll(s));
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+const reducido=()=>document.body.classList.contains('calma')||
+                   matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Ejecuta `fn` cuando `el` se acerca a la pantalla, UNA sola vez.
+   Usa IntersectionObserver, pero con red de seguridad: si por lo que sea no
+   dispara, el listener de scroll lo cubre igual. Con `tope` en milisegundos
+   se puede forzar la ejecución aunque nunca se scrollee (para cosas que no
+   descargan nada). */
+function alAcercarse(el,fn,opc){
+  opc=opc||{};
+  const margen=opc.margen==null?600:opc.margen;
+  let hecho=false,io=null,temp=null;
+  const cerca=()=>{const r=el.getBoundingClientRect();
+    return r.top<innerHeight+margen && r.bottom>-margen;};
+  const limpiar=()=>{
+    if(io)io.disconnect();
+    removeEventListener('scroll',mirar);
+    removeEventListener('resize',mirar);
+    if(temp)clearTimeout(temp);
+  };
+  const disparar=()=>{ if(hecho)return; hecho=true; limpiar(); fn(); };
+  function mirar(){ if(cerca()) disparar(); }
+  if('IntersectionObserver' in window){
+    io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)) disparar(); },
+        {rootMargin:margen+'px 0px'});
+    io.observe(el);
+  }
+  addEventListener('scroll',mirar,{passive:true});
+  addEventListener('resize',mirar,{passive:true});
+  if(opc.tope) temp=setTimeout(disparar,opc.tope);
+  mirar();   // por si ya está a la vista al cargar
+}
+
+/* ¿el navegador entiende WebP? (pesa ~20% menos que JPG) */
+const SOPORTA_WEBP=(function(){
+  try{
+    const c=document.createElement('canvas');
+    return !!(c.toDataURL && c.toDataURL('image/webp').indexOf('data:image/webp')===0);
+  }catch(e){ return false; }
+})();
+/* ruta al mejor formato disponible. tam: 'th' | 'md' | null (tamaño completo) */
+function ruta(nombre,tam){
+  return 'assets/img/'+nombre+(tam?'-'+tam:'')+(SOPORTA_WEBP?'.webp':'.jpg');
+}
+
+/* imagen responsiva: el celular baja la chica, la compu la grande */
+function pic(nombre,alt,tam){
+  const t=tam||'th', a=(alt||'').replace(/"/g,'&quot;');
+  return '<picture><source type="image/webp" srcset="assets/img/'+nombre+'-'+t+'.webp">'+
+    '<img src="assets/img/'+nombre+'-'+t+'.jpg" alt="'+a+'" loading="lazy" decoding="async"></picture>';
+}
+
+/* ---------- modo calma ---------- */
+const btnCalma=$('#btn-calma');
+function setCalma(on){
+  document.body.classList.toggle('calma',on);
+  btnCalma.setAttribute('aria-pressed',String(on));
+  try{localStorage.setItem('sb-calma',on?'1':'0')}catch(e){}
+  if(on){ SEM.detener(); SIM.parar(); V3D.girar(false); }
+}
+btnCalma.addEventListener('click',()=>setCalma(!document.body.classList.contains('calma')));
+
+/* ---------- scrollspy ---------- */
+(function(){
+  const links=$$('.nav-links a');
+  const secs=links.map(a=>$(a.getAttribute('href'))).filter(Boolean);
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{ if(e.isIntersecting)
+    links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)); });},
+    {rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(s=>io.observe(s));
+})();
+
+/* ==========================================================================
+   1 · MODO PRESENTACIÓN
+   ========================================================================== */
+const PRES=(function(){
+  let i=0,on=false;
+  function pintar(){
+    const p=PASOS[i];
+    $('#pres-n').textContent='Paso '+(i+1)+' / '+PASOS.length;
+    $('#pres-t').textContent=p.t;
+    $('#pres-d').textContent=p.d;
+    $('#pres-prev').disabled=i===0;
+    $('#pres-next').disabled=i===PASOS.length-1;
+    const s=$('#'+p.id);
+    if(s) s.scrollIntoView({behavior:reducido()?'auto':'smooth',block:'start'});
+  }
+  function activar(v){
+    on=v; document.body.classList.toggle('presentando',v);
+    $('#btn-pres').setAttribute('aria-pressed',String(v));
+    if(v){i=0;pintar();}
+  }
+  function mover(d){ i=clamp(i+d,0,PASOS.length-1); pintar(); }
+  $('#btn-pres').addEventListener('click',()=>activar(!on));
+  $('#btn-pres-hero').addEventListener('click',()=>activar(true));
+  $('#pres-prev').addEventListener('click',()=>mover(-1));
+  $('#pres-next').addEventListener('click',()=>mover(1));
+  $('#pres-salir').addEventListener('click',()=>activar(false));
+  addEventListener('keydown',e=>{
+    if(!on||$('#lb').classList.contains('on')||$('#sobrecarga').classList.contains('on'))return;
+    if(e.target.matches('input,textarea'))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();mover(1);}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();mover(-1);}
+    if(e.key==='Escape')activar(false);
+  });
+  return {activo:()=>on};
+})();
+
+/* ==========================================================================
+   2 · SEMÁFORO SENSORIAL
+   ========================================================================== */
+const SEM=(function(){
+  const ICONOS={
+    Happy :[0,1,0,1,0, 0,0,0,0,0, 1,0,0,0,1, 0,1,1,1,0, 0,0,0,0,0],
+    Asleep:[0,0,0,0,0, 1,1,0,1,1, 0,0,0,0,0, 0,1,1,1,0, 0,0,0,0,0],
+    Sad   :[0,1,0,1,0, 0,0,0,0,0, 0,1,1,1,0, 1,0,0,0,1, 0,0,0,0,0]
+  };
+  const E={
+    verde   :{t:'Tranquilo',    a:'Entorno adecuado. Se puede jugar, hablar y aprender.',      ic:'Happy', d:'Cara feliz — el nivel está por debajo de 115.'},
+    trans   :{t:'En transición',a:'Zona intermedia: la pantalla mantiene el último ícono.',    ic:null,    d:'Sin cambios — el nivel está entre 115 y 149.'},
+    amarillo:{t:'Alerta',       a:'Sobrecarga moderada. Pausa, menos estímulos, respirar.',    ic:'Asleep',d:'Cara dormida — el nivel superó 150.'},
+    rojo    :{t:'Saturación',   a:'Riesgo de crisis. Espacio calmo, silencio y acompañamiento.',ic:'Sad',  d:'Cara triste y tono de 294 Hz — el nivel superó 175.'}
+  };
+  const luces={verde:$('#luz-v'),amarillo:$('#luz-a'),rojo:$('#luz-r')};
+  const cajaSem=$('.semaforo');
+  const elLed=$('#led'),leds=[];
+  for(let k=0;k<25;k++){const d=document.createElement('i');elLed.appendChild(d);leds.push(d);}
+  let pico=0,ultimo='Happy',modo='off',suave=0;
+  let ctx=null,ana=null,stream=null,datos=null,raf=null,ultTono=0;
+
+  const clase=n=> n<115?'verde' : n<150?'trans' : n<175?'amarillo' : 'rojo';
+  function icono(n){const m=ICONOS[n]; if(m) leds.forEach((d,k)=>d.classList.toggle('on',m[k]===1));}
+  function pintar(n){
+    const c=clase(n),e=E[c];
+    if(c!=='trans'){
+      Object.keys(luces).forEach(k=>luces[k].classList.toggle('on',k===c));
+      cajaSem.dataset.estado=c;
+    }
+    $('#sem-titulo').textContent=e.t;
+    $('#sem-accion').textContent=e.a;
+    $('#led-desc').textContent=e.d;
+    if(e.ic) ultimo=e.ic;
+    icono(ultimo);
+    $('#barra').style.background = c==='rojo'?'var(--rojo-luz)':c==='amarillo'?'var(--ambar-luz)':'var(--verde-luz)';
+    if(c==='rojo'&&!reducido()&&Date.now()-ultTono>1400){ultTono=Date.now();tono(294,.55,.05);}
+  }
+  function set(n){
+    n=clamp(n,0,255);
+    if(n>pico){pico=n;$('#val-pico').textContent=Math.round(pico);}
+    $('#val-nivel').textContent=Math.round(n);
+    $('#barra').style.width=(n/255*100)+'%';
+    $('#val-db').textContent=(modo==='off'?'—':Math.round(30+n/255*70))+' dB';
+    pintar(n);
+  }
+  function avisar(html){
+    const b=$('#aviso-mic');
+    b.innerHTML='<strong>Atención:</strong> '+html;
+    b.style.background='#2a1220';b.style.borderColor='#5b2230';b.style.borderLeftColor='var(--rojo-luz)';
+  }
+  async function activar(){
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)
+      return avisar('este navegador no permite usar el micrófono. Usá el <strong>modo demo</strong>.');
+    if(!isSecureContext)
+      return avisar('el navegador bloquea el micrófono si la página se abre como archivo suelto. '+
+        'Ejecutá <code>./servir.sh</code> y entrá por <code>http://localhost:8000</code>. '+
+        'Mientras tanto, usá el <strong>modo demo</strong>.');
+    try{
+      stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
+      ctx=ctx||new (window.AudioContext||window.webkitAudioContext)(); await ctx.resume();
+      ana=ctx.createAnalyser(); ana.fftSize=2048; ana.smoothingTimeConstant=.3;
+      ctx.createMediaStreamSource(stream).connect(ana);
+      datos=new Uint8Array(ana.fftSize);
+      modo='mic'; $('#btn-mic').textContent='Detener micrófono';
+      $('#demo-box').classList.remove('on');
+      medir();
+    }catch(err){avisar('no pudimos usar el micrófono ('+((err&&err.name)||'error')+'). Revisá los permisos o usá el <strong>modo demo</strong>.');}
+  }
+  function detener(){
+    if(modo!=='mic')return;
+    modo='off'; if(raf){cancelAnimationFrame(raf);raf=null;}
+    if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+    $('#btn-mic').textContent='Activar micrófono'; set(0);
+  }
+  function medir(){
+    if(modo!=='mic')return;
+    ana.getByteTimeDomainData(datos);
+    let s=0; for(let k=0;k<datos.length;k++){const v=(datos[k]-128)/128;s+=v*v;}
+    const db=20*Math.log10(Math.max(Math.sqrt(s/datos.length),1e-7));
+    const n=clamp(((db+62)/62)*255,0,255);
+    suave = n>suave ? suave+(n-suave)*.55 : suave+(n-suave)*.10;
+    set(suave);
+    raf=requestAnimationFrame(medir);
+  }
+  $('#btn-mic').addEventListener('click',()=>modo==='mic'?detener():activar());
+  $('#btn-demo').addEventListener('click',()=>{
+    detener();
+    const c=$('#demo-box'),on=!c.classList.contains('on');
+    c.classList.toggle('on',on); modo=on?'demo':'off';
+    if(on){set(+$('#rango').value);$('#rango').focus();}else set(0);
+  });
+  $('#rango').addEventListener('input',e=>{if(modo==='demo')set(+e.target.value);});
+  $('#btn-reset').addEventListener('click',()=>{pico=0;$('#val-pico').textContent='0';});
+  icono('Happy'); set(0);
+  return {detener};
+})();
+
+/* ---------- audio ---------- */
+let ctxT=null;
+function ctxAud(){
+  if(!ctxT) ctxT=new (window.AudioContext||window.webkitAudioContext)();
+  if(ctxT.state==='suspended') ctxT.resume();
+  return ctxT;
+}
+function tono(hz,dur,vol){
+  if(reducido())return;
+  try{
+    const c=ctxAud(),o=c.createOscillator(),g=c.createGain();
+    o.type='sine'; o.frequency.value=hz;
+    g.gain.setValueAtTime(0,c.currentTime);
+    g.gain.linearRampToValueAtTime(vol||.09,c.currentTime+.03);
+    g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+(dur||.5));
+    o.connect(g); g.connect(c.destination); o.start(); o.stop(c.currentTime+(dur||.5)+.05);
+  }catch(e){}
+}
+$('#btn-tono').addEventListener('click',()=>{
+  if(reducido())return alert('El modo calma silencia los sonidos. Desactivalo para escuchar el tono.');
+  tono(294,1,.12);
+});
+$('#btn-copiar').addEventListener('click',async function(){
+  try{
+    await navigator.clipboard.writeText($('#codigo').innerText);
+    const o=this.textContent; this.textContent='Copiado'; setTimeout(()=>this.textContent=o,1600);
+  }catch(e){
+    const r=document.createRange(); r.selectNodeContents($('#codigo'));
+    const s=getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+});
+
+/* ==========================================================================
+   3 · VISOR 3D — lee un STL y lo dibuja con WebGL. Sin librerías, sin internet.
+   ========================================================================== */
+const V3D=(function(){
+  const cont=$('#visor3d');
+  let gl,prog,cv,nVert=0;
+  let rotX=-.30,rotY=.90,dist=2.5,auto=true,arrastrando=false,ult=null,raf=null,pinza=null;
+
+  function fallback(){
+    if(MODELO_3D.tinkercad){
+      cont.innerHTML='<iframe src="'+MODELO_3D.tinkercad+'" style="width:100%;height:100%;border:0" '+
+        'allowfullscreen title="Modelo 3D de los auriculares en Tinkercad"></iframe>';
+      return;
+    }
+    const p=$('#sin-modelo');
+    p.hidden=false;
+    p.innerHTML='<b>Acá va el modelo 3D girando</b>'+
+      '<p>Falta el archivo. En Tinkercad: <strong>Exportar → .STL</strong>, guardalo como '+
+      '<code>assets/modelo.stl</code> y aparece solo al recargar.</p>'+
+      '<p style="color:var(--tinta-3);font-size:.85rem">El visor ya está listo y funciona sin internet, '+
+      'que es lo que conviene en la feria.</p>';
+  }
+
+  function parseSTL(ab){
+    const dv=new DataView(ab);
+    const cab=new TextDecoder().decode(new Uint8Array(ab,0,Math.min(256,ab.byteLength)));
+    const esASCII = cab.trim().slice(0,5).toLowerCase()==='solid' && /facet\s+normal/i.test(cab);
+    const pos=[],nor=[];
+    if(!esASCII){
+      const n=dv.getUint32(80,true);
+      if(84+n*50>ab.byteLength) throw new Error('STL binario incompleto');
+      let o=84;
+      for(let i=0;i<n;i++){
+        const nx=dv.getFloat32(o,true),ny=dv.getFloat32(o+4,true),nz=dv.getFloat32(o+8,true); o+=12;
+        for(let v=0;v<3;v++){
+          pos.push(dv.getFloat32(o,true),dv.getFloat32(o+4,true),dv.getFloat32(o+8,true)); o+=12;
+          nor.push(nx,ny,nz);
+        }
+        o+=2;
+      }
+    }else{
+      const txt=new TextDecoder().decode(new Uint8Array(ab));
+      const re=/facet\s+normal\s+([-\d.eE+]+)\s+([-\d.eE+]+)\s+([-\d.eE+]+)[\s\S]*?outer\s+loop([\s\S]*?)endloop/g;
+      let m;
+      while((m=re.exec(txt))){
+        const nx=+m[1],ny=+m[2],nz=+m[3];
+        const vs=[...m[4].matchAll(/vertex\s+([-\d.eE+]+)\s+([-\d.eE+]+)\s+([-\d.eE+]+)/g)];
+        if(vs.length<3) continue;
+        for(let v=0;v<3;v++){pos.push(+vs[v][1],+vs[v][2],+vs[v][3]);nor.push(nx,ny,nz);}
+      }
+    }
+    if(!pos.length) throw new Error('el STL no tiene triángulos');
+    return {pos:new Float32Array(pos),nor:new Float32Array(nor)};
+  }
+
+  /* matrices (column-major, como espera WebGL) */
+  const persp=(f,a,n,fa)=>{const t=1/Math.tan(f/2);
+    return [t/a,0,0,0, 0,t,0,0, 0,0,(fa+n)/(n-fa),-1, 0,0,2*fa*n/(n-fa),0];};
+  function mult(a,b){
+    const o=new Array(16);
+    for(let i=0;i<4;i++)for(let j=0;j<4;j++){let s=0;
+      for(let k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k]; o[i*4+j]=s;}
+    return o;
+  }
+  const rX=r=>{const c=Math.cos(r),s=Math.sin(r);return[1,0,0,0, 0,c,s,0, 0,-s,c,0, 0,0,0,1];};
+  const rY=r=>{const c=Math.cos(r),s=Math.sin(r);return[c,0,-s,0, 0,1,0,0, s,0,c,0, 0,0,0,1];};
+  const tr=(x,y,z)=>[1,0,0,0, 0,1,0,0, 0,0,1,0, x,y,z,1];
+
+  /* Descarta piezas sueltas y lejanas que Tinkercad deja en el plano de trabajo
+     (en este diseño hay 120 triángulos a 800 mm del objeto). Usamos la mediana
+     como centro, que no se corre por unos pocos restos, y descartamos sólo lo
+     que está 8 veces más lejos que el 95% del modelo. Con percentiles por eje
+     el filtro se comía la parte alta de la diadema. */
+  function limpiarRestos(d){
+    const n=d.pos.length/9;
+    if(n<50) return d;
+    const cx=new Float64Array(n),cy=new Float64Array(n),cz=new Float64Array(n);
+    for(let t=0;t<n;t++){
+      let sx=0,sy=0,sz=0;
+      for(let v=0;v<3;v++){ const o=t*9+v*3; sx+=d.pos[o]; sy+=d.pos[o+1]; sz+=d.pos[o+2]; }
+      cx[t]=sx/3; cy[t]=sy/3; cz[t]=sz/3;
+    }
+    const mediana=a=>{ const b=Array.from(a).sort((x,y)=>x-y); return b[b.length>>1]; };
+    const mx=mediana(cx),my=mediana(cy),mz=mediana(cz);
+    const dist=new Float64Array(n);
+    for(let t=0;t<n;t++) dist[t]=Math.hypot(cx[t]-mx,cy[t]-my,cz[t]-mz);
+    const orden=Array.from(dist).sort((a,b)=>a-b);
+    const r95=orden[Math.min(n-1,Math.round(0.95*(n-1)))]||1e-9;
+    const umbral=r95*8;
+    let quedan=0;
+    for(let t=0;t<n;t++) if(dist[t]<=umbral) quedan++;
+    const fuera=n-quedan;
+    if(fuera===0 || fuera/n>0.05) return d;   // si sobra demasiado, no tocamos nada
+    const pos=new Float32Array(quedan*9), nor=new Float32Array(quedan*9);
+    let j=0;
+    for(let t=0;t<n;t++){
+      if(dist[t]>umbral) continue;
+      pos.set(d.pos.subarray(t*9,t*9+9), j*9);
+      nor.set(d.nor.subarray(t*9,t*9+9), j*9);
+      j++;
+    }
+    return {pos,nor};
+  }
+
+  /* Tinkercad (y casi todo el mundo del 3D) exporta con Z hacia arriba.
+     WebGL dibuja con Y hacia arriba, así que si no rotamos el modelo los
+     auriculares aparecen acostados de costado. */
+  function aEjeYArriba(d){
+    const p=d.pos,nr=d.nor;
+    for(let i=0;i<p.length;i+=3){
+      const y=p[i+1],z=p[i+2];
+      p[i+1]=z; p[i+2]=-y;
+      const ny=nr[i+1],nz=nr[i+2];
+      nr[i+1]=nz; nr[i+2]=-ny;
+    }
+    return d;
+  }
+
+  /* El STL guarda una normal por cara, así que las superficies curvas salen
+     facetadas. Para suavizarlas promediamos las normales de las caras que
+     comparten vértice, pero SÓLO las que están a menos de `grados` de la cara
+     que estamos sombreando. Si se promedian todas (incluidas las del otro lado
+     de un canto vivo) aparecen artefactos con forma de sol en las tapas. */
+  function suavizarNormales(d,grados){
+    const cosMax=Math.cos((grados||42)*Math.PI/180);
+    const n=d.pos.length/9;
+    const mapa=new Map();
+    const clave=(x,y,z)=>Math.round(x*1000)+'_'+Math.round(y*1000)+'_'+Math.round(z*1000);
+    for(let t=0;t<n;t++){
+      const o=t*9;
+      for(let v=0;v<3;v++){
+        const q=o+v*3, k=clave(d.pos[q],d.pos[q+1],d.pos[q+2]);
+        let a=mapa.get(k);
+        if(!a){ a=[]; mapa.set(k,a); }
+        a.push(t);
+      }
+    }
+    const out=new Float32Array(d.nor.length);
+    for(let t=0;t<n;t++){
+      const o=t*9, fx=d.nor[o],fy=d.nor[o+1],fz=d.nor[o+2];
+      for(let v=0;v<3;v++){
+        const q=o+v*3;
+        const vecinas=mapa.get(clave(d.pos[q],d.pos[q+1],d.pos[q+2]));
+        let ax=0,ay=0,az=0;
+        for(let i=0;i<vecinas.length;i++){
+          const r=vecinas[i]*9;
+          const gx=d.nor[r],gy=d.nor[r+1],gz=d.nor[r+2];
+          if(gx*fx+gy*fy+gz*fz>=cosMax){ ax+=gx; ay+=gy; az+=gz; }
+        }
+        const L=Math.hypot(ax,ay,az);
+        if(L>1e-6){ out[q]=ax/L; out[q+1]=ay/L; out[q+2]=az/L; }
+        else { out[q]=fx; out[q+1]=fy; out[q+2]=fz; }
+      }
+    }
+    return {pos:d.pos,nor:out};
+  }
+
+  function iniciar(d){
+    cv=document.createElement('canvas');
+    cont.insertBefore(cv,cont.firstChild);
+    // preserveDrawingBuffer permite capturar o guardar el canvas como imagen
+    const opciones={antialias:true,preserveDrawingBuffer:true};
+    gl=cv.getContext('webgl',opciones)||cv.getContext('experimental-webgl',opciones);
+    if(!gl){cv.remove();fallback();return;}
+
+    const vsrc=
+      'attribute vec3 p;attribute vec3 n;uniform mat4 mvp;uniform mat4 mv;'+
+      'varying vec3 vn;varying vec3 vp;'+
+      'void main(){vec4 e=mv*vec4(p,1.0);vp=e.xyz;vn=mat3(mv)*n;gl_Position=mvp*vec4(p,1.0);}';
+    const fsrc=
+      'precision mediump float;varying vec3 vn;varying vec3 vp;'+
+      'void main(){'+
+      '  vec3 n=normalize(vn);'+
+      '  vec3 V=normalize(-vp);'+
+      '  vec3 L1=normalize(vec3(0.45,0.75,0.60));'+   // luz principal
+      '  vec3 L2=normalize(vec3(-0.60,-0.10,0.40));'+ // relleno frío
+      '  float amb=0.30+0.24*(n.y*0.5+0.5);'+         // cielo arriba, suelo abajo
+      '  float d1=max(dot(n,L1),0.0);'+
+      '  float d2=max(dot(n,L2),0.0);'+
+      '  vec3 base=vec3(0.22,0.47,0.95);'+
+      '  vec3 col=base*(amb+d1*0.70)+vec3(0.10,0.16,0.28)*d2;'+
+      '  vec3 H=normalize(L1+V);'+
+      '  col+=vec3(1.0)*pow(max(dot(n,H),0.0),46.0)*0.45;'+          // brillo
+      '  col+=vec3(0.30,0.55,1.0)*pow(1.0-max(dot(n,V),0.0),3.0)*0.30;'+ // borde
+      '  gl_FragColor=vec4(col,1.0);'+
+      '}';
+    function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);
+      if(!gl.getShaderParameter(o,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(o));return o;}
+    prog=gl.createProgram();
+    gl.attachShader(prog,sh(gl.VERTEX_SHADER,vsrc));
+    gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fsrc));
+    gl.linkProgram(prog);
+    if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog));
+    gl.useProgram(prog);
+
+    // Tinkercad suele exportar restos sueltos lejísimos del objeto principal
+    // (en este diseño hay 120 triángulos a 800 mm). Si no los sacáramos, el
+    // modelo quedaría microscópico. Descartamos sólo si son pocos y lejanos.
+    d=limpiarRestos(d);
+    d=aEjeYArriba(d);          // Tinkercad exporta con Z hacia arriba
+    d=suavizarNormales(d,42);  // sin esto se ven las facetas del STL
+
+    // centrar en el origen y escalar a tamaño 1
+    const p=d.pos;
+    const mn=[1e18,1e18,1e18],mx=[-1e18,-1e18,-1e18];
+    for(let i=0;i<p.length;i+=3)for(let k=0;k<3;k++){
+      if(p[i+k]<mn[k])mn[k]=p[i+k];
+      if(p[i+k]>mx[k])mx[k]=p[i+k];
+    }
+    const c=[(mn[0]+mx[0])/2,(mn[1]+mx[1])/2,(mn[2]+mx[2])/2];
+    const esc=1/Math.max(mx[0]-mn[0],mx[1]-mn[1],mx[2]-mn[2],1e-9);
+    for(let i=0;i<p.length;i+=3)for(let k=0;k<3;k++)p[i+k]=(p[i+k]-c[k])*esc;
+
+    const bp=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,bp);
+    gl.bufferData(gl.ARRAY_BUFFER,p,gl.STATIC_DRAW);
+    const ap=gl.getAttribLocation(prog,'p');
+    gl.enableVertexAttribArray(ap); gl.vertexAttribPointer(ap,3,gl.FLOAT,false,0,0);
+    const bn=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,bn);
+    gl.bufferData(gl.ARRAY_BUFFER,d.nor,gl.STATIC_DRAW);
+    const an=gl.getAttribLocation(prog,'n');
+    gl.enableVertexAttribArray(an); gl.vertexAttribPointer(an,3,gl.FLOAT,false,0,0);
+
+    nVert=p.length/3;
+    gl.enable(gl.DEPTH_TEST);
+    gl.clearColor(.031,.055,.110,1);
+
+    $('#ctrl3d').hidden=false; $('#hint3d').hidden=false;
+    interaccion(); medida(); addEventListener('resize',medida,{passive:true});
+    bucle();
+  }
+  function medida(){
+    if(!cv)return;
+    const r=Math.min(devicePixelRatio||1,2);
+    cv.width=Math.max(1,cont.clientWidth*r);
+    cv.height=Math.max(1,cont.clientHeight*r);
+    gl.viewport(0,0,cv.width,cv.height);
+  }
+  function dibujar(){
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+    const mv=mult(tr(0,0,-dist),mult(rX(rotX),rY(rotY)));
+    const pr=persp(Math.PI/4,cv.width/cv.height,.1,100);
+    gl.uniformMatrix4fv(gl.getUniformLocation(prog,'mvp'),false,new Float32Array(mult(pr,mv)));
+    gl.uniformMatrix4fv(gl.getUniformLocation(prog,'mv'),false,new Float32Array(mv));
+    gl.drawArrays(gl.TRIANGLES,0,nVert);
+  }
+  function bucle(){
+    if(auto&&!arrastrando&&!reducido()) rotY+=.006;
+    dibujar();
+    raf=requestAnimationFrame(bucle);
+  }
+  function interaccion(){
+    const xy=e=>{const t=e.touches?e.touches[0]:e;return{x:t.clientX,y:t.clientY};};
+    const baja=e=>{arrastrando=true;ult=xy(e);};
+    const mueve=e=>{
+      if(!arrastrando||(e.touches&&e.touches.length>1))return;
+      const p=xy(e);
+      rotY+=(p.x-ult.x)*.01; rotX=clamp(rotX+(p.y-ult.y)*.01,-1.55,1.55);
+      ult=p; if(e.cancelable)e.preventDefault();
+    };
+    const sube=()=>{arrastrando=false;pinza=null;};
+    cv.addEventListener('mousedown',baja);
+    addEventListener('mousemove',mueve);
+    addEventListener('mouseup',sube);
+    cv.addEventListener('touchstart',baja,{passive:true});
+    cv.addEventListener('touchmove',e=>{
+      if(e.touches.length===2){
+        const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,
+                           e.touches[0].clientY-e.touches[1].clientY);
+        if(pinza) dist=clamp(dist-(d-pinza)*.01,1.3,7);
+        pinza=d; e.preventDefault(); return;
+      }
+      mueve(e);
+    },{passive:false});
+    cv.addEventListener('touchend',sube);
+    cv.addEventListener('wheel',e=>{e.preventDefault();
+      dist=clamp(dist+Math.sign(e.deltaY)*.18,1.3,7);},{passive:false});
+    $('#b3d-girar').addEventListener('click',function(){
+      auto=!auto; this.textContent=auto?'II':'▶';
+      this.setAttribute('aria-label',auto?'Pausar el giro':'Reanudar el giro');
+    });
+    $('#b3d-reset').addEventListener('click',()=>{rotX=-.30;rotY=.90;dist=2.5;});
+  }
+  /* El STL pesa más de 1 MB: lo bajamos recién cuando la sección se acerca,
+     para no gastarle datos a quien entra desde el celular y no llega hasta acá. */
+  async function cargar(){
+    try{
+      const r=await fetch(MODELO_3D.stl,{cache:'no-store'});
+      if(!r.ok) throw new Error('sin archivo');
+      iniciar(parseSTL(await r.arrayBuffer()));
+    }catch(e){ fallback(); }
+  }
+  /* Si el visitante tiene activado el ahorro de datos o está en una red muy
+     lenta, el modelo se baja SÓLO si llega a la sección. Si no, además lo
+     precargamos a los 12 s (con la página ya ociosa) para que en la feria
+     esté listo sí o sí, aunque el navegador no dispare el observador. */
+  const con=navigator.connection||{};
+  const ahorro=con.saveData===true||/(^|-)2g$/.test(con.effectiveType||'');
+  alAcercarse(cont,cargar,{margen:600,tope:ahorro?0:12000});
+  return {girar:v=>{auto=v;}};
+})();
+
+/* ==========================================================================
+   4 · CUENTO
+   ========================================================================== */
+const PAGINAS=[
+  {img:'cuento-portada',t:'Portada',d:'Milo en su cuarto, con los auriculares puestos y la música que sí eligió escuchar.'},
+  {img:'cuento-01',t:'El orden de Milo',d:'«Después de jugar, a Milo le gusta ordenar sus juguetes por colores. ¡Qué prolijo es Milo!» — la rutina como refugio.'},
+  {img:'cuento-02',t:'¡Rin Rin!',d:'«A Milo le pone triste y lo abruman los sonidos fuertes.» El timbre entra como una descarga: no es que le moleste, es que le duele.'},
+  {img:'cuento-03',t:'El monstruo del ruido',d:'«El ruido de las sillas y los gritos empezaron a mezclarse y a crecer, transformándose en un monstruo gigante.»'},
+  {img:'cuento-04',t:'Shh… el semáforo',d:'Los amigos descubren el semáforo: cuando la luz cambia, todos bajan la voz. La solución no fue aislar a Milo, fue cambiar el ambiente.'},
+  {img:'cuento-05',t:'Preguntar primero',d:'«El tigre quería darle un abrazo gigante, pero aprendió que preguntar antes era lo mejor.» — ¡NO!, dice Milo, y está bien decirlo.'},
+  {img:'cuento-06',t:'La calma vuelve',d:'«Milo se tranquiliza, el ruido se apaga y con él su tristeza.»'}
+];
+(function(){
+  const img=$('#pag-img'),num=$('#pag-num'),tit=$('#pag-titulo'),txt=$('#pag-texto'),mini=$('#mini');
+  let i=0;
+  PAGINAS.forEach((p,k)=>{
+    const b=document.createElement('button');
+    b.innerHTML=pic(p.img,'Miniatura: '+p.t);
+    b.setAttribute('aria-label','Ir a: '+p.t);
+    b.addEventListener('click',()=>ir(k));
+    mini.appendChild(b);
+  });
+  function ir(k){
+    i=clamp(k,0,PAGINAS.length-1);
+    const p=PAGINAS[i];
+    img.src=ruta(p.img,'md');
+    img.alt='Página del cuento El Oso Milo: '+p.t;
+    num.textContent = i===0?'Portada':'Página '+i+' de '+(PAGINAS.length-1);
+    tit.textContent=p.t; txt.textContent=p.d;
+    $$('button',mini).forEach((b,n)=>b.classList.toggle('on',n===i));
+    $('#pag-prev').disabled=i===0; $('#pag-next').disabled=i===PAGINAS.length-1;
+  }
+  $('#pag-prev').addEventListener('click',()=>ir(i-1));
+  $('#pag-next').addEventListener('click',()=>ir(i+1));
+  $('#pag-vis').addEventListener('click',e=>{
+    if(e.target.closest('.flecha'))return;
+    abrirLb(PAGINAS.map(p=>({src:ruta(p.img),cap:p.t+' — '+p.d})),i);
+  });
+  addEventListener('keydown',e=>{
+    if($('#lb').classList.contains('on')||$('#sobrecarga').classList.contains('on')||PRES.activo())return;
+    if(e.target.matches('input,textarea'))return;
+    const r=$('#pag-vis').getBoundingClientRect();
+    if(r.top>innerHeight||r.bottom<0)return;
+    if(e.key==='ArrowLeft')ir(i-1);
+    if(e.key==='ArrowRight')ir(i+1);
+  });
+  let x0=null;
+  $('#pag-vis').addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+  $('#pag-vis').addEventListener('touchend',e=>{
+    if(x0===null)return;
+    const d=e.changedTouches[0].clientX-x0;
+    if(Math.abs(d)>48)ir(i+(d<0?1:-1));
+    x0=null;
+  },{passive:true});
+  ir(0);
+})();
+$('#btn-calameo').addEventListener('click',function(){
+  const b=$('#calameo-box');
+  if(b.dataset.on){b.innerHTML='';delete b.dataset.on;this.textContent='Ver acá dentro (necesita internet)';return;}
+  b.innerHTML='<iframe src="https://v.calameo.com/?bkcode=004454581afafc5dc460e" '+
+    'style="width:100%;aspect-ratio:4/3;border:1px solid var(--linea);border-radius:8px" '+
+    'allowfullscreen title="El Oso Milo en Calaméo"></iframe>';
+  b.dataset.on='1'; this.textContent='Cerrar el visor';
+});
+
+/* ==========================================================================
+   5 · GALERÍAS Y LIGHTBOX
+   ========================================================================== */
+const GALERIAS={
+  'gal-jardin':[
+    ['jardin-01','Todo el equipo con las docentes del Jardín Merceditas, el día de la instalación.'],
+    ['jardin-02','Presentando el prototipo del semáforo a los chicos de la sala.'],
+    ['jardin-03','Taller de dibujo: los chicos contaron qué sonidos les molestan.'],
+    ['medicion-01','Sonómetro y aplicación de medición trabajando en simultáneo.'],
+    ['medicion-02','Relevamiento del nivel sonoro en la entrada del jardín.'],
+    ['jardin-04','Los chicos del jardín trabajando sobre el cuento.'],
+    ['jardin-05','El dispositivo llega a la sala.'],
+    ['jardin-06','Midiendo con la app mientras los chicos observan.'],
+    ['jardin-07','Lectura de «El Oso Milo» en el jardín.'],
+    ['jardin-08','Actividad en la sala, después de la lectura.'],
+    ['jardin-09','Taller de producción con los más chicos.'],
+    ['jardin-10','Cierre de la jornada de trabajo en Merceditas.'],
+    ['medicion-03','Mediciones también en nuestra escuela, junto a la ventana.']
+  ],
+  'gal-river':[
+    ['river-01','Otra toma en el Salón de Honor «Dr. Leopoldo Bard» del Estadio Monumental.'],
+    ['river-03','Recorrido por las instalaciones del palco sensorial.']
+  ],
+  'gal-feria':[
+    ['feria-01','Nuestro stand durante la exposición del proyecto.'],
+    ['feria-02','Explicando el semáforo a los visitantes.'],
+    ['feria-03','Intercambio con docentes y estudiantes de otras escuelas.'],
+    ['feria-04','Presentación completa del proyecto.']
+  ]
+};
+Object.keys(GALERIAS).forEach(id=>{
+  const cont=document.getElementById(id); if(!cont)return;
+  const lista=GALERIAS[id].map(([n,c])=>({src:ruta(n),cap:c}));
+  GALERIAS[id].forEach(([n,c],k)=>{
+    const f=document.createElement('figure');
+    f.tabIndex=0; f.setAttribute('role','button'); f.setAttribute('aria-label','Ampliar: '+c);
+    f.innerHTML=pic(n,c);   // sin texto encima: la descripción va en aria-label y en el visor
+    const abrir=()=>abrirLb(lista,k);
+    f.addEventListener('click',abrir);
+    f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();abrir();}});
+    cont.appendChild(f);
+  });
+});
+$$('.lb-item').forEach(el=>{
+  el.tabIndex=0; el.setAttribute('role','button');
+  el.addEventListener('click',()=>abrirLb([{src:el.dataset.src,cap:el.dataset.cap}],0));
+  el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();el.click();}});
+});
+
+let lbL=[],lbI=0,lbAntes=null;
+const lb=$('#lb');
+function abrirLb(l,i){
+  lbL=l; lbI=i; lbAntes=document.activeElement;
+  pintarLb(); lb.classList.add('on'); document.body.style.overflow='hidden'; $('#lb-cerrar').focus();
+}
+function pintarLb(){
+  const it=lbL[lbI];
+  $('#lb-img').src=it.src; $('#lb-img').alt=it.cap; $('#lb-cap').textContent=it.cap;
+  const solo=lbL.length<2;
+  $('#lb-prev').style.display=solo?'none':'';
+  $('#lb-next').style.display=solo?'none':'';
+}
+function cerrarLb(){
+  lb.classList.remove('on'); document.body.style.overflow='';
+  $('#lb-img').removeAttribute('src'); if(lbAntes)lbAntes.focus();
+}
+function moverLb(d){ lbI=(lbI+d+lbL.length)%lbL.length; pintarLb(); }
+$('#lb-cerrar').addEventListener('click',cerrarLb);
+$('#lb-prev').addEventListener('click',()=>moverLb(-1));
+$('#lb-next').addEventListener('click',()=>moverLb(1));
+lb.addEventListener('click',e=>{if(e.target===lb)cerrarLb();});
+addEventListener('keydown',e=>{
+  if(!lb.classList.contains('on'))return;
+  if(e.key==='Escape')cerrarLb();
+  if(e.key==='ArrowLeft')moverLb(-1);
+  if(e.key==='ArrowRight')moverLb(1);
+});
+
+/* ==========================================================================
+   6 · GRÁFICO DE DECIBELES
+   ========================================================================== */
+(function(){
+  const c=$('#db-chart'); if(!c)return;
+  MEDICIONES_PROPIAS.forEach(m=>{
+    const f=document.createElement('div');
+    f.className='db-fila'; f.dataset.db=m.db;
+    f.innerHTML='<span class="et" style="color:var(--azul)">'+m.et+'</span>'+
+      '<div class="db-track"><div class="db-fill"></div></div>'+
+      '<span class="db-val" style="color:var(--azul)">'+m.db+' dB</span>';
+    c.appendChild(f);
+  });
+  const col=db=> db<=45?'#22c55e' : db<=70?'#84cc16' : db<=90?'#f59e0b' : '#ef4444';
+  alAcercarse(c,()=>{
+    $$('.db-fila',c).forEach((f,k)=>{
+      const db=+f.dataset.db,fill=$('.db-fill',f);
+      fill.style.background=col(db);
+      setTimeout(()=>fill.style.width=(db/125*100)+'%',reducido()?0:k*60);
+    });
+  },{margen:120,tope:6000});
+})();
+
+/* ==========================================================================
+   7 · SIMULADOR DE SOBRECARGA
+   ========================================================================== */
+const SIM=(function(){
+  const panel=$('#sobrecarga'),capa=$('#sc-capa');
+  const FRASES=['Todo empieza normal…','Alguien arrastra una silla.','Dos personas hablan a la vez.',
+    'El timbre. Otra vez el timbre.','Ya no distinguís una voz de la otra.',
+    'Querés irte, pero es media clase.','Esto es lo que el semáforo detecta.'];
+  const TXT=['¡RIN RIN!','SILENCIO','¿me escuchás?','SHHH','¡BASTA!','ruido','¡EH!','tuc tuc','¿qué?','¡AH!'];
+  let t=null,resta=20,nodos=[],ctx=null,master=null,fuentes=[];
+
+  function audio(){
+    try{
+      ctx=ctxAud();
+      master=ctx.createGain();
+      master.gain.setValueAtTime(0,ctx.currentTime);
+      master.gain.linearRampToValueAtTime(.05,ctx.currentTime+3);
+      master.gain.linearRampToValueAtTime(.14,ctx.currentTime+14);
+      master.connect(ctx.destination);
+      const len=ctx.sampleRate*2,b=ctx.createBuffer(1,len,ctx.sampleRate),d=b.getChannelData(0);
+      let b0=0,b1=0,b2=0;
+      for(let i=0;i<len;i++){
+        const w=Math.random()*2-1;
+        b0=.99765*b0+w*.0990460; b1=.963*b1+w*.2965164; b2=.57*b2+w*1.0526913;
+        d[i]=(b0+b1+b2+w*.1848)*.16;
+      }
+      const s=ctx.createBufferSource(); s.buffer=b; s.loop=true;
+      const f=ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=1800;
+      s.connect(f); f.connect(master); s.start(); fuentes.push(s);
+      [220,330,494,660].forEach((hz,k)=>{
+        const o=ctx.createOscillator(),g=ctx.createGain(),l=ctx.createOscillator(),lg=ctx.createGain();
+        o.type='triangle'; o.frequency.value=hz;
+        g.gain.setValueAtTime(0,ctx.currentTime);
+        g.gain.linearRampToValueAtTime(.045,ctx.currentTime+5+k*3);
+        l.frequency.value=.6+k*.35; lg.gain.value=hz*.02;
+        l.connect(lg); lg.connect(o.frequency); o.connect(g); g.connect(master);
+        o.start(); l.start(); fuentes.push(o,l);
+      });
+    }catch(e){}
+  }
+  function arrancar(){
+    if(reducido())return alert('El modo calma está activo, así que la simulación no se ejecuta. Desactivalo si querés vivirla.');
+    resta=20; panel.classList.add('on'); document.body.style.overflow='hidden';
+    capa.innerHTML=''; nodos=[];
+    for(let i=0;i<15;i++){
+      const s=document.createElement('span');
+      s.className='sc-txt'; s.textContent=TXT[i%TXT.length];
+      s.style.left=(Math.random()*82)+'%'; s.style.top=(Math.random()*82)+'%';
+      capa.appendChild(s); nodos.push(s);
+    }
+    audio(); $('#sc-salir').focus(); tick(); t=setInterval(tick,1000);
+  }
+  function tick(){
+    $('#sc-tiempo').textContent=resta;
+    const p=(20-resta)/20;
+    $('#sc-frase').textContent=FRASES[Math.min(FRASES.length-1,Math.floor(p*FRASES.length))];
+    const act=Math.floor(p*nodos.length);
+    nodos.forEach((n,k)=>n.style.opacity = k<act?'1':'0');
+    panel.style.filter='blur('+(p*1.8).toFixed(2)+'px)';
+    if(resta<=0){parar(true);return;}
+    resta--;
+  }
+  function parar(completo){
+    if(!t&&!panel.classList.contains('on'))return;
+    clearInterval(t); t=null;
+    panel.classList.remove('on'); panel.style.filter=''; document.body.style.overflow='';
+    try{
+      if(master){
+        master.gain.cancelScheduledValues(ctx.currentTime);
+        master.gain.linearRampToValueAtTime(0,ctx.currentTime+.25);
+      }
+      fuentes.forEach(f=>{try{f.stop(ctx.currentTime+.4)}catch(e){}});
+    }catch(e){}
+    fuentes=[]; master=null; capa.innerHTML='';
+    if(completo)$('#semaforo').scrollIntoView({behavior:reducido()?'auto':'smooth'});
+  }
+  $('#btn-sim').addEventListener('click',arrancar);
+  $('#sc-salir').addEventListener('click',()=>parar(false));
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('on'))parar(false);});
+  return {parar};
+})();
+
+/* modo calma guardado (se aplica cuando ya existen todos los módulos) */
+try{ if(localStorage.getItem('sb-calma')==='1') setCalma(true); }catch(e){}
+
+$('#pie-anio').textContent='© '+new Date().getFullYear()+' Sound Blue Project · EEM N.° 5 D.E. 15';
+</script>
+</body>
+</html>

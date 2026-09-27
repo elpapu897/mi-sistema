@@ -1,0 +1,123 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .mtp-about__copy .mt-h2 { font-size: clamp(34px, 5vw, {{ section.settings.heading_size }}px); }
+  {% if section.settings.reverse %}
+    #shopify-section-{{ section.id }} .mtp-about__media { order: 2; }
+    #shopify-section-{{ section.id }} .mtp-about__copy { order: 1; }
+  {% endif %}
+  @media (max-width: 990px) {
+    #shopify-section-{{ section.id }} .mtp-about__media,
+    #shopify-section-{{ section.id }} .mtp-about__copy { order: initial; }
+  }
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} { padding-top: min({{ section.settings.padding_top }}px, 72px); padding-bottom: min({{ section.settings.padding_bottom }}px, 72px); }
+  }
+{% endstyle %}
+
+<section class="mtp-about mt-section" id="{{ section.settings.anchor | default: 'nosotros' | handle }}">
+  <div class="mt-container">
+    <div class="mtp-about__grid">
+      <div class="mtp-about__media">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ section.settings.image.alt | default: section.settings.image_alt | escape }}" loading="lazy" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+        {%- else -%}
+          <img src="{{ 'mt-viaje.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" loading="lazy" width="1122" height="1402">
+        {%- endif -%}
+        {%- if section.settings.badge_title != blank -%}
+          <div class="mtp-about__badge">
+            <strong>{{ section.settings.badge_title }}</strong>
+            {%- if section.settings.badge_body != blank -%}<span>{{ section.settings.badge_body }}</span>{%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="mtp-about__copy">
+        {%- if section.settings.kicker != blank -%}<p class="mt-kicker mtp-fade">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 class="mt-h2 mtp-fade" data-d="1" data-mtp-split>{{ section.settings.headline }}</h2>
+        {%- if section.settings.lead != blank -%}
+          <p class="mtp-about__lead mtp-fade" data-d="2">{{ section.settings.lead }}</p>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div class="mtp-about__text mtp-fade" data-d="3">{{ section.settings.text }}</div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="mtp-about__pillars">
+            {%- for block in section.blocks -%}
+              <article class="mtp-pillar mtp-fade mtp-glow" data-d="{{ forloop.index | plus: 2 | at_most: 6 }}" {{ block.shopify_attributes }}>
+                <span class="mtp-pillar__icon">{% render 'mt-icon', name: block.settings.icon %}</span>
+                <div>
+                  <h3>{{ block.settings.title }}</h3>
+                  {%- if block.settings.body != blank -%}<p>{{ block.settings.body }}</p>{%- endif -%}
+                </div>
+              </article>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.signature != blank -%}
+          <p class="mtp-about__sign mtp-fade" data-d="6">{{ section.settings.signature }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Sobre nosotros",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla del enlace (sin espacios)", "default": "nosotros" },
+    { "type": "text", "id": "kicker", "label": "Antetítulo", "default": "QUIÉNES ESTAMOS DETRÁS" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "Elegimos pocos productos. Y los elegimos bien." },
+    { "type": "textarea", "id": "lead", "label": "Frase destacada", "default": "Helio nació de una idea simple: en vez de vender mil cosas, vender una que valga la pena y explicarla de verdad." },
+    { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>Somos un equipo chico en Argentina. Probamos, comparamos y descartamos hasta quedarnos con un solo producto por categoría: el que usaríamos nosotros todos los días.</p><p>No inventamos promesas ni inflamos características. Si un dato no lo podemos comprobar, no lo escribimos. Preferimos que compres sabiendo exactamente qué recibís.</p>" },
+    { "type": "text", "id": "signature", "label": "Firma / cierre", "default": "El equipo de Helio — Buenos Aires, Argentina" },
+    { "type": "header", "content": "Imagen" },
+    { "type": "image_picker", "id": "image", "label": "Foto" },
+    { "type": "text", "id": "image_alt", "label": "Descripción accesible", "default": "Helio Mini sobre un escritorio" },
+    { "type": "checkbox", "id": "reverse", "label": "Mostrar la foto a la derecha", "default": false },
+    { "type": "text", "id": "badge_title", "label": "Título del recuadro sobre la foto", "default": "Un producto. Cero relleno." },
+    { "type": "textarea", "id": "badge_body", "label": "Texto del recuadro", "default": "Preferimos hacer una página honesta antes que un catálogo interminable." },
+    { "type": "header", "content": "Espaciado y color" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 32, "max": 76, "step": 2, "unit": "px", "default": 56 },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#111827" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 176, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 176, "step": 8, "unit": "px", "default": 120 }
+  ],
+  "blocks": [
+    {
+      "type": "pilar",
+      "name": "Pilar",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icono", "default": "lupa",
+          "options": [
+            {"value":"lupa","label":"Selección"},
+            {"value":"escudo","label":"Garantía"},
+            {"value":"envio","label":"Envío"},
+            {"value":"chat","label":"Atención"},
+            {"value":"corazon","label":"Cuidado"},
+            {"value":"rayo","label":"Rapidez"},
+            {"value":"tarjeta","label":"Pago"}
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Título", "default": "Elegimos uno, no cien" },
+        { "type": "textarea", "id": "body", "label": "Texto", "default": "Comparamos modelos hasta quedarnos con el que realmente cumple." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Sobre nosotros",
+      "blocks": [{"type":"pilar"},{"type":"pilar"},{"type":"pilar"}]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,82 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+  #shopify-section-{{ section.id }} .gv-guarantee__title { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+<section class="gv-guarantee gv-section">
+  <div class="gv-container">
+    <div class="gv-guarantee__inner">
+      <div class="gv-medal gv-reveal">
+        <svg class="gv-medal__svg" viewBox="0 0 200 200" role="img" aria-label="{{ section.settings.medal_top | escape }} {{ section.settings.medal_num | replace: '7','10' | escape }} {{ section.settings.medal_unit | escape }}">
+          <defs>
+            <linearGradient id="gvGold-{{ section.id }}" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#F3D57B"/>
+              <stop offset="0.5" stop-color="#D8AC48"/>
+              <stop offset="1" stop-color="#A87B26"/>
+            </linearGradient>
+          </defs>
+          {%- comment -%} Borde dentado que gira despacio {%- endcomment -%}
+          <g class="gv-medal__teeth">
+            <circle cx="100" cy="100" r="89" fill="none" stroke="url(#gvGold-{{ section.id }})" stroke-width="15" stroke-dasharray="5.5 4.5"/>
+          </g>
+          <circle cx="100" cy="100" r="83" fill="url(#gvGold-{{ section.id }})"/>
+          <circle cx="100" cy="100" r="63" fill="#132540"/>
+          {%- comment -%} Rayos suaves dentro del centro azul {%- endcomment -%}
+          <g opacity="0.22" stroke="#F3D57B" stroke-width="1">
+            <line x1="100" y1="44" x2="100" y2="156"/>
+            <line x1="44" y1="100" x2="156" y2="100"/>
+            <line x1="61" y1="61" x2="139" y2="139"/>
+            <line x1="139" y1="61" x2="61" y2="139"/>
+          </g>
+          <circle cx="100" cy="100" r="63" fill="none" stroke="#132540" stroke-width="0"/>
+          <path id="gvArc-{{ section.id }}" d="M 100 100 m -73 0 a 73 73 0 1 1 146 0" fill="none"/>
+          <text font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="3.5" fill="#132540">
+            <textPath href="#gvArc-{{ section.id }}" startOffset="50%" text-anchor="middle">{{ section.settings.medal_top | upcase }}</textPath>
+          </text>
+          <text x="100" y="121" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="60" font-weight="700" fill="url(#gvGold-{{ section.id }})">{{ section.settings.medal_num | replace: '7','10' }}</text>
+          <text x="100" y="143" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="800" letter-spacing="3" fill="#F3D57B">{{ section.settings.medal_unit | upcase }}</text>
+          <text x="54" y="105" text-anchor="middle" font-size="11" fill="#F3D57B">★</text>
+          <text x="146" y="105" text-anchor="middle" font-size="11" fill="#F3D57B">★</text>
+          <text x="100" y="176" text-anchor="middle" font-size="11" letter-spacing="7" fill="#132540">★★★</text>
+        </svg>
+      </div>
+      <div class="gv-guarantee__copy gv-reveal" data-delay="1">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="gv-eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        <h2 class="gv-guarantee__title">{{ section.settings.title | replace: '7 días','10 días' | replace: '30 días','10 días' }}</h2>
+        <p class="gv-guarantee__text">{{ section.settings.texto | replace: '7 días','10 días' | replace: '30 días','10 días' | newline_to_br }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Sello de garantía",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Medallón" },
+    { "type": "text", "id": "medal_top", "label": "Texto de arriba", "default": "Garantía" },
+    { "type": "text", "id": "medal_num", "label": "Número grande", "default": "10" },
+    { "type": "text", "id": "medal_unit", "label": "Texto de abajo", "default": "Días" },
+    { "type": "header", "content": "Texto" },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Comprá tranquilo" },
+    { "type": "textarea", "id": "title", "label": "Título", "default": "10 días para probarlo sin riesgo" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Si el producto no es lo que esperabas, escribinos dentro de los 10 días de recibirlo y lo solucionamos. Sin vueltas ni letra chica." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 22, "max": 52, "step": 2, "unit": "px", "default": 34 },
+    { "type": "color", "id": "fondo", "label": "Color de fondo", "default": "#16233F" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 72 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 72 }
+  ],
+  "presets": [ { "name": "GV – Sello de garantía" } ]
+}
+{% endschema %}

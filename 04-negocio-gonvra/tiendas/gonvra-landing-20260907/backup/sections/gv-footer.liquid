@@ -1,0 +1,147 @@
+{%- if section.settings.wave -%}
+  {% render 'gv-wave', from: section.settings.wave_from, fill: '#101a16', accent: '#c8e54a', uid: section.id %}
+{%- endif -%}
+<footer class="gvft">
+  <div class="gvft-wrap">
+    <div class="gvft-top">
+      <div class="gvft-brand">
+        <p class="gvft-logo">{{ section.settings.brand_text }}</p>
+        {% if section.settings.tagline != blank %}<p class="gvft-tag">{{ section.settings.tagline }}</p>{% endif %}
+        {% if shop.enabled_payment_types != blank %}
+          <div class="gvft-pays" aria-label="Medios de pago">
+            {% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag: class: 'gvft-pay' }}{% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="gvft-cols">
+        {% for block in section.blocks %}
+          {% if block.type == 'columna' %}
+            <div {{ block.shopify_attributes }}>
+              <strong>{{ block.settings.title }}</strong>
+              {% assign items = block.settings.links | newline_to_br | split: '<br />' %}
+              <ul>
+                {% for item in items %}
+                  {% assign parts = item | strip | split: '::' %}
+                  {% if parts[0] != blank %}
+                    <li><a href="{{ parts[1] | default: '#' | strip }}">{{ parts[0] | strip }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        {% if section.settings.show_news %}
+          <div class="gvft-news">
+            <strong>{{ section.settings.news_title }}</strong>
+            <p>{{ section.settings.news_text }}</p>
+            {% form 'customer' %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="gvft-news__row">
+                <input type="email" name="contact[email]" placeholder="tu@email.com" aria-label="Tu email" required>
+                <button type="submit" aria-label="Suscribirme">→</button>
+              </div>
+              {% if form.posted_successfully? %}<small class="gvft-ok">¡Listo! Te vamos a escribir.</small>{% endif %}
+            {% endform %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="gvft-legal">
+      <small>© {{ 'now' | date: '%Y' }} {{ section.settings.brand_text }}. {{ section.settings.legal }}</small>
+      <small>{{ section.settings.legal_2 }}</small>
+    </div>
+  </div>
+</footer>
+
+{% if section.settings.wa_number != blank %}
+  <a class="gvft-wa" href="https://wa.me/{{ section.settings.wa_number }}?text={{ section.settings.wa_text | url_encode }}" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.3.7-1.5 1.3-2.1 1.4-.6.1-1.3.1-2.1-.1-.5-.2-1.1-.4-1.9-.7-3.3-1.4-5.4-4.7-5.6-5-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5l1 2.4c.1.2.1.4 0 .6l-.4.6-.3.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.1.5.1.7-.1l.9-1c.2-.2.4-.2.6-.1l2.2 1.1c.3.1.5.2.6.3.1.2.1.7-.2 1.4Z"/></svg>
+  </a>
+{% endif %}
+
+{% stylesheet %}
+.gvw{position:relative;line-height:0;margin-bottom:-1px;overflow:hidden}
+.gvw-svg{display:block;width:100%;height:clamp(52px,7vw,110px)}
+.gvw-p{will-change:transform}
+.gvw-p1{opacity:.34;animation:gvw-slide 19s linear infinite}
+.gvw-p2{opacity:.55;animation:gvw-slide 13s linear infinite reverse}
+.gvw-p3{animation:gvw-slide 26s linear infinite}
+@keyframes gvw-slide{from{transform:translateX(0)}to{transform:translateX(-1440px)}}
+@media (prefers-reduced-motion:reduce){.gvw-p{animation:none}}
+
+.gvft{background:#101a16;color:#eceee7;font-family:inherit}
+.gvft-wrap{width:min(1280px,calc(100% - 36px));margin:auto;padding:clamp(44px,5vw,72px) 0 26px}
+.gvft-top{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(28px,5vw,72px)}
+.gvft-logo{margin:0;font-size:1.15rem;font-weight:850;letter-spacing:.34em;text-transform:uppercase}
+.gvft-tag{max-width:34ch;margin:14px 0 0;color:#9aa79a;font-size:.87rem;line-height:1.6}
+.gvft-pays{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 0}
+.gvft-pay{width:40px;height:26px;border-radius:5px}
+.gvft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px)}
+.gvft-cols strong{display:block;margin:0 0 13px;font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#c8e54a}
+.gvft-cols ul{display:grid;gap:9px;margin:0;padding:0;list-style:none}
+.gvft-cols a{color:#c3ccc1;font-size:.85rem;text-decoration:none;transition:color .18s}
+.gvft-cols a:hover{color:#fff}
+.gvft-news p{margin:0 0 13px;color:#9aa79a;font-size:.82rem;line-height:1.55}
+.gvft-news__row{display:flex;gap:7px}
+.gvft-news input{flex:1;min-width:0;padding:12px 13px;border:1px solid #2c3a33;border-radius:9px;background:#16221c;color:#eceee7;font:inherit;font-size:.85rem}
+.gvft-news input::placeholder{color:#6e7c6f}
+.gvft-news button{width:44px;border:0;border-radius:9px;background:#c8e54a;color:#1b2410;font-size:1rem;font-weight:800;cursor:pointer}
+.gvft-ok{display:block;margin-top:8px;color:#c8e54a;font-size:.75rem}
+.gvft-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin:clamp(34px,4vw,54px) 0 0;padding-top:20px;border-top:1px solid #2a3830;color:#76846f;font-size:.72rem;line-height:1.5}
+.gvft-wa{position:fixed;right:14px;bottom:78px;z-index:45;display:grid;width:50px;height:50px;place-items:center;border-radius:50%;background:#25d366;color:#fff;box-shadow:0 10px 26px rgba(0,0,0,.22)}
+.gvft-wa svg{width:27px;height:27px}
+@media(max-width:860px){
+.gvft-wrap{width:min(100% - 24px,1280px)}
+.gvft-top{grid-template-columns:1fr;gap:32px}
+.gvft-cols{grid-template-columns:1fr 1fr}
+.gvft-news{grid-column:1/-1}
+.gvft-wa{bottom:86px;width:46px;height:46px}
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "GONVRA · Pie",
+  "tag": "footer",
+  "class": "section-gv-footer",
+  "settings": [
+    { "type": "checkbox", "id": "wave", "label": "Ola arriba del pie", "default": true },
+    { "type": "color", "id": "wave_from", "label": "Color de la sección de arriba", "default": "#f7f6f1" },
+    { "type": "text", "id": "brand_text", "label": "Marca", "default": "GONVRA" },
+    { "type": "text", "id": "tagline", "label": "Frase", "default": "Cuidado personal sin vueltas: productos elegidos, precio claro y envío con seguimiento a todo el país." },
+    { "type": "header", "content": "Newsletter" },
+    { "type": "checkbox", "id": "show_news", "label": "Mostrar suscripción", "default": true },
+    { "type": "text", "id": "news_title", "label": "Título", "default": "Novedades" },
+    { "type": "text", "id": "news_text", "label": "Texto", "default": "Dejanos tu mail y te avisamos cuando sumamos productos nuevos." },
+    { "type": "header", "content": "WhatsApp" },
+    { "type": "text", "id": "wa_number", "label": "Número (con código de país, sin +)", "info": "Ej: 5491122334455. Dejalo vacío para ocultar el botón." },
+    { "type": "text", "id": "wa_text", "label": "Mensaje inicial", "default": "Hola! Tengo una consulta sobre la rasuradora" },
+    { "type": "header", "content": "Legales" },
+    { "type": "text", "id": "legal", "label": "Línea 1", "default": "Todos los derechos reservados." },
+    { "type": "text", "id": "legal_2", "label": "Línea 2", "default": "Defensa de las y los consumidores: para reclamos ingresá a argentina.gob.ar/produccion/defensadelconsumidor" }
+  ],
+  "blocks": [
+    {
+      "type": "columna",
+      "name": "Columna de links",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título", "default": "Tienda" },
+        { "type": "textarea", "id": "links", "label": "Links", "info": "Uno por línea, con el formato: Texto::/url", "default": "Inicio::/" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GONVRA · Pie",
+      "blocks": [
+        { "type": "columna", "settings": { "title": "Tienda", "links": "Inicio::/\nCatálogo::/collections/all\nCarrito::/cart" } },
+        { "type": "columna", "settings": { "title": "Ayuda", "links": "Preguntas frecuentes::/#faq\nEnvíos y entrega::/policies/shipping-policy\nCambios y devoluciones::/policies/refund-policy" } },
+        { "type": "columna", "settings": { "title": "Legal", "links": "Términos del servicio::/policies/terms-of-service\nPolítica de privacidad::/policies/privacy-policy\nContacto::/pages/contact" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

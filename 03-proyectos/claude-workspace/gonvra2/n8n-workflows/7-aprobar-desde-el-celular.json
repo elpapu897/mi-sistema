@@ -1,0 +1,128 @@
+{
+  "name": "GONVRA — Aprobar desde el celular (link)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "gonvra-aprobar",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "wh-ap",
+      "name": "Tocaste el link",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "gonvra-aprobar"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Valida el secreto ANTES de tocar nada. Sin secreto correcto, no pasa.\nconst q = $input.first().json.query || {};\nconst secreto = $env.GONVRA_APROBAR_SECRETO || '';\n\nconst pieza  = String(q.pieza  || '');\nconst accion = String(q.accion || 'aprobar');\nconst token  = String(q.t      || '');\n\nconst ok = secreto && token === secreto\n        && pieza && !pieza.includes('/') && !pieza.includes('..')\n        && ['aprobar', 'descartar'].includes(accion);\n\nreturn [{ json: { ok, pieza, accion, token } }];"
+      },
+      "id": "code-val",
+      "name": "Validar el pedido",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "version": 2 },
+          "conditions": [
+            {
+              "id": "es-valido",
+              "leftValue": "={{ $json.ok }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-val",
+      "name": "Es valido?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "command": "=bash /home/matiigonzz/.hermes/scripts/gonvra-aprobar.sh {{ JSON.stringify($json.pieza) }} {{ $json.accion }} {{ $json.token }}"
+      },
+      "id": "cmd-ap",
+      "name": "Mover y publicar",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "onError": "continueErrorOutput",
+      "position": [680, -100]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"></head><body style=\"font-family:system-ui;background:#0d1720;color:#c8e54a;text-align:center;padding-top:70px\"><h1 style=\"font-size:56px;margin:0\">&#10003;</h1><h2>Listo</h2><pre style=\"color:#ddd;white-space:pre-wrap;text-align:left;max-width:520px;margin:20px auto;font-size:14px\">{{ $json.stdout }}</pre><p style=\"color:#888\">Ya podes cerrar esta pestana.</p></body></html>",
+        "options": { "responseCode": 200, "responseHeaders": { "entries": [ { "name": "Content-Type", "value": "text/html; charset=utf-8" } ] } }
+      },
+      "id": "resp-ok",
+      "name": "Mostrarte que salio",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [920, -160]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "<html><head><meta charset=\"utf-8\"></head><body style=\"font-family:system-ui;background:#1a0d0d;color:#ff8a80;text-align:center;padding-top:70px\"><h2>No se pudo</h2><p style=\"color:#ddd\">El link no es valido o ya vencio.</p></body></html>",
+        "options": { "responseCode": 403, "responseHeaders": { "entries": [ { "name": "Content-Type", "value": "text/html; charset=utf-8" } ] } }
+      },
+      "id": "resp-no",
+      "name": "Link invalido",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [680, 180]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "chat_id", "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}" },
+            { "name": "text", "value": "={{ $json.stdout }}" }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "id": "tg-ap",
+      "name": "Confirmarte por Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 4000,
+      "position": [920, 40]
+    }
+  ],
+  "connections": {
+    "Tocaste el link": { "main": [[{ "node": "Validar el pedido", "type": "main", "index": 0 }]] },
+    "Validar el pedido": { "main": [[{ "node": "Es valido?", "type": "main", "index": 0 }]] },
+    "Es valido?": {
+      "main": [
+        [{ "node": "Mover y publicar", "type": "main", "index": 0 }],
+        [{ "node": "Link invalido", "type": "main", "index": 0 }]
+      ]
+    },
+    "Mover y publicar": {
+      "main": [
+        [
+          { "node": "Mostrarte que salio", "type": "main", "index": 0 },
+          { "node": "Confirmarte por Telegram", "type": "main", "index": 0 }
+        ],
+        [{ "node": "Link invalido", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

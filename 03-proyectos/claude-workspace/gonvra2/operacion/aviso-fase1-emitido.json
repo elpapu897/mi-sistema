@@ -1,0 +1,37 @@
+{
+  "artifacts": [
+    {
+      "role": "copy",
+      "task": "t_8c5c1e31",
+      "status": "done",
+      "path": "/home/matiigonzz/Claude/gonvra2/copy/2026-09-14.md",
+      "bytes": 10904,
+      "partial": false
+    },
+    {
+      "role": "tiktoker",
+      "task": "t_9b5ff120",
+      "status": "done",
+      "path": "/home/matiigonzz/Claude/gonvra2/tiktoker/2026-09-14.md",
+      "bytes": 8191,
+      "partial": false
+    },
+    {
+      "role": "instagramer",
+      "task": "t_f84591b6",
+      "status": "done",
+      "path": "/home/matiigonzz/Claude/gonvra2/instagramer/2026-09-14.md",
+      "bytes": 8204,
+      "partial": false
+    },
+    {
+      "role": "espia",
+      "task": "t_e2a4368c",
+      "status": "done",
+      "path": "/home/matiigonzz/Claude/gonvra2/espia/2026-09-14.md",
+      "bytes": 7693,
+      "partial": true
+    }
+  ],
+  "meaning": "emitido al scheduler; verificar last_delivery_error antes de afirmar recepción"
+}

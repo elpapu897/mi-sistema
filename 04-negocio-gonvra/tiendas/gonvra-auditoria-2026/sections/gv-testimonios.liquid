@@ -1,0 +1,111 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .gv-h2 { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+<section class="gv-reviews gv-section">
+  <div class="gv-container">
+    <div class="gv-head gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<span class="gv-eyebrow gv-center">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="gv-h2">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="gv-lead">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+    {%- if section.settings.mostrar_resumen -%}
+      <div class="gv-reviews__summary gv-reveal">
+        <span class="gv-reviews__score">{{ section.settings.resumen_score }}</span>
+        <span class="gv-reviews__scoretxt">
+          <span class="s">★★★★★</span>
+          <span class="c">{{ section.settings.resumen_texto }}</span>
+        </span>
+      </div>
+    {%- endif -%}
+
+    <div class="gv-reviews__grid" data-gv-carousel data-auto="4000">
+      {%- for block in section.blocks -%}
+        {%- comment -%}
+          Blindaje: si el nombre viene vacío, `slice` sobre un valor nulo puede tumbar la
+          sección (pantalla en blanco). Normalizamos SIEMPRE antes de usar filtros de texto,
+          y la foto solo se pinta si realmente existe la imagen.
+        {%- endcomment -%}
+        {%- assign gv_nombre = block.settings.nombre | default: 'Cliente' | strip -%}
+        {%- if gv_nombre == blank -%}{%- assign gv_nombre = 'Cliente' -%}{%- endif -%}
+        {%- assign gv_inicial = gv_nombre | slice: 0 | upcase -%}
+        {%- if gv_inicial == blank -%}{%- assign gv_inicial = 'C' -%}{%- endif -%}
+        <div class="gv-review gv-reveal" data-delay="{{ forloop.index0 | modulo: 3 | plus: 1 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.foto != blank and block.settings.foto.src != blank -%}
+            <div class="gv-review__photo">
+              <img src="{{ block.settings.foto | image_url: width: 600 }}" alt="{{ gv_nombre | escape }}" loading="lazy"
+                   onerror="this.closest('.gv-review__photo').style.display='none'">
+            </div>
+          {%- endif -%}
+          <div class="gv-review__stars">★★★★★</div>
+          <p class="gv-review__text">{{ block.settings.texto }}</p>
+          <div class="gv-review__who">
+            <div class="gv-review__avatar">{{ gv_inicial }}</div>
+            <div>
+              <div class="gv-review__name">{{ gv_nombre }}</div>
+              {%- if block.settings.detalle != blank -%}<div class="gv-review__role">{{ block.settings.detalle }}</div>{%- endif -%}
+              {%- if block.settings.verificado -%}
+                <span class="gv-review__verified">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  {{ section.settings.verificado_texto | default: 'Compra verificada' }}
+                </span>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Testimonios",
+  "tag": "section",
+  "max_blocks": 9,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Opiniones reales" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Miles de mascotas felices" },
+    { "type": "textarea", "id": "subtitle", "label": "Texto bajo el título", "default": "Esto es lo que dicen quienes ya confían en GONVRA." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 24, "max": 56, "step": 2, "unit": "px", "default": 40 },
+    { "type": "header", "content": "Resumen de valoración" },
+    { "type": "checkbox", "id": "mostrar_resumen", "label": "Mostrar el resumen con la nota", "default": false },
+    { "type": "text", "id": "resumen_score", "label": "Nota (ej: 4,8)", "default": "4,8" },
+    { "type": "text", "id": "resumen_texto", "label": "Texto al lado de la nota", "default": "Según las opiniones de nuestros clientes" },
+    { "type": "text", "id": "verificado_texto", "label": "Texto de \"compra verificada\"", "default": "Compra verificada" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "resena",
+      "name": "Reseña",
+      "settings": [
+        { "type": "textarea", "id": "texto", "label": "Opinión", "default": "Excelente calidad y llegó rapidísimo. A mi mascota le encantó." },
+        { "type": "text", "id": "nombre", "label": "Nombre", "default": "Cliente" },
+        { "type": "text", "id": "detalle", "label": "Detalle (ciudad, mascota...)", "default": "Buenos Aires" },
+        { "type": "image_picker", "id": "foto", "label": "Foto del cliente o del producto (opcional)" },
+        { "type": "checkbox", "id": "verificado", "label": "Mostrar \"compra verificada\"", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GV – Testimonios",
+      "blocks": [
+        { "type": "resena", "settings": { "texto": "La cama que compré es hermosa y súper cómoda. Mi perro no se baja más de ahí. La atención fue impecable.", "nombre": "María L.", "detalle": "Córdoba · dueña de Toby" } },
+        { "type": "resena", "settings": { "texto": "Llegó antes de lo previsto y la calidad es mucho mejor de lo que esperaba. Vuelvo a comprar seguro.", "nombre": "Diego R.", "detalle": "Rosario · dueño de Michi" } },
+        { "type": "resena", "settings": { "texto": "Me asesoraron para elegir el juguete ideal para mi gato. Se nota que saben de mascotas. Recomendadísimo.", "nombre": "Carla S.", "detalle": "Buenos Aires · dueña de Luna" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

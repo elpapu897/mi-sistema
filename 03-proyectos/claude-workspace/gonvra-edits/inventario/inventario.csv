@@ -1,0 +1,54 @@
+ruta,nombre,dur_s,ancho,alto,fps,codec_v,codec_a,audio,bitrate_kbps,tam_mb
+"/home/matiigonzz/Claude/gonvra-ads/out/anuncio-demo.mp4","anuncio-demo.mp4",12.54,1080,1920,30.0,h264,aac,si,4579,6.85
+"/home/matiigonzz/Claude/gonvra-ads/out/anuncio-gancho.mp4","anuncio-gancho.mp4",16.04,1080,1920,30.0,h264,aac,si,4916,9.4
+"/home/matiigonzz/Claude/gonvra-ads/out/anuncio-problema.mp4","anuncio-problema.mp4",19.56,1080,1920,30.0,h264,aac,si,4714,10.99
+"/home/matiigonzz/Claude/gonvra-ads/out/anuncio-producto.mp4","anuncio-producto.mp4",13.55,1080,1920,30.0,h264,aac,si,4217,6.81
+"/home/matiigonzz/Claude/gonvra-ads/out/cine-manifiesto.mp4","cine-manifiesto.mp4",13.85,1080,1920,30.0,h264,aac,si,2679,4.42
+"/home/matiigonzz/Claude/gonvra-ads/out/cine-oferta.mp4","cine-oferta.mp4",6.72,1080,1920,30.0,h264,aac,si,1074,0.86
+"/home/matiigonzz/Claude/gonvra-ads/out/cine-ritual.mp4","cine-ritual.mp4",14.25,1080,1920,30.0,h264,aac,si,2893,4.92
+"/home/matiigonzz/Claude/gonvra-ads/out/motion-kinetico.mp4","motion-kinetico.mp4",9.05,1080,1920,30.0,h264,aac,si,1025,1.11
+"/home/matiigonzz/Claude/gonvra-ads/out/motion-packs.mp4","motion-packs.mp4",9.05,1080,1920,30.0,h264,aac,si,661,0.71
+"/home/matiigonzz/Claude/gonvra-ads/out/motion-trespasos.mp4","motion-trespasos.mp4",15.72,1080,1920,30.0,h264,aac,si,2490,4.67
+"/home/matiigonzz/Claude/gonvra-ads/out/videos/Anuncio-Demo.mp4","Anuncio-Demo.mp4",12.50,1080,1920,30.0,h264,,NO,5714,8.52
+"/home/matiigonzz/Claude/gonvra-ads/out/videos/Anuncio-Gancho.mp4","Anuncio-Gancho.mp4",16.00,1080,1920,30.0,h264,,NO,6016,11.48
+"/home/matiigonzz/Claude/gonvra-ads/out/videos/Anuncio-Problema.mp4","Anuncio-Problema.mp4",19.50,1080,1920,30.0,h264,,NO,5840,13.58
+"/home/matiigonzz/Claude/gonvra-ads/out/videos/Anuncio-Producto.mp4","Anuncio-Producto.mp4",13.50,1080,1920,30.0,h264,,NO,5054,8.13
+"/home/matiigonzz/Claude/gonvra-brand/clips-utiles/hook-cajon-desordenado.mp4","hook-cajon-desordenado.mp4",4.29,360,640,24.0,h264,aac,si,1123,0.57
+"/home/matiigonzz/Descargas/1001297297.mp4","1001297297.mp4",39.80,576,1024,30.0,h264,aac,si,1361,6.46
+"/home/matiigonzz/Descargas/1001297298.mp4","1001297298.mp4",438.95,576,1024,30.0,h264,aac,si,1120,58.62
+"/home/matiigonzz/Descargas/1001297299.mp4","1001297299.mp4",35.53,576,1024,30.0,h264,aac,si,1415,6.0
+"/home/matiigonzz/Descargas/Electric_body_shaver_standing_up…_202609071550.mp4","Electric_body_shaver_standing_up…_202609071550.mp4",4.01,640,360,24.0,h264,aac,si,606,0.29
+"/home/matiigonzz/Descargas/GONVRA - flow/brazo-corregido.mp4","brazo-corregido.mp4",8.00,720,1280,24.0,h264,aac,si,1673,1.6
+"/home/matiigonzz/Descargas/Hand_rinsing_shaver_under_water_202609071535.mp4","Hand_rinsing_shaver_under_water_202609071535.mp4",6.00,1080,1920,24.0,h264,aac,si,5248,3.75
+"/home/matiigonzz/Descargas/Hands_brushing_blade_and_pluggin…_202609071553.mp4","Hands_brushing_blade_and_pluggin…_202609071553.mp4",10.00,1080,1920,24.0,h264,aac,si,4223,5.04
+"/home/matiigonzz/Descargas/Man_demonstrating_electric_shaver_1080p_202609081643.mp4","Man_demonstrating_electric_shaver_1080p_202609081643.mp4",10.00,1080,1920,24.0,h264,aac,si,4660,5.56
+"/home/matiigonzz/Descargas/Reference to video_08_05_0451.mp4","Reference to video_08_05_0451.mp4",12.07,1080,1920,30.0,h264,aac,si,7518,10.82
+"/home/matiigonzz/Descargas/Screen Recording - Made with FlexClip (1).webm","Screen Recording - Made with FlexClip (1).webm",612.89,1920,1080,29.917,vp9,opus,si,2726,199.24
+"/home/matiigonzz/Descargas/Screen Recording - Made with FlexClip.webm","Screen Recording - Made with FlexClip.webm",2284.61,1920,1080,29.917,vp9,opus,si,3557,968.83
+"/home/matiigonzz/Descargas/Shaver_blade_texture_lighting_202609071529.mp4","Shaver_blade_texture_lighting_202609071529.mp4",8.00,360,640,24.0,h264,aac,si,1032,0.98
+"/home/matiigonzz/Descargas/source.mp4","source.mp4",612.90,1920,1080,30.0,h264,aac,si,3939,287.85
+"/home/matiigonzz/Descargas/videos para gonvra/Electric_body_shaver_laid_out_202609061332.mp4","Electric_body_shaver_laid_out_202609061332.mp4",8.00,360,640,24.0,h264,aac,si,992,0.95
+"/home/matiigonzz/Descargas/videos para gonvra/Electric_body_shavers_rotating_202609061328.mp4","Electric_body_shavers_rotating_202609061328.mp4",6.02,720,1280,24.0,h264,aac,si,1823,1.31
+"/home/matiigonzz/Descargas/videos para gonvra/Electric_body_shavers_rotating_202609061333.mp4","Electric_body_shavers_rotating_202609061333.mp4",6.02,720,1280,24.0,h264,aac,si,1823,1.31
+"/home/matiigonzz/Descargas/videos para gonvra/Electric_shaver_and_accessories_…_202609061321.mp4","Electric_shaver_and_accessories_…_202609061321.mp4",6.02,720,1280,24.0,h264,aac,si,4631,3.32
+"/home/matiigonzz/Descargas/videos para gonvra/Electric_shaver_laid_out_202609061321.mp4","Electric_shaver_laid_out_202609061321.mp4",6.02,720,1280,24.0,h264,aac,si,5873,4.21
+"/home/matiigonzz/Descargas/videos para gonvra/Electric_shaver_product_reveal_l…_202609061322.mp4","Electric_shaver_product_reveal_l…_202609061322.mp4",6.02,720,1280,24.0,h264,aac,si,7226,5.18
+"/home/matiigonzz/Descargas/videos para gonvra/Man_organizing_cluttered_bathroo…_202609061304.mp4","Man_organizing_cluttered_bathroo…_202609061304.mp4",8.00,360,640,24.0,h264,aac,si,955,0.91
+"/home/matiigonzz/Descargas/videos para gonvra/Man_organizing_cluttered_bathroo…_202609061331.mp4","Man_organizing_cluttered_bathroo…_202609061331.mp4",8.00,360,640,24.0,h264,aac,si,955,0.91
+"/home/matiigonzz/Descargas/videos para gonvra/Man_shaving_jawline_with_shaver_202609061330.mp4","Man_shaving_jawline_with_shaver_202609061330.mp4",8.00,360,640,24.0,h264,aac,si,970,0.93
+"/home/matiigonzz/Descargas/videos para gonvra/Man_shaving_with_body_trimmer_202609061330 (1).mp4","Man_shaving_with_body_trimmer_202609061330 (1).mp4",8.00,360,640,24.0,h264,aac,si,892,0.85
+"/home/matiigonzz/Descargas/videos para gonvra/Man_shaving_with_body_trimmer_202609061330.mp4","Man_shaving_with_body_trimmer_202609061330.mp4",8.00,360,640,24.0,h264,aac,si,983,0.94
+"/home/matiigonzz/Descargas/videos para la tienda/Camera_orbiting_metal_blade_product_202609062254.mp4","Camera_orbiting_metal_blade_product_202609062254.mp4",4.00,720,1280,24.0,h264,aac,si,1763,0.84
+"/home/matiigonzz/Descargas/videos para la tienda/Electric_body_shaver_standing_up…_202609062336.mp4","Electric_body_shaver_standing_up…_202609062336.mp4",4.01,640,360,24.0,h264,aac,si,5877,2.81
+"/home/matiigonzz/Descargas/videos para la tienda/Hand_picking_up_comb_guard_202609062254.mp4","Hand_picking_up_comb_guard_202609062254.mp4",6.00,720,1280,24.0,h264,aac,si,2488,1.78
+"/home/matiigonzz/Descargas/videos para la tienda/Man_displaying_shaved_forearm_202609062333.mp4","Man_displaying_shaved_forearm_202609062333.mp4",4.01,360,640,24.0,h264,aac,si,507,0.24
+"/home/matiigonzz/Descargas/videos para la tienda/Man_grooming_with_electric_shaver_202609062329.mp4","Man_grooming_with_electric_shaver_202609062329.mp4",8.00,360,640,24.0,h264,aac,si,7199,6.87
+"/home/matiigonzz/Descargas/videos para la tienda/Man_shaving_forearm_202609062333.mp4","Man_shaving_forearm_202609062333.mp4",4.01,360,640,24.0,h264,aac,si,872,0.42
+"/home/matiigonzz/Descargas/videos para la tienda/Man_shaving_with_body_trimmer_202609062332.mp4","Man_shaving_with_body_trimmer_202609062332.mp4",8.00,360,640,24.0,h264,aac,si,7454,7.11
+"/home/matiigonzz/Descargas/videos para la tienda/Reference to video_09_07_0202.mp4","Reference to video_09_07_0202.mp4",10.07,1080,1920,30.0,h264,aac,si,6397,7.68
+"/home/matiigonzz/Descargas/videos para la tienda/Rinsing_shaver_under_running_water_202609062346.mp4","Rinsing_shaver_under_running_water_202609062346.mp4",6.02,360,640,24.0,h264,aac,si,1108,0.8
+"/home/matiigonzz/Descargas/videos para la tienda/Shaved_skin_on_forearm_202609062332.mp4","Shaved_skin_on_forearm_202609062332.mp4",4.01,640,360,24.0,h264,aac,si,820,0.39
+"/home/matiigonzz/Descargas/videos para la tienda/Shaver_blade_texture_lighting_720p_202609062312.mp4","Shaver_blade_texture_lighting_720p_202609062312.mp4",8.00,720,1280,24.0,h264,aac,si,2938,2.8
+"/home/matiigonzz/Descargas/WhatsApp Video 2026-08-02 at 21.41.20.mp4","WhatsApp Video 2026-08-02 at 21.41.20.mp4",92.25,576,1024,30.0,h264,aac,si,781,8.59
+"/home/matiigonzz/Descargas/WhatsApp Video 2026-08-24 at 21.05.21.mp4","WhatsApp Video 2026-08-24 at 21.05.21.mp4",26.07,1080,1920,60.0,h264,aac,si,16140,50.16
+"/home/matiigonzz/Descargas/WhatsApp Video 2026-09-06 at 12.40.53.mp4","WhatsApp Video 2026-09-06 at 12.40.53.mp4",18.06,720,1280,30.0,h264,aac,si,975,2.1

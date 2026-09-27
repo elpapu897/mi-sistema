@@ -1,0 +1,160 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .mtp-specs__head { text-align: {{ section.settings.text_align }}; {% if section.settings.text_align == 'center' %}margin-inline: auto;{% endif %} }
+  #shopify-section-{{ section.id }} .mtp-specs__head .mt-h2 { font-size: clamp(34px, 5vw, {{ section.settings.heading_size }}px); }
+  #shopify-section-{{ section.id }} .mtp-specs__head .mt-body { font-size: clamp(15px, 1.35vw, {{ section.settings.body_size }}px); }
+  #shopify-section-{{ section.id }} .mtp-stat { text-align: {{ section.settings.stats_align }}; }
+  #shopify-section-{{ section.id }} .mtp-stat__num { font-size: clamp(38px, 4.4vw, {{ section.settings.stat_number_size }}px); {% if section.settings.stats_align == 'center' %}justify-content: center;{% endif %} }
+  #shopify-section-{{ section.id }} .mtp-stat__label { font-size: {{ section.settings.stat_label_size }}px; }
+  {% unless section.settings.show_stats %}
+    #shopify-section-{{ section.id }} .mtp-specs__stats { display: none; }
+  {% endunless %}
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} { padding-top: min({{ section.settings.padding_top }}px, 72px); padding-bottom: min({{ section.settings.padding_bottom }}px, 72px); }
+  }
+{% endstyle %}
+
+<section class="mtp-specs mt-section" id="{{ section.settings.anchor | default: 'ficha' | handle }}">
+  <div class="mt-container">
+    <header class="mtp-specs__head">
+      {%- if section.settings.kicker != blank -%}<p class="mt-kicker mtp-fade">{{ section.settings.kicker }}</p>{%- endif -%}
+      <h2 class="mt-h2 mtp-fade" data-d="1" data-mtp-split>{{ section.settings.headline }}</h2>
+      {%- if section.settings.body != blank -%}
+        <div class="mt-body mtp-fade" data-d="2" style="margin-top:22px;{% if section.settings.text_align == 'center' %}margin-inline:auto;{% endif %}">{{ section.settings.body | newline_to_br }}</div>
+      {%- endif -%}
+    </header>
+
+    <div class="mtp-specs__layout" data-mtp-hotspots>
+      <div class="mtp-hotspot mtp-fade">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ section.settings.image.alt | default: section.settings.image_alt | escape }}" loading="lazy" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+        {%- else -%}
+          <img src="{{ 'mt-catalogo-plata-frontal.webp' | asset_url }}" alt="{{ section.settings.image_alt | escape }}" loading="lazy" width="1254" height="1254">
+        {%- endif -%}
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'spec' and block.settings.show_pin -%}
+            <button type="button"
+                    class="mtp-hotspot__pin"
+                    data-mtp-key="{{ block.id }}"
+                    style="left: {{ block.settings.pin_x }}%; top: {{ block.settings.pin_y }}%;"
+                    aria-label="{{ block.settings.title | escape }}">{{ forloop.index }}</button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="mtp-specs__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'spec' -%}
+            <article class="mtp-spec mtp-fade mtp-glow" data-d="{{ forloop.index | at_most: 6 }}" data-mtp-key="{{ block.id }}" {{ block.shopify_attributes }}>
+              <span class="mtp-spec__icon">{% render 'mt-icon', name: block.settings.icon %}</span>
+              <div>
+                <h3 class="mtp-spec__title">{{ block.settings.title }}</h3>
+                {%- if block.settings.body != blank -%}<p class="mtp-spec__body">{{ block.settings.body }}</p>{%- endif -%}
+                {%- if block.settings.value != blank -%}<span class="mtp-spec__value">{{ block.settings.value }}</span>{%- endif -%}
+              </div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="mtp-specs__stats">
+      {%- for i in (1..4) -%}
+        {%- assign num_key = 'stat_' | append: i | append: '_number' -%}
+        {%- assign suf_key = 'stat_' | append: i | append: '_suffix' -%}
+        {%- assign lab_key = 'stat_' | append: i | append: '_label' -%}
+        {%- if section.settings[lab_key] != blank -%}
+          <div class="mtp-stat mtp-fade mtp-glow" data-d="{{ i }}">
+            <p class="mtp-stat__num">
+              <span data-mtp-count="{{ section.settings[num_key] }}">0</span>
+              {%- if section.settings[suf_key] != blank -%}<span class="mtp-stat__suffix">{{ section.settings[suf_key] }}</span>{%- endif -%}
+            </p>
+            <p class="mtp-stat__label">{{ section.settings[lab_key] }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Ficha técnica",
+  "tag": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla del enlace (sin espacios)", "default": "ficha" },
+    { "type": "text", "id": "kicker", "label": "Antetítulo", "default": "POR DENTRO Y POR FUERA" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "Cada detalle, a la vista." },
+    { "type": "textarea", "id": "body", "label": "Texto", "default": "Pasá el cursor por los puntos de la imagen para ver qué hay detrás de cada pieza." },
+    { "type": "select", "id": "text_align", "label": "Alineación del encabezado", "options": [{"value":"left","label":"Izquierda"},{"value":"center","label":"Centro"}], "default": "left" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 32, "max": 80, "step": 2, "unit": "px", "default": 62 },
+    { "type": "range", "id": "body_size", "label": "Tamaño del texto (px)", "min": 14, "max": 24, "step": 1, "unit": "px", "default": 18 },
+    { "type": "header", "content": "Imagen" },
+    { "type": "image_picker", "id": "image", "label": "Foto del producto" },
+    { "type": "text", "id": "image_alt", "label": "Descripción accesible", "default": "Afeitadora Helio Mini vista de frente" },
+    { "type": "header", "content": "Cifras destacadas" },
+    { "type": "checkbox", "id": "show_stats", "label": "Mostrar las cifras", "default": true },
+    { "type": "text", "id": "stat_1_number", "label": "Cifra 1", "default": "2" },
+    { "type": "text", "id": "stat_1_suffix", "label": "Símbolo 1", "default": "×" },
+    { "type": "text", "id": "stat_1_label", "label": "Texto 1", "default": "cabezales de corte independientes" },
+    { "type": "text", "id": "stat_2_number", "label": "Cifra 2", "default": "6" },
+    { "type": "text", "id": "stat_2_suffix", "label": "Símbolo 2", "default": "°" },
+    { "type": "text", "id": "stat_2_label", "label": "Texto 2", "default": "de inclinación de los cabezales" },
+    { "type": "text", "id": "stat_3_number", "label": "Cifra 3", "default": "100" },
+    { "type": "text", "id": "stat_3_suffix", "label": "Símbolo 3", "default": "%" },
+    { "type": "text", "id": "stat_3_label", "label": "Texto 3", "default": "nivel de carga visible en pantalla" },
+    { "type": "text", "id": "stat_4_number", "label": "Cifra 4", "default": "2" },
+    { "type": "text", "id": "stat_4_suffix", "label": "Símbolo 4" },
+    { "type": "text", "id": "stat_4_label", "label": "Texto 4", "default": "colores disponibles" },
+    { "type": "select", "id": "stats_align", "label": "Alineación de las cifras", "options": [{"value":"left","label":"Izquierda"},{"value":"center","label":"Centro"}], "default": "center" },
+    { "type": "range", "id": "stat_number_size", "label": "Tamaño de las cifras (px)", "min": 38, "max": 76, "step": 2, "unit": "px", "default": 60 },
+    { "type": "range", "id": "stat_label_size", "label": "Tamaño de los textos (px)", "min": 11, "max": 20, "step": 1, "unit": "px", "default": 15 },
+    { "type": "header", "content": "Espaciado y color" },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#080A0F" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 176, "step": 8, "unit": "px", "default": 120 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 176, "step": 8, "unit": "px", "default": 128 }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Característica",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icono", "default": "cabezal",
+          "options": [
+            {"value":"cabezal","label":"Cabezales"},
+            {"value":"flotante","label":"Cabezal flotante"},
+            {"value":"pantalla","label":"Pantalla"},
+            {"value":"bateria","label":"Batería"},
+            {"value":"usb","label":"USB"},
+            {"value":"agua","label":"Agua"},
+            {"value":"metal","label":"Metal"},
+            {"value":"mini","label":"Tamaño mini"},
+            {"value":"color","label":"Colores"},
+            {"value":"rayo","label":"Potencia"}
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Título", "default": "Doble cabezal autoafilable" },
+        { "type": "textarea", "id": "body", "label": "Descripción", "default": "Dos discos de corte que trabajan a la vez para cubrir más superficie en cada pasada." },
+        { "type": "text", "id": "value", "label": "Dato corto (opcional)" },
+        { "type": "header", "content": "Punto sobre la foto" },
+        { "type": "checkbox", "id": "show_pin", "label": "Marcar este punto en la foto", "default": true },
+        { "type": "range", "id": "pin_x", "label": "Posición horizontal (%)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "pin_y", "label": "Posición vertical (%)", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Ficha técnica",
+      "blocks": [{"type":"spec"},{"type":"spec"},{"type":"spec"},{"type":"spec"},{"type":"spec"}]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1 @@
+- [Generación de imágenes: flujo manual](generacion-imagenes-flujo-manual.md) — los prompts los escribo yo, las imágenes las genera el usuario en la app de Gemini

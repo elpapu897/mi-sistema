@@ -1,0 +1,31 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+<section class="gv-404 gv-section">
+  <div class="gv-container gv-404__inner">
+    <span class="gv-404__paw">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="4" cy="8" r="2"/><path d="M9 10c-2 0-4 2-4 4.5 0 2 1.5 3.5 3.5 3.5 1 0 1.5-.5 2.5-.5s1.5.5 2.5.5c2 0 3.5-1.5 3.5-3.5C19 12 17 10 15 10c-1.5 0-2 .8-3 .8S10.5 10 9 10Z"/></svg>
+    </span>
+    <span class="gv-404__num">404</span>
+    <h1 class="gv-404__title">Esta página se escapó como un gato</h1>
+    <p class="gv-404__text">El enlace que seguiste no existe o se movió de lugar. Pero tranquilo, tenemos mucho más para mostrarte.</p>
+    <div class="gv-404__actions">
+      <a class="gv-btn gv-btn--gold" href="/">Volver al inicio</a>
+      <a class="gv-btn gv-btn--ghost-dark" href="/collections/all">Ver todos los productos</a>
+    </div>
+    <div class="gv-404__links">
+      <a href="/collections/perros">Perros</a>
+      <a href="/collections/gatos">Gatos</a>
+      <a href="/collections/los-favoritos">Los favoritos</a>
+      <a href="/pages/contact">Contacto</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Página no encontrada",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,182 @@
+{
+  "name": "GONVRA — Reporte diario de la tienda (20:00)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 20 * * *"
+            }
+          ]
+        }
+      },
+      "id": "sched-2",
+      "name": "Todos los dias 20:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://{{ $env.GONVRA_SHOPIFY_DOMAIN }}/admin/api/2026-01/orders.json?status=any&limit=250",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $env.GONVRA_SHOPIFY_TOKEN }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 25000
+        }
+      },
+      "id": "http-ord",
+      "name": "Pedidos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        -100
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "url": "=https://{{ $env.GONVRA_SHOPIFY_DOMAIN }}/admin/api/2026-01/checkouts.json?limit=250",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "={{ $env.GONVRA_SHOPIFY_TOKEN }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 25000
+        }
+      },
+      "id": "http-chk",
+      "name": "Carritos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        100
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "jsCode": "// Junta pedidos + carritos y arma el reporte del dia en pesos.\nconst pedidos  = ($('Pedidos').first().json.orders) || [];\nconst carritos = ($('Carritos').first().json.checkouts) || [];\n\nconst hoy = new Date().toISOString().slice(0, 10);\nconst delDia = pedidos.filter(o => (o.created_at || '').slice(0, 10) === hoy);\n\nconst plata = a => a.reduce((s, o) => s + parseFloat(o.total_price || 0), 0);\nconst fmt = n => '$' + n.toLocaleString('es-AR', { minimumFractionDigits: 2 });\n\nconst facturadoHoy   = plata(delDia);\nconst facturadoTotal = plata(pedidos);\nconst enCarritos     = plata(carritos.filter(c => c.email));\n\nconst lineas = [\n  'REPORTE GONVRA - ' + new Date().toLocaleDateString('es-AR'),\n  '',\n  `Ventas hoy:      ${delDia.length}  (${fmt(facturadoHoy)})`,\n  `Ventas totales:  ${pedidos.length}  (${fmt(facturadoTotal)})`,\n  `Carritos con mail: ${carritos.filter(c => c.email).length}  (${fmt(enCarritos)} sin cerrar)`,\n  ''\n];\n\nif (delDia.length) {\n  lineas.push('Lo que se vendio hoy:');\n  for (const o of delDia) {\n    const items = (o.line_items || []).map(li => `${li.quantity}x ${li.title}`).join(', ');\n    lineas.push(`  #${o.order_number} ${fmt(parseFloat(o.total_price))} - ${items}`);\n  }\n} else {\n  lineas.push('Hoy no entro ninguna venta.');\n  lineas.push('');\n  lineas.push('Con 0 visitas esto es lo esperable, no es una falla.');\n  lineas.push('Lo unico que lo cambia es publicar contenido.');\n}\n\nreturn [{ json: { texto: lineas.join('\\n') } }];"
+      },
+      "id": "code-rep",
+      "name": "Armar el reporte",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.texto }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "id": "tg-2",
+      "name": "Mandar por Telegram",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    }
+  ],
+  "connections": {
+    "Todos los dias 20:00": {
+      "main": [
+        [
+          {
+            "node": "Pedidos",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Carritos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pedidos": {
+      "main": [
+        [
+          {
+            "node": "Armar el reporte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Carritos": {
+      "main": [
+        [
+          {
+            "node": "Armar el reporte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Armar el reporte": {
+      "main": [
+        [
+          {
+            "node": "Mandar por Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}

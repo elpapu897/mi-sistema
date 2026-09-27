@@ -1,0 +1,87 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+  #shopify-section-{{ section.id }} .gv-h2 { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+<section class="gv-band gv-section">
+  <div class="gv-container">
+    <div class="gv-band__inner {% if section.settings.imagen_derecha %}gv-band--flip{% endif %}">
+      <div class="gv-band__media gv-reveal">
+        {%- if section.settings.imagen != blank -%}
+          <img src="{{ section.settings.imagen | image_url: width: 1000 }}" alt="{{ section.settings.imagen.alt | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ 'gv-band-default.jpg' | asset_url }}" alt="" loading="lazy">
+        {%- endif -%}
+      </div>
+      <div class="gv-band__copy gv-reveal" data-delay="1">
+        {%- if section.settings.eyebrow != blank -%}<span class="gv-eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2 class="gv-h2">{{ section.settings.title }}</h2>
+        {%- if section.settings.texto != blank -%}<p class="gv-lead">{{ section.settings.texto | newline_to_br }}</p>{%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <ul class="gv-band__list">
+            {%- for block in section.blocks -%}
+              <li {{ block.shopify_attributes }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>{{ block.settings.texto }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        {%- if section.settings.boton_texto != blank -%}
+          <div class="gv-band__actions">
+            <a class="gv-btn gv-btn--navy" href="{{ section.settings.boton_url | default: '/collections/all' }}">{{ section.settings.boton_texto }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Banda con imagen",
+  "tag": "section",
+  "max_blocks": 5,
+  "settings": [
+    { "type": "image_picker", "id": "imagen", "label": "Imagen" },
+    { "type": "checkbox", "id": "imagen_derecha", "label": "Poner la imagen a la derecha", "default": false },
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Por qué GONVRA" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Pensado para el bienestar de tu mascota" },
+    { "type": "textarea", "id": "texto", "label": "Texto", "default": "Seleccionamos cada producto con criterio: materiales seguros, comodidad real y utilidad para el día a día. Porque tu mascota merece lo mejor." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 24, "max": 52, "step": 2, "unit": "px", "default": 38 },
+    { "type": "color", "id": "fondo", "label": "Color de fondo", "default": "#ffffff" },
+    { "type": "header", "content": "Botón" },
+    { "type": "text", "id": "boton_texto", "label": "Texto del botón (vacío = oculto)", "default": "Conocé la tienda" },
+    { "type": "url", "id": "boton_url", "label": "Enlace del botón" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "punto",
+      "name": "Punto de la lista",
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto", "default": "Materiales seguros y de calidad" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GV – Banda con imagen",
+      "blocks": [
+        { "type": "punto", "settings": { "texto": "Materiales seguros y suaves al tacto" } },
+        { "type": "punto", "settings": { "texto": "Productos útiles para el día a día" } },
+        { "type": "punto", "settings": { "texto": "Envíos rápidos a todo el país" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

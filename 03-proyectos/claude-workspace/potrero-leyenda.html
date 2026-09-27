@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>POTRERO LEYENDA — Carrera de Fútbol</title>
+<style>
+:root{
+  --bg:#0a1014; --bg2:#101a20; --card:#16232b; --card2:#1d3038;
+  --line:#26404c; --txt:#e8f2f5; --dim:#8fa8b3;
+  --verde:#28e07a; --verde2:#1aa85a; --oro:#ffc93c; --rojo:#ff4d5e;
+  --azul:#3ba9ff; --violeta:#a86bff;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:radial-gradient(circle at 50% -10%,#12242c 0%,var(--bg) 60%);
+  color:var(--txt);font-family:"Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
+  overscroll-behavior:none;
+}
+#app{max-width:520px;margin:0 auto;min-height:100%;position:relative;padding-bottom:20px}
+.screen{display:none;padding:12px}
+.screen.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3{margin:0 0 8px}
+h1{font-size:26px;letter-spacing:1px}
+h2{font-size:19px}
+.dim{color:var(--dim)}
+.small{font-size:12px}
+.center{text-align:center}
+.row{display:flex;gap:8px;align-items:center}
+.row.wrap{flex-wrap:wrap}
+.grow{flex:1}
+
+.card{background:linear-gradient(160deg,var(--card),var(--bg2));border:1px solid var(--line);
+  border-radius:14px;padding:12px;margin-bottom:10px}
+.card.tight{padding:9px}
+
+button,.btn{
+  background:linear-gradient(180deg,var(--verde),var(--verde2));color:#06210f;border:0;
+  border-radius:11px;padding:12px 14px;font-weight:800;font-size:15px;cursor:pointer;
+  font-family:inherit;transition:transform .07s, filter .15s;width:100%;display:block;
+}
+button:active{transform:scale(.97)}
+button:disabled{filter:grayscale(1) brightness(.6);cursor:not-allowed}
+button.sec{background:linear-gradient(180deg,#2c4652,#1d3038);color:var(--txt);border:1px solid var(--line)}
+button.oro{background:linear-gradient(180deg,#ffd76b,#e8a400);color:#3a2600}
+button.rojo{background:linear-gradient(180deg,#ff6b78,#d92b3d);color:#fff}
+button.mini{padding:8px 10px;font-size:13px}
+button.auto{width:auto}
+
+.chip{background:var(--card2);border:1px solid var(--line);border-radius:20px;
+  padding:5px 11px;font-size:12px;font-weight:700;display:inline-block}
+.chip.on{background:var(--verde);color:#06210f;border-color:var(--verde)}
+
+/* TOP BAR */
+#top{position:sticky;top:0;z-index:50;background:rgba(10,16,20,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);padding:8px 12px;display:none}
+#top.on{display:block}
+.res{display:flex;gap:6px;font-size:12px;font-weight:800;align-items:center}
+.res>div{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:4px 9px;
+  display:flex;gap:4px;align-items:center}
+
+/* BARRAS */
+.bar{height:8px;background:#0c1519;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--verde2),var(--verde));border-radius:6px;transition:width .4s}
+.bar.oro>i{background:linear-gradient(90deg,#e8a400,var(--oro))}
+.bar.azul>i{background:linear-gradient(90deg,#1d72b8,var(--azul))}
+.bar.rojo>i{background:linear-gradient(90deg,#a02030,var(--rojo))}
+
+.stat{margin-bottom:7px}
+.stat .lbl{display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;font-weight:700}
+
+.ovr{font-size:44px;font-weight:900;line-height:1;color:var(--oro);text-shadow:0 2px 12px rgba(255,201,60,.35)}
+
+/* LISTAS */
+.item{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);
+  border-radius:11px;padding:10px;margin-bottom:7px;cursor:pointer;transition:.15s}
+.item:hover{border-color:var(--verde)}
+.item.sel{border-color:var(--verde);background:#1c3a2c}
+.esc{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:900;font-size:14px;flex:none;color:#0b0b0b}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:6px 4px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--dim);font-size:11px;text-transform:uppercase}
+tr.me td{background:rgba(40,224,122,.13);font-weight:800}
+
+/* MODAL */
+#modal{position:fixed;inset:0;background:rgba(3,7,10,.82);z-index:200;display:none;
+  align-items:center;justify-content:center;padding:16px}
+#modal.on{display:flex}
+#modalBox{background:linear-gradient(160deg,#1b2c35,#121d24);border:1px solid var(--line);
+  border-radius:16px;padding:16px;max-width:440px;width:100%;max-height:88vh;overflow:auto;
+  animation:pop .2s ease}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:none;opacity:1}}
+
+/* TOAST */
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:300;
+  display:flex;flex-direction:column;gap:6px;align-items:center;pointer-events:none}
+.tst{background:#1e3a2a;border:1px solid var(--verde);color:#dfffe9;padding:9px 15px;border-radius:20px;
+  font-size:13px;font-weight:700;animation:up .3s ease}
+.tst.bad{background:#3a1e22;border-color:var(--rojo);color:#ffe0e3}
+.tst.oro{background:#3a3016;border-color:var(--oro);color:#fff3d6}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+canvas{width:100%;display:block;border-radius:12px;background:#124b2a;touch-action:none}
+
+/* TIENDA */
+.oferta{position:relative;overflow:hidden}
+.flag{position:absolute;top:0;right:0;background:var(--rojo);color:#fff;font-size:10px;font-weight:900;
+  padding:3px 10px;border-bottom-left-radius:10px}
+.timer{font-variant-numeric:tabular-nums;font-weight:900;color:var(--rojo)}
+.stock{height:5px;background:#0c1519;border-radius:4px;overflow:hidden;margin-top:5px}
+.stock>i{display:block;height:100%;background:var(--rojo)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pad button{aspect-ratio:1.6;font-size:22px;padding:0}
+
+.log{background:#0c1519;border:1px solid var(--line);border-radius:10px;padding:9px;
+  max-height:180px;overflow:auto;font-size:12.5px;line-height:1.5}
+.log b{color:var(--verde)}
+
+.zonas{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.zonas button{aspect-ratio:1.4;font-size:11px;font-weight:800;padding:0}
+
+.tag{font-size:10px;font-weight:900;padding:2px 7px;border-radius:6px;background:var(--card2);border:1px solid var(--line)}
+.tag.oro{background:#3a3016;border-color:var(--oro);color:var(--oro)}
+.tag.vio{background:#2c1f42;border-color:var(--violeta);color:var(--violeta)}
+.tag.rojo{background:#3a1e22;border-color:var(--rojo);color:var(--rojo)}
+
+input,select{width:100%;background:#0c1519;border:1px solid var(--line);color:var(--txt);
+  border-radius:10px;padding:11px;font-size:15px;font-family:inherit}
+label{font-size:12px;font-weight:800;color:var(--dim);display:block;margin:8px 0 4px}
+
+.hint{font-size:11px;color:var(--dim);margin-top:4px}
+.sep{height:1px;background:var(--line);margin:10px 0}
+.marq{overflow:hidden;white-space:nowrap}
+.marq>span{display:inline-block;animation:mv 18s linear infinite}
+@keyframes mv{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+</style>
+</head>
+<body>
+
+<div id="top">
+  <div class="row">
+    <div class="grow">
+      <div style="font-weight:900;font-size:14px" id="tName">—</div>
+      <div class="small dim" id="tClub">—</div>
+    </div>
+    <div class="res">
+      <div>⚡<span id="tEner">5</span></div>
+      <div>🪙<span id="tMon">0</span></div>
+      <div>💎<span id="tGem">0</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="app">
+
+<!-- ══════════ MENU ══════════ -->
+<div class="screen on" id="s-menu">
+  <div class="center" style="padding:26px 0 14px">
+    <div style="font-size:50px">⚽</div>
+    <h1 style="color:var(--verde)">POTRERO<span style="color:var(--oro)"> LEYENDA</span></h1>
+    <div class="dim small">De la villa al Balón de Oro</div>
+  </div>
+  <button onclick="irCrear()">🎮 NUEVA CARRERA</button>
+  <div style="height:8px"></div>
+  <button class="sec" id="btnCont" onclick="cargarPartida()">📂 CONTINUAR</button>
+  <div style="height:8px"></div>
+  <button class="sec" onclick="ir('s-versus-menu')">🥅 VERSUS (2 jugadores)</button>
+  <div style="height:8px"></div>
+  <button class="sec" onclick="modalAyuda()">❓ CÓMO SE JUEGA</button>
+  <div class="card" style="margin-top:16px">
+    <div class="small dim marq"><span>⚽ Elegí liga · Fichá con un club · Ganá minijuegos para rendir · Tomá decisiones · Subí tu GRL · Ganá títulos · Llegá a la Selección · Retirate como leyenda ⚽</span></div>
+  </div>
+</div>
+
+<!-- ══════════ CREAR ══════════ -->
+<div class="screen" id="s-crear">
+  <h2>Creá tu jugador</h2>
+  <div class="card">
+    <label>Nombre y apellido</label>
+    <input id="inNombre" maxlength="20" placeholder="Ej: Tato Ramírez">
+    <label>Apodo (te lo pone la hinchada)</label>
+    <input id="inApodo" maxlength="14" placeholder="Ej: El Pibe">
+    <label>Posición</label>
+    <div class="grid2" id="posBox"></div>
+    <label>Pie hábil</label>
+    <div class="grid3" id="pieBox"></div>
+    <label>Estilo de juego (define tus stats base)</label>
+    <div id="estiloBox"></div>
+  </div>
+  <div class="card">
+    <h3>Liga donde empezás</h3>
+    <div class="small dim" style="margin-bottom:8px">Ligas fuertes = más difícil arrancar, pero más vidriera.</div>
+    <div id="ligaBox"></div>
+  </div>
+  <button onclick="crearJugador()">✅ EMPEZAR CARRERA</button>
+  <div style="height:8px"></div>
+  <button class="sec" onclick="ir('s-menu')">← Volver</button>
+</div>
+
+<!-- ══════════ HUB ══════════ -->
+<div class="screen" id="s-hub">
+  <div class="card">
+    <div class="row">
+      <div>
+        <div class="small dim">GRL</div>
+        <div class="ovr" id="hOvr">55</div>
+        <div class="small" id="hPos">MED</div>
+      </div>
+      <div class="grow" style="padding-left:10px">
+        <div style="font-weight:900;font-size:17px" id="hNom">—</div>
+        <div class="small dim" id="hInfo">—</div>
+        <div style="margin-top:6px">
+          <div class="small" style="display:flex;justify-content:space-between"><span>Nivel <b id="hNiv">1</b></span><span id="hXp">0/100</span></div>
+          <div class="bar oro"><i id="hXpBar" style="width:0%"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="sep"></div>
+    <div class="row" style="gap:6px;flex-wrap:wrap">
+      <span class="chip">😊 Moral <b id="hMor">70</b></span>
+      <span class="chip">🔥 Forma <b id="hFor">70</b></span>
+      <span class="chip">⭐ Fama <b id="hFam">10</b></span>
+      <span class="chip">🤝 DT <b id="hDt">50</b></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row">
+      <div class="esc" id="hEsc" style="background:#28e07a">C</div>
+      <div class="grow">
+        <div style="font-weight:900" id="hClub">—</div>
+        <div class="small dim" id="hLiga">—</div>
+      </div>
+      <div class="center">
+        <div class="small dim">Fecha</div>
+        <div style="font-weight:900" id="hFecha">1/16</div>
+      </div>
+    </div>
+    <div class="sep"></div>
+    <div class="row small">
+      <div class="grow">Temporada <b id="hTemp">2026</b> · Edad <b id="hEdad">17</b></div>
+      <div>⚽<b id="hGol">0</b> 🅰️<b id="hAsi">0</b></div>
+    </div>
+  </div>
+
+  <div class="card tight" id="proxBox">
+    <div class="small dim">PRÓXIMO PARTIDO</div>
+    <div class="row" style="margin-top:4px">
+      <div class="grow" style="font-weight:800" id="hRival">—</div>
+      <div class="tag" id="hTipo">LIGA</div>
+    </div>
+  </div>
+
+  <button onclick="jugarPartido()" id="btnJugar">▶️ JUGAR PARTIDO (⚡1)</button>
+  <div style="height:8px"></div>
+  <div class="grid2">
+    <button class="sec" onclick="abrirEntreno()">🏋️ Entrenar</button>
+    <button class="sec" onclick="abrirTienda()">🛒 Tienda</button>
+  </div>
+  <div style="height:8px"></div>
+  <div class="grid2">
+    <button class="sec" onclick="abrirTabla()">📊 Tabla</button>
+    <button class="sec" onclick="abrirPerfil()">👤 Carrera</button>
+  </div>
+  <div style="height:8px"></div>
+  <button class="sec mini" onclick="guardar(1);ir('s-menu')">💾 Guardar y salir</button>
+
+  <div class="card" style="margin-top:10px">
+    <div class="small dim" style="margin-bottom:6px">DIARIO DEPORTIVO</div>
+    <div class="log" id="hLog"></div>
+  </div>
+</div>
+
+<!-- ══════════ PARTIDO ══════════ -->
+<div class="screen" id="s-partido">
+  <div class="card tight">
+    <div class="row">
+      <div class="grow center"><div style="font-weight:900" id="pLocal">—</div></div>
+      <div class="center" style="min-width:70px">
+        <div style="font-size:26px;font-weight:900" id="pMarcador">0 - 0</div>
+        <div class="small dim" id="pMin">0'</div>
+      </div>
+      <div class="grow center"><div style="font-weight:900" id="pVisita">—</div></div>
+    </div>
+  </div>
+  <div id="mgArea"></div>
+  <div class="card tight" style="margin-top:8px">
+    <div class="log" id="pLog" style="max-height:120px"></div>
+  </div>
+</div>
+
+<!-- ══════════ VERSUS MENU ══════════ -->
+<div class="screen" id="s-versus-menu">
+  <h2>🥅 Modo Versus</h2>
+  <div class="card">
+    <div class="small dim">Partido físico tipo potrero. Elegís táctica de DT antes de entrar a la cancha (los ajustes cambian tu velocidad, potencia y tamaño).</div>
+  </div>
+  <div class="card">
+    <h3>Táctica (Jugador 1)</h3>
+    <div class="grid3" id="tac1"></div>
+    <h3 style="margin-top:12px">Táctica (Jugador 2 / CPU)</h3>
+    <div class="grid3" id="tac2"></div>
+  </div>
+  <button onclick="iniciarVersus('cpu')">🤖 1 vs CPU</button>
+  <div style="height:8px"></div>
+  <button class="sec" onclick="iniciarVersus('local')">👥 1 vs 1 (mismo teclado)</button>
+  <div style="height:8px"></div>
+  <button class="sec" onclick="modalSala()">🌐 Sala con un amigo (misma PC, 2 pestañas)</button>
+  <div style="height:8px"></div>
+  <button class="sec" onclick="ir('s-menu')">← Volver</button>
+  <div class="card" style="margin-top:10px">
+    <div class="small dim">CONTROLES</div>
+    <div class="small">J1: <b>W A S D</b> mover · <b>ESPACIO</b> patear<br>J2: <b>↑ ← ↓ →</b> mover · <b>ENTER</b> patear<br>En celular: joystick táctil.</div>
+  </div>
+</div>
+
+<!-- ══════════ VERSUS CANCHA ══════════ -->
+<div class="screen" id="s-versus">
+  <div class="card tight">
+    <div class="row">
+      <div class="grow center" style="color:var(--azul);font-weight:900">AZUL</div>
+      <div class="center" style="min-width:90px">
+        <div style="font-size:26px;font-weight:900" id="vMarc">0 - 0</div>
+        <div class="small dim" id="vTime">3:00</div>
+      </div>
+      <div class="grow center" style="color:var(--rojo);font-weight:900">ROJO</div>
+    </div>
+  </div>
+  <canvas id="cvV" width="800" height="480"></canvas>
+  <div class="grid2" style="margin-top:8px">
+    <button class="sec mini" onclick="pausarVersus()">⏸ Pausa</button>
+    <button class="sec mini" onclick="salirVersus()">✖ Salir</button>
+  </div>
+  <div id="touchPad" style="display:none;margin-top:8px">
+    <div class="row">
+      <div class="grow"><div class="pad" style="grid-template-columns:repeat(3,1fr)">
+        <div></div><button class="sec" data-k="up">▲</button><div></div>
+        <button class="sec" data-k="left">◀</button><div></div><button class="sec" data-k="right">▶</button>
+        <div></div><button class="sec" data-k="down">▼</button><div></div>
+      </div></div>
+      <div style="width:90px"><button class="oro" data-k="kick" style="height:90px">⚽</button></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<div id="modal" onclick="if(event.target===this)cerrarModal()"><div id="modalBox"></div></div>
+<div id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   POTRERO LEYENDA — motor de carrera + minijuegos + versus
+   ═══════════════════════════════════════════════════════════ */
+
+const $ = id => document.getElementById(id);
+const rnd = (a,b) => Math.random()*(b-a)+a;
+const ri  = (a,b) => Math.floor(rnd(a,b+1));
+const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+const fmt = n => n.toLocaleString('es-AR');
+
+function ir(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  $(id).classList.add('on');
+  $('top').classList.toggle('on', ['s-hub','s-partido'].includes(id));
+  window.scrollTo(0,0);
+}
+function toast(txt,tipo){
+  const d=document.createElement('div');
+  d.className='tst'+(tipo?' '+tipo:''); d.textContent=txt;
+  $('toast').appendChild(d);
+  setTimeout(()=>{d.style.opacity=0;d.style.transition='.4s';setTimeout(()=>d.remove(),400)},2200);
+}
+function modal(html){ $('modalBox').innerHTML=html; $('modal').classList.add('on'); }
+function cerrarModal(){ $('modal').classList.remove('on'); }
+
+/* ─────────── DATOS ─────────── */
+
+const POSICIONES = [
+  {id:'DEL', n:'Delantero',   ico:'⚽', pesos:{tiro:.35,regate:.2,pase:.1,fisico:.15,vel:.2,defensa:0,arco:0}},
+  {id:'MED', n:'Mediocampista',ico:'🎩', pesos:{tiro:.15,regate:.2,pase:.3,fisico:.15,vel:.1,defensa:.1,arco:0}},
+  {id:'DEF', n:'Defensor',    ico:'🛡️', pesos:{tiro:.03,regate:.07,pase:.15,fisico:.25,vel:.15,defensa:.35,arco:0}},
+  {id:'ARQ', n:'Arquero',     ico:'🧤', pesos:{tiro:0,regate:0,pase:.1,fisico:.15,vel:.05,defensa:.1,arco:.6}}
+];
+
+const ESTILOS = {
+  DEL:[{n:'Killer del área',d:'+Tiro +Físico',b:{tiro:8,fisico:4}},
+       {n:'Extremo eléctrico',d:'+Velocidad +Regate',b:{vel:8,regate:5}},
+       {n:'Falso 9',d:'+Pase +Regate',b:{pase:7,regate:5}}],
+  MED:[{n:'Enganche',d:'+Pase +Regate',b:{pase:8,regate:5}},
+       {n:'Box to box',d:'+Físico +Velocidad',b:{fisico:8,vel:4}},
+       {n:'Cinco de marca',d:'+Defensa +Físico',b:{defensa:8,fisico:5}}],
+  DEF:[{n:'Central rompehuesos',d:'+Defensa +Físico',b:{defensa:9,fisico:5}},
+       {n:'Lateral volante',d:'+Velocidad +Pase',b:{vel:8,pase:5}},
+       {n:'Líbero moderno',d:'+Pase +Defensa',b:{pase:7,defensa:6}}],
+  ARQ:[{n:'Atajapenales',d:'+Arco (reflejos)',b:{arco:9,vel:3}},
+       {n:'Arquero-líbero',d:'+Pase +Velocidad',b:{pase:9,vel:5}},
+       {n:'Muralla',d:'+Arco +Físico',b:{arco:7,fisico:7}}]
+};
+
+function C(n,r,c){return{n,r,c}}
+const LIGAS = {
+  arg:{n:'Liga Potrero (ARG)',f:'🇦🇷',niv:74,prem:'Copa Potrero',clubes:[
+    C('Riachuelo FC',80,'#1e5bd8'),C('Núñez Atlético',80,'#e8e8e8'),C('Rosario Central Sur',75,'#f0d000'),
+    C('Avellaneda Rojo',75,'#d92b3d'),C('Racing del Cilindro',74,'#7ec8f0'),C('San Lorenzo del Bajo',72,'#3a2a8a'),
+    C('Tigre del Norte',68,'#1a4a8a'),C('Lanús Granate',69,'#8a1a2a'),C('Platense Calamar',65,'#c8c8c8'),
+    C('Barracas Unido',62,'#e07a28')]},
+  bra:{n:'Brasileirão Samba',f:'🇧🇷',niv:78,prem:'Copa Brasil',clubes:[
+    C('Flamengo do Morro',84,'#d92b3d'),C('Palmeiras Verdão',83,'#0a7a3a'),C('Corinthians Paulista',80,'#e8e8e8'),
+    C('São Paulo Tricolor',79,'#d92b3d'),C('Atlético Mineiro',78,'#1a1a1a'),C('Grêmio Imortal',76,'#3ba9ff'),
+    C('Internacional Colorado',75,'#d92b3d'),C('Fluminense Guerreiro',74,'#7a1a3a'),C('Botafogo Estrela',72,'#1a1a1a'),
+    C('Bahia Esquadrão',68,'#1e5bd8')]},
+  por:{n:'Liga Portuguesa',f:'🇵🇹',niv:79,prem:'Taça de Portugal',clubes:[
+    C('Benfica das Águias',85,'#d92b3d'),C('Porto Dragões',85,'#1e5bd8'),C('Sporting Leões',83,'#0a7a3a'),
+    C('Braga Guerreiros',77,'#d92b3d'),C('Vitória Conquista',73,'#e8e8e8'),C('Boavista Xadrez',70,'#1a1a1a'),
+    C('Marítimo Ilha',68,'#0a7a3a'),C('Famalicão',67,'#1e5bd8'),C('Estoril Praia',65,'#f0d000'),
+    C('Arouca',63,'#d92b3d')]},
+  ned:{n:'Eredivisie',f:'🇳🇱',niv:78,prem:'KNVB Beker',clubes:[
+    C('Ajax de Ámsterdam',84,'#d92b3d'),C('PSV Luz',83,'#d92b3d'),C('Feyenoord Puerto',81,'#e8e8e8'),
+    C('AZ Alkmaar',75,'#d92b3d'),C('Twente',72,'#d92b3d'),C('Utrecht',70,'#d92b3d'),
+    C('Vitesse',68,'#f0d000'),C('Heerenveen',66,'#1e5bd8'),C('Groningen',65,'#0a7a3a'),C('Sparta',62,'#d92b3d')]},
+  esp:{n:'La Liga Ibérica',f:'🇪🇸',niv:88,prem:'Copa del Rey',clubes:[
+    C('Madrid Merengue',92,'#e8e8e8'),C('Barcelona Blaugrana',91,'#7a1a5a'),C('Atlético Colchonero',87,'#d92b3d'),
+    C('Sevilla Nervión',83,'#e8e8e8'),C('Villarreal Submarino',82,'#f0d000'),C('Real Sociedad',81,'#1e5bd8'),
+    C('Athletic Bilbao',80,'#d92b3d'),C('Betis Verdiblanco',79,'#0a7a3a'),C('Valencia Ché',78,'#f0a000'),
+    C('Girona',75,'#d92b3d')]},
+  eng:{n:'Premier Isla',f:'🏴',niv:90,prem:'FA Cup',clubes:[
+    C('Manchester Cielo',93,'#7ec8f0'),C('Liverpool Anfield',91,'#d92b3d'),C('Arsenal Gunners',90,'#d92b3d'),
+    C('Chelsea Blues',88,'#1e5bd8'),C('Manchester Diablos',87,'#d92b3d'),C('Tottenham Spurs',85,'#e8e8e8'),
+    C('Newcastle Urracas',83,'#1a1a1a'),C('Aston Villa',81,'#7a1a3a'),C('West Ham Martillos',79,'#7a1a3a'),
+    C('Brighton Gaviotas',77,'#3ba9ff')]},
+  ita:{n:'Serie Calcio',f:'🇮🇹',niv:86,prem:'Coppa Italia',clubes:[
+    C('Inter Nerazzurri',90,'#1e5bd8'),C('Milan Rossoneri',88,'#d92b3d'),C('Juventus Vecchia',88,'#1a1a1a'),
+    C('Napoli Partenopei',86,'#3ba9ff'),C('Roma Giallorossi',83,'#8a1a2a'),C('Lazio Aquile',81,'#7ec8f0'),
+    C('Atalanta Dea',82,'#1a1a1a'),C('Fiorentina Viola',78,'#a86bff'),C('Bologna',76,'#d92b3d'),
+    C('Torino Toro',74,'#7a1a2a')]},
+  ger:{n:'Bundes Liga',f:'🇩🇪',niv:87,prem:'DFB Pokal',clubes:[
+    C('Bayern Bávaros',93,'#d92b3d'),C('Dortmund Muralla',87,'#f0d000'),C('Leverkusen Aspirinas',86,'#d92b3d'),
+    C('RB Leipzig',84,'#e8e8e8'),C('Stuttgart',80,'#e8e8e8'),C('Frankfurt Águilas',79,'#1a1a1a'),
+    C('Wolfsburgo',77,'#0a7a3a'),C('Friburgo',75,'#d92b3d'),C('Hoffenheim',73,'#3ba9ff'),C('Bremen',71,'#0a7a3a')]},
+  fra:{n:'Ligue Hexágono',f:'🇫🇷',niv:84,prem:'Coupe de France',clubes:[
+    C('París Capital',92,'#1a2a6a'),C('Marsella Olímpico',82,'#7ec8f0'),C('Mónaco Principado',82,'#d92b3d'),
+    C('Lyon Olympique',80,'#e8e8e8'),C('Lille Mastines',79,'#d92b3d'),C('Niza Águilas',77,'#d92b3d'),
+    C('Rennes',76,'#d92b3d'),C('Lens Sang et Or',75,'#f0d000'),C('Nantes Canarios',71,'#f0d000'),
+    C('Estrasburgo',69,'#3ba9ff')]},
+  mls:{n:'Liga Estrellas (USA)',f:'🇺🇸',niv:70,prem:'US Open Cup',clubes:[
+    C('Miami Rosa',80,'#f0a0c8'),C('Los Ángeles FC',78,'#1a1a1a'),C('Galaxy LA',75,'#e8e8e8'),
+    C('Inter Atlanta',72,'#d92b3d'),C('Seattle Sounders',71,'#0a7a3a'),C('Portland Timbers',69,'#0a7a3a'),
+    C('NY Toros',68,'#d92b3d'),C('Austin Verde',66,'#0a7a3a'),C('Cincinnati',64,'#f0a000'),C('Chicago Fire',62,'#d92b3d')]},
+  sau:{n:'Liga del Desierto',f:'🇸🇦',niv:76,prem:'King Cup',clubes:[
+    C('Hilal Azul',84,'#1e5bd8'),C('Nassr Amarillo',83,'#f0d000'),C('Ittihad Tigres',81,'#f0d000'),
+    C('Ahli Verde',79,'#0a7a3a'),C('Shabab',73,'#e8e8e8'),C('Ettifaq',70,'#0a7a3a'),
+    C('Taawoun',68,'#f0d000'),C('Fateh',65,'#e8e8e8'),C('Raed',63,'#f0d000'),C('Khaleej',61,'#1e5bd8')]}
+};
+const LIGAS_INICIO = ['arg','bra','por','ned','mls','sau'];
+const LIGAS_TOP = ['esp','eng','ita','ger','fra'];
+
+const TACTICAS = [
+  {id:'eq',n:'Equilibrado',ico:'⚖️',d:'Sin bonus',b:{vel:1,kick:1,size:1}},
+  {id:'ve',n:'Velocidad',ico:'💨',d:'+Rápido, -Potencia',b:{vel:1.28,kick:.85,size:.92}},
+  {id:'fu',n:'Fuerza',ico:'💪',d:'+Potencia, -Rápido',b:{vel:.85,kick:1.35,size:1.15}},
+];
+
+/* ─────────── ESTADO ─────────── */
+let G = null;
+const SAVE_KEY = 'potrero_leyenda_v1';
+
+function nuevoEstado(){
+  return {
+    nombre:'', apodo:'', pos:'MED', pie:'Derecho', estilo:0,
+    edad:17, temp:2026, nivel:1, xp:0, xpNec:100,
+    stats:{tiro:45,pase:45,regate:45,fisico:45,vel:45,defensa:45,arco:45},
+    moral:70, forma:70, fama:10, dtRel:50,
+    monedas:1500, gemas:25, energia:5, enerMax:5, ultRecarga:Date.now(),
+    ligaId:'arg', clubIdx:9, contrato:{anios:3, sueldo:0, clausula:0},
+    fecha:1, totFechas:18,
+    tabla:[], goles:0, asist:0, atajadas:0, pj:0, mvp:0,
+    hist:{goles:0,asist:0,pj:0,titulos:[],clubes:[],premios:[]},
+    inventario:{}, boosts:{}, seleccion:false, seleccionPj:0, seleccionGol:0,
+    log:[], copaRonda:0, copaRival:null, pase:{activo:false,niv:0,xp:0},
+    ofertasTienda:[], ofertaExp:0, rachaLogin:0, ultimoDia:'',
+    retirado:false
+  };
+}
+
+/* ─────────── CREACIÓN ─────────── */
+let cSel = {pos:'MED', pie:'Derecho', estilo:0, liga:'arg'};
+
+function irCrear(){
+  cSel = {pos:'MED', pie:'Derecho', estilo:0, liga:'arg'};
+  renderCrear(); ir('s-crear');
+}
+function renderCrear(){
+  $('posBox').innerHTML = POSICIONES.map(p=>
+    `<button class="${cSel.pos===p.id?'':'sec'}" onclick="cSel.pos='${p.id}';cSel.estilo=0;renderCrear()">${p.ico} ${p.n}</button>`).join('');
+  $('pieBox').innerHTML = ['Derecho','Izquierdo','Ambidiestro'].map(p=>
+    `<button class="${cSel.pie===p?'':'sec'} mini" onclick="cSel.pie='${p}';renderCrear()">${p}</button>`).join('');
+  $('estiloBox').innerHTML = ESTILOS[cSel.pos].map((e,i)=>
+    `<div class="item ${cSel.estilo===i?'sel':''}" onclick="cSel.estilo=${i};renderCrear()">
+      <div class="grow"><b>${e.n}</b><div class="small dim">${e.d}</div></div>
+      ${cSel.estilo===i?'<span class="chip on">✓</span>':''}</div>`).join('');
+  $('ligaBox').innerHTML = LIGAS_INICIO.map(id=>{
+    const L=LIGAS[id];
+    return `<div class="item ${cSel.liga===id?'sel':''}" onclick="cSel.liga='${id}';renderCrear()">
+      <div class="esc" style="background:${L.clubes[0].c}">${L.f}</div>
+      <div class="grow"><b>${L.n}</b><div class="small dim">Nivel ${L.niv} · 10 equipos</div></div>
+      <span class="tag ${L.niv>77?'rojo':''}">${L.niv>77?'DIFÍCIL':'ACCESIBLE'}</span></div>`;
+  }).join('');
+}
+
+function crearJugador(){
+  const nom = $('inNombre').value.trim() || 'Pibe Anónimo';
+  const apo = $('inApodo').value.trim() || 'El Crack';
+  G = nuevoEstado();
+  G.nombre=nom; G.apodo=apo; G.pos=cSel.pos; G.pie=cSel.pie; G.estilo=cSel.estilo; G.ligaId=cSel.liga;
+  // stats base por posición
+  const P = POSICIONES.find(p=>p.id===cSel.pos);
+  for(const k in G.stats) G.stats[k] = ri(38,48) + Math.round((P.pesos[k]||0)*22);
+  const bono = ESTILOS[cSel.pos][cSel.estilo].b;
+  for(const k in bono) G.stats[k]+=bono[k];
+  for(const k in G.stats) G.stats[k]=clamp(G.stats[k],25,70);
+  // club: te ficha uno de los 3 más chicos
+  const L = LIGAS[cSel.liga];
+  G.clubIdx = ri(7,9);
+  G.contrato = {anios:3, sueldo: Math.round(L.niv*120), clausula: Math.round(L.niv*8000)};
+  G.hist.clubes = [L.clubes[G.clubIdx].n];
+  iniciarTemporada(true);
+  logear(`🎬 <b>${G.nombre}</b> "${G.apodo}" debuta en <b>${L.clubes[G.clubIdx].n}</b> a los ${G.edad} años.`);
+  toast('¡Bienvenido al profesionalismo!','oro');
+  generarOfertasTienda();
+  guardar();
+  ir('s-hub'); renderHub();
+}
+
+/* ─────────── TEMPORADA ─────────── */
+function iniciarTemporada(primera){
+  const L = LIGAS[G.ligaId];
+  G.tabla = L.clubes.map((c,i)=>({i, n:c.n, r:c.r, c:c.c, pj:0, g:0, e:0, p:0, gf:0, gc:0, pts:0}));
+  G.fecha=1; G.totFechas=18; G.copaRonda=0;
+  G.goles=0; G.asist=0; G.atajadas=0; G.pj=0; G.mvp=0;
+  if(!primera){ G.temp++; G.edad++; }
+  calcularRival();
+}
+function calcularRival(){
+  // fixture simple: rotás rivales
+  const yo = G.clubIdx;
+  const otros = G.tabla.map((t,i)=>i).filter(i=>i!==yo);
+  G.rivalIdx = otros[(G.fecha-1)%otros.length];
+  G.local = (G.fecha%2===1);
+  G.tipoPartido = (G.fecha%6===0 && G.copaRonda<3) ? 'COPA' : 'LIGA';
+  if(G.tipoPartido==='COPA'){
+    G.rivalIdx = otros[ri(0,otros.length-1)];
+  }
+}
+
+function ovr(){
+  const P = POSICIONES.find(p=>p.id===G.pos);
+  let s=0,w=0;
+  for(const k in P.pesos){ if(P.pesos[k]>0){ s+=G.stats[k]*P.pesos[k]; w+=P.pesos[k]; } }
+  return Math.round(s/w);
+}
+
+function logear(txt){
+  G.log.unshift(txt);
+  if(G.log.length>60) G.log.pop();
+}
+
+/* ─────────── ENERGÍA ─────────── */
+const RECARGA_MS = 5*60*1000;
+function tickEnergia(){
+  if(!G) return;
+  if(G.energia >= G.enerMax){ G.ultRecarga = Date.now(); return; }
+  const pasado = Date.now()-G.ultRecarga;
+  const n = Math.floor(pasado/RECARGA_MS);
+  if(n>0){ G.energia=Math.min(G.enerMax,G.energia+n); G.ultRecarga += n*RECARGA_MS; }
+}
+function textoRecarga(){
+  if(G.energia>=G.enerMax) return 'LLENA';
+  const falta = RECARGA_MS-(Date.now()-G.ultRecarga);
+  const m=Math.floor(falta/60000), s=Math.floor(falta%60000/1000);
+  return `+1 en ${m}:${String(s).padStart(2,'0')}`;
+}
+
+/* ─────────── RENDER HUB ─────────── */
+function renderHub(){
+  tickEnergia();
+  const L=LIGAS[G.ligaId], club=L.clubes[G.clubIdx];
+  $('tName').textContent = `${G.nombre} · GRL ${ovr()}`;
+  $('tClub').textContent = `${club.n} · ${L.f} ${L.n}`;
+  $('tEner').textContent = G.energia+'/'+G.enerMax;
+  $('tMon').textContent = fmt(G.monedas);
+  $('tGem').textContent = fmt(G.gemas);
+
+  $('hOvr').textContent = ovr();
+  $('hPos').textContent = POSICIONES.find(p=>p.id===G.pos).id+' · '+ESTILOS[G.pos][G.estilo].n;
+  $('hNom').textContent = `${G.nombre} "${G.apodo}"`;
+  $('hInfo').textContent = `${G.edad} años · Pie ${G.pie} · Contrato ${G.contrato.anios}a · $${fmt(G.contrato.sueldo)}k/sem`;
+  $('hNiv').textContent = G.nivel;
+  $('hXp').textContent = `${G.xp}/${G.xpNec}`;
+  $('hXpBar').style.width = (G.xp/G.xpNec*100)+'%';
+  $('hMor').textContent=G.moral; $('hFor').textContent=G.forma;
+  $('hFam').textContent=G.fama; $('hDt').textContent=G.dtRel;
+  $('hEsc').style.background=club.c; $('hEsc').textContent=club.n[0];
+  $('hClub').textContent=club.n; $('hLiga').textContent=`${L.f} ${L.n}`;
+  $('hFecha').textContent=`${Math.min(G.fecha,G.totFechas)}/${G.totFechas}`;
+  $('hTemp').textContent=G.temp; $('hEdad').textContent=G.edad;
+  $('hGol').textContent=G.goles; $('hAsi').textContent=G.asist;
+
+  const riv = G.tabla[G.rivalIdx];
+  $('hRival').textContent = G.local ? `${club.n} 🆚 ${riv.n}` : `${riv.n} 🆚 ${club.n}`;
+  $('hTipo').textContent = G.tipoPartido;
+  $('hTipo').className = 'tag '+(G.tipoPartido==='COPA'?'oro':'');
+  $('btnJugar').innerHTML = G.energia>0
+    ? `▶️ JUGAR PARTIDO (⚡1)`
+    : `⚡ SIN ENERGÍA — ${textoRecarga()}`;
+  $('btnJugar').className = G.energia>0?'':'sec';
+  $('hLog').innerHTML = G.log.map(l=>'<div>'+l+'</div>').join('') || '<span class="dim">Sin noticias todavía…</span>';
+}
+
+/* ─────────── ENTRENAMIENTO ─────────── */
+function abrirEntreno(){
+  const opciones = [
+    {k:'tiro',n:'Definición',ico:'🎯'},{k:'pase',n:'Pase',ico:'🎩'},
+    {k:'regate',n:'Gambeta',ico:'🌀'},{k:'fisico',n:'Físico',ico:'💪'},
+    {k:'vel',n:'Velocidad',ico:'💨'},{k:'defensa',n:'Marca',ico:'🛡️'},
+    {k:'arco',n:'Reflejos (arco)',ico:'🧤'}
+  ];
+  modal(`<h2>🏋️ Entrenamiento</h2>
+  <div class="small dim">Cuesta ⚡1 y 🪙250. Sube 1-3 puntos según tu forma.</div>
+  <div class="sep"></div>
+  ${opciones.map(o=>`<div class="item" onclick="entrenar('${o.k}')">
+    <div class="esc" style="background:var(--card)">${o.ico}</div>
+    <div class="grow"><b>${o.n}</b>
+      <div class="bar" style="margin-top:5px"><i style="width:${G.stats[o.k]}%"></i></div></div>
+    <div style="font-weight:900;font-size:18px">${G.stats[o.k]}</div></div>`).join('')}
+  <div class="sep"></div>
+  <button class="sec" onclick="cerrarModal()">Cerrar</button>`);
+}
+function entrenar(k){
+  tickEnergia();
+  if(G.energia<1){ toast('Sin energía ⚡','bad'); return; }
+  if(G.monedas<250){ toast('Te faltan monedas 🪙','bad'); return; }
+  if(G.stats[k]>=99){ toast('Ya está al máximo','bad'); return; }
+  G.energia--; G.monedas-=250;
+  let sube = 1 + (G.forma>75?1:0) + (Math.random()<0.25?1:0);
+  if(G.boosts.entrenador>0){ sube*=2; G.boosts.entrenador--; }
+  if(G.edad>31) sube = Math.max(1,Math.round(sube*.5));
+  G.stats[k]=Math.min(99,G.stats[k]+sube);
+  G.forma=clamp(G.forma-6,10,100);
+  darXp(25);
+  toast(`+${sube} ${k.toUpperCase()} 💪`);
+  abrirEntreno(); renderHub(); guardar();
+}
+
+function darXp(n){
+  G.xp+=n;
+  if(G.pase.activo){ G.pase.xp+=n; while(G.pase.xp>=200){G.pase.xp-=200;G.pase.niv++;G.gemas+=5;toast('Pase Leyenda nivel '+G.pase.niv+' → +5 💎','oro');} }
+  while(G.xp>=G.xpNec){
+    G.xp-=G.xpNec; G.nivel++; G.xpNec=Math.round(G.xpNec*1.25);
+    G.gemas+=3; G.monedas+=500;
+    toast(`⬆️ Nivel ${G.nivel}! +3💎 +500🪙`,'oro');
+    // punto de skill automático a stat principal
+    const P=POSICIONES.find(p=>p.id===G.pos);
+    const best=Object.keys(P.pesos).sort((a,b)=>P.pesos[b]-P.pesos[a])[0];
+    G.stats[best]=Math.min(99,G.stats[best]+1);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   PARTIDO — motor + minijuegos
+   ═══════════════════════════════════════════ */
+let M = null; // estado partido
+
+function jugarPartido(){
+  tickEnergia();
+  if(G.energia<1){ toast('Sin energía. Esperá o comprá bebida ⚡','bad'); abrirTienda(); return; }
+  G.energia--;
+  const L=LIGAS[G.ligaId], club=L.clubes[G.clubIdx], riv=G.tabla[G.rivalIdx];
+  M = {
+    club, riv, gl:0, gv:0, min:0, log:[],
+    misGoles:0, misAsist:0, misAtajadas:0, rating:6.0,
+    eventos:0, totalEventos:5, tipo:G.tipoPartido
+  };
+  $('pLocal').textContent = G.local?club.n:riv.n;
+  $('pVisita').textContent = G.local?riv.n:club.n;
+  $('pMarcador').textContent='0 - 0'; $('pMin').textContent="0'";
+  $('pLog').innerHTML='';
+  plog(`🔊 Arranca el partido en ${G.local?'casa':'la cancha rival'}.`);
+  ir('s-partido');
+  siguienteEvento();
+}
+function plog(t){ M.log.unshift(t); $('pLog').innerHTML=M.log.map(x=>'<div>'+x+'</div>').join(''); }
+function actualizarMarcador(){
+  $('pMarcador').textContent = G.local?`${M.gl} - ${M.gv}`:`${M.gv} - ${M.gl}`;
+  $('pMin').textContent = M.min+"'";
+}
+
+/* elige minijuego según posición */
+function elegirMinijuego(){
+  const porPos = {
+    DEL:['penal','gambeta','definicion','memoria','cabezazo'],
+    MED:['memoria','pase','gambeta','definicion','vision'],
+    DEF:['marca','memoria','cabezazo','pase','vision'],
+    ARQ:['atajada','atajada','reflejos','pase','memoria']
+  };
+  return pick(porPos[G.pos]);
+}
+
+function siguienteEvento(){
+  if(M.eventos>=M.totalEventos){ finPartido(); return; }
+  M.eventos++;
+  M.min = Math.min(90, Math.round(M.eventos*(90/M.totalEventos) - rnd(0,8)));
+  actualizarMarcador();
+  // el equipo simula por su cuenta entre eventos
+  simularRivalidad();
+  const mg = elegirMinijuego();
+  lanzarMinijuego(mg, (score, texto)=>{
+    resolverEvento(mg, score, texto);
+  });
+}
+
+function simularRivalidad(){
+  const L=LIGAS[G.ligaId];
+  const miR = M.club.r + (ovr()-M.club.r)*0.15 + (G.local?3:0);
+  const rvR = M.riv.r;
+  if(Math.random() < clamp((rvR-miR+30)/220,.04,.30)){
+    M.gv++; plog(`⚽ Gol de <b>${M.riv.n}</b> al minuto ${M.min}'.`);
+  }
+  if(Math.random() < clamp((miR-rvR+26)/260,.03,.22)){
+    M.gl++; plog(`⚽ Gol de tu equipo (compañero) al ${M.min}'.`);
+  }
+  actualizarMarcador();
+}
+
+function resolverEvento(mg, score, texto){
+  // score 0..100 → resultado
+  const bonusStat = {
+    penal:'tiro',definicion:'tiro',cabezazo:'fisico',gambeta:'regate',
+    memoria:'pase',pase:'pase',vision:'pase',marca:'defensa',
+    atajada:'arco',reflejos:'arco'
+  }[mg] || 'pase';
+  const eff = clamp(score*0.75 + G.stats[bonusStat]*0.25 + (G.forma-70)*0.15 + (G.moral-70)*0.1, 0, 120);
+  plog(texto);
+  let msg='';
+  if(G.pos==='ARQ'){
+    if(eff>=65){ M.misAtajadas++; M.rating+=0.5; msg='🧤 ¡ATAJADA ENORME!'; if(M.gv>0 && Math.random()<.5){M.gv--; plog('🧤 Le sacaste el gol de la línea, no sube al marcador.');} }
+    else if(eff>=40){ M.rating+=0.1; msg='🧤 Respondiste bien, córner.'; }
+    else { M.gv++; M.rating-=0.6; msg='😖 Se te escapó… gol del rival.'; }
+  } else {
+    if(eff>=78){ M.gl++; M.misGoles++; M.rating+=1.1; msg='⚽ ¡GOOOOL TUYOOO!'; }
+    else if(eff>=60){ M.gl++; M.misAsist++; M.rating+=0.7; msg='🅰️ ¡Asistencia! La pusiste justa.'; }
+    else if(eff>=42){ M.rating+=0.2; msg='👍 Jugada correcta, seguís enchufado.'; }
+    else if(eff>=25){ M.rating-=0.3; msg='😐 La jugada se diluyó.'; }
+    else { M.rating-=0.7; msg='❌ La perdiste fea, la tribuna sopló.'; }
+  }
+  plog(`<b>${msg}</b>`);
+  actualizarMarcador();
+  setTimeout(()=>{
+    $('mgArea').innerHTML = `<div class="card center"><h2>${msg}</h2>
+      <div class="dim small">Rendimiento: ${Math.round(eff)}%</div>
+      <div class="bar ${eff>60?'':'rojo'}" style="margin:10px 0"><i style="width:${clamp(eff,0,100)}%"></i></div>
+      <button onclick="siguienteEvento()">Continuar ▶</button></div>`;
+  },200);
+}
+
+function finPartido(){
+  M.min=90; actualizarMarcador();
+  const L=LIGAS[G.ligaId];
+  // resultado
+  const gano = M.gl>M.gv, empate = M.gl===M.gv;
+  G.pj++; G.hist.pj++;
+  G.goles+=M.misGoles; G.asist+=M.misAsist; G.atajadas+=M.misAtajadas;
+  G.hist.goles+=M.misGoles; G.hist.asist+=M.misAsist;
+  M.rating = clamp(M.rating,3,10);
+  const esMvp = M.rating>=8.3;
+  if(esMvp){ G.mvp++; }
+
+  // moral / forma / dt
+  G.moral = clamp(G.moral + (gano?7:empate?1:-6) + (M.rating>=7.5?4:M.rating<5.5?-5:0), 5,100);
+  G.forma = clamp(G.forma - ri(4,9) + (M.rating>=8?6:0), 10,100);
+  G.dtRel = clamp(G.dtRel + (M.rating>=7.5?5:M.rating<5.5?-6:1), 0,100);
+  G.fama = clamp(G.fama + Math.round(M.misGoles*2 + M.misAsist + (esMvp?3:0) + (L.niv>82?1:0)),0,100);
+
+  // plata y xp
+  const premio = Math.round((gano?900:empate?450:200) * (1+L.niv/100) * (M.tipo==='COPA'?1.6:1));
+  G.monedas += premio;
+  darXp(Math.round(60 + M.rating*12 + M.misGoles*30));
+
+  // tabla
+  if(M.tipo==='LIGA'){
+    const yo=G.tabla[G.clubIdx], rv=G.tabla[G.rivalIdx];
+    yo.pj++; rv.pj++; yo.gf+=M.gl; yo.gc+=M.gv; rv.gf+=M.gv; rv.gc+=M.gl;
+    if(gano){yo.g++;yo.pts+=3;rv.p++;} else if(empate){yo.e++;rv.e++;yo.pts++;rv.pts++;}
+    else {yo.p++;rv.g++;rv.pts+=3;}
+    simularOtrosPartidos();
+  } else {
+    if(gano){ G.copaRonda++; logear(`🏆 Pasaste de ronda en la ${L.prem} (ronda ${G.copaRonda}).`); }
+    else { logear(`💔 Eliminados de la ${L.prem} ante ${M.riv.n}.`); G.copaRonda=99; }
+  }
+
+  logear(`${gano?'✅':empate?'➖':'❌'} ${M.club.n} ${M.gl}-${M.gv} ${M.riv.n} · Vos: ${M.rating.toFixed(1)} ${M.misGoles?'⚽'+M.misGoles:''} ${M.misAsist?'🅰️'+M.misAsist:''}`);
+
+  $('mgArea').innerHTML = `
+  <div class="card center">
+    <div class="dim small">FINAL</div>
+    <div style="font-size:34px;font-weight:900">${G.local?M.gl:M.gv} - ${G.local?M.gv:M.gl}</div>
+    <div style="margin:6px 0 12px" class="${gano?'':'dim'}">${gano?'¡VICTORIA!':empate?'Empate':'Derrota'}</div>
+    <div class="row" style="justify-content:center;gap:14px">
+      <div><div class="dim small">Puntaje</div><div style="font-size:24px;font-weight:900;color:${M.rating>=7?'var(--verde)':'var(--rojo)'}">${M.rating.toFixed(1)}</div></div>
+      <div><div class="dim small">Goles</div><div style="font-size:24px;font-weight:900">${M.misGoles}</div></div>
+      <div><div class="dim small">Asist.</div><div style="font-size:24px;font-weight:900">${M.misAsist}</div></div>
+      ${G.pos==='ARQ'?`<div><div class="dim small">Atajadas</div><div style="font-size:24px;font-weight:900">${M.misAtajadas}</div></div>`:''}
+    </div>
+    ${esMvp?'<div class="tag oro" style="margin-top:10px;display:inline-block">🌟 FIGURA DEL PARTIDO</div>':''}
+    <div class="sep"></div>
+    <div class="small">🪙 +${fmt(premio)} · ⭐ Fama ${G.fama}</div>
+    <div style="height:10px"></div>
+    <button onclick="postPartido()">Continuar ▶</button>
+  </div>`;
+  guardar();
+}
+
+function simularOtrosPartidos(){
+  const usados=[G.clubIdx,G.rivalIdx];
+  const libres=G.tabla.map((t,i)=>i).filter(i=>!usados.includes(i));
+  for(let i=0;i<libres.length-1;i+=2){
+    const a=G.tabla[libres[i]], b=G.tabla[libres[i+1]];
+    let ga=Math.max(0,Math.round(rnd(-.6,2.4)+(a.r-b.r)/28));
+    let gb=Math.max(0,Math.round(rnd(-.6,2.4)+(b.r-a.r)/28));
+    a.pj++;b.pj++;a.gf+=ga;a.gc+=gb;b.gf+=gb;b.gc+=ga;
+    if(ga>gb){a.g++;a.pts+=3;b.p++;} else if(ga<gb){b.g++;b.pts+=3;a.p++;} else {a.e++;b.e++;a.pts++;b.pts++;}
+  }
+}
+
+/* evento narrativo post partido */
+function postPartido(){
+  G.fecha++;
+  if(G.fecha>G.totFechas){ finTemporada(); return; }
+  calcularRival();
+  if(Math.random()<0.45){ eventoNarrativo(); }
+  else { ir('s-hub'); renderHub(); }
+  guardar();
+}
+
+const EVENTOS = [
+  {t:'📰 La prensa te cruza', d:'Un periodista te pregunta por qué el equipo juega mal. ¿Qué respondés?',
+   ops:[{n:'Bancar al DT',e:{dtRel:8,fama:-1}},{n:'Tirar la bomba y quejarte',e:{fama:6,dtRel:-12,moral:3}},{n:'"No hablo de eso"',e:{fama:1}}]},
+  {t:'🎉 Fiesta con los pibes', d:'Te invitan a un cumple a mitad de semana. Jugás el domingo.',
+   ops:[{n:'Ir y volver temprano',e:{moral:6,forma:-4}},{n:'Ir con todo',e:{moral:12,forma:-15,dtRel:-6}},{n:'Quedarte descansando',e:{forma:10,moral:-3}}]},
+  {t:'💰 Contrato publicitario', d:'Una marca de botines te ofrece un contrato.',
+   ops:[{n:'Firmar (🪙+4000)',e:{monedas:4000,fama:5,dtRel:-3}},{n:'Rechazar y enfocarte',e:{forma:6,dtRel:4}}]},
+  {t:'🏋️ Doble turno', d:'El preparador físico te ofrece quedarte a doble turno.',
+   ops:[{n:'Quedarme',e:{forma:-6,fisico:2,dtRel:6}},{n:'Irme a casa',e:{forma:5,dtRel:-3}}]},
+  {t:'🤕 Molestia muscular', d:'Sentís un tirón en el isquio.',
+   ops:[{n:'Avisar al cuerpo médico',e:{forma:12,dtRel:-4}},{n:'Aguantar y jugar',e:{forma:-14,dtRel:6,fama:2}}]},
+  {t:'👶 Un pibe de inferiores', d:'Un juvenil te pide consejos y que lo ayudes.',
+   ops:[{n:'Ayudarlo',e:{moral:6,fama:3}},{n:'Ignorarlo',e:{moral:-4}}]},
+  {t:'🧤 Penal decisivo', d:'El DT pregunta quién patea los penales de acá en más.',
+   ops:[{n:'Me hago cargo yo',e:{dtRel:5,moral:5,fama:3}},{n:'Que patee otro',e:{moral:-2,dtRel:-2}}]},
+  {t:'📱 Polémica en redes', d:'Te filtran un tuit viejo. Explota todo.',
+   ops:[{n:'Pedir disculpas',e:{fama:-3,moral:-2,dtRel:3}},{n:'Doblar la apuesta',e:{fama:8,moral:-6,dtRel:-8}},{n:'Silencio absoluto',e:{fama:1}}]},
+  {t:'🎯 Objetivo del DT', d:'El técnico te pone una meta personal para lo que queda.',
+   ops:[{n:'Aceptar el desafío',e:{dtRel:7,moral:4,forma:-3}},{n:'Decirle que no puedo',e:{dtRel:-8,moral:2}}]},
+  {t:'🏠 La familia', d:'Tu vieja te pide que la visites, pero hay entrenamiento.',
+   ops:[{n:'Ir a verla',e:{moral:14,dtRel:-6}},{n:'Entrenar',e:{dtRel:6,moral:-5}}]}
+];
+
+function eventoNarrativo(){
+  const ev = pick(EVENTOS);
+  modal(`<h2>${ev.t}</h2><div class="dim" style="margin-bottom:10px">${ev.d}</div>
+  ${ev.ops.map((o,i)=>`<button class="sec" style="margin-bottom:7px;text-align:left" onclick="aplicarEvento(${EVENTOS.indexOf(ev)},${i})">${o.n}</button>`).join('')}`);
+}
+function aplicarEvento(ei,oi){
+  const o = EVENTOS[ei].ops[oi];
+  let txt=[];
+  for(const k in o.e){
+    const v=o.e[k];
+    if(k in G.stats){ G.stats[k]=clamp(G.stats[k]+v,1,99); txt.push(`${k} ${v>0?'+':''}${v}`); }
+    else if(k==='monedas'){ G.monedas+=v; txt.push(`🪙 +${fmt(v)}`); }
+    else { G[k]=clamp(G[k]+v,0,100); txt.push(`${k} ${v>0?'+':''}${v}`); }
+  }
+  logear(`💬 ${EVENTOS[ei].t} → "${o.n}" (${txt.join(', ')})`);
+  toast(txt.join(' · '), Object.values(o.e).some(v=>v<0)?'':'oro');
+  cerrarModal(); ir('s-hub'); renderHub(); guardar();
+}
+
+/* ─────────── FIN DE TEMPORADA ─────────── */
+function finTemporada(){
+  const L=LIGAS[G.ligaId];
+  const orden=[...G.tabla].sort((a,b)=>b.pts-a.pts||(b.gf-b.gc)-(a.gf-a.gc));
+  const puesto = orden.findIndex(t=>t.i===G.clubIdx)+1;
+  let premios=[];
+  if(puesto===1){ G.hist.titulos.push(`${L.n} ${G.temp}`); premios.push('🏆 CAMPEÓN DE LIGA'); G.fama=clamp(G.fama+12,0,100); G.monedas+=8000; }
+  if(G.copaRonda>=3 && G.copaRonda!==99){ G.hist.titulos.push(`${L.prem} ${G.temp}`); premios.push('🏆 CAMPEÓN DE COPA'); G.monedas+=5000; G.fama=clamp(G.fama+8,0,100); }
+  // premios individuales
+  const golesProm = G.goles;
+  if(G.pos!=='ARQ' && golesProm>=14){ G.hist.premios.push(`Botín de Oro ${G.temp}`); premios.push('👟 BOTÍN DE ORO'); G.fama=clamp(G.fama+10,0,100); G.gemas+=30; }
+  if(G.mvp>=6){ G.hist.premios.push(`MVP de la liga ${G.temp}`); premios.push('🌟 MVP DE LA LIGA'); G.fama=clamp(G.fama+10,0,100); G.gemas+=25; }
+  if(G.pos==='ARQ' && G.atajadas>=18){ G.hist.premios.push(`Guante de Oro ${G.temp}`); premios.push('🧤 GUANTE DE ORO'); G.gemas+=25; }
+  if(ovr()>=88 && G.fama>=80 && Math.random()<.35){ G.hist.premios.push(`Balón de Oro ${G.temp}`); premios.push('🥇 ¡BALÓN DE ORO!'); G.gemas+=100; }
+  // selección
+  if(!G.seleccion && ovr()>=76 && G.fama>=45){
+    G.seleccion=true; premios.push('🇦🇷 CONVOCADO A LA SELECCIÓN');
+    logear('🇦🇷 ¡Te llamaron a la Selección Mayor!');
+  }
+  const bono = Math.round(G.contrato.sueldo*40);
+  G.monedas += bono;
+
+  modal(`<h2>📅 Fin de temporada ${G.temp}</h2>
+  <div class="card tight"><div class="row"><div class="grow">Puesto en ${L.n}</div><div style="font-weight:900;font-size:20px">${puesto}º</div></div></div>
+  <div class="card tight">
+    <div class="row small"><div class="grow">PJ</div><b>${G.pj}</b></div>
+    <div class="row small"><div class="grow">Goles</div><b>${G.goles}</b></div>
+    <div class="row small"><div class="grow">Asistencias</div><b>${G.asist}</b></div>
+    <div class="row small"><div class="grow">Figuras del partido</div><b>${G.mvp}</b></div>
+    <div class="row small"><div class="grow">Bono de fin de año</div><b>🪙 ${fmt(bono)}</b></div>
+  </div>
+  ${premios.length?`<div class="card tight"><div class="small dim">LOGROS</div>${premios.map(p=>`<div style="font-weight:800;margin-top:4px">${p}</div>`).join('')}</div>`:''}
+  <button onclick="cerrarModal();mercadoPases()">💼 Ir al mercado de pases</button>`);
+  guardar();
+}
+
+/* ─────────── MERCADO DE PASES ─────────── */
+function mercadoPases(){
+  const miOvr=ovr(), L=LIGAS[G.ligaId];
+  let ofertas=[];
+  // ligas candidatas según nivel
+  const todas = Object.keys(LIGAS);
+  todas.forEach(lid=>{
+    LIGAS[lid].clubes.forEach((c,idx)=>{
+      if(lid===G.ligaId && idx===G.clubIdx) return;
+      // te quieren si tu ovr + fama alcanza
+      const exig = c.r - 6 - G.fama*0.12;
+      if(miOvr>=exig && Math.random()<0.30){
+        ofertas.push({lid,idx,club:c,liga:LIGAS[lid],
+          sueldo:Math.round(c.r*c.r*0.22 + G.fama*30),
+          anios:ri(3,5),
+          titular: miOvr>=c.r-2});
+      }
+    });
+  });
+  ofertas.sort((a,b)=>b.club.r-a.club.r);
+  ofertas=ofertas.slice(0,5);
+
+  const renov = {sueldo:Math.round(G.contrato.sueldo*(1.15+G.fama/200)+miOvr*8), anios:ri(2,4)};
+
+  modal(`<h2>💼 Mercado de pases</h2>
+  <div class="small dim">GRL ${miOvr} · Fama ${G.fama} · ${G.edad} años</div>
+  <div class="sep"></div>
+  <div class="item" onclick="ficharPor(-1,${renov.sueldo},${renov.anios})">
+    <div class="esc" style="background:${L.clubes[G.clubIdx].c}">${L.clubes[G.clubIdx].n[0]}</div>
+    <div class="grow"><b>Renovar en ${L.clubes[G.clubIdx].n}</b>
+      <div class="small dim">$${fmt(renov.sueldo)}k/sem · ${renov.anios} años · Ídolo local</div></div>
+    <span class="tag">QUEDARSE</span></div>
+  ${ofertas.length? ofertas.map((o,i)=>`
+    <div class="item" onclick="ficharPor(${i},${o.sueldo},${o.anios})">
+      <div class="esc" style="background:${o.club.c}">${o.club.n[0]}</div>
+      <div class="grow"><b>${o.club.n}</b>
+        <div class="small dim">${o.liga.f} ${o.liga.n} · Nivel ${o.club.r}</div>
+        <div class="small">$${fmt(o.sueldo)}k/sem · ${o.anios} años</div></div>
+      <span class="tag ${o.titular?'oro':'rojo'}">${o.titular?'TITULAR':'SUPLENTE'}</span></div>`).join('')
+    : '<div class="card tight dim small">No llegaron ofertas. Seguí rindiendo para llamar la atención.</div>'}
+  `);
+  window._ofertas = ofertas;
+}
+function ficharPor(i,sueldo,anios){
+  if(i>=0){
+    const o=window._ofertas[i];
+    G.ligaId=o.lid; G.clubIdx=o.idx;
+    G.hist.clubes.push(o.club.n);
+    logear(`✍️ Fichaste por <b>${o.club.n}</b> (${o.liga.n}).`);
+    toast('¡Nuevo club! '+o.club.n,'oro');
+    if(!o.titular){ G.moral=clamp(G.moral-8,5,100); }
+  } else {
+    logear(`✍️ Renovaste con ${LIGAS[G.ligaId].clubes[G.clubIdx].n}.`);
+    G.moral=clamp(G.moral+8,5,100);
+  }
+  G.contrato={anios, sueldo, clausula:sueldo*120};
+  cerrarModal();
+  // avanzar temporada
+  iniciarTemporada(false);
+  G.forma=clamp(G.forma+25,10,100);
+  // declive por edad
+  if(G.edad>=31){
+    const dec = G.edad>=34?3:1;
+    G.stats.vel=Math.max(20,G.stats.vel-dec-1);
+    G.stats.fisico=Math.max(20,G.stats.fisico-dec);
+    logear(`⏳ Los años pesan: -${dec+1} velocidad, -${dec} físico.`);
+  }
+  if(G.edad>=36 || (G.edad>=33 && ovr()<70)){
+    retirarse(); return;
+  }
+  generarOfertasTienda();
+  ir('s-hub'); renderHub(); guardar();
+}
+
+function retirarse(){
+  G.retirado=true;
+  const t=G.hist.titulos.length, p=G.hist.premios.length;
+  let rango = 'Jugador de barrio';
+  const puntaje = t*3 + p*5 + G.hist.goles*0.1 + ovr()*0.5 + G.fama*0.3;
+  if(puntaje>110) rango='🐐 LEYENDA ETERNA';
+  else if(puntaje>85) rango='🌟 CRACK MUNDIAL';
+  else if(puntaje>60) rango='⭐ Ídolo';
+  else if(puntaje>40) rango='👏 Buen profesional';
+  modal(`<h2>🎬 Fin de la carrera</h2>
+  <div class="center" style="padding:10px 0">
+    <div style="font-size:40px">🏅</div>
+    <div style="font-size:22px;font-weight:900;color:var(--oro)">${rango}</div>
+    <div class="dim small">${G.nombre} "${G.apodo}" · se retira a los ${G.edad}</div>
+  </div>
+  <div class="card tight">
+    <div class="row small"><div class="grow">GRL máximo</div><b>${ovr()}</b></div>
+    <div class="row small"><div class="grow">Partidos</div><b>${G.hist.pj}</b></div>
+    <div class="row small"><div class="grow">Goles</div><b>${G.hist.goles}</b></div>
+    <div class="row small"><div class="grow">Asistencias</div><b>${G.hist.asist}</b></div>
+    <div class="row small"><div class="grow">Títulos</div><b>${t}</b></div>
+    <div class="row small"><div class="grow">Premios individuales</div><b>${p}</b></div>
+    <div class="row small"><div class="grow">Clubes</div><b>${G.hist.clubes.length}</b></div>
+  </div>
+  ${t?`<div class="card tight"><div class="small dim">VITRINA</div>${G.hist.titulos.map(x=>'<div class="small">🏆 '+x+'</div>').join('')}</div>`:''}
+  ${p?`<div class="card tight"><div class="small dim">INDIVIDUALES</div>${G.hist.premios.map(x=>'<div class="small">🥇 '+x+'</div>').join('')}</div>`:''}
+  <button onclick="localStorage.removeItem('${SAVE_KEY}');cerrarModal();ir('s-menu')">Empezar de nuevo</button>`);
+  localStorage.removeItem(SAVE_KEY);
+}
+
+/* ─────────── TABLA / PERFIL ─────────── */
+function abrirTabla(){
+  const orden=[...G.tabla].sort((a,b)=>b.pts-a.pts||(b.gf-b.gc)-(a.gf-a.gc));
+  modal(`<h2>📊 ${LIGAS[G.ligaId].n}</h2>
+  <table><tr><th>#</th><th>Equipo</th><th>PJ</th><th>DG</th><th>Pts</th></tr>
+  ${orden.map((t,i)=>`<tr class="${t.i===G.clubIdx?'me':''}">
+    <td>${i+1}</td><td>${t.n}</td><td>${t.pj}</td><td>${t.gf-t.gc>0?'+':''}${t.gf-t.gc}</td><td><b>${t.pts}</b></td></tr>`).join('')}
+  </table><div style="height:10px"></div>
+  <button class="sec" onclick="cerrarModal()">Cerrar</button>`);
+}
+function abrirPerfil(){
+  const P=POSICIONES.find(p=>p.id===G.pos);
+  const ks=[['tiro','Definición'],['pase','Pase'],['regate','Gambeta'],['fisico','Físico'],['vel','Velocidad'],['defensa','Marca'],['arco','Arco']];
+  modal(`<h2>👤 ${G.nombre}</h2>
+  <div class="row"><div class="ovr">${ovr()}</div><div class="grow" style="padding-left:12px">
+    <div><b>${P.n}</b> · ${ESTILOS[G.pos][G.estilo].n}</div>
+    <div class="small dim">${G.edad} años · Nivel ${G.nivel} · Fama ${G.fama}</div></div></div>
+  <div class="sep"></div>
+  ${ks.map(([k,n])=>`<div class="stat"><div class="lbl"><span>${n}</span><span>${G.stats[k]}</span></div>
+    <div class="bar ${G.stats[k]>80?'oro':''}"><i style="width:${G.stats[k]}%"></i></div></div>`).join('')}
+  <div class="sep"></div>
+  <div class="row small"><div class="grow">Carrera: ${G.hist.pj} PJ · ${G.hist.goles} ⚽ · ${G.hist.asist} 🅰️</div></div>
+  <div class="small dim" style="margin-top:6px">Clubes: ${G.hist.clubes.join(' → ')}</div>
+  ${G.hist.titulos.length?`<div class="sep"></div><div class="small dim">TÍTULOS</div>${G.hist.titulos.map(t=>'<div class="small">🏆 '+t+'</div>').join('')}`:''}
+  ${G.hist.premios.length?`<div class="sep"></div><div class="small dim">PREMIOS</div>${G.hist.premios.map(t=>'<div class="small">🥇 '+t+'</div>').join('')}`:''}
+  <div style="height:10px"></div><button class="sec" onclick="cerrarModal()">Cerrar</button>`);
+}
+
+/* ═══════════════════════════════════════════
+   TIENDA
+   ═══════════════════════════════════════════ */
+const ITEMS = [
+  {id:'bebida', n:'Bebida isotónica', ico:'⚡', d:'Rellena la energía al máximo', costo:{gemas:8}, uso:()=>{G.energia=G.enerMax;G.ultRecarga=Date.now();}},
+  {id:'masaje', n:'Sesión de kinesiología', ico:'💆', d:'+35 Forma física', costo:{monedas:2200}, uso:()=>{G.forma=clamp(G.forma+35,0,100);}},
+  {id:'psico', n:'Psicólogo deportivo', ico:'🧠', d:'+30 Moral', costo:{monedas:2000}, uso:()=>{G.moral=clamp(G.moral+30,0,100);}},
+  {id:'botines', n:'Botines Pro', ico:'👟', d:'+3 Definición y +3 Velocidad (permanente)', costo:{gemas:35}, uso:()=>{G.stats.tiro=Math.min(99,G.stats.tiro+3);G.stats.vel=Math.min(99,G.stats.vel+3);}},
+  {id:'guantes', n:'Guantes de élite', ico:'🧤', d:'+5 Arco (permanente)', costo:{gemas:35}, uso:()=>{G.stats.arco=Math.min(99,G.stats.arco+5);}},
+  {id:'entrenador', n:'Entrenador personal x5', ico:'🏋️', d:'Duplica la mejora en los próximos 5 entrenamientos', costo:{gemas:40}, uso:()=>{G.boosts.entrenador=(G.boosts.entrenador||0)+5;}},
+  {id:'agente', n:'Agente FIFA', ico:'🕴️', d:'+15 Fama (te consigue prensa)', costo:{monedas:5000}, uso:()=>{G.fama=clamp(G.fama+15,0,100);}},
+  {id:'energiaMax', n:'Ampliar energía', ico:'🔋', d:'+1 energía máxima (permanente)', costo:{gemas:60}, uso:()=>{G.enerMax++;G.energia++;}},
+];
+
+const PACKS = [
+  {n:'Puñado', ico:'💎', gemas:100, precio:'$1.999', bonus:0},
+  {n:'Bolsillo', ico:'💰', gemas:550, precio:'$8.999', bonus:10},
+  {n:'Valija', ico:'🧳', gemas:1200, precio:'$17.999', bonus:20},
+  {n:'Camión', ico:'🚚', gemas:3000, precio:'$39.999', bonus:35},
+];
+
+function generarOfertasTienda(){
+  const pool = ITEMS.filter(i=>i.costo.gemas);
+  G.ofertasTienda = [];
+  for(let i=0;i<2;i++){
+    const it=pick(pool);
+    G.ofertasTienda.push({id:it.id, desc:pick([40,50,60,70]), stock:ri(2,5), stockIni:5});
+  }
+  G.ofertaExp = Date.now() + 15*60*1000;
+}
+
+function abrirTienda(){
+  tickEnergia();
+  if(!G.ofertasTienda.length || Date.now()>G.ofertaExp) generarOfertasTienda();
+  ir('s-hub');
+  renderTienda();
+  tiendaTimer();
+}
+function renderTienda(){
+  const ofertasHtml = G.ofertasTienda.map((o,idx)=>{
+    const it=ITEMS.find(x=>x.id===o.id);
+    const base=it.costo.gemas;
+    const precio=Math.max(1,Math.round(base*(1-o.desc/100)));
+    return `<div class="card tight oferta">
+      <div class="flag">-${o.desc}%</div>
+      <div class="row">
+        <div class="esc" style="background:#2c1f42;font-size:18px">${it.ico}</div>
+        <div class="grow"><b>${it.n}</b><div class="small dim">${it.d}</div>
+          <div class="stock"><i style="width:${o.stock/o.stockIni*100}%"></i></div>
+          <div class="small" style="color:var(--rojo)">¡Quedan ${o.stock}!</div>
+        </div>
+        <div class="center">
+          <div class="small dim" style="text-decoration:line-through">💎${base}</div>
+          <button class="oro mini auto" onclick="comprarOferta(${idx})">💎${precio}</button>
+        </div>
+      </div></div>`;
+  }).join('');
+
+  modal(`<h2>🛒 Tienda</h2>
+  <div class="row small" style="margin-bottom:8px">
+    <div class="grow">🪙 <b>${fmt(G.monedas)}</b> · 💎 <b>${fmt(G.gemas)}</b></div>
+    <div>⚡ ${G.energia}/${G.enerMax} <span class="dim" id="enerTxt">${textoRecarga()}</span></div>
+  </div>
+
+  <div class="card tight" style="border-color:var(--rojo)">
+    <div class="row"><div class="grow"><b style="color:var(--rojo)">🔥 OFERTAS RELÁMPAGO</b></div>
+    <div class="timer" id="ofTimer">15:00</div></div>
+  </div>
+  ${ofertasHtml}
+
+  ${!G.pase.activo?`<div class="card tight" style="border-color:var(--violeta);background:linear-gradient(160deg,#2c1f42,#151020)">
+    <div class="row"><div class="grow"><b style="color:var(--violeta)">🎫 PASE LEYENDA</b>
+      <div class="small dim">Ganás 💎 gemas cada nivel jugando. 30 niveles.</div></div>
+      <button class="auto mini" style="background:linear-gradient(180deg,#c89bff,#8a4bd8);color:#fff" onclick="comprarPase()">💎 120</button></div>
+  </div>`:`<div class="card tight" style="border-color:var(--violeta)">
+    <div class="row"><div class="grow"><b style="color:var(--violeta)">🎫 Pase Leyenda — Nivel ${G.pase.niv}</b>
+    <div class="bar" style="margin-top:5px"><i style="width:${G.pase.xp/2}%"></i></div></div></div></div>`}
+
+  <div class="sep"></div>
+  <div class="small dim">CONSUMIBLES Y MEJORAS</div>
+  ${ITEMS.map(it=>`<div class="item" onclick="comprarItem('${it.id}')">
+    <div class="esc" style="background:var(--card)">${it.ico}</div>
+    <div class="grow"><b>${it.n}</b><div class="small dim">${it.d}</div></div>
+    <span class="tag ${it.costo.gemas?'vio':'oro'}">${it.costo.gemas?'💎'+it.costo.gemas:'🪙'+fmt(it.costo.monedas)}</span></div>`).join('')}
+
+  <div class="sep"></div>
+  <div class="small dim">COMPRAR GEMAS (simulado — no se cobra nada real)</div>
+  <div class="grid2" style="margin-top:6px">
+    ${PACKS.map((p,i)=>`<div class="card tight center" style="margin:0;cursor:pointer" onclick="comprarPack(${i})">
+      <div style="font-size:24px">${p.ico}</div><b>💎 ${fmt(p.gemas)}</b>
+      ${p.bonus?`<div class="tag oro" style="display:inline-block;margin:3px 0">+${p.bonus}% extra</div>`:''}
+      <div class="small dim">${p.precio}</div></div>`).join('')}
+  </div>
+  <div style="height:10px"></div>
+  <button class="sec" onclick="cerrarModal();renderHub()">Cerrar</button>`);
+}
+let _tTimer=null;
+function tiendaTimer(){
+  clearInterval(_tTimer);
+  _tTimer=setInterval(()=>{
+    const el=$('ofTimer'); if(!el){clearInterval(_tTimer);return;}
+    let f=G.ofertaExp-Date.now();
+    if(f<=0){ generarOfertasTienda(); renderTienda(); return; }
+    el.textContent = `${Math.floor(f/60000)}:${String(Math.floor(f%60000/1000)).padStart(2,'0')}`;
+    const et=$('enerTxt'); if(et){tickEnergia();et.textContent=textoRecarga();}
+  },1000);
+}
+function comprarOferta(idx){
+  const o=G.ofertasTienda[idx]; if(!o||o.stock<=0) return;
+  const it=ITEMS.find(x=>x.id===o.id);
+  const precio=Math.max(1,Math.round(it.costo.gemas*(1-o.desc/100)));
+  if(G.gemas<precio){ toast('No te alcanzan las gemas 💎','bad'); return; }
+  G.gemas-=precio; o.stock--; it.uso();
+  toast(`${it.ico} ${it.n} comprado!`,'oro');
+  if(o.stock<=0) G.ofertasTienda.splice(idx,1);
+  guardar(); renderTienda(); renderHub();
+}
+function comprarItem(id){
+  const it=ITEMS.find(x=>x.id===id);
+  if(it.costo.gemas){ if(G.gemas<it.costo.gemas){toast('Faltan gemas 💎','bad');return;} G.gemas-=it.costo.gemas; }
+  else { if(G.monedas<it.costo.monedas){toast('Faltan monedas 🪙','bad');return;} G.monedas-=it.costo.monedas; }
+  it.uso(); toast(`${it.ico} ${it.n}!`,'oro');
+  guardar(); renderTienda(); renderHub();
+}
+function comprarPase(){
+  if(G.gemas<120){ toast('Faltan gemas 💎','bad'); return; }
+  G.gemas-=120; G.pase.activo=true; G.pase.niv=1;
+  toast('🎫 Pase Leyenda activado','oro'); guardar(); renderTienda();
+}
+function comprarPack(i){
+  const p=PACKS[i];
+  modal(`<h2>${p.ico} ${p.n}</h2>
+  <div class="card tight center">
+    <div style="font-size:30px;font-weight:900">💎 ${fmt(p.gemas)}</div>
+    <div class="dim small">${p.precio}</div>
+  </div>
+  <div class="card tight small dim">Esto es una simulación: no hay pasarela de pago conectada. Al confirmar se acreditan las gemas gratis para que pruebes la economía del juego.</div>
+  <button class="oro" onclick="G.gemas+=${p.gemas};toast('+${p.gemas} 💎','oro');guardar();cerrarModal();abrirTienda()">Confirmar (gratis)</button>
+  <div style="height:8px"></div><button class="sec" onclick="cerrarModal();abrirTienda()">Cancelar</button>`);
+}
+
+/* ═══════════════════════════════════════════
+   MINIJUEGOS
+   ═══════════════════════════════════════════ */
+function lanzarMinijuego(tipo, done){
+  const area=$('mgArea');
+  const juegos = {penal:mgPenal, definicion:mgDefinicion, cabezazo:mgCabezazo, gambeta:mgGambeta,
+    memoria:mgMemoria, pase:mgPase, vision:mgVision, marca:mgMarca, atajada:mgAtajada, reflejos:mgReflejos};
+  (juegos[tipo]||mgMemoria)(area, done);
+}
+function mgHead(titulo,sub){
+  return `<div class="card tight"><div class="row"><div class="grow"><b>${titulo}</b>
+    <div class="small dim">${sub}</div></div></div></div>`;
+}
+
+/* --- 1. PENAL: elegí palo + barra de potencia --- */
+function mgPenal(area, done){
+  let tiros=0, aciertos=0, zona=null;
+  const ZONAS=['↖ Ángulo','⬆ Centro alto','↗ Ángulo','↙ Abajo izq','⬇ Centro','↘ Abajo der'];
+  function ronda(){
+    if(tiros>=3){ done(Math.round(aciertos/3*100), `⚽ Definiste ${aciertos}/3 desde los doce pasos.`); return; }
+    area.innerHTML = mgHead('⚽ PENAL / MANO A MANO','Elegí el palo. Después parás la barra en la zona verde.')+
+      `<div class="card"><div class="small dim center">Tiro ${tiros+1}/3 · Aciertos: ${aciertos}</div>
+      <div class="zonas">${ZONAS.map((z,i)=>`<button class="sec" onclick="_penalZona(${i})">${z}</button>`).join('')}</div></div>`;
+  }
+  window._penalZona=(i)=>{
+    zona=i;
+    area.innerHTML = mgHead('⚽ PENAL','¡PARÁ LA BARRA EN VERDE!')+
+      `<div class="card">
+        <div style="position:relative;height:36px;background:#0c1519;border-radius:9px;overflow:hidden;border:1px solid var(--line)">
+          <div style="position:absolute;left:38%;width:24%;height:100%;background:rgba(40,224,122,.28);border-left:2px solid var(--verde);border-right:2px solid var(--verde)"></div>
+          <div id="pnAguja" style="position:absolute;top:0;width:5px;height:100%;background:var(--oro);left:0"></div>
+        </div>
+        <div style="height:10px"></div>
+        <button class="oro" onclick="_penalDisparo()">👟 PATEAR</button></div>`;
+    let x=0,dir=1,vel=1.5+tiros*0.4;
+    const ag=$('pnAguja');
+    window._pnLoop=setInterval(()=>{ x+=dir*vel; if(x>=100){x=100;dir=-1} if(x<=0){x=0;dir=1} ag.style.left=x+'%'; },12);
+    window._pnGet=()=>x;
+  };
+  window._penalDisparo=()=>{
+    clearInterval(window._pnLoop);
+    const x=window._pnGet();
+    const precision = (x>=38&&x<=62) ? 1 : (x>=30&&x<=70) ? .55 : .15;
+    const arquero = ri(0,5);
+    const adivino = arquero===zona;
+    const gol = Math.random() < precision*(adivino?0.32:0.97);
+    tiros++; if(gol) aciertos++;
+    area.innerHTML = mgHead('⚽ PENAL', gol?'¡ADENTRO!':'Erraste')+
+      `<div class="card center"><div style="font-size:40px">${gol?'🥅⚽':'😩'}</div>
+      <div>${gol?'<b style="color:var(--verde)">¡GOL!</b>':'<b style="color:var(--rojo)">'+(adivino&&precision>.5?'¡La atajó!':'Afuera')+'</b>'}</div>
+      <div class="small dim">Precisión: ${Math.round(precision*100)}%</div>
+      <div style="height:10px"></div><button onclick="_penalNext()">Siguiente</button></div>`;
+  };
+  window._penalNext=ronda;
+  ronda();
+}
+
+/* --- 2. DEFINICIÓN: timing doble (potencia + dirección) --- */
+function mgDefinicion(area, done){
+  let pts=0, n=0;
+  function ronda(){
+    if(n>=4){ done(Math.round(pts/4*100), `🎯 Definición: ${pts}/4 remates buenos.`); return; }
+    area.innerHTML = mgHead('🎯 DEFINICIÓN','Tocá cuando el arco esté alineado con la pelota.')+
+      `<canvas id="cvD" width="600" height="260"></canvas>
+      <div style="height:8px"></div><button class="oro" onclick="_defTap()">👟 REMATAR</button>
+      <div class="small dim center" style="margin-top:6px">Remate ${n+1}/4 · Buenos: ${pts}</div>`;
+    const cv=$('cvD'), c=cv.getContext('2d');
+    let t=0, vel=0.035+n*0.008, raf;
+    function draw(){
+      c.fillStyle='#124b2a'; c.fillRect(0,0,600,260);
+      c.strokeStyle='rgba(255,255,255,.25)'; c.lineWidth=3;
+      c.strokeRect(20,20,560,220); c.beginPath(); c.arc(300,130,50,0,7); c.stroke();
+      // arco móvil
+      const gx = 300 + Math.sin(t)*210;
+      c.strokeStyle='#fff'; c.lineWidth=5;
+      c.strokeRect(gx-55,25,110,50);
+      c.fillStyle='rgba(255,255,255,.10)'; c.fillRect(gx-55,25,110,50);
+      // arquero
+      c.fillStyle='#ffc93c'; c.fillRect(gx-10+Math.sin(t*3.1)*32,40,20,28);
+      // pelota fija abajo
+      c.fillStyle='#fff'; c.beginPath(); c.arc(300,215,12,0,7); c.fill();
+      c.strokeStyle='#111'; c.lineWidth=2; c.stroke();
+      // guía
+      c.strokeStyle='rgba(255,201,60,.5)'; c.setLineDash([6,6]); c.beginPath();
+      c.moveTo(300,215); c.lineTo(300,25); c.stroke(); c.setLineDash([]);
+      window._defGx=gx; window._defT=t;
+      t+=vel; raf=requestAnimationFrame(draw);
+    }
+    draw();
+    window._defStop=()=>cancelAnimationFrame(raf);
+  }
+  window._defTap=()=>{
+    window._defStop();
+    const d=Math.abs(window._defGx-300);
+    const keeper=Math.abs(Math.sin(window._defT*3.1)*32);
+    const bueno = d<48 && keeper>12;
+    if(bueno) pts++;
+    n++;
+    area.innerHTML = mgHead('🎯 DEFINICIÓN', bueno?'¡Al ángulo!':'Desviado / atajado')+
+      `<div class="card center"><div style="font-size:38px">${bueno?'⚽🥅':'🧱'}</div>
+      <button onclick="_defNext()">Siguiente</button></div>`;
+  };
+  window._defNext=ronda;
+  ronda();
+}
+
+/* --- 3. MEMORIA: secuencia de pases --- */
+function mgMemoria(area, done){
+  let seq=[], nivel=0, idx=0, maxNivel=5, ok=0;
+  const COL=['#28e07a','#3ba9ff','#ffc93c','#ff4d5e','#a86bff','#ff9d3c','#00d4c4','#ff6bd6','#9be564'];
+  function pintar(){
+    area.innerHTML = mgHead('🧠 MEMORIA DE JUGADA','Mirá la secuencia de pases y repetila.')+
+      `<div class="card"><div class="small dim center" id="mmMsg">Mirá bien…</div>
+      <div class="grid3" id="mmGrid" style="margin-top:8px">
+      ${[0,1,2,3,4,5,6,7,8].map(i=>`<button class="sec" id="mm${i}" style="aspect-ratio:1;font-size:20px;padding:0" onclick="_mmTap(${i})">${i+1}</button>`).join('')}
+      </div><div class="small dim center" style="margin-top:6px">Jugada ${nivel+1}/${maxNivel}</div></div>`;
+  }
+  function flash(i,cb){
+    const b=$('mm'+i); if(!b){cb&&cb();return;}
+    b.style.background=COL[i]; b.style.color='#000'; b.style.transform='scale(1.08)';
+    setTimeout(()=>{ b.style.background=''; b.style.color=''; b.style.transform=''; cb&&cb(); },330);
+  }
+  function mostrar(){
+    pintar();
+    document.querySelectorAll('#mmGrid button').forEach(b=>b.disabled=true);
+    let k=0;
+    (function paso(){
+      if(k>=seq.length){
+        $('mmMsg').textContent='¡Ahora repetila!';
+        document.querySelectorAll('#mmGrid button').forEach(b=>b.disabled=false);
+        idx=0; return;
+      }
+      flash(seq[k],()=>{ k++; setTimeout(paso,150); });
+    })();
+  }
+  function nueva(){
+    if(nivel>=maxNivel){ done(Math.round(ok/maxNivel*100), `🧠 Recordaste ${ok}/${maxNivel} jugadas.`); return; }
+    seq=[]; for(let i=0;i<nivel+3;i++) seq.push(ri(0,8));
+    mostrar();
+  }
+  window._mmTap=(i)=>{
+    flash(i);
+    if(seq[idx]===i){
+      idx++;
+      if(idx>=seq.length){ ok++; nivel++; toast('✅ Jugada memorizada'); setTimeout(nueva,500); }
+    } else {
+      nivel++; toast('❌ Te perdiste','bad'); setTimeout(nueva,600);
+    }
+  };
+  nueva();
+}
+
+/* --- 4. GAMBETA: reacción direccional --- */
+function mgGambeta(area, done){
+  let n=0, ok=0, total=8, libre=0, t0=0, timer=null, tiempoMax=1500;
+  function ronda(){
+    if(n>=total){ clearTimeout(timer); done(Math.round(ok/total*100), `🌀 Superaste a ${ok}/${total} rivales.`); return; }
+    libre = ri(0,2); // 0 izq 1 centro 2 der
+    const defs=[0,1,2].filter(i=>i!==libre);
+    area.innerHTML = mgHead('🌀 GAMBETA','¡Andá al hueco antes de que te cierren!')+
+      `<div class="card">
+        <div class="row" style="justify-content:center;gap:12px;font-size:36px;margin:6px 0">
+          ${[0,1,2].map(i=>defs.includes(i)?'🛡️':'&nbsp;&nbsp;').join('')}
+        </div>
+        <div class="center" style="font-size:30px">⚽</div>
+        <div class="grid3" style="margin-top:10px">
+          <button class="sec" onclick="_gbTap(0)">◀ IZQ</button>
+          <button class="sec" onclick="_gbTap(1)">▲ CENTRO</button>
+          <button class="sec" onclick="_gbTap(2)">DER ▶</button>
+        </div>
+        <div class="bar rojo" style="margin-top:8px"><i id="gbBar" style="width:100%"></i></div>
+        <div class="small dim center" style="margin-top:5px">Rival ${n+1}/${total} · Pasados: ${ok}</div>
+      </div>`;
+    t0=Date.now();
+    const bar=$('gbBar');
+    clearInterval(timer);
+    timer=setInterval(()=>{
+      const p=1-(Date.now()-t0)/tiempoMax;
+      if(!bar) {clearInterval(timer);return;}
+      bar.style.width=Math.max(0,p*100)+'%';
+      if(p<=0){ clearInterval(timer); n++; toast('⏰ Te cerraron','bad'); setTimeout(ronda,350); }
+    },30);
+  }
+  window._gbTap=(i)=>{
+    clearInterval(timer);
+    n++;
+    if(i===libre){ ok++; toast('💨 ¡Lo pasaste!'); }
+    else toast('🛑 Chocaste','bad');
+    tiempoMax=Math.max(650,tiempoMax-90);
+    setTimeout(ronda,300);
+  };
+  ronda();
+}
+
+/* --- 5. PASE: barra de precisión --- */
+function mgPase(area, done){
+  let n=0, pts=0, total=5;
+  function ronda(){
+    if(n>=total){ done(Math.round(pts/(total*2)*100), `🎩 Pases precisos: ${pts}/${total*2} puntos.`); return; }
+    const zonaIni = ri(25,60), ancho = Math.max(10, 24-n*2.5);
+    area.innerHTML = mgHead('🎩 PASE FILTRADO','Cortá la barra dentro de la zona verde (el hueco entre los centrales).')+
+      `<div class="card">
+        <div style="position:relative;height:40px;background:#0c1519;border-radius:9px;overflow:hidden;border:1px solid var(--line)">
+          <div style="position:absolute;left:${zonaIni}%;width:${ancho}%;height:100%;background:rgba(40,224,122,.3);border-left:2px solid var(--verde);border-right:2px solid var(--verde)"></div>
+          <div style="position:absolute;left:${zonaIni+ancho/2-1.5}%;width:3%;height:100%;background:rgba(255,201,60,.35)"></div>
+          <div id="psA" style="position:absolute;top:0;width:5px;height:100%;background:#fff;left:0"></div>
+        </div>
+        <div style="height:10px"></div>
+        <button class="oro" onclick="_psTap()">🎩 PASAR</button>
+        <div class="small dim center" style="margin-top:6px">Pase ${n+1}/${total} · Puntos: ${pts}</div>
+      </div>`;
+    let x=0,dir=1,vel=1.4+n*0.45;
+    const ag=$('psA');
+    window._psInt=setInterval(()=>{ x+=dir*vel; if(x>=100){x=100;dir=-1} if(x<=0){x=0;dir=1} ag.style.left=x+'%'; },12);
+    window._psData={get:()=>x, zonaIni, ancho};
+  }
+  window._psTap=()=>{
+    clearInterval(window._psInt);
+    const {get,zonaIni,ancho}=window._psData; const x=get();
+    const centro=zonaIni+ancho/2;
+    let g=0,msg='';
+    if(Math.abs(x-centro)<ancho*0.18){ g=2; msg='✨ ¡PASE GOL!'; }
+    else if(x>=zonaIni && x<=zonaIni+ancho){ g=1; msg='👍 Buen pase'; }
+    else { msg='❌ Pase a los pies del rival'; }
+    pts+=g; n++;
+    area.innerHTML = mgHead('🎩 PASE',msg)+`<div class="card center"><div style="font-size:36px">${g===2?'🎯':g===1?'⚽':'😖'}</div>
+      <button onclick="_psNext()">Siguiente</button></div>`;
+  };
+  window._psNext=ronda;
+  ronda();
+}
+
+/* --- 6. VISIÓN: encontrar al compañero desmarcado --- */
+function mgVision(area, done){
+  let n=0, ok=0, total=5;
+  function ronda(){
+    if(n>=total){ done(Math.round(ok/total*100), `👁️ Encontraste ${ok}/${total} desmarques.`); return; }
+    const N=9, libre=ri(0,N-1);
+    area.innerHTML = mgHead('👁️ VISIÓN DE JUEGO','Tocá al compañero SIN marca (el que no tiene 🛡️ al lado). ¡Rápido!')+
+      `<div class="card"><div class="grid3" id="vsG">
+      ${Array.from({length:N},(_,i)=>`<button class="sec" style="aspect-ratio:1;font-size:17px;padding:0" onclick="_vsTap(${i})">
+        ${i===libre?'🏃':'🏃🛡️'}</button>`).join('')}
+      </div>
+      <div class="bar rojo" style="margin-top:8px"><i id="vsBar" style="width:100%"></i></div>
+      <div class="small dim center" style="margin-top:5px">Jugada ${n+1}/${total} · Aciertos: ${ok}</div></div>`;
+    const lim=2200-n*250, t0=Date.now(), bar=$('vsBar');
+    clearInterval(window._vsInt);
+    window._vsInt=setInterval(()=>{
+      if(!bar){clearInterval(window._vsInt);return;}
+      const p=1-(Date.now()-t0)/lim; bar.style.width=Math.max(0,p*100)+'%';
+      if(p<=0){ clearInterval(window._vsInt); n++; toast('⏰ Tardaste','bad'); setTimeout(ronda,300); }
+    },30);
+    window._vsLibre=libre;
+  }
+  window._vsTap=(i)=>{
+    clearInterval(window._vsInt); n++;
+    if(i===window._vsLibre){ ok++; toast('👁️ ¡La viste!'); } else toast('❌ Estaba marcado','bad');
+    setTimeout(ronda,300);
+  };
+  ronda();
+}
+
+/* --- 7. MARCA (defensor): tapar el disparo --- */
+function mgMarca(area, done){
+  let n=0, ok=0, total=5;
+  function ronda(){
+    if(n>=total){ done(Math.round(ok/total*100), `🛡️ Cortaste ${ok}/${total} ataques.`); return; }
+    area.innerHTML = mgHead('🛡️ QUITE / MARCA','Tocá QUITAR justo cuando el delantero apoya la pelota (zona verde).')+
+      `<canvas id="cvM" width="600" height="200"></canvas>
+       <div style="height:8px"></div><button class="rojo" onclick="_mkTap()">🛡️ ENTRAR AL QUITE</button>
+       <div class="small dim center" style="margin-top:6px">Jugada ${n+1}/${total} · Quites: ${ok}</div>`;
+    const cv=$('cvM'), c=cv.getContext('2d');
+    let x=20, vel=3.4+n*0.9, raf, dir=1;
+    const zona=[300,400];
+    function draw(){
+      c.fillStyle='#124b2a'; c.fillRect(0,0,600,200);
+      c.fillStyle='rgba(40,224,122,.25)'; c.fillRect(zona[0],0,zona[1]-zona[0],200);
+      c.fillStyle='#28e07a';
+      c.fillRect(zona[0],0,3,200); c.fillRect(zona[1]-3,0,3,200);
+      // delantero
+      c.font='34px serif'; c.fillText('🏃',x,120);
+      c.fillStyle='#fff'; c.beginPath(); c.arc(x+38,128,9,0,7); c.fill();
+      // yo
+      c.font='30px serif'; c.fillText('🛡️',530,120);
+      x+=vel*dir; if(x>520){x=520;}
+      window._mkX=x;
+      raf=requestAnimationFrame(draw);
+    }
+    draw();
+    window._mkStop=()=>cancelAnimationFrame(raf);
+    window._mkZona=zona;
+    // si llega al final sin quite = gol rival
+    window._mkTimeout=setTimeout(()=>{ if($('cvM')){ window._mkStop(); n++; toast('😖 Te desbordó','bad'); setTimeout(ronda,400);} }, (520-20)/vel*16.7+200);
+  }
+  window._mkTap=()=>{
+    window._mkStop(); clearTimeout(window._mkTimeout);
+    const x=window._mkX, z=window._mkZona;
+    const bien = x>=z[0] && x<=z[1];
+    n++; if(bien) ok++;
+    toast(bien?'🛡️ ¡Quite limpio!':'🟨 Falta / llegaste tarde', bien?'':'bad');
+    setTimeout(ronda,400);
+  };
+  ronda();
+}
+
+/* --- 8. ATAJADA (arquero): elegir palo rápido --- */
+function mgAtajada(area, done){
+  let n=0, ok=0, total=4;
+  function ronda(){
+    if(n>=total){ done(Math.round(ok/total*100), `🧤 Atajaste ${ok}/${total} remates.`); return; }
+    const destino = ri(0,5);
+    area.innerHTML = mgHead('🧤 ATAJADA','Mirá la pierna del pateador y tirate al palo correcto. ¡Tenés menos de 1 segundo!')+
+      `<div class="card">
+        <div class="center" style="font-size:34px" id="atSeña">🤔</div>
+        <div class="zonas">
+          ${['↖','⬆','↗','↙','⬇','↘'].map((z,i)=>`<button class="sec" style="font-size:20px" onclick="_atTap(${i})">${z}</button>`).join('')}
+        </div>
+        <div class="bar rojo" style="margin-top:8px"><i id="atBar" style="width:100%"></i></div>
+        <div class="small dim center" style="margin-top:5px">Remate ${n+1}/${total} · Atajadas: ${ok}</div>
+      </div>`;
+    // "pista": aparece una flecha correcta 70% de las veces
+    const pista = Math.random()<0.7;
+    setTimeout(()=>{
+      const s=$('atSeña'); if(!s) return;
+      s.textContent = pista ? ['↖','⬆','↗','↙','⬇','↘'][destino] : '❔';
+      s.style.color = pista?'var(--oro)':'var(--dim)';
+    }, ri(300,700));
+    const lim=1600-n*180, t0=Date.now(), bar=$('atBar');
+    clearInterval(window._atInt);
+    window._atInt=setInterval(()=>{
+      if(!bar){clearInterval(window._atInt);return;}
+      const p=1-(Date.now()-t0)/lim; bar.style.width=Math.max(0,p*100)+'%';
+      if(p<=0){ clearInterval(window._atInt); n++; toast('⚽ Gol… te quedaste parado','bad'); setTimeout(ronda,400); }
+    },25);
+    window._atDest=destino;
+  }
+  window._atTap=(i)=>{
+    clearInterval(window._atInt); n++;
+    const bien = i===window._atDest || (Math.abs(i-window._atDest)===3 && Math.random()<.25);
+    if(bien){ ok++; toast('🧤 ¡ATAJADAAA!'); } else toast('⚽ Gol','bad');
+    setTimeout(ronda,400);
+  };
+  ronda();
+}
+
+/* --- 9. REFLEJOS: tap rápido cuando cambia a verde --- */
+function mgReflejos(area, done){
+  let n=0, suma=0, total=4;
+  function ronda(){
+    if(n>=total){
+      const prom=suma/total;
+      const score = clamp(Math.round(120 - prom/4),0,100);
+      done(score, `⚡ Reflejos: ${Math.round(prom)}ms promedio.`); return;
+    }
+    area.innerHTML = mgHead('⚡ REFLEJOS','Esperá el VERDE y tocá lo más rápido posible. Si te adelantás, penaliza.')+
+      `<div class="card center"><div id="rfBox" style="height:150px;border-radius:12px;background:#8a1a2a;display:grid;place-items:center;font-size:22px;font-weight:900;cursor:pointer">ESPERÁ…</div>
+      <div class="small dim" style="margin-top:6px">Intento ${n+1}/${total}</div></div>`;
+    const box=$('rfBox');
+    let listo=false, t0=0;
+    const to=setTimeout(()=>{ listo=true; t0=Date.now(); box.style.background='#1aa85a'; box.textContent='¡AHORA!'; }, ri(900,2800));
+    box.onclick=()=>{
+      if(!listo){ clearTimeout(to); suma+=700; n++; toast('❌ Te adelantaste','bad'); setTimeout(ronda,500); return; }
+      const ms=Date.now()-t0; suma+=ms; n++;
+      box.textContent=ms+' ms'; box.style.background='#134a2a';
+      toast(ms<280?'⚡ ¡Reflejos de crack!':ms<450?'👍 Bien':'🐢 Lento', ms<450?'':'bad');
+      setTimeout(ronda,600);
+    };
+  }
+  ronda();
+}
+
+/* --- 10. CABEZAZO: timing de salto --- */
+function mgCabezazo(area, done){
+  let n=0, ok=0, total=4;
+  function ronda(){
+    if(n>=total){ done(Math.round(ok/total*100), `🗣️ Ganaste ${ok}/${total} pelotas por arriba.`); return; }
+    area.innerHTML = mgHead('🗣️ CABEZAZO','Saltá justo cuando la pelota entre en la zona dorada.')+
+      `<canvas id="cvC" width="600" height="240"></canvas>
+       <div style="height:8px"></div><button class="oro" onclick="_cbTap()">⬆️ SALTAR</button>
+       <div class="small dim center" style="margin-top:6px">Centro ${n+1}/${total} · Ganados: ${ok}</div>`;
+    const cv=$('cvC'), c=cv.getContext('2d');
+    let t=0, vel=0.022+n*0.006, raf;
+    function draw(){
+      c.fillStyle='#124b2a'; c.fillRect(0,0,600,240);
+      c.fillStyle='rgba(255,201,60,.22)'; c.fillRect(250,40,110,110);
+      c.strokeStyle='#ffc93c'; c.lineWidth=3; c.strokeRect(250,40,110,110);
+      // trayectoria parabólica
+      const px = 40 + t*520;
+      const py = 200 - Math.sin(Math.min(Math.PI,t*Math.PI))*150;
+      c.fillStyle='#fff'; c.beginPath(); c.arc(px,py,12,0,7); c.fill();
+      c.strokeStyle='#111'; c.lineWidth=2; c.stroke();
+      c.font='36px serif'; c.fillText('🧍',290,225);
+      window._cbPos={px,py};
+      t+=vel;
+      if(t>1.05){ cancelAnimationFrame(raf); if($('cvC')){ n++; toast('⏰ La dejaste pasar','bad'); setTimeout(ronda,400);} return; }
+      raf=requestAnimationFrame(draw);
+    }
+    draw();
+    window._cbStop=()=>cancelAnimationFrame(raf);
+  }
+  window._cbTap=()=>{
+    window._cbStop();
+    const {px,py}=window._cbPos;
+    const bien = px>250&&px<360&&py>40&&py<150;
+    n++; if(bien) ok++;
+    toast(bien?'🗣️ ¡Cabezazo ganado!':'😤 Perdiste la de arriba', bien?'':'bad');
+    setTimeout(ronda,400);
+  };
+  ronda();
+}
+
+/* ═══════════════════════════════════════════
+   VERSUS — motor físico tipo potrero
+   ═══════════════════════════════════════════ */
+let V=null, vRaf=null, vTac={p1:'eq',p2:'eq'};
+const keys={};
+addEventListener('keydown',e=>{keys[e.code]=true; if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))e.preventDefault();});
+addEventListener('keyup',e=>keys[e.code]=false);
+
+function renderTacticas(){
+  ['tac1','tac2'].forEach((id,k)=>{
+    const sel = k===0?vTac.p1:vTac.p2;
+    $(id).innerHTML = TACTICAS.map(t=>
+      `<button class="${sel===t.id?'':'sec'} mini" onclick="vTac.${k===0?'p1':'p2'}='${t.id}';renderTacticas()">
+        <div style="font-size:18px">${t.ico}</div>${t.n}<div class="small" style="opacity:.7">${t.d}</div></button>`).join('');
+  });
+}
+
+function iniciarVersus(modo){
+  const W=800,H=480;
+  const b1=TACTICAS.find(t=>t.id===vTac.p1).b, b2=TACTICAS.find(t=>t.id===vTac.p2).b;
+  V={
+    W,H,modo, gA:0,gB:0, tiempo:180, ultTick:Date.now(), pausa:false, celebrando:0,
+    ball:{x:W/2,y:H/2,vx:0,vy:0,r:11},
+    p1:{x:150,y:H/2,vx:0,vy:0,r:18*b1.size,acc:.62*b1.vel,kick:9.5*b1.kick,col:'#3ba9ff',kickCD:0},
+    p2:{x:W-150,y:H/2,vx:0,vy:0,r:18*b2.size,acc:.62*b2.vel,kick:9.5*b2.kick,col:'#ff4d5e',kickCD:0},
+    goalH:150
+  };
+  ir('s-versus');
+  if('ontouchstart' in window) $('touchPad').style.display='block';
+  setupTouch();
+  vLoop();
+}
+const touch={up:0,down:0,left:0,right:0,kick:0};
+function setupTouch(){
+  document.querySelectorAll('#touchPad button').forEach(b=>{
+    const k=b.dataset.k;
+    const on=e=>{e.preventDefault();touch[k]=1};
+    const off=e=>{e.preventDefault();touch[k]=0};
+    b.ontouchstart=on; b.ontouchend=off; b.ontouchcancel=off;
+    b.onmousedown=on; b.onmouseup=off; b.onmouseleave=off;
+  });
+}
+
+function vLoop(){
+  if(!V){return;}
+  const cv=$('cvV'), c=cv.getContext('2d');
+  if(!V.pausa){
+    const dt=Math.min(50,Date.now()-V.ultTick); V.ultTick=Date.now();
+    V.tiempo-=dt/1000;
+    if(V.tiempo<=0){ finVersus(); return; }
+    if(V.celebrando>0){ V.celebrando-=dt; }
+    else fisica();
+  } else { V.ultTick=Date.now(); }
+  dibujarCancha(c);
+  $('vMarc').textContent=`${V.gA} - ${V.gB}`;
+  const t=Math.max(0,V.tiempo);
+  $('vTime').textContent=`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
+  vRaf=requestAnimationFrame(vLoop);
+}
+
+function fisica(){
+  const {W,H,ball,p1,p2}=V;
+  // input p1
+  let ax=0,ay=0;
+  if(keys.KeyA||touch.left)ax-=1; if(keys.KeyD||touch.right)ax+=1;
+  if(keys.KeyW||touch.up)ay-=1; if(keys.KeyS||touch.down)ay+=1;
+  mover(p1,ax,ay);
+  // input p2
+  if(V.modo==='cpu') iaMover(p2);
+  else{
+    let bx=0,by=0;
+    if(keys.ArrowLeft)bx-=1; if(keys.ArrowRight)bx+=1;
+    if(keys.ArrowUp)by-=1; if(keys.ArrowDown)by+=1;
+    mover(p2,bx,by);
+  }
+  // patadas
+  p1.kickCD=Math.max(0,p1.kickCD-1); p2.kickCD=Math.max(0,p2.kickCD-1);
+  if((keys.Space||touch.kick)) patear(p1);
+  if(V.modo==='cpu'){ if(dist(p2,ball)<p2.r+ball.r+8) patear(p2); }
+  else if(keys.Enter||keys.NumpadEnter) patear(p2);
+
+  // física pelota
+  ball.x+=ball.vx; ball.y+=ball.vy;
+  ball.vx*=0.986; ball.vy*=0.986;
+  // paredes
+  const gTop=(H-V.goalH)/2, gBot=(H+V.goalH)/2;
+  if(ball.y-ball.r<8){ball.y=8+ball.r;ball.vy*=-.85}
+  if(ball.y+ball.r>H-8){ball.y=H-8-ball.r;ball.vy*=-.85}
+  if(ball.x-ball.r<14){
+    if(ball.y>gTop&&ball.y<gBot){ gol('B'); return; }
+    ball.x=14+ball.r; ball.vx*=-.85;
+  }
+  if(ball.x+ball.r>W-14){
+    if(ball.y>gTop&&ball.y<gBot){ gol('A'); return; }
+    ball.x=W-14-ball.r; ball.vx*=-.85;
+  }
+  // colisiones jugador-pelota
+  [p1,p2].forEach(p=>{
+    const d=dist(p,ball);
+    if(d<p.r+ball.r){
+      const nx=(ball.x-p.x)/d, ny=(ball.y-p.y)/d;
+      ball.x=p.x+nx*(p.r+ball.r); ball.y=p.y+ny*(p.r+ball.r);
+      const rel=(ball.vx-p.vx)*nx+(ball.vy-p.vy)*ny;
+      if(rel<0){ ball.vx-=1.6*rel*nx; ball.vy-=1.6*rel*ny; }
+      ball.vx+=p.vx*.32; ball.vy+=p.vy*.32;
+    }
+  });
+  // colisión jugador-jugador
+  const dd=dist(p1,p2);
+  if(dd<p1.r+p2.r){
+    const nx=(p2.x-p1.x)/dd, ny=(p2.y-p1.y)/dd, ov=(p1.r+p2.r-dd)/2;
+    p1.x-=nx*ov; p1.y-=ny*ov; p2.x+=nx*ov; p2.y+=ny*ov;
+  }
+  const sp=Math.hypot(ball.vx,ball.vy);
+  if(sp>19){ ball.vx*=19/sp; ball.vy*=19/sp; }
+}
+function mover(p,ax,ay){
+  const m=Math.hypot(ax,ay)||1;
+  p.vx+=ax/m*p.acc; p.vy+=ay/m*p.acc;
+  p.vx*=0.90; p.vy*=0.90;
+  p.x+=p.vx; p.y+=p.vy;
+  p.x=clamp(p.x,p.r+6,V.W-p.r-6); p.y=clamp(p.y,p.r+6,V.H-p.r-6);
+}
+function patear(p){
+  if(p.kickCD>0) return;
+  const b=V.ball, d=dist(p,b);
+  if(d<p.r+b.r+11){
+    const nx=(b.x-p.x)/d, ny=(b.y-p.y)/d;
+    b.vx=nx*p.kick+p.vx*.5; b.vy=ny*p.kick+p.vy*.5;
+    p.kickCD=14;
+  }
+}
+function iaMover(p){
+  const b=V.ball;
+  // si la pelota está de mi lado, defiendo; si no, ataco
+  let tx,ty;
+  if(b.x>V.W*0.42){ tx=b.x+22; ty=b.y; }
+  else { tx=V.W-120; ty=clamp(b.y,V.H/2-70,V.H/2+70); }
+  const dx=tx-p.x, dy=ty-p.y, m=Math.hypot(dx,dy)||1;
+  const err=0.16;
+  mover(p, dx/m+rnd(-err,err), dy/m+rnd(-err,err));
+}
+function dist(a,b){ return Math.max(0.01,Math.hypot(a.x-b.x,a.y-b.y)); }
+
+function gol(quien){
+  if(quien==='A') V.gA++; else V.gB++;
+  V.celebrando=1200;
+  toast(quien==='A'?'⚽ ¡GOL AZUL!':'⚽ ¡GOL ROJO!','oro');
+  V.ball={x:V.W/2,y:V.H/2,vx:0,vy:0,r:11};
+  V.p1.x=150;V.p1.y=V.H/2;V.p1.vx=V.p1.vy=0;
+  V.p2.x=V.W-150;V.p2.y=V.H/2;V.p2.vx=V.p2.vy=0;
+}
+
+function dibujarCancha(c){
+  const {W,H}=V;
+  c.fillStyle='#0e3d22'; c.fillRect(0,0,W,H);
+  // rayas
+  c.fillStyle='#124b2a';
+  for(let i=0;i<8;i++) if(i%2===0) c.fillRect(i*W/8,0,W/8,H);
+  c.strokeStyle='rgba(255,255,255,.5)'; c.lineWidth=3;
+  c.strokeRect(14,8,W-28,H-16);
+  c.beginPath(); c.moveTo(W/2,8); c.lineTo(W/2,H-8); c.stroke();
+  c.beginPath(); c.arc(W/2,H/2,62,0,7); c.stroke();
+  // arcos
+  const gTop=(H-V.goalH)/2;
+  c.strokeStyle='#fff'; c.lineWidth=5;
+  c.strokeRect(-6,gTop,20,V.goalH);
+  c.strokeRect(W-14,gTop,20,V.goalH);
+  c.strokeStyle='rgba(255,255,255,.35)'; c.lineWidth=3;
+  c.strokeRect(14,gTop-38,72,V.goalH+76);
+  c.strokeRect(W-86,gTop-38,72,V.goalH+76);
+  // jugadores
+  [V.p1,V.p2].forEach(p=>{
+    c.beginPath(); c.arc(p.x,p.y+4,p.r,0,7); c.fillStyle='rgba(0,0,0,.3)'; c.fill();
+    c.beginPath(); c.arc(p.x,p.y,p.r,0,7); c.fillStyle=p.col; c.fill();
+    c.lineWidth=4; c.strokeStyle='rgba(255,255,255,.85)'; c.stroke();
+  });
+  // pelota
+  const b=V.ball;
+  c.beginPath(); c.arc(b.x,b.y+4,b.r,0,7); c.fillStyle='rgba(0,0,0,.3)'; c.fill();
+  c.beginPath(); c.arc(b.x,b.y,b.r,0,7); c.fillStyle='#fff'; c.fill();
+  c.lineWidth=2.5; c.strokeStyle='#1a1a1a'; c.stroke();
+  if(V.celebrando>0){
+    c.fillStyle='rgba(0,0,0,.45)'; c.fillRect(0,0,W,H);
+    c.fillStyle='#ffc93c'; c.font='900 60px sans-serif'; c.textAlign='center';
+    c.fillText('¡GOOOL!',W/2,H/2+18); c.textAlign='left';
+  }
+  if(V.pausa){
+    c.fillStyle='rgba(0,0,0,.6)'; c.fillRect(0,0,W,H);
+    c.fillStyle='#fff'; c.font='900 40px sans-serif'; c.textAlign='center';
+    c.fillText('PAUSA',W/2,H/2); c.textAlign='left';
+  }
+}
+function pausarVersus(){ if(V) V.pausa=!V.pausa; }
+function salirVersus(){ cancelAnimationFrame(vRaf); V=null; $('touchPad').style.display='none'; ir('s-versus-menu'); }
+function finVersus(){
+  cancelAnimationFrame(vRaf);
+  const gA=V.gA,gB=V.gB; V=null;
+  modal(`<h2>🏁 Final del partido</h2>
+  <div class="card tight center"><div style="font-size:38px;font-weight:900">${gA} - ${gB}</div>
+  <div style="font-weight:800;color:${gA>gB?'var(--azul)':gB>gA?'var(--rojo)':'var(--dim)'}">
+    ${gA>gB?'Ganó AZUL':gB>gA?'Ganó ROJO':'Empate'}</div></div>
+  <button onclick="cerrarModal();ir('s-versus-menu')">Volver</button>`);
+  $('touchPad').style.display='none';
+}
+
+function modalSala(){
+  modal(`<h2>🌐 Sala con un amigo</h2>
+  <div class="card tight small">
+    Este juego corre 100% en tu navegador, sin servidor. Para jugar <b>online de verdad</b> (con alguien en otra casa) hace falta un servidor de sincronización — te lo puedo agregar después con Node + WebSocket o con PeerJS.
+    <div class="sep"></div>
+    <b>Lo que sí funciona ahora:</b>
+    <div>• 1 vs 1 en el mismo teclado</div>
+    <div>• 1 vs CPU</div>
+    <div>• Modo DT: elegís táctica y cambia tu físico en la cancha</div>
+  </div>
+  <button class="sec" onclick="cerrarModal()">Entendido</button>`);
+}
+
+function modalAyuda(){
+  modal(`<h2>❓ Cómo se juega</h2>
+  <div class="card tight small">
+    <b>1. Creás tu jugador</b><br>Nombre, apodo, posición, estilo y en qué liga arrancás. Empezás en un club chico.
+    <div class="sep"></div>
+    <b>2. Jugás partidos</b><br>Cada partido son 5 momentos clave. En cada uno te toca un <b>minijuego</b> (penal, memoria de jugada, gambeta, atajada, cabezazo, etc). Cuanto mejor te va, más goles y asistencias hacés. Tu GRL y tu forma también influyen.
+    <div class="sep"></div>
+    <b>3. Tomás decisiones</b><br>Entre partido y partido aparecen situaciones (prensa, fiestas, lesiones, el DT). Cada elección mueve tu moral, forma, fama y relación con el técnico.
+    <div class="sep"></div>
+    <b>4. Entrenás</b><br>Cuesta energía ⚡ y monedas 🪙, pero es la forma de subir tus atributos y tu GRL.
+    <div class="sep"></div>
+    <b>5. Mercado de pases</b><br>Al final de cada temporada, si rendiste, te llegan ofertas de ligas más grandes. Objetivo: llegar a Europa, ganar títulos, la Selección y el Balón de Oro antes de retirarte.
+    <div class="sep"></div>
+    <b>Energía ⚡</b><br>Cada partido y entrenamiento gasta 1. Se recarga sola cada 5 minutos, o con una bebida isotónica de la tienda.
+    <div class="sep"></div>
+    <b>Versus 🥅</b><br>Partido físico tipo potrero, 1v1 o contra la CPU. Antes de entrar elegís táctica de DT.
+  </div>
+  <button class="sec" onclick="cerrarModal()">Cerrar</button>`);
+}
+
+/* ─────────── GUARDADO ─────────── */
+function guardar(aviso){
+  if(!G) return;
+  try{ localStorage.setItem(SAVE_KEY, JSON.stringify(G)); if(aviso) toast('💾 Partida guardada'); }
+  catch(e){ console.warn(e); }
+}
+function cargarPartida(){
+  const raw=localStorage.getItem(SAVE_KEY);
+  if(!raw){ toast('No hay partida guardada','bad'); return; }
+  try{
+    G=JSON.parse(raw);
+    if(!G.tabla||!G.tabla.length) iniciarTemporada(true);
+    if(G.rivalIdx===undefined) calcularRival();
+    tickEnergia();
+    ir('s-hub'); renderHub();
+    toast('¡Bienvenido de vuelta, '+G.apodo+'!');
+  }catch(e){ toast('Partida corrupta','bad'); }
+}
+
+/* ─────────── INIT ─────────── */
+renderCrear(); renderTacticas();
+if(!localStorage.getItem(SAVE_KEY)) $('btnCont').style.display='none';
+setInterval(()=>{ if(G && $('s-hub').classList.contains('on')) renderHub(); }, 5000);
+addEventListener('beforeunload', ()=>guardar());
+</script>
+</body>
+</html>

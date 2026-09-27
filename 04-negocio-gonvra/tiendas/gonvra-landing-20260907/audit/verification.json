@@ -1,0 +1,133 @@
+{
+  "home": {
+    "status": 200,
+    "h1_count": 1,
+    "offers": [],
+    "liquid_errors": 0
+  },
+  "product": {
+    "status": 200,
+    "h1_count": 1,
+    "offers": [
+      {
+        "qty": "1",
+        "total": "$64.737,52"
+      },
+      {
+        "qty": "2",
+        "total": "$129.475,04"
+      },
+      {
+        "qty": "3",
+        "total": "$194.212,56"
+      }
+    ],
+    "liquid_errors": 0
+  },
+  "cart": {
+    "status": 200,
+    "h1_count": 1,
+    "offers": [],
+    "liquid_errors": 0
+  },
+  "privacy": {
+    "status": 200,
+    "h1_count": 1,
+    "offers": [],
+    "liquid_errors": 0
+  },
+  "assets": [
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=1200",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=1400",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=220",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=3840",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=1200",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=1400",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=220",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=3840",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=500",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=800",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=1200",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=1400",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=220",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=3840",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=500",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/t/8/assets/gv-experience.css?v=182849455559602489861788812487",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/t/8/assets/gv-experience.js?v=93164809027152879891788812041",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/t/8/assets/gv-hero-desktop-v2.webp?v=167563963605068006591788812041",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/t/8/assets/gv-hero-mobile-v2.webp?v=141978574610579861061788812039",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/t/8/assets/gv-kit-flatlay-v2.webp?v=129632259876113503301788812039",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/t/8/assets/gv-pack-1.png?v=125390024531057119691788812039",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/t/8/assets/gv-pack-2.png?v=66506348808238652381788812039",
+      "status": 200
+    },
+    {
+      "url": "/cdn/shop/t/8/assets/gv-pack-3.png?v=107939929065700450541788812039",
+      "status": 200
+    }
+  ]
+}

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el Número - Elite Edition</title>
+    <meta name="description" "Juego adivina el número con niveles, estadísticas y diseño moderno">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #12121a;
+            --fg: #e8e8f0;
+            --muted: #6b6b80;
+            --accent: #00ff88;
+            --accent-secondary: #00aa6a;
+            --danger: #ff3366;
+            --warning: #ffcc33;
+            --info: #33ccff;
+            --card: rgba(18, 18, 26, 0.8);
+            --border: rgba(0, 255, 136, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Background atmosphere */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(0, 255, 136, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(51, 204, 255, 0.05) 0%, transparent 50%),
+                var(--bg);
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Game container */
+        .game-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 30px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(0, 255, 136, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .game-wrapper:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        .game-header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .game-subtitle {
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* Stats panel */
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Main game area */
+        .main-area {
+            margin: 30px 0;
+        }
+
+        /* Input section */
+        .input-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .guess-input {
+            width: 100%;
+            max-width: 280px;
+            padding: 18px 24px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-align: center;
+            color: var(--bg);
+            background: var(--fg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            outline: none;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .guess-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+        }
+
+        .guess-input::placeholder {
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .guess-input.correct {
+            animation: pulse-green 0.4s ease;
+        }
+
+        .guess-input.wrong {
+            animation: pulse-red 0.4s ease;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.4); }
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 2px rgba(255, 51, 102, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(255, 51, 102, 0.4); }
+        }
+
+        /* Buttons */
+        .btn {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: var(--bg);
+            box-shadow: 0 4px 20px rgba(0, 255, 136, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.45);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--fg);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--muted);
+        }
+
+        .btn-danger {
+            background: rgba(255, 51, 102, 0.2);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            color: var(--bg);
+        }
+
+        /* Messages */
+        #mensaje {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            min-height: 24px;
+            animation: slide-down 0.3s ease;
+        }
+
+        @keyframes slide-down {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .msg-correct {
+            background: rgba(0, 255, 136, 0.15);
+            border: 1px solid rgba(0, 255, 136, 0.4);
+            color: var(--accent);
+        }
+
+        .msg-wrong {
+            background: rgba(255, 51, 102, 0.15);
+            border: 1px solid rgba(255, 51, 102, 0.4);
+            color: var(--danger);
+        }
+
+        .msg-info {
+            background: rgba(51, 204, 255, 0.15);
+            border: 1px solid rgba(51, 204, 255, 0.4);
+            color: var(--info);
+        }
+
+        /* Level indicator */
+        .level-indicator {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .level-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .level-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        /* Mode buttons */
+        .mode-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .mode-btn {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--fg);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mode-btn:hover {
+            background: rgba(0, 255, 136, 0.1);
+            border-color: var(--accent);
+        }
+
+        .mode-btn.active {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Help/info */
+        .help-text {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .stats-panel {
+                grid-template-columns: 1fr 1fr;
+            }
+            .game-wrapper {
+                margin: 10px;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-atmosphere"></div>
+    <div class="noise"></div>
+
+    <div class="game-wrapper">
+        <div class="game-header">
+            <h1 class="game-title">ADIVINA EL NÚMERO</h1>
+            <p class="game-subtitle">Versión Elite - Niveles Progresivos</p>
+        </div>
+
+        <!-- Stats panel -->
+        <div class="stats-panel" id="statsPanel">
+            <div class="stat-card">
+                <div class="stat-value" id="statBest">0</div>
+                <div class="stat-label">Mejor racha</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statGames">0</div>
+                <div class="stat-label">Partidas jugadas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="statAvg">0</div>
+                <div class="stat-label">Promedio intentos</div>
+            </div>
+        </div>
+
+        <!-- Level indicator -->
+        <div class="level-indicator">
+            <div>Nivel actual: <span id="levelDisplay">1</span></div>
+            <div class="level-bar"><div class="level-fill" id="levelFill" style="width: 0%"></div></div>
+        </div>
+
+        <!-- Mode selection -->
+        <div class="mode-buttons" id="modeButtons">
+            <button class="mode-btn active" data-mode="normal">Normal</button>
+            <button class="mode-btn" data-mode="rapid">Rápido</button>
+            <button class="mode-btn" data-mode="limit">Intentos Limitados</button>
+        </div>
+
+        <!-- Main game area -->
+        <div class="main-area">
+            <div class="input-section">
+                <input type="number" id="adivinanza" class="guess-input" placeholder="Ingresa un número (1-100)" min="1" max="100" required>
+                <button class="btn btn-primary" onclick="verificar()">Verificar</button>
+            </div>
+
+            <div id="mensaje"></div>
+
+            <div class="input-section" style="margin-top: 20px;">
+                <button class="btn btn-secondary" onclick="nuevoJuego()">Nuevo Juego</button>
+                <button class="btn btn-danger" onclick="resetEstadisticas()">Reiniciar Estadísticas</button>
+            </div>
+        </div>
+
+        <!-- Help text -->
+        <p class="help-text">
+            Usa el teclado o haz clic en los botones. El rango se expande automáticamente a medida que avanzas de nivel.
+        </p>
+    </div>
+
+    <script>
+        "use strict";
+
+        // Audio context for sound effects
+        let audioContext = null;
+        let isMuted = false;
+
+        function initAudio() {
+            if (!audioContext) {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.warn("Web Audio API not supported");
+                }
+            }
+        }
+
+        function playSound(type) {
+            if (isMuted || !audioContext) return;
+            try {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = type === 'correct' ? 523 : 294;
+                oscillator.type = 'sine';
+
+                gainNode.gain.value = 0.1;
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.2);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.2);
+            } catch (e) {
+                // Ignore errors
+            }
+        }
+
+        // Game state
+        let gameState = {
+            secreto: 0,
+            intentos: 0,
+            nivel: 1,
+        };
+
+        let gameMode = "normal";
+        let levelRanges = [100, 120, 150, 200, 300];
+        let totalGames = 0;
+        let totalAttempts = 0;
+        let bestStreak = 0;
+        let currentStreak = 0;
+
+        // DOM elements
+        const inputEl = document.getElementById('adivinanza');
+        const mensajeEl = document.getElementById('mensaje');
+        const levelDisplay = document.getElementById('levelDisplay');
+        const levelFill = document.getElementById('levelFill');
+        const statsPanel = document.getElementById('statsPanel');
+        const statBest = document.getElementById('statBest');
+        const statGames = document.getElementById('statGames');
+        const statAvg = document.getElementById('statAvg');
+
+        // Initialize game
+        function initGame() {
+            initAudio();
+            nuevoJuego();
+            
+            // Mode button event listeners
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    gameMode = btn.dataset.mode;
+                    nuevoJuego();
+                });
+            });
+        }
+
+        // Start a new game with current level settings
+        function nuevoJuego() {
+            totalGames++;
+            actualizarEstadisticas();
+            
+            const maxRange = getRangeForLevel(gameState.nivel);
+            gameState.secreto = Math.floor(Math.random() * maxRange) + 1;
+            gameState.intentos = 0;
+            inputEl.value = "";
+            inputEl.disabled = false;
+            inputEl.classList.remove("correct", "wrong");
+            mensajeEl.textContent = "";
+            mensajeEl.className = "";
+            
+            // Update UI
+            levelDisplay.textContent = gameState.nivel;
+            levelFill.style.width = "0%";
+            
+            // Set placeholder range
+            inputEl.placeholder = `Ingresa un número (1-${maxRange})`;
+            
+            // Focus input
+            inputEl.focus();
+        }
+
+        // Get range based on level
+        function getRangeForLevel(nivel) {
+            return levelRanges[nivel - 1] || 100;
+        }
+
+        // Verify guess
+        function verificar() {
+            const valor = parseInt(inputEl.value);
+            
+            if (isNaN(valor) || valor < 1 || valor > (getRangeForLevel(gameState.nivel))) {
+                mostrarMensaje("Ingresa un número entre 1 y " + getRangeForLevel(gameState.nivel), "info");
+                playSound('wrong');
+                inputEl.classList.add("wrong");
+                return;
+            }
+
+            gameState.intentos++;
+            
+            if (valor < gameState.secreto) {
+                mostrarMensaje("Muy bajo! Intenta de nuevo.", "info");
+                playSound('wrong');
+                inputEl.classList.add("wrong");
+            } else if (valor > gameState.secreto) {
+                mostrarMensaje("Muy alto! Intenta de nuevo.", "info");
+                playSound('wrong');
+                inputEl.classList.add("wrong");
+            } else {
+                // Correct guess!
+                currentStreak++;
+                const intentosRealizados = gameState.intentos;
+                mostrarMensaje(`¡Correcto! Adivinaste en ${intentosRealizados} intentos.`, "correct");
+                playSound('correct');
+                inputEl.classList.add("correct");
+                
+                // Level up!
+                setTimeout(() => {
+                    nivelSiguente();
+                }, 1500);
+            }
+            
+            inputEl.value = "";
+        }
+
+        // Show message
+        function mostrarMensaje(texto, tipo) {
+            mensajeEl.textContent = texto;
+            mensajeEl.className = `msg-${tipo}`;
+        }
+
+        // Level up
+        function nivelSiguente() {
+            gameState.nivel++;
+            levelFill.style.width = "100%";
+            levelDisplay.textContent = gameState.nivel;
+            
+            // Update level bar animation
+            setTimeout(() => {
+                levelFill.style.width = "0%";
+                nuevoJuego();
+            }, 800);
+        }
+
+        // Update statistics
+        function actualizarEstadisticas() {
+            totalAttempts += gameState.intentos;
+            statGames.textContent = totalGames;
+            
+            if (totalGames === 1) {
+                bestStreak = currentStreak;
+            } else {
+                bestStreak = Math.max(bestStreak, currentStreak);
+            }
+            
+            statBest.textContent = bestStreak;
+            statAvg.textContent = (totalAttempts / totalGames).toFixed(1);
+        }
+
+        // Reset statistics
+        function resetEstadisticas() {
+            if (confirm("¿Estás seguro de que quieres reinicar todas las estadísticas?")) {
+                totalGames = 0;
+                totalAttempts = 0;
+                bestStreak = 0;
+                currentStreak = 0;
+                actualizarEstadisticas();
+            }
+        }
+
+        // Handle input Enter key
+        inputEl.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                verificar();
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('load', initGame);
+    </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GONVRA · Mission Control</title>
+<style>
+:root{--bg:#080d12;--panel:#0f1820;--p2:#14212b;--line:#1e3040;--tx:#e9f1f7;--tx2:#8ba2b4;
+--lime:#c8e54a;--cyan:#4ad9e5;--ok:#3ddc84;--warn:#ffb020;--off:#4e6070;--red:#ff5f5f;--violet:#a78bfa;
+--floor:#1b2730;--floor2:#18232b;--desk:#2b3d33;--desk2:#22322a;--wood:#3a4d40}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ background-image:radial-gradient(circle at 10% -5%,#16303f45,transparent 55%),radial-gradient(circle at 95% 105%,#1b2f4045,transparent 50%)}
+.wrap{max-width:1420px;margin:0 auto;padding:20px}
+header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--lime),#71ad24);
+ display:grid;place-items:center;font-weight:800;color:#080d12;font-size:18px;box-shadow:0 0 22px #c8e54a35}
+h1{font-size:20px}.sub{color:var(--tx2);font-size:12.5px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{background:var(--panel);border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:12px;color:var(--tx2)}
+.pill b{color:var(--lime)}
+.live{display:inline-flex;align-items:center;gap:6px}
+.blip{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:blip 1.6s infinite}
+@keyframes blip{0%,100%{opacity:1;box-shadow:0 0 0 0 #3ddc8470}50%{opacity:.5;box-shadow:0 0 0 7px #3ddc8400}}
+nav{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+nav button{background:var(--panel);border:1px solid var(--line);color:var(--tx2);padding:9px 16px;border-radius:11px;cursor:pointer;font-size:13.5px;font-weight:600}
+nav button.on{background:var(--lime);color:#080d12;border-color:var(--lime)}
+nav button:hover:not(.on){border-color:var(--lime);color:var(--tx)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:15px 16px;position:relative;overflow:hidden}
+.stat::after{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--lime),transparent)}
+.stat .k{color:var(--tx2);font-size:11px;text-transform:uppercase;letter-spacing:.9px}
+.stat .v{font-size:30px;font-weight:800;margin-top:4px;line-height:1}
+.stat .n{color:var(--tx2);font-size:11px;margin-top:3px}
+.sec{background:linear-gradient(165deg,#11202a,#0b141b);border:1px solid var(--line);border-radius:20px;padding:19px;margin-bottom:18px}
+.sec h2{font-size:13px;letter-spacing:.7px;color:var(--tx2);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+
+/* ===== OFICINA PIXEL ===== */
+.room{background:linear-gradient(160deg,var(--floor),var(--floor2));
+ border:2px solid #263a46;border-radius:14px;padding:22px 18px;position:relative;overflow:hidden;
+ image-rendering:pixelated;min-height:820px}
+.room::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background-image:url('oficina.jpg');background-size:contain;background-position:center top;
+ background-repeat:no-repeat;opacity:.55;image-rendering:pixelated}
+.room::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+ background:linear-gradient(180deg,#0a121866,#0a1218b3 55%,#0a1218cc)}
+.room>*{position:relative;z-index:2}
+.zona{margin-bottom:6px}
+.zona-t{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:#6f8797;margin:0 0 6px 3px;font-weight:700}
+.row{display:flex;flex-wrap:wrap;gap:6px 4px;margin-bottom:14px}
+.cub{width:112px;cursor:pointer;position:relative;padding-top:26px;transition:.15s}
+.cub:hover{transform:translateY(-3px)}
+/* globo de estado */
+.bub{position:absolute;top:0;left:50%;transform:translateX(-50%);white-space:nowrap;
+ background:#0c161d;border:1px solid #2c4150;color:#c9dbe6;font-size:8.5px;letter-spacing:.2px;
+ padding:3px 6px;border-radius:5px;opacity:0;transition:.2s;max-width:126px;overflow:hidden;text-overflow:ellipsis;z-index:3}
+.bub::after{content:"";position:absolute;bottom:-4px;left:50%;margin-left:-3px;width:6px;height:6px;
+ background:#0c161d;border-right:1px solid #2c4150;border-bottom:1px solid #2c4150;transform:rotate(45deg)}
+.cub.wk .bub{opacity:1;border-color:#3ddc8466;color:#a8f0c8;animation:pop 2.6s ease-in-out infinite}
+.cub.rest .bub{opacity:.55}
+.cub:hover .bub{opacity:1}
+@keyframes pop{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-3px)}}
+/* escritorio */
+.desk{background:linear-gradient(180deg,var(--desk),var(--desk2));border:1px solid #38503f;
+ border-radius:5px;padding:7px 5px 6px;position:relative;box-shadow:0 3px 0 #0f1a14,0 8px 14px #0006}
+.cub.wk .desk{border-color:#4e7a5c;box-shadow:0 3px 0 #0f1a14,0 0 16px #3ddc8425}
+/* monitor */
+.mon{height:20px;background:#0a1116;border:1px solid #2a3c48;border-radius:3px;margin:0 auto 4px;width:60px;
+ position:relative;overflow:hidden}
+.mon::after{content:"";position:absolute;inset:2px;background:#16222b;border-radius:2px}
+.cub.wk .mon::after{background:linear-gradient(180deg,#153126,#1d4433);
+ box-shadow:inset 0 0 8px #3ddc8455;animation:flick 1.1s steps(3) infinite}
+@keyframes flick{0%,100%{opacity:1}50%{opacity:.72}}
+.cub.pause .mon::after{background:#241d33}
+/* personaje */
+.guy{font-size:21px;line-height:1;text-align:center;filter:drop-shadow(0 2px 3px #000a);height:38px;display:grid;place-items:center}
+.guy img{width:38px;height:38px;object-fit:cover;border-radius:5px;image-rendering:pixelated;
+ border:1px solid #2f4453;background:#0d1720}
+.cub.wk .guy img{border-color:#4e7a5c;box-shadow:0 0 10px #3ddc8440}
+.cub.wk .guy{animation:work 1.5s ease-in-out infinite}
+@keyframes work{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-2px) rotate(-3deg)}75%{transform:translateY(-1px) rotate(3deg)}}
+.cub.rest .guy,.cub.off .guy{filter:grayscale(.55) brightness(.75) drop-shadow(0 2px 2px #0008)}
+.nm{font-size:9px;font-weight:800;letter-spacing:.5px;text-align:center;margin-top:3px;color:#dfeaf1}
+.mini{display:flex;justify-content:center;gap:3px;margin-top:3px}
+.led{width:5px;height:5px;border-radius:50%}
+.led.ok{background:var(--ok);box-shadow:0 0 6px var(--ok);animation:blip 1.6s infinite}
+.led.rest{background:var(--warn)}.led.off{background:var(--off)}.led.pause{background:var(--violet)}
+.mdl{font-size:7.5px;color:#7d94a3;letter-spacing:.3px}
+.plant{font-size:15px;opacity:.5;align-self:flex-end;padding:0 3px 6px}
+/* leyenda */
+.leg{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:11px;color:var(--tx2)}
+.leg span{display:inline-flex;align-items:center;gap:5px}
+
+
+/* ===== SALA — chat del equipo ===== */
+.sala{margin-top:14px;background:#0c151c;border:1px solid #24394a;border-radius:12px;overflow:hidden}
+.sala-h{padding:10px 13px;border-bottom:1px solid #1d2f3d;display:flex;align-items:center;gap:8px;
+ font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#7f97a8;font-weight:700}
+.feed{max-height:290px;overflow:auto;padding:12px 13px;display:flex;flex-direction:column;gap:9px;scroll-behavior:smooth}
+.msg{display:flex;gap:9px;align-items:flex-start;opacity:0;transform:translateY(6px);animation:enter .35s forwards}
+@keyframes enter{to{opacity:1;transform:none}}
+.msg .em{font-size:17px;line-height:1.3;flex:none}
+.msg .bd{background:#132029;border:1px solid #243c4c;border-radius:10px;border-top-left-radius:3px;
+ padding:7px 11px;font-size:12.5px;color:#cfdee8;line-height:1.5;max-width:calc(100% - 34px)}
+.msg .who{font-size:10px;font-weight:800;letter-spacing:.6px;color:var(--lime);display:block;margin-bottom:2px}
+.msg .hr{font-size:9.5px;color:#61798a;margin-left:6px;font-weight:600;letter-spacing:0}
+.typing{display:flex;gap:9px;align-items:center;padding:0 13px 11px;color:#61798a;font-size:11.5px}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:4px;height:4px;border-radius:50%;background:#61798a;animation:dot 1.2s infinite}
+.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+@keyframes dot{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+/* ===== FICHAS DE AGENTES ===== */
+.plant-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
+.ficha{background:var(--p2);border:1px solid var(--line);border-radius:14px;padding:14px;position:relative;transition:.15s}
+.ficha:hover{border-color:var(--lime);transform:translateY(-2px)}
+.ficha-top{display:flex;gap:11px;align-items:center;margin-bottom:9px}
+.retrato{width:52px;height:52px;border-radius:10px;background:#0d1720;border:1px solid #2a3f4e;
+ display:grid;place-items:center;font-size:27px;flex:none;overflow:hidden;image-rendering:pixelated}
+.retrato img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+.ficha h4{font-size:14px;letter-spacing:.3px}
+.ficha .cargo{color:var(--tx2);font-size:11px;line-height:1.35;margin-top:2px}
+.modelo-box{background:#0d1720;border:1px solid #2a3f4e;border-radius:9px;padding:9px 11px;margin-top:9px}
+.modelo-box .ml{font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:#6f8797;font-weight:700}
+.modelo-box .mv{font-size:13px;font-weight:700;margin-top:2px}
+.modelo-box .mv.astra{color:var(--violet)}.modelo-box .mv.sol{color:var(--cyan)}
+.modelo-box .mt{font-size:10.5px;color:var(--tx2);margin-top:1px}
+.cambiar{width:100%;margin-top:8px;background:transparent;border:1px solid var(--line);color:var(--tx2);
+ border-radius:9px;padding:7px;cursor:pointer;font-size:11.5px;font-weight:600}
+.cambiar:hover{border-color:var(--lime);color:var(--lime)}
+.htools{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.htool{background:#0d1720;border:1px solid #243746;border-radius:6px;padding:2px 7px;font-size:9.5px;color:#8ba2b4}
+/* tareas / herramientas */
+.tks{display:grid;gap:8px}
+.tk{background:var(--p2);border:1px solid var(--line);border-radius:11px;padding:11px 13px;display:flex;gap:11px;align-items:center}
+.tk .bl{width:3px;height:30px;border-radius:3px;flex:none}
+.tk.done .bl{background:var(--ok)}.tk.running .bl{background:var(--cyan)}
+.tk.blocked .bl{background:var(--red)}.tk.ready .bl{background:var(--warn)}
+.tk .ti{flex:1;font-size:13px}.tk .ag{color:var(--tx2);font-size:11px;margin-top:2px}
+.tk .es{font-size:10.5px;text-transform:uppercase;color:var(--tx2);border:1px solid var(--line);border-radius:6px;padding:3px 8px}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px}
+.tool{background:var(--p2);border:1px solid var(--line);border-radius:11px;padding:11px 13px;display:flex;gap:10px;align-items:center}
+.tool .ic{width:9px;height:9px;border-radius:50%;flex:none}
+.tool.ok .ic{background:var(--ok)}.tool.parcial .ic{background:var(--warn)}.tool.falta .ic{background:var(--red)}
+.tool .tn{font-size:13px;font-weight:600}.tool .td{color:var(--tx2);font-size:11px}
+.empty{color:var(--tx2);font-size:13px;padding:16px;text-align:center}
+.lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:1.1px;color:var(--tx2);margin:16px 0 7px}
+.card{background:var(--p2);border:1px solid var(--line);border-radius:12px;padding:13px;font-size:13px;color:#cfdce6;line-height:1.6}
+/* panel */
+.ov{position:fixed;inset:0;background:#000b;backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:.2s;z-index:10}
+.ov.on{opacity:1;pointer-events:auto}
+.side{position:fixed;top:0;right:0;height:100%;width:min(580px,100%);background:var(--panel);
+ border-left:1px solid var(--line);transform:translateX(100%);transition:.25s;z-index:11;display:flex;flex-direction:column}
+.side.on{transform:none}
+.sh{padding:19px;border-bottom:1px solid var(--line);display:flex;gap:13px;align-items:flex-start}
+.sh .av{font-size:32px}.sh h3{font-size:17px}.sh p{color:var(--tx2);font-size:12px;margin-top:2px}
+.x{margin-left:auto;background:none;border:1px solid var(--line);color:var(--tx2);width:31px;height:31px;border-radius:9px;cursor:pointer}
+.sb{padding:19px;overflow:auto;flex:1}
+.tagrow{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--p2);border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:11.5px;color:var(--tx2)}
+.tag b{color:var(--tx)}
+textarea,select{width:100%;background:var(--p2);border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--tx);font:13px/1.55 inherit}
+textarea{min-height:96px;resize:vertical}
+textarea:focus,select:focus{outline:none;border-color:var(--lime)}
+.btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+button.act{background:var(--lime);color:#080d12;border:none;border-radius:11px;padding:10px 16px;font-weight:700;cursor:pointer;font-size:13px}
+button.gh{background:transparent;color:var(--tx);border:1px solid var(--line);border-radius:11px;padding:10px 16px;cursor:pointer;font-size:13px}
+.ok2{color:var(--ok);font-size:12px;margin-top:8px;display:none}
+.hint{color:var(--tx2);font-size:11px;margin-top:8px;line-height:1.5}
+footer{color:var(--tx2);font-size:11px;text-align:center;padding:18px 0}
+code{background:var(--p2);padding:2px 6px;border-radius:5px;font-size:11.5px}
+@media(max-width:560px){.cub{width:96px}}
+</style></head>
+<body>
+<div class="wrap">
+ <header><div class="brand"><div class="logo">G</div>
+   <div><h1>Mission Control</h1><div class="sub" id="sub">cargando…</div></div></div>
+  <div class="pills">
+   <span class="pill live"><span class="blip"></span> <b id="p-now">—</b></span>
+   <span class="pill">Servidor <b id="p-srv">—</b></span>
+   <span class="pill">Datos <b id="p-gen">—</b></span></div>
+ </header>
+ <nav>
+  <button class="on" onclick="tab('oficina',this)">🏢 Oficina</button>
+  <button onclick="tab('agentes',this)">👥 Agentes</button>
+  <button onclick="tab('hoy',this)">📋 Qué hicieron hoy</button>
+  <button onclick="tab('tareas',this)">🎯 Tareas</button>
+  <button onclick="tab('herram',this)">🔌 Herramientas</button>
+ </nav>
+ <div class="stats" id="stats"></div>
+
+ <div id="v-oficina"><div class="sec">
+  <h2><span class="blip"></span> La Oficina — tocá un escritorio para hablarle al agente</h2>
+  <div class="room" id="room"></div>
+  <div class="sala">
+   <div class="sala-h">💬 Sala de reuniones — lo que se dicen entre ellos</div>
+   <div class="feed" id="feed"></div>
+   <div class="typing" id="typing" style="display:none"><span id="typing-who">—</span>
+    <span class="dots"><i></i><i></i><i></i></span></div>
+  </div>
+  <div class="leg">
+   <span><i class="led ok" style="display:inline-block"></i> Trabajando ahora</span>
+   <span><i class="led rest" style="display:inline-block"></i> Descansando</span>
+   <span><i class="led pause" style="display:inline-block"></i> En pausa</span>
+   <span><i class="led off" style="display:inline-block"></i> A pedido</span>
+  </div></div></div>
+
+ <div id="v-agentes" style="display:none"><div class="sec">
+  <h2>👥 El equipo — quién es cada uno y qué modelo usa</h2>
+  <div class="plant-grid" id="fichas"></div>
+  <div class="lbl">Cambiar modelos</div>
+  <div class="card">Tocá <b>Cambiar modelo</b> en cualquier ficha: te copia el mensaje listo para
+   pegarle al bot. Hoy hay dos en uso: <b style="color:var(--violet)">GPT-6 Astra</b> (potente, más caro)
+   y <b style="color:var(--cyan)">GPT-5.6 Sol</b> (económico). Respaldo: Gemini 3.6 Flash.
+   <span style="color:var(--red)">Prohibidos: API Next y DeepSeek.</span></div>
+  <div class="ok2" id="a-ok">✅ Copiado. Pegalo en @gonvra_semaforo_bot</div>
+ </div></div>
+
+ <div id="v-hoy" style="display:none"><div class="sec"><h2>📋 Lo que hizo el equipo hoy</h2><div id="hoy"></div></div></div>
+
+ <div id="v-tareas" style="display:none"><div class="sec"><h2>🎯 Centro de tareas</h2>
+  <div class="lbl">Crear una tarea nueva</div>
+  <div class="card"><select id="t-ag" style="margin-bottom:9px"></select>
+   <textarea id="t-txt" placeholder="Qué querés que haga…"></textarea>
+   <div class="btns"><button class="act" onclick="crearTarea()">📋 Copiar tarea</button>
+    <button class="gh" onclick="abrirTG()">💬 Telegram</button></div>
+   <div class="ok2" id="t-ok">✅ Copiado. Pegalo en el bot.</div></div>
+  <div class="lbl">En proceso y terminadas</div><div class="tks" id="tareas"></div></div></div>
+
+ <div id="v-herram" style="display:none"><div class="sec"><h2>🔌 Herramientas y accesos</h2>
+  <div class="tools" id="herram"></div>
+  <div class="lbl">Modelos de IA</div><div class="card" id="modelos"></div></div></div>
+
+ <footer>Actualizar: <code>python3 generar-datos.py</code></footer>
+</div>
+
+<div class="ov" id="ov" onclick="cerrar()"></div>
+<aside class="side" id="side">
+ <div class="sh"><div class="av" id="d-av"><img id="d-img" src="" alt="" style="width:52px;height:52px;object-fit:cover;border-radius:10px;image-rendering:pixelated;border:1px solid #2f4453;display:none"></div>
+  <div style="flex:1"><h3 id="d-nm">—</h3><p id="d-rl">—</p></div>
+  <button class="x" onclick="cerrar()">×</button></div>
+ <div class="sb">
+  <div class="lbl" style="margin-top:0">Estado ahora</div><div class="card" id="d-est">—</div>
+  <div class="lbl">Personalidad</div><div class="card" id="d-pers">—</div>
+  <div class="lbl">Modelo y herramientas</div><div class="tagrow" id="d-tools"></div>
+  <div class="lbl">Último informe</div><div class="card" id="d-res">—</div>
+  <div class="lbl">Hablarle</div>
+  <textarea id="d-msg" placeholder="Qué querés pedirle…"></textarea>
+  <div class="btns"><button class="act" onclick="copiar()">📋 Copiar</button>
+   <button class="gh" onclick="abrirTG()">💬 Telegram</button></div>
+  <div class="ok2" id="d-ok">✅ Copiado. Pegalo en @gonvra_semaforo_bot</div>
+  <div class="hint">Se copia con el nombre del agente adelante para que Hermes sepa a quién dirigirlo.</div>
+ </div></aside>
+
+<script>
+let D=null,actual=null;
+// qué "dice" cada agente cuando está trabajando
+const TAREA={jefe:"Armando el resumen…",analista:"Leyendo los números…",guardia:"Revisando la tienda…",
+ cro:"Probando la ficha…",cazador:"Buscando carritos…",precios:"Calculando margen…",
+ copy:"Escribiendo textos…",creativo:"Generando imágenes…",tiktoker:"Escribiendo guiones…",
+ instagramer:"Armando el feed…",espia:"Espiando anuncios…",mediabuyer:"En pausa",
+ tienda:"Tocando el tema…",mensajero:"Leyendo mensajes…",legal:"Revisando políticas…"};
+fetch('datos.json?'+Date.now()).then(r=>r.json()).then(d=>{D=d;pintar();setInterval(reloj,1000);reloj()})
+ .catch(()=>document.getElementById('sub').textContent='Falta datos.json — corré generar-datos.py');
+
+function estado(a){
+ const h=new Date().getHours();
+ if(!a.horas||!a.horas.length) return a.slug==='mediabuyer'
+  ?{c:'pause',t:'En pausa a propósito',d:'No corre hasta que aprueben la pauta',b:'En pausa'}
+  :{c:'off',t:'Trabaja a pedido',d:'Sin horario fijo; se activa cuando se le pide',b:'A pedido'};
+ if(a.horas.includes(h)) return {c:'wk',t:'Trabajando ahora',d:'Le toca correr en esta hora',b:TAREA[a.slug]||'Trabajando…'};
+ const prox=a.horas.find(x=>x>h),hh=prox!==undefined?prox:a.horas[0];
+ const falta=prox!==undefined?prox-h:(24-h+a.horas[0]);
+ return {c:'rest',t:'Tomó un descanso',d:`Vuelve a las ${String(hh).padStart(2,'0')}:00 · en ${falta} h`,
+         b:'Zzz · vuelve '+String(hh).padStart(2,'0')+':00'};
+}
+function reloj(){
+ const n=new Date();
+ document.getElementById('p-now').textContent=n.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ if(!D)return;
+ document.querySelectorAll('.cub').forEach(el=>{
+  const a=D.agentes.find(x=>x.slug===el.dataset.slug),e=estado(a);
+  el.className='cub '+e.c;
+  el.querySelector('.bub').textContent=e.b;
+  el.querySelector('.led').className='led '+(e.c==='wk'?'ok':e.c);
+ });
+}
+function pintar(){
+ document.getElementById('sub').textContent=D.tienda.producto+' · '+D.tienda.precio;
+ document.getElementById('p-gen').textContent=D.generado;
+ document.getElementById('p-srv').textContent=D.servidor.estado;
+ const t=D.totales,k=D.kanban;
+ document.getElementById('stats').innerHTML=[
+  ['Agentes',t.agentes,t.trabajaron_hoy+' trabajaron hoy'],
+  ['Informes',t.entregables,'escritos en total'],
+  ['Tareas hechas',k.done||0,(k.running||0)+' corriendo'],
+  ['Última señal',t.ultima_actividad,'del equipo'],
+ ].map(([a,b,c])=>`<div class="stat"><div class="k">${a}</div><div class="v">${b}</div><div class="n">${c}</div></div>`).join('');
+
+ const pg={};D.agentes.forEach(a=>(pg[a.grupo]=pg[a.grupo]||[]).push(a));
+ const PL=['🪴','🌿','🗄️','☕','🪟'];let pi=0;
+ document.getElementById('room').innerHTML=Object.entries(pg).map(([g,as])=>`
+  <div class="zona"><div class="zona-t">${(D.grupos[g]||g)}</div><div class="row">
+  ${as.map(a=>{const e=estado(a);return `<div class="cub ${e.c}" data-slug="${a.slug}" onclick="abrir('${a.slug}')">
+    <div class="bub">${e.b}</div>
+    <div class="desk"><div class="mon"></div>
+     <div class="guy"><img src="agentes/${a.slug}.png" alt="" onerror="this.parentNode.textContent='${a.emoji}'"></div>
+     <div class="nm">${a.nombre}</div>
+     <div class="mini"><i class="led ${e.c==='wk'?'ok':e.c}"></i><span class="mdl">${a.modelo.nombre.replace('GPT-','')}</span></div>
+    </div></div>`}).join('')}
+  <div class="plant">${PL[pi++%PL.length]}</div>
+  </div></div>`).join('');
+
+ document.getElementById('hoy').innerHTML=D.hechos_hoy.length
+  ?`<div class="tks">${D.hechos_hoy.map(h=>`<div class="tk done"><div class="bl"></div>
+    <div class="ti">${h.emoji} <b>${h.agente}</b> — ${h.que}<div class="ag">${h.archivo}</div></div>
+    <span class="es">${h.hora}</span></div>`).join('')}</div>`
+  :`<div class="empty">Todavía nadie entregó nada hoy.<br><span style="font-size:11.5px">Los agentes escriben cuando les toca el horario.</span></div>`;
+ document.getElementById('t-ag').innerHTML=D.agentes.map(a=>`<option>${a.nombre}</option>`).join('');
+ const tk=D.kanban.tareas||[];
+ document.getElementById('tareas').innerHTML=tk.length
+  ?tk.map(x=>`<div class="tk ${x.estado}"><div class="bl"></div><div class="ti">${x.titulo}
+    <div class="ag">${x.agente}</div></div><span class="es">${x.estado}</span></div>`).join('')
+  :`<div class="empty">Sin tareas cargadas.</div>`;
+ document.getElementById('herram').innerHTML=D.herramientas.map(h=>`<div class="tool ${h.est}">
+   <span class="ic"></span><div><div class="tn">${h.n}</div><div class="td">${h.d}</div></div></div>`).join('');
+ const m=D.modelos;
+ chat(); fichas();
+ document.getElementById('modelos').innerHTML=`<b>Principal:</b> ${m.principal} — JEFE, CRO y COPY<br>
+  <b>Económico:</b> ${m.economico} — el resto<br><b>Respaldo:</b> ${m.respaldo}<br>
+  <b style="color:var(--red)">Prohibidos:</b> ${m.prohibidos.join(' · ')}`;
+}
+
+// ===== chat del equipo =====
+let msgs=[],mi=0;
+function chat(){
+ msgs=(D.conversacion||[]);
+ const f=document.getElementById('feed'); f.innerHTML='';
+ if(!msgs.length){f.innerHTML='<div style="color:#61798a;font-size:12.5px;padding:8px">Cuando los agentes escriban sus informes, acá van a aparecer hablando entre ellos.</div>';return}
+ mi=0; siguiente();
+}
+function siguiente(){
+ const f=document.getElementById('feed'),tp=document.getElementById('typing');
+ if(mi>=msgs.length){tp.style.display='none';setTimeout(()=>{f.innerHTML='';mi=0;siguiente()},9000);return}
+ const m=msgs[mi];
+ tp.style.display='flex';
+ document.getElementById('typing-who').textContent=m.emoji+' '+m.agente+' está escribiendo';
+ setTimeout(()=>{
+  const d=document.createElement('div');d.className='msg';
+  d.innerHTML=`<span class="em"><img src="agentes/${m.slug}.png" alt="" style="width:26px;height:26px;object-fit:cover;border-radius:5px;image-rendering:pixelated;border:1px solid #2a3f4e" onerror="this.replaceWith(document.createTextNode('${m.emoji}'))"></span><div class="bd">
+   <span class="who">${m.agente}<span class="hr">${m.hora||''}</span></span>${m.texto}</div>`;
+  f.appendChild(d); f.scrollTop=f.scrollHeight; mi++;
+  setTimeout(siguiente, 2600);
+ }, 1100);
+}
+
+function fichas(){
+ document.getElementById('fichas').innerHTML=D.agentes.map(a=>{
+  const t=a.modelo.tipo==='potente'?'astra':'sol';
+  return `<div class="ficha">
+   <div class="ficha-top">
+    <div class="retrato"><img src="agentes/${a.slug}.png" alt=""
+      onerror="this.parentNode.textContent='${a.emoji}'"></div>
+    <div><h4>${a.nombre}</h4><div class="cargo">${a.rol}</div></div></div>
+   <div class="modelo-box"><div class="ml">Modelo de IA</div>
+    <div class="mv ${t}">${a.modelo.nombre}</div>
+    <div class="mt">${a.modelo.prov} · ${a.modelo.tipo}</div></div>
+   <div class="htools">${a.herramientas.map(h=>`<span class="htool">${h}</span>`).join('')}</div>
+   <button class="cambiar" onclick="cambiarModelo('${a.nombre}','${a.modelo.nombre}')">⚙️ Cambiar modelo</button>
+  </div>`}).join('');
+}
+function cambiarModelo(nombre,actual){
+ const nuevo=prompt(`¿A qué modelo querés pasar a ${nombre}?\n\nAhora usa: ${actual}\n\nOpciones: GPT-6 Astra (potente) · GPT-5.6 Sol (económico) · Gemini 3.6 Flash\nProhibidos: API Next, DeepSeek`, 'GPT-5.6 Sol');
+ if(!nuevo)return;
+ cp(`Cambiá el modelo del agente ${nombre}: de ${actual} a ${nuevo}.\n\nVerificá que el cambio quedó aplicado y confirmame. Recordá que API Next y DeepSeek están prohibidos.`,
+    document.getElementById('a-ok'));
+ tab('agentes',document.querySelectorAll('nav button')[1]);
+}
+function tab(v,b){['oficina','agentes','hoy','tareas','herram'].forEach(x=>document.getElementById('v-'+x).style.display=x===v?'':'none');
+ document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on')}
+function abrir(s){const a=D.agentes.find(x=>x.slug===s);if(!a)return;actual=a;const e=estado(a);
+ const im=document.getElementById('d-img');
+ document.getElementById('d-av').textContent='';
+ document.getElementById('d-av').appendChild(im);
+ im.style.display='';im.src='agentes/'+a.slug+'.png';
+ im.onerror=()=>{im.style.display='none';document.getElementById('d-av').textContent=a.emoji};
+ T('d-nm',a.nombre);T('d-rl',a.rol);
+ document.getElementById('d-est').innerHTML=`<b>${e.t}</b><br><span style="color:var(--tx2);font-size:12px">${e.d}</span>
+  ${a.horas.length?`<br><span style="color:var(--tx2);font-size:12px">Horario: ${a.horas.map(h=>String(h).padStart(2,'0')+':00').join(' · ')}</span>`:''}
+  ${a.ultima_fecha?`<br><span style="color:var(--tx2);font-size:12px">Último informe: ${a.ultima_fecha}</span>`:''}`;
+ T('d-pers',a.personalidad);
+ document.getElementById('d-tools').innerHTML=`<span class="tag">Modelo <b>${a.modelo.nombre}</b></span>`+
+  a.herramientas.map(h=>`<span class="tag">${h}</span>`).join('');
+ T('d-res',a.resumen||'Todavía no escribió ningún informe.');
+ document.getElementById('d-msg').value='';document.getElementById('d-ok').style.display='none';
+ document.getElementById('ov').classList.add('on');document.getElementById('side').classList.add('on')}
+function cerrar(){document.getElementById('ov').classList.remove('on');document.getElementById('side').classList.remove('on')}
+function T(i,v){document.getElementById(i).textContent=v}
+function cp(t,el){navigator.clipboard.writeText(t).then(()=>el.style.display='block')
+ .catch(()=>{const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();el.style.display='block'})}
+function copiar(){const m=document.getElementById('d-msg').value.trim();if(!m){alert('Escribí el mensaje');return}
+ cp(`Para ${actual.nombre}:\n\n${m}`,document.getElementById('d-ok'))}
+function crearTarea(){const ag=document.getElementById('t-ag').value,m=document.getElementById('t-txt').value.trim();
+ if(!m){alert('Escribí la tarea');return}
+ cp(`Nueva tarea para ${ag}:\n\n${m}\n\nCreala en el tablero kanban gonvra y avisame cuando esté. No publiques ni gastes nada sin mi OK.`,document.getElementById('t-ok'))}
+function abrirTG(){window.open('https://t.me/gonvra_semaforo_bot','_blank')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cerrar()});
+</script></body></html>

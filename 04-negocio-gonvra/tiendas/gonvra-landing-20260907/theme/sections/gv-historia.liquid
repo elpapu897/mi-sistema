@@ -1,0 +1,300 @@
+{% style %}
+  #shopify-section-{{ section.id }} { background:#f7f6f1;padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom }}px; }
+  #shopify-section-{{ section.id }} .gvh-wrap {padding-top:0;padding-bottom:0;}
+  #shopify-section-{{ section.id }} :is(.gvhm-head,.gvh-head,.gvf-head) {text-align:{{ section.settings.text_align }};}
+  #shopify-section-{{ section.id }} :is(.gvhm-head h2,.gvh-head h2,.gvf-head h2) {font-size:clamp(1.8rem,4vw,{{ section.settings.heading_size }}px);}
+  #shopify-section-{{ section.id }} :is(.gvhm-card__text,.gvh-text,.gvf-a) {font-size:{{ section.settings.body_size }}px;}
+  @media(max-width:860px){#shopify-section-{{ section.id }} {padding-top:{{ section.settings.padding_top | times: 0.65 }}px;padding-bottom:{{ section.settings.padding_bottom | times: 0.65 }}px;}}
+{% endstyle %}
+{%- if section.settings.wave -%}
+  {% render 'gv-wave', from: section.settings.wave_from, fill: '#f7f6f1', accent: '#dff0a8', uid: section.id %}
+{%- endif -%}
+<section class="gvh" data-gvh id="como-funciona">
+  <div class="gvh-wrap">
+    <header class="gvh-head" data-gvh-reveal>
+      {% if section.settings.kicker != blank %}<p class="gvh-kicker">{{ section.settings.kicker }}</p>{% endif %}
+      {% if section.settings.heading != blank %}<h2>{{ section.settings.heading }}</h2>{% endif %}
+      {% if section.settings.intro != blank %}<div class="gvh-intro">{{ section.settings.intro }}</div>{% endif %}
+    </header>
+
+    <div class="gvh-rows">
+      {% for block in section.blocks %}
+        <article class="gvh-row{% cycle '', ' gvh-row--flip' %}" data-gvh-reveal {{ block.shopify_attributes }}>
+          <div class="gvh-media">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '480, 760, 1000, 1200', sizes: '(min-width: 900px) 46vw, 100vw', loading: 'lazy', alt: block.settings.title }}
+            {% elsif block.settings.clip != blank %}
+              <img src="{{ block.settings.clip | asset_url }}" width="560" height="420" loading="lazy" decoding="async" alt="{{ block.settings.title | escape }}">
+            {% elsif section.settings.use_assets and forloop.index <= 3 %}
+              {% assign step_asset = 'gv-paso-' | append: forloop.index | append: '.jpg' %}
+              <img src="{{ step_asset | asset_url }}" width="1400" height="1050" loading="lazy" alt="{{ block.settings.title | escape }}">
+            {% else %}
+              <div class="gvh-media__ph"></div>
+            {% endif %}
+            {% if block.settings.tag != blank %}<b>{{ block.settings.tag }}</b>{% endif %}
+          </div>
+          <div class="gvh-copy">
+            <span class="gvh-step">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <div class="gvh-text">{{ block.settings.text }}</div>
+            {% if block.settings.list != blank %}
+              <ul class="gvh-list">
+                {% assign items = block.settings.list | split: '|' %}
+                {% for item in items %}<li>{{ item | strip }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.cta_text != blank %}
+      <div class="gvh-cta" data-gvh-reveal>
+        <a href="{{ section.settings.cta_link | default: '#comprar' }}">{{ section.settings.cta_text }}<span aria-hidden="true">→</span></a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+.gvw{position:relative;line-height:0;margin-bottom:-1px;overflow:hidden}
+.gvw-svg{display:block;width:100%;height:clamp(52px,7vw,110px)}
+.gvw-p{will-change:transform}
+.gvw-p1{opacity:.34;animation:gvw-slide 19s linear infinite}
+.gvw-p2{opacity:.55;animation:gvw-slide 13s linear infinite reverse}
+.gvw-p3{animation:gvw-slide 26s linear infinite}
+@keyframes gvw-slide{from{transform:translateX(0)}to{transform:translateX(-1440px)}}
+@media (prefers-reduced-motion:reduce){.gvw-p{animation:none}}
+
+
+.gvh{background:#f7f6f1;color:#101a16;font-family:inherit}
+.gvh-wrap{width:min(1280px,calc(100% - 36px));margin:auto;padding:clamp(56px,7vw,96px) 0}
+.gvh-head{max-width:70ch}
+.gvh-kicker{margin:0 0 12px;color:#6d8b1c;font-size:.68rem;font-weight:850;letter-spacing:.16em;text-transform:uppercase}
+.gvh-head h2{margin:0;font-size:clamp(1.85rem,4.2vw,3.5rem);line-height:1.03;letter-spacing:-.04em}
+.gvh-intro{max-width:60ch;margin:18px 0 0;color:#6b7570;font-size:1.02rem;line-height:1.65}
+.gvh-intro p{margin:0 0 10px}
+.gvh-rows{display:grid;gap:clamp(38px,5vw,72px);margin:clamp(40px,5vw,72px) 0 0}
+.gvh-row{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,60px);align-items:center}
+.gvh-row--flip .gvh-media{order:2}
+.gvh-media{position:relative;overflow:hidden;border-radius:16px;background:#e9ece3;aspect-ratio:4/3}
+.gvh-media img,.gvh-media__ph{display:block;width:100%;height:100%;object-fit:cover}
+.gvh-media__ph{background:linear-gradient(135deg,#e5e9df,#f3f4ef)}
+.gvh-media b{position:absolute;top:14px;left:14px;padding:7px 12px;border-radius:999px;background:rgba(16,26,22,.9);color:#c8e54a;font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.gvh-copy{display:grid;gap:12px;align-content:center}
+.gvh-step{color:#6d8b1c;font-size:.74rem;font-weight:850;letter-spacing:.14em}
+.gvh-copy h3{margin:0;font-size:clamp(1.35rem,2.4vw,2rem);line-height:1.12;letter-spacing:-.03em}
+.gvh-text{color:#6b7570;font-size:.96rem;line-height:1.65}
+.gvh-text p{margin:0 0 10px}
+.gvh-list{display:grid;gap:7px;margin:4px 0 0;padding:0;list-style:none;font-size:.9rem}
+.gvh-list li{display:grid;grid-template-columns:18px 1fr;gap:9px;align-items:start;line-height:1.45}
+.gvh-list li::before{content:"";width:18px;height:18px;margin-top:1px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236d8b1c' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 10.6l4.2 4.2L16.5 5'/%3E%3C/svg%3E") center/18px 18px no-repeat}
+.gvh-cta{margin:clamp(40px,5vw,64px) 0 0;text-align:center}
+.gvh-cta a{display:inline-flex;align-items:center;gap:11px;padding:17px 30px;border-radius:12px;background:#101a16;color:#fff;font-size:.82rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:transform .18s}
+.gvh-cta a:hover{transform:translateY(-2px)}
+.gvh [data-gvh-reveal]{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
+.gvh [data-gvh-reveal].is-in{opacity:1;transform:none}
+@media(max-width:860px){
+.gvh-wrap{width:min(100% - 24px,1280px)}
+.gvh-row,.gvh-row--flip{grid-template-columns:1fr;gap:18px}
+.gvh-row--flip .gvh-media{order:0}
+.gvh-media{aspect-ratio:5/4}
+}
+
+.gvh-rows>*:nth-child(2){transition-delay:.12s}
+.gvh-rows>*:nth-child(3){transition-delay:.24s}
+.gvh-rows>*:nth-child(4){transition-delay:.36s}
+{% endstylesheet %}
+
+
+
+{% schema %}
+{
+  "name": "GONVRA · Problema y uso",
+  "tag": "section",
+  "class": "section-gv-historia",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "wave",
+      "label": "Ola de transición arriba",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "wave_from",
+      "label": "Color de la sección de arriba",
+      "default": "#101a16"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Bajada corta",
+      "default": "Por qué esta rasuradora"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "¿Cansado de tener un aparato para cada zona?"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Una máquina para la barba, otra para el cuerpo, cuchillas que se gastan y un cajón lleno de cosas que no usás. Esta rasuradora resuelve todo con un solo equipo: elegís el largo, la pasás y listo.</p>"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón final",
+      "default": "Quiero la mía"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link del botón"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_assets",
+      "label": "Usar las fotos del tema si el bloque no tiene imagen",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Diseño y espaciado"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Tamaño de títulos",
+      "min": 24,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Tamaño de texto",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alineación",
+      "options": [
+        {
+          "value": "left",
+          "label": "Izquierda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacio superior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacio inferior",
+      "min": 0,
+      "max": 160,
+      "step": 8,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "paso",
+      "name": "Bloque",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen"
+        },
+        {
+          "type": "text",
+          "id": "clip",
+          "label": "Clip del tema (ej: gv-paso-1.webp)"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Etiqueta sobre la imagen"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Elegí el largo"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto",
+          "default": "<p>Contá acá qué resuelve este paso.</p>"
+        },
+        {
+          "type": "text",
+          "id": "list",
+          "label": "Lista (separá con | )"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GONVRA · Problema y uso",
+      "blocks": [
+        {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 1",
+            "title": "Elegí el largo que querés",
+            "text": "<p>Ponele el peine de 1, 3 o 5 mm según cuánto quieras dejar. Sin peine, el acabado es más al ras.</p>",
+            "list": "Peines guía incluidos|Cambio de cabezal sin herramientas|Sirve para barba y cuerpo"
+          }
+        },
+        {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 2",
+            "title": "Pasala en seco, sin espuma",
+            "text": "<p>Sobre piel limpia y seca, con movimientos suaves. No necesitás gel ni afeitadora aparte.</p>",
+            "list": "Cuchilla de acero inoxidable|Cabezal ancho: menos pasadas|Para zonas sensibles, probá primero en un área chica"
+          }
+        },
+        {
+          "type": "paso",
+          "settings": {
+            "tag": "Paso 3",
+            "title": "Limpiala y cargala por USB",
+            "text": "<p>Sacás los restos con el cepillo que viene incluido y la cargás con cualquier cable USB.</p>",
+            "list": "Carga por USB: sirve el cargador del celu|Cepillo de limpieza incluido|Tamaño compacto para viajar"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,129 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .gv-h2 { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+<section class="gv-cats gv-section">
+  <div class="gv-container">
+    <div class="gv-head gv-reveal">
+      {%- if section.settings.eyebrow != blank -%}<span class="gv-eyebrow gv-center">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2 class="gv-h2">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}<p class="gv-lead">{{ section.settings.subtitle }}</p>{%- endif -%}
+    </div>
+    {%- if section.settings.layout == 'tarjetas' -%}
+    <div class="gv-cats__grid gv-cats__grid--tarjetas">
+      {%- for block in section.blocks -%}
+        {%- assign col = block.settings.coleccion -%}
+        {%- assign destino = '/collections/all' -%}
+        {%- if col != blank -%}{%- assign destino = col.url -%}{%- endif -%}
+        {%- assign nombre = block.settings.titulo -%}
+        {%- if nombre == blank and col != blank -%}{%- assign nombre = col.title -%}{%- endif -%}
+        <div class="gv-catcard gv-reveal" data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+          <a class="gv-catcard__img" href="{{ destino }}" aria-label="{{ nombre | escape }}">
+            {%- if block.settings.imagen != blank -%}
+              <img src="{{ block.settings.imagen | image_url: width: 900 }}" alt="{{ nombre | escape }}" loading="lazy">
+            {%- elsif col != blank and col.image != blank -%}
+              <img src="{{ col.image | image_url: width: 900 }}" alt="{{ nombre | escape }}" loading="lazy">
+            {%- elsif col != blank and col.products.first != blank and col.products.first.featured_image != blank -%}
+              <img src="{{ col.products.first.featured_image | image_url: width: 900 }}" alt="{{ nombre | escape }}" loading="lazy">
+            {%- else -%}
+              <span class="gv-cat__ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="4" cy="8" r="2"/><path d="M9 10c-2 0-4 2-4 4.5 0 2 1.5 3.5 3.5 3.5 1 0 1.5-.5 2.5-.5s1.5.5 2.5.5c2 0 3.5-1.5 3.5-3.5C19 12 17 10 15 10c-1.5 0-2 .8-3 .8S10.5 10 9 10Z"/></svg></span>
+            {%- endif -%}
+            {%- if col != blank and col.products_count > 0 -%}
+              <span class="gv-catcard__count">{{ col.products_count }} productos</span>
+            {%- endif -%}
+          </a>
+          <div class="gv-catcard__body">
+            {%- if nombre != blank -%}<h3 class="gv-catcard__name">{{ nombre }}</h3>{%- endif -%}
+            {%- if block.settings.texto != blank -%}<p class="gv-catcard__text">{{ block.settings.texto }}</p>{%- endif -%}
+            <a class="gv-catcard__btn" href="{{ destino }}">
+              <span>{{ block.settings.cta | default: 'Ver productos' }}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- else -%}
+    <div class="gv-cats__grid {% if section.settings.layout == 'bento' %}gv-cats__grid--bento{% endif %}">
+      {%- for block in section.blocks -%}
+        {%- assign col = block.settings.coleccion -%}
+        {%- assign destino = '/collections/all' -%}
+        {%- if col != blank -%}{%- assign destino = col.url -%}{%- endif -%}
+        <a class="gv-cat gv-reveal" data-delay="{{ forloop.index }}" href="{{ destino }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.imagen != blank -%}
+            <img src="{{ block.settings.imagen | image_url: width: 700 }}" alt="{{ block.settings.titulo | escape }}" loading="lazy">
+          {%- elsif col != blank and col.image != blank -%}
+            <img src="{{ col.image | image_url: width: 700 }}" alt="{{ col.title | escape }}" loading="lazy">
+          {%- elsif col != blank and col.products.first != blank and col.products.first.featured_image != blank -%}
+            <img src="{{ col.products.first.featured_image | image_url: width: 700 }}" alt="{{ col.title | escape }}" loading="lazy">
+          {%- else -%}
+            <div class="gv-cat__ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="4" cy="8" r="2"/><path d="M9 10c-2 0-4 2-4 4.5 0 2 1.5 3.5 3.5 3.5 1 0 1.5-.5 2.5-.5s1.5.5 2.5.5c2 0 3.5-1.5 3.5-3.5C19 12 17 10 15 10c-1.5 0-2 .8-3 .8S10.5 10 9 10Z"/></svg></div>
+          {%- endif -%}
+          <div class="gv-cat__veil"></div>
+          <div class="gv-cat__body">
+            {%- if block.settings.titulo != blank -%}
+              <h3 class="gv-cat__name">{{ block.settings.titulo }}</h3>
+            {%- elsif col != blank -%}
+              <h3 class="gv-cat__name">{{ col.title }}</h3>
+            {%- endif -%}
+            <span class="gv-cat__cta">{{ block.settings.cta | default: 'Ver productos' }}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Categorías",
+  "tag": "section",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Explorá por categoría" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Encontrá justo lo que necesitás" },
+    { "type": "textarea", "id": "subtitle", "label": "Texto bajo el título", "default": "Todo organizado para que llegues rápido a lo que tu mascota necesita." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 24, "max": 56, "step": 2, "unit": "px", "default": 40 },
+    { "type": "select", "id": "layout", "label": "Composición", "default": "bento",
+      "options": [
+        {"value": "bento", "label": "Destacada (1 grande + 2 chicas)"},
+        {"value": "iguales", "label": "Todas del mismo tamaño"},
+        {"value": "tarjetas", "label": "Tarjetas con botón"}
+      ] },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 88 }
+  ],
+  "blocks": [
+    {
+      "type": "categoria",
+      "name": "Categoría",
+      "settings": [
+        { "type": "collection", "id": "coleccion", "label": "Categoría (colección)" },
+        { "type": "text", "id": "titulo", "label": "Título (opcional, si no usa el de la categoría)" },
+        { "type": "textarea", "id": "texto", "label": "Descripción (solo en estilo tarjetas)" },
+        { "type": "text", "id": "cta", "label": "Texto del enlace", "default": "Ver productos" },
+        { "type": "image_picker", "id": "imagen", "label": "Imagen (opcional, si no usa la de la categoría)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GV – Categorías",
+      "blocks": [
+        { "type": "categoria", "settings": { "titulo": "Para perros" } },
+        { "type": "categoria", "settings": { "titulo": "Para gatos" } },
+        { "type": "categoria", "settings": { "titulo": "Los favoritos" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

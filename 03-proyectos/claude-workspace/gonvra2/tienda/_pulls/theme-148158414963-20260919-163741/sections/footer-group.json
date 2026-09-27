@@ -1,0 +1,141 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "gv_footer": {
+      "type": "gv-footer",
+      "blocks": {
+        "c1": {
+          "type": "columna",
+          "settings": {
+            "title": "Tienda",
+            "links": "Inicio::/\nLa rasuradora::/products/face-body-electric-shaver\nCarrito::/cart"
+          }
+        },
+        "c2": {
+          "type": "columna",
+          "settings": {
+            "title": "Ayuda",
+            "links": "Preguntas frecuentes::/products/face-body-electric-shaver#faq\nEnvíos y entrega::/policies/shipping-policy\nCambios y devoluciones::/policies/refund-policy"
+          }
+        },
+        "c3": {
+          "type": "columna",
+          "settings": {
+            "title": "Legal",
+            "links": "Botón de arrepentimiento::/policies/refund-policy\nTérminos del servicio::/policies/terms-of-service\nPolítica de privacidad::/policies/privacy-policy"
+          }
+        },
+        "q1": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Cuánto tarda en llegar?",
+            "a": "<p>Despacho en 24 a 48 h hábiles y la entrega estimada es de 12 a 20 días. Te mando el código de seguimiento por mail apenas sale.</p>",
+            "claves": "envio demora tarda llega cuanto dias entrega"
+          }
+        },
+        "q2": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Hacen envíos a todo el país?",
+            "a": "<p>Sí, a todo el país, siempre con seguimiento.</p>",
+            "claves": "envio pais provincia interior mandan llega"
+          }
+        },
+        "q3": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Cómo puedo pagar?",
+            "a": "<p>Con tarjeta o Mercado Pago, en el checkout seguro de Shopify. Antes de confirmar ves el total final.</p>",
+            "claves": "pago pagar tarjeta mercado cuotas credito debito transferencia"
+          }
+        },
+        "q4": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Sirve para la cara y el cuerpo?",
+            "a": "<p>Sí, es el mismo equipo para barba, patillas, pecho, brazos, piernas y zona íntima. Con los peines elegís el largo.</p>",
+            "claves": "cara cuerpo rostro barba intima pelvis piernas pecho sirve zona"
+          }
+        },
+        "q5": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Y si llega fallada?",
+            "a": "<p>Escribime y lo resolvemos: coordinamos el cambio o la devolución según la Ley 24.240.</p>",
+            "claves": "fallada falla roto devolucion cambio garantia anda funciona"
+          }
+        },
+        "q6": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Puedo pagar en cuotas?",
+            "a": "<p>Sí. En el checkout, pagando con Mercado Pago, elegís la cantidad de cuotas según tu tarjeta. En la ficha del producto ya ves cuánto te queda cada cuota.</p>",
+            "claves": "cuotas interes mercado pago financiacion"
+          }
+        },
+        "q7": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Viene con repuestos?",
+            "a": "<p>Sí: viene con 3 peines guía, cabezales de repuesto, el cable de carga USB y un cepillo de limpieza.</p>",
+            "claves": "repuesto repuestos cabezal cabezales peines accesorios trae incluye caja"
+          }
+        },
+        "q8": {
+          "type": "consulta",
+          "settings": {
+            "q": "¿Sirve para la zona íntima?",
+            "a": "<p>Sí, sirve para la zona íntima. Conviene usar peine y pasarla suave. Probá primero en un área chica y no la uses sobre piel irritada o lastimada.</p>",
+            "claves": "intima pelvis ingle genital abajo zona sensible"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "brand_text": "GONVRA",
+        "tagline": "Cuidado personal sin vueltas: productos elegidos, precio claro y envío con seguimiento a todo el país.",
+        "show_news": true,
+        "news_title": "Novedades",
+        "news_text": "Dejanos tu mail y te avisamos cuando sumamos productos nuevos.",
+        "wa_number": "5491153767293",
+        "wa_text": "Hola! Tengo una duda sobre la rasuradora: ",
+        "ia_title": "Asistente GONVRA",
+        "ia_sub": "Te respondo al toque",
+        "ia_placeholder": "Escribí tu consulta…",
+        "ia_humano": "¿Preferís hablar con una persona? Escribime por WhatsApp",
+        "ia_endpoint": "",
+        "wa_title": "¿Te ayudo con algo?",
+        "wa_sub": "Mirá si tu duda está acá. Si no, escribime.",
+        "wa_cta": "Seguir por WhatsApp",
+        "wa_horario": "Respondo de 9 a 21 h",
+        "legal": "Todos los derechos reservados.",
+        "legal_2": "Defensa de las y los consumidores: para reclamos ingresá a argentina.gob.ar/produccion/defensadelconsumidor"
+      }
+    }
+  },
+  "order": [
+    "gv_footer"
+  ]
+}

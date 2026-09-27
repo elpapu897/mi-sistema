@@ -1,0 +1,127 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .gv-hero__title {
+    font-size: {{ section.settings.title_size }}px;
+  }
+  @media (max-width: 640px) {
+    #shopify-section-{{ section.id }} .gv-hero__title {
+      font-size: {{ section.settings.title_size | times: 0.74 | round }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="gv-hero gv-section {% if section.settings.tema == 'claro' %}gv-hero--claro{% endif %}">
+  {%- if section.settings.imagen != blank -%}
+    <img class="gv-hero__bgimg" src="{{ section.settings.imagen | image_url: width: 2000 }}" alt="" loading="eager" fetchpriority="high">
+    <div class="gv-hero__veil"></div>
+  {%- endif -%}
+  <span class="gv-hero__aurora gv-hero__aurora--a"></span>
+  <span class="gv-hero__aurora gv-hero__aurora--b"></span>
+
+  <div class="gv-container gv-hero__inner {% unless section.settings.mostrar_visual %}gv-hero__inner--solo{% endunless %}">
+    <div class="gv-hero__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="gv-chip gv-in" data-in="1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="4" cy="8" r="2"/><path d="M9 10c-2 0-4 2-4 4.5 0 2 1.5 3.5 3.5 3.5 1 0 1.5-.5 2.5-.5s1.5.5 2.5.5c2 0 3.5-1.5 3.5-3.5C19 12 17 10 15 10c-1.5 0-2 .8-3 .8S10.5 10 9 10Z"/></svg>
+          {{ section.settings.eyebrow }}
+        </span>
+      {%- endif -%}
+      <h1 class="gv-hero__title gv-in" data-in="2">{{ section.settings.title }}</h1>
+      {%- unless section.settings.mostrar_visual -%}
+        <div class="gv-hero__rule gv-in" data-in="2"></div>
+      {%- endunless -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="gv-hero__sub gv-in" data-in="3">{{ section.settings.subtitle | newline_to_br }}</p>
+      {%- endif -%}
+      <div class="gv-hero__actions gv-in" data-in="4">
+        {%- if section.settings.boton1_texto != blank -%}
+          <a class="gv-btn gv-btn--gold" href="{{ section.settings.boton1_url | default: '/collections/all' }}">{{ section.settings.boton1_texto }}</a>
+        {%- endif -%}
+        {%- if section.settings.boton2_texto != blank -%}
+          <a class="gv-btn gv-btn--ghost-light" href="{{ section.settings.boton2_url | default: '/collections/all' }}">{{ section.settings.boton2_texto }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.trust1 != blank or section.settings.trust2 != blank or section.settings.trust3 != blank -%}
+        <div class="gv-hero__chips gv-in" data-in="5">
+          {%- if section.settings.trust1 != blank -%}
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h5a1 1 0 0 0 1-1v-3.34a2 2 0 0 0-.6-1.43l-3.06-3a2 2 0 0 0-1.4-.57H14"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/></svg>{{ section.settings.trust1 }}</span>
+          {%- endif -%}
+          {%- if section.settings.trust2 != blank -%}
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>{{ section.settings.trust2 }}</span>
+          {%- endif -%}
+          {%- if section.settings.trust3 != blank -%}
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>{{ section.settings.trust3 }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.mostrar_visual -%}
+      <div class="gv-hero__visual gv-in">
+        <div class="gv-hero__card">
+          {%- if section.settings.imagen_visual != blank -%}
+            <img src="{{ section.settings.imagen_visual | image_url: width: 900 }}" alt="{{ section.settings.imagen_visual.alt | escape }}" loading="eager">
+          {%- else -%}
+            <img src="{{ 'gv-hero-default.jpg' | asset_url }}" alt="" loading="eager">
+          {%- endif -%}
+        </div>
+        {%- if section.settings.badge_titulo != blank -%}
+          <div class="gv-hero__float">
+            <span class="gv-hero__float-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h5a1 1 0 0 0 1-1v-3.34a2 2 0 0 0-.6-1.43l-3.06-3a2 2 0 0 0-1.4-.57H14"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/></svg>
+            </span>
+            <span>
+              <span class="gv-hero__float-t">{{ section.settings.badge_titulo }}</span>
+              <span class="gv-hero__float-s">{{ section.settings.badge_texto }}</span>
+            </span>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="gv-hero__fade"></div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Portada Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior", "default": "Todo para tu mascota" },
+    { "type": "textarea", "id": "title", "label": "Título principal", "default": "Cuidado premium para quienes más quieres" },
+    { "type": "textarea", "id": "subtitle", "label": "Texto bajo el título", "default": "Camas, juguetes e higiene seleccionados con cariño. Envíos a todo el país y garantía de satisfacción." },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 34, "max": 76, "step": 2, "unit": "px", "default": 56 },
+    { "type": "select", "id": "tema", "label": "Estilo del fondo", "default": "claro",
+      "options": [
+        {"value": "claro", "label": "Claro y aireado"},
+        {"value": "oscuro", "label": "Azul noche"}
+      ] },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "boton1_texto", "label": "Botón principal (texto)", "default": "Ver la tienda" },
+    { "type": "url", "id": "boton1_url", "label": "Botón principal (enlace)" },
+    { "type": "text", "id": "boton2_texto", "label": "Botón secundario (texto)", "default": "Nuestras categorías" },
+    { "type": "url", "id": "boton2_url", "label": "Botón secundario (enlace)" },
+    { "type": "header", "content": "Sellos de confianza (bajo los botones)" },
+    { "type": "text", "id": "trust1", "label": "Sello 1", "default": "Envíos a todo el país" },
+    { "type": "text", "id": "trust2", "label": "Sello 2", "default": "Pago 100% seguro" },
+    { "type": "text", "id": "trust3", "label": "Sello 3", "default": "Atención personalizada" },
+    { "type": "header", "content": "Fondo (opcional)" },
+    { "type": "image_picker", "id": "imagen", "label": "Imagen de fondo (opcional)" },
+    { "type": "header", "content": "Tarjeta lateral" },
+    { "type": "checkbox", "id": "mostrar_visual", "label": "Mostrar tarjeta con imagen a un lado", "default": true },
+    { "type": "image_picker", "id": "imagen_visual", "label": "Imagen de la tarjeta" },
+    { "type": "text", "id": "badge_titulo", "label": "Etiqueta – título", "default": "+2.000 mascotas felices" },
+    { "type": "text", "id": "badge_texto", "label": "Etiqueta – texto", "default": "Valoración media 4,9 / 5" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 0 }
+  ],
+  "presets": [ { "name": "GV – Portada Hero" } ]
+}
+{% endschema %}

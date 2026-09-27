@@ -1,0 +1,74 @@
+{
+  "name": "GONVRA — Venta instantanea (webhook Shopify)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gonvra-venta",
+        "responseMode": "responseNode",
+        "options": { "rawBody": false }
+      },
+      "id": "wh-venta",
+      "name": "Shopify avisa la venta",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "gonvra-venta"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "ok",
+        "options": { "responseCode": 200 }
+      },
+      "id": "resp-venta",
+      "name": "Contestarle a Shopify",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [220, -140]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Arma el aviso de venta con todo lo que hace falta para despachar.\nconst o = $input.first().json.body || $input.first().json || {};\n\nconst fmt = n => '$' + Number(n || 0).toLocaleString('es-AR', {minimumFractionDigits: 2});\nconst cli = o.customer || {};\nconst env = o.shipping_address || {};\nconst nombre = [cli.first_name, cli.last_name].filter(Boolean).join(' ')\n             || [env.first_name, env.last_name].filter(Boolean).join(' ')\n             || 'sin nombre';\n\nconst items = (o.line_items || [])\n  .map(li => `  ${li.quantity}x ${li.title} - ${fmt(li.price)}`).join('\\n');\n\nconst lineas = [\n  'VENTA EN GONVRA',\n  '',\n  `Pedido #${o.order_number || o.name || '?'}  -  ${fmt(o.total_price)}`,\n  `Pago: ${o.financial_status || '?'}`,\n  '',\n  'CLIENTE',\n  `  ${nombre}`,\n  `  ${o.email || 'sin mail'}`,\n  `  ${o.phone || env.phone || 'sin telefono'}`,\n  '',\n  'ENVIAR A',\n  `  ${env.address1 || ''} ${env.address2 || ''}`.trim(),\n  `  ${env.city || ''}, ${env.province || ''} (${env.zip || ''})`,\n  '',\n  'COMPRO',\n  items || '  (sin detalle)',\n  '',\n  'Entra a Shopify y despachalo.'\n];\n\nreturn [{ json: { texto: lineas.join('\\n') } }];"
+      },
+      "id": "code-venta",
+      "name": "Armar el aviso",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 80]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "chat_id", "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}" },
+            { "name": "text", "value": "={{ $json.texto }}" }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "id": "tg-venta",
+      "name": "Avisarte al instante",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 3000,
+      "position": [460, 80]
+    }
+  ],
+  "connections": {
+    "Shopify avisa la venta": {
+      "main": [[
+        { "node": "Contestarle a Shopify", "type": "main", "index": 0 },
+        { "node": "Armar el aviso", "type": "main", "index": 0 }
+      ]]
+    },
+    "Armar el aviso": { "main": [[{ "node": "Avisarte al instante", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

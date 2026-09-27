@@ -1,0 +1,120 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background }};
+  }
+  #shopify-section-{{ section.id }} .mtp-carousel__head .mt-h2 { font-size: clamp(34px, 5vw, {{ section.settings.heading_size }}px); }
+  #shopify-section-{{ section.id }} .mtp-slide { --mtp-slide: {{ section.settings.slide_width }}px; aspect-ratio: {{ section.settings.ratio }}; }
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} { padding-top: min({{ section.settings.padding_top }}px, 72px); padding-bottom: min({{ section.settings.padding_bottom }}px, 72px); }
+  }
+{% endstyle %}
+
+<section class="mtp-carousel mt-section" id="{{ section.settings.anchor | default: 'galeria' | handle }}">
+  <div class="mt-container">
+    <header class="mtp-carousel__head">
+      <div>
+        {%- if section.settings.kicker != blank -%}<p class="mt-kicker mtp-fade">{{ section.settings.kicker }}</p>{%- endif -%}
+        <h2 class="mt-h2 mtp-fade" data-d="1" data-mtp-split>{{ section.settings.headline }}</h2>
+        {%- if section.settings.body != blank -%}
+          <p class="mt-body mtp-fade" data-d="2" style="max-width:560px;margin-top:20px;">{{ section.settings.body }}</p>
+        {%- endif -%}
+      </div>
+      <div class="mtp-carousel__nav mtp-fade" data-d="2">
+        <button type="button" class="mtp-carousel__btn" data-mtp-prev aria-label="Anterior">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+        </button>
+        <button type="button" class="mtp-carousel__btn" data-mtp-next aria-label="Siguiente">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div data-mtp-carousel>
+      <div class="mtp-carousel__viewport">
+        <div class="mtp-carousel__track">
+          {%- for block in section.blocks -%}
+            {%- liquid
+              case forloop.index
+                when 1
+                  assign fallback = 'mt-catalogo-plata-frontal.webp'
+                when 2
+                  assign fallback = 'mt-macro-cabezales.webp'
+                when 3
+                  assign fallback = 'mt-catalogo-verde.webp'
+                when 4
+                  assign fallback = 'mt-catalogo-plata-lateral.webp'
+                when 5
+                  assign fallback = 'mt-viaje.webp'
+                else
+                  assign fallback = 'mt-angulos-wide.webp'
+              endcase
+            -%}
+            <article class="mtp-slide" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 1000 }}" alt="{{ block.settings.image.alt | default: block.settings.title | escape }}" loading="lazy" width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}" draggable="false">
+              {%- else -%}
+                <img src="{{ fallback | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1254" height="1254" draggable="false">
+              {%- endif -%}
+              {%- if block.settings.title != blank or block.settings.body != blank or block.settings.tag != blank -%}
+                <div class="mtp-slide__shade"></div>
+                <div class="mtp-slide__copy">
+                  {%- if block.settings.tag != blank -%}<span class="mtp-slide__tag">{{ block.settings.tag }}</span>{%- endif -%}
+                  {%- if block.settings.title != blank -%}<h3>{{ block.settings.title }}</h3>{%- endif -%}
+                  {%- if block.settings.body != blank -%}<p>{{ block.settings.body }}</p>{%- endif -%}
+                </div>
+              {%- endif -%}
+            </article>
+          {%- endfor -%}
+        </div>
+      </div>
+      {%- if section.settings.show_bar -%}<div class="mtp-carousel__bar"><i></i></div>{%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Carrusel",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Ancla del enlace (sin espacios)", "default": "galeria" },
+    { "type": "text", "id": "kicker", "label": "Antetítulo", "default": "MIRALA DE CERCA" },
+    { "type": "text", "id": "headline", "label": "Título", "default": "Arrastrá para recorrerla." },
+    { "type": "textarea", "id": "body", "label": "Texto", "default": "Cada toma muestra una parte distinta: los cabezales, la pantalla, el cuerpo y los dos colores." },
+    { "type": "range", "id": "slide_width", "label": "Ancho de cada tarjeta (px)", "min": 240, "max": 520, "step": 10, "unit": "px", "default": 340 },
+    { "type": "select", "id": "ratio", "label": "Formato de las tarjetas", "default": "4 / 5", "options": [
+      {"value":"4 / 5","label":"Vertical (4:5)"},
+      {"value":"1 / 1","label":"Cuadrado (1:1)"},
+      {"value":"3 / 4","label":"Vertical alto (3:4)"},
+      {"value":"16 / 9","label":"Apaisado (16:9)"}
+    ] },
+    { "type": "checkbox", "id": "show_bar", "label": "Mostrar barra de avance", "default": true },
+    { "type": "header", "content": "Espaciado y color" },
+    { "type": "range", "id": "heading_size", "label": "Tamaño del título (px)", "min": 32, "max": 76, "step": 2, "unit": "px", "default": 56 },
+    { "type": "color", "id": "background", "label": "Color de fondo", "default": "#111827" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 176, "step": 8, "unit": "px", "default": 112 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 176, "step": 8, "unit": "px", "default": 120 }
+  ],
+  "blocks": [
+    {
+      "type": "toma",
+      "name": "Toma",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagen" },
+        { "type": "text", "id": "tag", "label": "Etiqueta" },
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "textarea", "id": "body", "label": "Texto" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Carrusel",
+      "blocks": [{"type":"toma"},{"type":"toma"},{"type":"toma"},{"type":"toma"},{"type":"toma"}]
+    }
+  ]
+}
+{% endschema %}

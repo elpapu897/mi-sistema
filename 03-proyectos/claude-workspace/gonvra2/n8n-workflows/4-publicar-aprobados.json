@@ -1,0 +1,180 @@
+{
+  "name": "GONVRA — Cola IG: publicar lo que aprobaste",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 10
+            }
+          ]
+        }
+      },
+      "id": "sch-4",
+      "name": "Cada 10 min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "command": "python3 /home/matiigonzz/.hermes/scripts/gonvra-publicar-ig.py"
+      },
+      "id": "cmd-4",
+      "name": "Publicar 2-APROBADO",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "onError": "continueErrorOutput",
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "publico-algo",
+              "leftValue": "={{ $json.stdout }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-4",
+      "name": "Publico algo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.stdout }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "id": "tg-4",
+      "name": "Avisarte que salio",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "position": [
+        680,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}"
+            },
+            {
+              "name": "text",
+              "value": "=GONVRA: fallo al publicar en Instagram.\n{{ $json.error || $json.stderr || 'sin detalle' }}\n\nEl archivo sigue en 2-APROBADO, se reintenta en 10 min."
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "id": "tg-4e",
+      "name": "Avisar el fallo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        680,
+        160
+      ]
+    }
+  ],
+  "connections": {
+    "Cada 10 min": {
+      "main": [
+        [
+          {
+            "node": "Publicar 2-APROBADO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publicar 2-APROBADO": {
+      "main": [
+        [
+          {
+            "node": "Publico algo?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Avisar el fallo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Publico algo?": {
+      "main": [
+        [
+          {
+            "node": "Avisarte que salio",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "active": false
+}

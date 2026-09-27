@@ -1,0 +1,36 @@
+<section class="tc-section">
+  <div class="tc-wrap">
+    <div class="tc-heading" data-tc-reveal><p>COMPRA CON INFORMACIÓN CLARA</p><h2>Todo claro antes de confirmar.</h2><span>Elegís las unidades, revisás el carrito y confirmás el pedido con el medio de pago disponible.</span></div>
+
+    <ol class="tc-flow" data-tc-reveal>
+      <li><span>01</span><strong>Elegí tu oferta</strong><p>Individual, Dúo o Pack x3 agregan la cantidad real al carrito.</p></li>
+      <li><span>02</span><strong>Revisá el carrito</strong><p>Antes de avanzar podés comprobar unidades y total de tu compra.</p></li>
+      <li><span>03</span><strong>Confirmá el pedido</strong><p>El checkout muestra los medios habilitados y los datos finales antes de pagar.</p></li>
+    </ol>
+
+    <div class="tc-details" data-tc-reveal>
+      <details open><summary>¿Qué incluye este producto?</summary><p>Rasuradora, peines guía de 1, 3 y 5 mm, cable de carga USB y cepillo de limpieza.</p></details>
+      <details><summary>¿Qué color se envía?</summary><p>La variante vinculada es negro y verde lima. No mostramos opciones que el proveedor no pueda despachar.</p></details>
+      {% if section.settings.warranty_copy != blank %}<details><summary>Garantía y cambios</summary><p>{{ section.settings.warranty_copy | escape }}</p></details>{% endif %}
+    </div>
+
+    {% if section.settings.gift_product != blank %}
+      <div class="tc-gift" data-tc-reveal>
+        <div><p>PRODUCTO REGALO</p><h2>Un extra para tu compra.</h2><span>Conocé el producto que seleccionamos como regalo.</span></div>
+        <a class="tc-gift-product" href="{{ section.settings.gift_product.url }}">{{ section.settings.gift_product.featured_image | image_url: width: 260 | image_tag: widths: '160, 260', loading: 'lazy', alt: section.settings.gift_product.title }}<span><small>Producto regalo</small><strong>{{ section.settings.gift_product.title | escape }}</strong><em>Ver producto →</em></span></a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .tc-section{--ink:#16231d;--paper:#fafaf6;--muted:#66716b;--line:#dfe3dc;--lime:#c8e54a;background:var(--paper);color:var(--ink);font-family:inherit}.tc-wrap{width:min(1220px,calc(100% - 38px));margin:auto;padding:0 0 110px}.tc-heading{max-width:760px;margin:0 0 34px}.tc-heading>p,.tc-gift p{margin:0 0 10px;color:#708c20;font-size:.72rem;font-weight:850;letter-spacing:.14em}.tc-heading h2,.tc-gift h2{margin:0;font-size:clamp(2.2rem,5vw,5rem);line-height:.98;letter-spacing:-.065em}.tc-heading>span,.tc-gift>div>span{display:block;max-width:570px;margin-top:19px;color:var(--muted);line-height:1.55}.tc-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;padding:1px;margin:0;background:var(--line);list-style:none}.tc-flow li{min-height:245px;padding:28px 24px 35px;background:#eef1e9}.tc-flow span{display:block;color:#708c20;font-size:.76rem;font-weight:850}.tc-flow strong{display:block;margin:39px 0 8px;font-size:1.25rem}.tc-flow p{max-width:270px;margin:0;color:var(--muted);line-height:1.5}.tc-details{max-width:840px;margin:78px auto 0}.tc-details details{border-top:1px solid var(--line)}.tc-details details:last-child{border-bottom:1px solid var(--line)}.tc-details summary{display:flex;justify-content:space-between;gap:20px;padding:21px 0;cursor:pointer;font-weight:800;list-style:none}.tc-details summary::-webkit-details-marker{display:none}.tc-details summary::after{content:'+';color:#71901e;font-size:1.35rem}.tc-details details[open] summary::after{content:'−'}.tc-details p{max-width:700px;margin:-2px 0 20px;color:var(--muted);line-height:1.55}.tc-gift{display:grid;grid-template-columns:1fr .9fr;gap:8vw;align-items:center;margin-top:80px;padding:50px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.tc-gift-product{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center;color:var(--ink);text-decoration:none}.tc-gift-product img{display:block;width:120px;height:120px;object-fit:cover;background:#edf0e8}.tc-gift-product span{display:grid;gap:6px}.tc-gift-product small{color:#708c20;font-weight:800;text-transform:uppercase}.tc-gift-product strong{font-size:1.1rem}.tc-gift-product em{color:var(--muted);font-size:.85rem;font-style:normal}.tc-section [data-tc-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.tc-section [data-tc-reveal].is-visible{opacity:1;transform:none}@media(max-width:720px){.tc-wrap{width:min(100% - 24px,1220px);padding-bottom:75px}.tc-flow,.tc-gift{grid-template-columns:1fr}.tc-flow li{min-height:0}.tc-flow strong{margin-top:24px}.tc-details{margin-top:55px}.tc-gift{gap:28px;margin-top:55px;padding:34px 0}}
+{% endstylesheet %}
+
+{% javascript %}
+  const confidenceObserver = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); confidenceObserver.unobserve(entry.target); } }); }, { threshold: .12 }); document.querySelectorAll('.tc-section [data-tc-reveal]').forEach((element) => confidenceObserver.observe(element));
+{% endjavascript %}
+
+{% schema %}
+{"name":"Compra con confianza","tag":"section","class":"section-tienda-confianza","settings":[{"type":"product","id":"gift_product","label":"Producto regalo"},{"type":"textarea","id":"warranty_copy","label":"Texto de garantía o cambios","info":"Solo escribilo si ya ofrecés estas condiciones."}],"presets":[{"name":"Compra con confianza"}]}
+{% endschema %}

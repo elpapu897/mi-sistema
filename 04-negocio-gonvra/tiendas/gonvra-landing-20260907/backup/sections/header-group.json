@@ -1,0 +1,34 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "gv_header": {
+      "type": "gv-header",
+      "blocks": {
+        "a1": { "type": "anuncio", "settings": { "text": "Envío a todo el país con seguimiento" } },
+        "a2": { "type": "anuncio", "settings": { "text": "Rostro + cuerpo · un solo equipo" } },
+        "a3": { "type": "anuncio", "settings": { "text": "Pago protegido con Shopify" } },
+        "l1": { "type": "link", "settings": { "label": "Inicio", "url": "/" } },
+        "l2": { "type": "link", "settings": { "label": "Catálogo", "url": "/products/face-body-electric-shaver" } },
+        "l3": { "type": "link", "settings": { "label": "Preguntas", "url": "/products/face-body-electric-shaver#faq" } }
+      },
+      "block_order": ["a1", "a2", "a3", "l1", "l2", "l3"],
+      "settings": {
+        "brand_text": "GONVRA",
+        "show_marquee": true,
+        "cta_label": "Comprar",
+        "cta_url": "/products/face-body-electric-shaver"
+      }
+    }
+  },
+  "order": ["gv_header"]
+}

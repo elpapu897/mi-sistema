@@ -1,0 +1,116 @@
+{
+  "approval": {
+    "id": 4,
+    "kind": "publicacion",
+    "title": "GONVRA Instagram orgánico 18-25/09/2026",
+    "snapshot_hash": "9421173c619c37276360da196408259dd3460bfe814a7b377c8f8840337e4f9b",
+    "status": "ready_to_execute",
+    "resolved_by": "7697535044",
+    "snapshot": {
+      "aprobacion_requerida": "Matías debe aprobar por Telegram antes de cualquier publicación; no ejecutar desde este pedido.",
+      "costo_ars": 0,
+      "estado": "borrador_para_aprobacion",
+      "fecha": "2026-09-18",
+      "periodo": "2026-09-18 a 2026-09-25",
+      "piezas": [
+        {
+          "assets": [
+            "rasuradora-integral-hero-v1.png",
+            "rasuradora-integral-accesorios-v1.png",
+            "placas_tipograficas"
+          ],
+          "copy": "¿Tres aparatos para una sola rutina?\n\nBarba. Patillas. Vello corporal.\n\nPeines guía para elegir el largo.\n\nRostro y cuerpo, en un solo equipo. $36.900 ARS · Envío gratis a todo el país.\n\nCaption: Si tu baño está lleno de aparatos para resolver lo mismo, podés simplificar la rutina. La Rasuradora Integral GONVRA está pensada para retoques de barba, patillas y vello corporal. Incluye peines guía para elegir el largo y es un equipo recargable. Consultá las indicaciones de uso en la ficha.\n\n$36.900 ARS. Envío gratis a todo el país, con seguimiento.\n\nCTA: conocé los detalles en gonvra.com/products/face-body-electric-shaver.",
+          "fecha": "2026-09-18",
+          "tipo": "post_carrusel",
+          "titulo": "Una rutina, menos vueltas"
+        },
+        {
+          "assets": [
+            "rasuradora-integral-hero-v1.png",
+            "rasuradora-integral-uso-v1.png",
+            "objetos_neutros_sin_simular_uso",
+            "placas_tipograficas"
+          ],
+          "copy": "Texto en pantalla y voz opcional: 0–2 s: ¿Otro aparato más? / 2–5 s: Una opción más simple para rostro y cuerpo. / 5–9 s: Todavía no tengo la muestra para probarla. / 9–12 s: Conocé los detalles en gonvra.com / 12–15 s: Rasuradora Integral GONVRA · $36.900 ARS · Envío gratis.\n\nCaption: ¿Otro aparato más? Esta puede ser una opción más simple para ordenar la rutina de rostro y cuerpo. Todavía no tengo la muestra para probarla, así que no te voy a inventar una experiencia: en la ficha podés ver los detalles del producto, sus peines guía y que es un equipo recargable. Consultá las indicaciones antes de usarla.\n\nCTA: entrá a la ficha completa desde el link de la bio.",
+          "fecha": "2026-09-20",
+          "tipo": "reel",
+          "titulo": "Adaptación Guion 1: ¿Otro aparato más?"
+        },
+        {
+          "assets": [
+            "rasuradora-integral-uso-v1.png",
+            "rasuradora-integral-accesorios-v1.png",
+            "placas_tipograficas"
+          ],
+          "copy": "¿Qué podés resolver con una rasuradora integral?\n\nBarba y patillas.\nPecho, brazos y piernas.\nZona íntima, con cuidado.\n\nPeines guía para elegir el largo. Equipo recargable.\n\nCaption: La Rasuradora Integral GONVRA está pensada para acompañar retoques de barba, patillas y vello corporal. Elegí el peine guía según el largo que buscás y consultá las indicaciones de uso. Es un resultado temporal y puede variar según el tipo y grosor del vello.\n\n$36.900 ARS · Envío gratis a todo el país con seguimiento.\n\nCTA: conocé la ficha completa en gonvra.com/products/face-body-electric-shaver.",
+          "fecha": "2026-09-22",
+          "tipo": "post_carrusel",
+          "titulo": "Rostro y cuerpo, una sola rutina"
+        },
+        {
+          "assets": [
+            "rasuradora-integral-hero-v1.png",
+            "placa_tipografica"
+          ],
+          "copy": "Elegí el peine guía según el largo que buscás.\nConsultá las indicaciones.\nUsala con movimientos suaves.\nLimpiá los restos después de usarla.\n\nCaption: Una rutina simple también necesita hacerlo con calma. Antes de usar la rasuradora, consultá las indicaciones de la ficha y elegí el peine guía que corresponda al largo que buscás. No prometemos un resultado idéntico para todos: el tipo y grosor del vello pueden cambiar la experiencia.\n\nCTA: guardá este recordatorio y mirá los detalles en el link de la bio.",
+          "fecha": "2026-09-24",
+          "tipo": "post_estatico",
+          "titulo": "Antes de incorporarla a tu rutina"
+        },
+        {
+          "assets": [
+            "rasuradora-integral-hero-v1.png"
+          ],
+          "copy": "Pantalla 1: ¿Usás más de un aparato para tu rutina?\nEncuesta: Sí / A veces\nPantalla 2: La Rasuradora Integral GONVRA está pensada para rostro y cuerpo. Peines guía para elegir el largo y equipo recargable.\nPantalla 3: Mañana te mostramos una opción para ordenar la rutina.\nCTA: link de la bio.",
+          "fecha": "2026-09-19",
+          "tipo": "historia",
+          "titulo": "Encuesta de rutina"
+        },
+        {
+          "assets": [
+            "rasuradora-integral-uso-v1.png",
+            "rasuradora-integral-accesorios-v1.png"
+          ],
+          "copy": "Pantalla 1: Una máquina para distintos momentos de la rutina.\nPantalla 2: Barba, patillas y vello corporal.\nPantalla 3: Peines guía para elegir el largo. Consultá las indicaciones.\nSticker: ¿Qué zona querés resolver?\nCTA: respondé y mirá la ficha en el link de la bio.",
+          "fecha": "2026-09-21",
+          "tipo": "historia",
+          "titulo": "Conocé la propuesta"
+        },
+        {
+          "assets": [
+            "placas_tipograficas"
+          ],
+          "copy": "Pantalla 1: Antes de recortar: consultá las indicaciones.\nPantalla 2: Elegí el peine guía y trabajá con movimientos suaves.\nPantalla 3: Al terminar, limpiá los restos según las indicaciones.\nCTA: guardá este recordatorio.",
+          "fecha": "2026-09-23",
+          "tipo": "historia",
+          "titulo": "Recordatorio de uso"
+        },
+        {
+          "assets": [
+            "rasuradora-integral-hero-v1.png",
+            "placa_informacion"
+          ],
+          "copy": "Pantalla 1: ¿Querés ordenar tu rutina?\nPantalla 2: Rostro y cuerpo · equipo recargable · peines guía para elegir el largo.\nPantalla 3: $36.900 ARS · Envío gratis a todo el país con seguimiento.\nCTA: entrá a gonvra.com/products/face-body-electric-shaver.",
+          "fecha": "2026-09-25",
+          "tipo": "historia",
+          "titulo": "Cierre semanal"
+        },
+        {
+          "assets": [
+            "rasuradora-integral-accesorios-v1.png"
+          ],
+          "copy": "Pantalla 1: ¿Sirve solo para la barba?\nPantalla 2: Está pensada para retoques de barba, patillas y vello corporal. Rostro y cuerpo.\nSticker: pregunta ¿Qué zona querés resolver?\nCTA: conocé el producto en el link de la bio.",
+          "fecha": "2026-09-20",
+          "tipo": "historia",
+          "titulo": "Duda común"
+        }
+      ],
+      "publicar": false,
+      "tipo": "calendario_organico_instagram",
+      "version": 1
+    }
+  },
+  "source": "/home/matiigonzz/Claude/gonvra2/instagramer/2026-09-18.md",
+  "source_sha256": "6c0b167288bcfa123c6364e8f72bd8d2a55eaf3ac7f70e74b79db0766306b38e",
+  "prepared_at": 1789741945.0517015
+}

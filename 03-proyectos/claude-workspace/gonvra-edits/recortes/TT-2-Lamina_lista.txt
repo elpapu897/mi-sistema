@@ -1,0 +1,5 @@
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-2-Lamina_00.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-2-Lamina_01.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-2-Lamina_02.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-2-Lamina_03.mp4'
+file '/home/matiigonzz/Claude/gonvra-edits/recortes/TT-2-Lamina_99_end.mp4'

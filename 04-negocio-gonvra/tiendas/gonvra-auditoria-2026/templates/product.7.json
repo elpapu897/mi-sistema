@@ -1,0 +1,380 @@
+{
+  "sections": {
+    "principal": {
+      "type": "gv-producto",
+      "blocks": {
+        "a1": {
+          "type": "apartado",
+          "settings": {
+            "icono": "descripcion",
+            "titulo": "Descripción",
+            "usar_descripcion": true,
+            "contenido": "<p>Escribí aquí el contenido de este apartado.</p>",
+            "abierto": false
+          }
+        },
+        "a2": {
+          "type": "apartado",
+          "settings": {
+            "icono": "beneficios",
+            "titulo": "Beneficios",
+            "usar_descripcion": false,
+            "contenido": "<ul><li>Pensado para el uso diario de tu mascota.</li><li>Materiales suaves y seguros.</li><li>Fácil de limpiar y mantener.</li><li>Práctico de guardar en casa.</li></ul>",
+            "abierto": false
+          }
+        },
+        "a3": {
+          "type": "apartado",
+          "settings": {
+            "icono": "caracteristicas",
+            "titulo": "Características",
+            "usar_descripcion": false,
+            "contenido": "<ul><li>Apto para perros y gatos.</li><li>Revisado antes del envío.</li><li>Disponible en varios colores según stock.</li></ul>",
+            "abierto": false
+          }
+        },
+        "a4": {
+          "type": "apartado",
+          "settings": {
+            "icono": "envios",
+            "titulo": "Envíos y devoluciones",
+            "usar_descripcion": false,
+            "contenido": "<p>El envío es GRATIS a todo el país, sin mínimo de compra, y con seguimiento del pedido. El tiempo de entrega depende de tu localidad.</p><p>Si el producto no es lo que esperabas, escribinos dentro de los 7 días de recibirlo y lo resolvemos.</p>",
+            "abierto": false
+          }
+        },
+        "a5": {
+          "type": "apartado",
+          "settings": {
+            "icono": "faq",
+            "titulo": "Preguntas frecuentes (FAQ)",
+            "usar_descripcion": false,
+            "contenido": "<p><strong>¿Cómo se usa?</strong><br>Ponés un poco de agua, metés la pata, girás suave y sale limpia.</p><p><strong>¿Las cerdas lastiman?</strong><br>No, son suaves y de grado alimenticio.</p><p><strong>¿Sirve para perros grandes?</strong><br>Viene en un tamaño, ideal para patas chicas y medianas.</p><p><strong>¿Se vacía fácil?</strong><br>Sí, se vacía y enjuaga en segundos.</p>",
+            "abierto": false
+          }
+        },
+        "f1": {
+          "type": "caracteristica",
+          "settings": {
+            "icono": "corazon",
+            "titulo": "Pensado para su comodidad",
+            "texto": "Materiales suaves y seguros para el día a día de tu mascota."
+          }
+        },
+        "f2": {
+          "type": "caracteristica",
+          "settings": {
+            "icono": "escudo",
+            "titulo": "Calidad revisada",
+            "texto": "Revisamos cada pedido antes de enviarlo a tu casa."
+          }
+        },
+        "f3": {
+          "type": "caracteristica",
+          "settings": {
+            "icono": "estrella",
+            "titulo": "De los más pedidos",
+            "texto": "Uno de los productos que más eligen en la tienda."
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "a5",
+        "f1",
+        "f2",
+        "f3"
+      ],
+      "settings": {
+        "mostrar_vendor": true,
+        "mostrar_viral": true,
+        "viral_texto": "PRODUCTO VIRAL | STOCK BAJO",
+        "viral_fondo": "#2e7fb0",
+        "viral_color": "#ffffff",
+        "chip1": "Patas limpias al toque",
+        "chip2": "Ideal post-paseo",
+        "mostrar_rating": false,
+        "rating_texto": "Valorado por nuestros clientes",
+        "desc_corta": "",
+        "mostrar_ofertas": true,
+        "ofertas_titulo": "Elegí tu oferta",
+        "oferta1_label": "Llevá 1 unidad",
+        "oferta1_sub": "Precio regular",
+        "oferta2_label": "Llevá 2 unidades",
+        "oferta2_off": 30,
+        "oferta2_tag": "MÁS ELEGIDO",
+        "mostrar_oferta3": false,
+        "oferta3_label": "Llevá 3 unidades",
+        "oferta3_off": 30,
+        "oferta3_tag": "MEJOR PRECIO",
+        "boton_texto": "Conseguilo ahora",
+        "boton_agotado": "Agotado",
+        "mostrar_sticky": true,
+        "mostrar_stock": true,
+        "stock_texto": "¡Pocas unidades disponibles!",
+        "mostrar_pagos": true,
+        "pagos_texto": "Pago seguro con Mercado Pago y todas las tarjetas",
+        "badge1_titulo": "Envío GRATIS",
+        "badge1_sub": "A todo el país, sin mínimo",
+        "badge2_titulo": "Garantía 10 días",
+        "badge2_sub": "Compra protegida",
+        "badge3_titulo": "Pago seguro",
+        "badge3_sub": "Datos protegidos",
+        "seal_titulo": "Garantía de 10 días",
+        "seal_texto": "Si no quedás conforme, escribinos dentro de los 7 días y lo resolvemos. Comprá con total tranquilidad.",
+        "mostrar_desc_larga": false,
+        "desc_titulo": "Sobre este producto",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "videos": {
+      "type": "gv-videos",
+      "blocks": {
+        "video_LfmamF": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/ssstik.io_@comprasconfirulais_1781034767172.mp4",
+            "video_url": "",
+            "titulo": "Así se usa"
+          }
+        },
+        "video_A8XpFG": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/ssstik.io_@jackelperrisimo_1781034685415.mp4",
+            "video_url": "",
+            "titulo": "Así se usa"
+          }
+        },
+        "video_Wc8zM4": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/ssstik.io_@yosoykimbo_1781034662714.mp4",
+            "video_url": "",
+            "titulo": "Así se usa"
+          }
+        }
+      },
+      "block_order": [
+        "video_LfmamF",
+        "video_A8XpFG",
+        "video_Wc8zM4"
+      ],
+      "settings": {
+        "eyebrow": "En movimiento",
+        "title": "Mirá cómo funciona",
+        "subtitle": "Videos cortos para que veas el producto en uso antes de comprarlo.",
+        "title_size": 34,
+        "fondo": "#eff7f3",
+        "padding_top": 0,
+        "padding_bottom": 16
+      }
+    },
+    "detalles": {
+      "type": "gv-detalles",
+      "blocks": {
+        "d1": {
+          "type": "detalle",
+          "settings": {
+            "icono": "agua",
+            "titulo": "Patas limpias en segundos",
+            "texto": "Metés la pata, girás suave y listo."
+          }
+        },
+        "d2": {
+          "type": "detalle",
+          "settings": {
+            "icono": "corazon",
+            "titulo": "Cerdas que no lastiman",
+            "texto": "Suaves y de grado alimenticio, no irritan la piel."
+          }
+        },
+        "d3": {
+          "type": "detalle",
+          "settings": {
+            "icono": "check",
+            "titulo": "Chau huellas de barro",
+            "texto": "Tus pisos y alfombras te lo van a agradecer."
+          }
+        },
+        "d4": {
+          "type": "detalle",
+          "settings": {
+            "icono": "reloj",
+            "titulo": "Ideal después del paseo",
+            "texto": "Se vacía y se enjuaga en un momento."
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "settings": {
+        "imagen_derecha": false,
+        "eyebrow": "Los detalles",
+        "title": "Por qué te va a gustar",
+        "texto": "",
+        "title_size": 36,
+        "fondo": "#f5faf8",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "garantia": {
+      "type": "gv-garantia",
+      "settings": {
+        "medal_top": "Garantía",
+        "medal_num": "7",
+        "medal_unit": "Días",
+        "eyebrow": "Comprá tranquilo",
+        "title": "7 días para probarlo sin riesgo",
+        "texto": "Si el producto no es lo que esperabas, escribinos dentro de los 7 días de recibirlo y lo solucionamos. Sin vueltas ni letra chica.",
+        "title_size": 34,
+        "fondo": "#eff7f3",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "resenas": {
+      "type": "apps",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "relacionados": {
+      "type": "related-products",
+      "settings": {
+        "heading": "También te puede gustar",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "cierre": {
+      "type": "gv-cta",
+      "settings": {
+        "eyebrow": "Seguí explorando",
+        "title": "Descubrí todo lo que tenemos para tu mascota",
+        "subtitle": "Camas, juguetes, higiene y mucho más, con envío a todo el país.",
+        "title_size": 42,
+        "boton1_texto": "Ver toda la tienda",
+        "boton1_url": "",
+        "boton2_texto": "Volver al inicio",
+        "boton2_url": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "comparacion": {
+      "type": "gv-comparacion",
+      "blocks": {
+        "r1": {
+          "type": "fila",
+          "settings": {
+            "texto": "Productos elegidos y revisados uno por uno",
+            "gonvra": true,
+            "competidor": false
+          }
+        },
+        "r2": {
+          "type": "fila",
+          "settings": {
+            "texto": "Atención personalizada: te asesoramos para tu mascota",
+            "gonvra": true,
+            "competidor": false
+          }
+        },
+        "r3": {
+          "type": "fila",
+          "settings": {
+            "texto": "Garantía de 10 días directa con la tienda",
+            "gonvra": true,
+            "competidor": false
+          }
+        },
+        "r4": {
+          "type": "fila",
+          "settings": {
+            "texto": "Especialistas solo en mascotas",
+            "gonvra": true,
+            "competidor": false
+          }
+        },
+        "r5": {
+          "type": "fila",
+          "settings": {
+            "texto": "Envío a todo el país con seguimiento",
+            "gonvra": true,
+            "competidor": true
+          }
+        },
+        "r6": {
+          "type": "fila",
+          "settings": {
+            "texto": "Pago 100% seguro con Mercado Pago",
+            "gonvra": true,
+            "competidor": true
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3",
+        "r4",
+        "r5",
+        "r6"
+      ],
+      "settings": {}
+    },
+    "contador": {
+      "type": "gv-contador",
+      "settings": {
+        "fecha_fin": "2026-08-03 23:59",
+        "titulo": "La promo de lanzamiento termina en:",
+        "subtitulo": "10% OFF con el código + envío gratis a todo el país.",
+        "codigo": "LANZAMIENTO10",
+        "lbl_dias": "Días",
+        "lbl_horas": "Horas",
+        "lbl_min": "Min",
+        "lbl_seg": "Seg",
+        "fondo_a": "#0E2A47",
+        "fondo_b": "#2E7FB0",
+        "color_texto": "#FFFFFF",
+        "color_caja": "#FFE600",
+        "color_numero": "#0E2A47",
+        "padding_top": 8,
+        "padding_bottom": 16
+      }
+    }
+  },
+  "order": [
+    "principal",
+    "contador",
+    "videos",
+    "detalles",
+    "comparacion",
+    "garantia",
+    "resenas",
+    "relacionados",
+    "cierre"
+  ]
+}

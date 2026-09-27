@@ -1,0 +1,16 @@
+{
+  "store": "jm60sa-cp.myshopify.com",
+  "theme_id": "148158414963",
+  "theme_role": "live",
+  "source_copy": "/home/matiigonzz/Documents/Codex/tiendas/jm60sa-cp/work-copy-2026-09-18",
+  "files": [
+    {
+      "path": "templates/product.json",
+      "sha256": "bebf93216f399485253ce8943a34628e938d65d24125017b341107fa2bfacdbd",
+      "bytes": 10975
+    }
+  ],
+  "proposed_command": "npx shopify theme push --store jm60sa-cp.myshopify.com --theme 148158414963 --allow-live --nodelete --only templates/product.json",
+  "scope": "corregir únicamente la plantilla activa de la ficha con el COPY ya aprobado; no tocar otros archivos",
+  "status": "sin ejecutar"
+}

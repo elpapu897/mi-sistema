@@ -1,0 +1,48 @@
+{
+  "approval": {
+    "id": 5,
+    "kind": "theme_push",
+    "title": "GONVRA: actualizar copy de landing y ficha",
+    "snapshot_hash": "b8e479c304303afaf7e36f84e0dd82a01f258424b51e11872e88f8ee6497f11b",
+    "status": "ready_to_execute",
+    "resolved_by": "7697535044",
+    "snapshot": {
+      "files": [
+        {
+          "bytes": 7863,
+          "path": "templates/index.json",
+          "sha256": "43ff813240b0ae3562ca852f1f829463819e3a1c727110114b9cb906b34cd41f"
+        },
+        {
+          "bytes": 10975,
+          "path": "templates/product.gonvra.json",
+          "sha256": "bebf93216f399485253ce8943a34628e938d65d24125017b341107fa2bfacdbd"
+        },
+        {
+          "bytes": 13751,
+          "path": "sections/gv-home.liquid",
+          "sha256": "d38da93c7df55499a343435ceb63f34d9f16fcaed55c7b741be0014675f73906"
+        },
+        {
+          "bytes": 45104,
+          "path": "sections/gv-producto.liquid",
+          "sha256": "dd3c71cf163a2ab58bdcb122e8979499aca74ad37de36f5fd32c1ff4b0ded3b7"
+        },
+        {
+          "bytes": 9918,
+          "path": "sections/gv-faq.liquid",
+          "sha256": "d38e2c27c10af38eef37995493338f3849df35b9e5b096dab6bbca9a3ce19936"
+        }
+      ],
+      "proposed_command": "npx shopify theme push --store jm60sa-cp.myshopify.com --theme 148158414963",
+      "scope": "push de copy aprobado al tema LIVE #148158414963 únicamente después de aprobación y revalidación SEMÁFORO",
+      "source_copy": "/home/matiigonzz/Documents/Codex/tiendas/jm60sa-cp/work-copy-2026-09-18",
+      "status": "sin ejecutar",
+      "store": "jm60sa-cp.myshopify.com",
+      "theme_id": "148158414963"
+    }
+  },
+  "source": "/home/matiigonzz/Claude/gonvra2/tienda/snapshot-2026-09-18.json",
+  "source_sha256": "f649e086fba1ea443e98067e71851cd9610bec66d2c3609cacedb1acf3d86da9",
+  "prepared_at": 1789741945.052161
+}

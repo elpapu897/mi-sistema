@@ -1,0 +1,103 @@
+{{ 'gv-styles.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gv-scripts.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+  #shopify-section-{{ section.id }} .gv-h2 { font-size: {{ section.settings.title_size }}px; }
+{%- endstyle -%}
+
+<section class="gv-acc gv-section">
+  <div class="gv-container">
+    {%- if section.settings.title != blank -%}
+      <div class="gv-head gv-reveal">
+        {%- if section.settings.eyebrow != blank -%}<span class="gv-eyebrow gv-center">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2 class="gv-h2">{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="gv-acc__list gv-reveal" data-gv-acc>
+      {%- for block in section.blocks -%}
+        <div class="gv-acc__item {% if block.settings.abierto %}is-open{% endif %}" {{ block.shopify_attributes }}>
+          <button type="button" class="gv-acc__head" data-gv-acc-head aria-expanded="{% if block.settings.abierto %}true{% else %}false{% endif %}">
+            <span class="gv-acc__ico">
+              {%- case block.settings.icono -%}
+                {%- when 'descripcion' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg>
+                {%- when 'beneficios' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z"/></svg>
+                {%- when 'caracteristicas' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+                {%- when 'envios' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h5a1 1 0 0 0 1-1v-3.34a2 2 0 0 0-.6-1.43l-3.06-3a2 2 0 0 0-1.4-.57H14"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/></svg>
+                {%- when 'faq' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.5-3 2.5"/><path d="M12 16h.01"/></svg>
+                {%- when 'escudo' -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+                {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+              {%- endcase -%}
+            </span>
+            <span class="gv-acc__title">{{ block.settings.titulo }}</span>
+            <svg class="gv-acc__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="gv-acc__panel" data-gv-acc-panel>
+            <div class="gv-acc__inner">
+              {%- if block.settings.usar_descripcion -%}
+                {{ product.description }}
+              {%- else -%}
+                {{ block.settings.contenido }}
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GV – Acordeón",
+  "tag": "section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto pequeño superior" },
+    { "type": "text", "id": "title", "label": "Título (vacío = sin título)" },
+    { "type": "range", "id": "title_size", "label": "Tamaño del título (px)", "min": 22, "max": 48, "step": 2, "unit": "px", "default": 32 },
+    { "type": "color", "id": "fondo", "label": "Color de fondo", "default": "#F5FAF8" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 160, "step": 8, "unit": "px", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "apartado",
+      "name": "Apartado",
+      "settings": [
+        { "type": "select", "id": "icono", "label": "Icono", "default": "descripcion",
+          "options": [
+            {"value": "descripcion", "label": "Descripción"},
+            {"value": "beneficios", "label": "Beneficios (estrella)"},
+            {"value": "caracteristicas", "label": "Características (engranaje)"},
+            {"value": "envios", "label": "Envíos (camión)"},
+            {"value": "faq", "label": "Preguntas frecuentes"},
+            {"value": "escudo", "label": "Garantía (escudo)"}
+          ] },
+        { "type": "text", "id": "titulo", "label": "Título", "default": "Apartado" },
+        { "type": "checkbox", "id": "usar_descripcion", "label": "Usar la descripción del producto", "default": false },
+        { "type": "richtext", "id": "contenido", "label": "Contenido", "default": "<p>Escribí aquí el contenido de este apartado.</p>" },
+        { "type": "checkbox", "id": "abierto", "label": "Abierto al entrar", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GV – Acordeón",
+      "blocks": [
+        { "type": "apartado", "settings": { "icono": "descripcion", "titulo": "Descripción", "usar_descripcion": true, "abierto": true } },
+        { "type": "apartado", "settings": { "icono": "beneficios", "titulo": "Beneficios" } },
+        { "type": "apartado", "settings": { "icono": "caracteristicas", "titulo": "Características" } },
+        { "type": "apartado", "settings": { "icono": "envios", "titulo": "Envíos y devoluciones" } },
+        { "type": "apartado", "settings": { "icono": "faq", "titulo": "Preguntas frecuentes (FAQ)" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -94,3 +94,13 @@ gonvra_vps
 
 # Nota: los .git anidados de repos de terceros se excluyen al copiar,
 # no acá. Ver 03-proyectos/REPOS-EXTERNOS.md para re-clonarlos.
+
+# --- Media pesada: NO va a GitHub (decision 27/09) ---
+# Los 22 GB de video quedan SOLO en disco local.
+# COPIARLOS A UN DISCO EXTERNO ANTES DE FORMATEAR.
+05-media/
+*.mp4
+*.mov
+*.webm
+*.wav
+*.raw

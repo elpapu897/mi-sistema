@@ -1,0 +1,80 @@
+[
+  {
+    "src": "/cdn/shop/t/8/assets/gv-hero-desktop-v2.webp?v=167563963605068006591788812041",
+    "width": "2000",
+    "height": "1125",
+    "loading": "eager",
+    "fetchpriority": "high",
+    "alt": "Un equipo. Tu rutina resuelta."
+  },
+  {
+    "src": "/cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=1200",
+    "alt": "Eleg\u00ed el largo que quer\u00e9s",
+    "srcset": "/cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=480 480w, /cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=760 760w, /cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=1000 1000w, /cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=1200 1200w",
+    "width": "1200",
+    "height": "1499",
+    "loading": "lazy",
+    "sizes": "(min-width: 900px) 46vw, 100vw"
+  },
+  {
+    "src": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=1200",
+    "alt": "Pasala en seco, sin espuma",
+    "srcset": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=480 480w, /cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=760 760w, /cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=1000 1000w, /cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=1200 1200w",
+    "width": "1200",
+    "height": "1499",
+    "loading": "lazy",
+    "sizes": "(min-width: 900px) 46vw, 100vw"
+  },
+  {
+    "src": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=1200",
+    "alt": "Limpiala y cargala",
+    "srcset": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=480 480w, /cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=760 760w, /cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=1000 1000w, /cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=1200 1200w",
+    "width": "1200",
+    "height": "1499",
+    "loading": "lazy",
+    "sizes": "(min-width: 900px) 46vw, 100vw"
+  },
+  {
+    "src": "/cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=1200",
+    "alt": "Rasuradora Integral Recargable \u2014 Rostro y Cuerpo",
+    "srcset": "/cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=440 440w, /cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=700 700w, /cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=1000 1000w, /cdn/shop/files/rasuradora-integral-accesorios-v1.png?v=1788666630&width=1200 1200w",
+    "width": "1200",
+    "height": "1499",
+    "loading": "lazy",
+    "sizes": "(min-width: 900px) 48vw, 100vw"
+  },
+  {
+    "src": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=800",
+    "alt": "Rasuradora Integral Recargable \u2014 Rostro y Cuerpo",
+    "srcset": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=360 360w, /cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=560 560w, /cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=800 800w",
+    "width": "800",
+    "height": "1000",
+    "loading": "lazy",
+    "sizes": "(min-width: 900px) 34vw, 70vw"
+  },
+  {
+    "src": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=500",
+    "alt": "Rasuradora integral recargable negra y verde lima, vista de producto",
+    "srcset": "/cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=240 240w, /cdn/shop/files/rasuradora-integral-hero-v1.png?v=1788666616&width=352 352w",
+    "width": "500",
+    "height": "625",
+    "loading": "lazy",
+    "class": "resource-card__image",
+    "sizes": "auto",
+    "ref": "",
+    "style": "object-position: 50.0% 50.0%;"
+  },
+  {
+    "src": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=500",
+    "alt": "Rasuradora integral recargable en uso sobre antebrazo",
+    "srcset": "/cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=240 240w, /cdn/shop/files/rasuradora-integral-uso-v1.png?v=1788666623&width=352 352w",
+    "width": "500",
+    "height": "625",
+    "loading": "lazy",
+    "class": "resource-card__image resource-card__image--secondary",
+    "sizes": "auto",
+    "ref": "",
+    "data-media-id": "32015706685555",
+    "style": "object-position: 50.0% 50.0%;"
+  }
+]

@@ -1,0 +1,4 @@
+*.zip
+qr-*.png
+_*
+__pycache__/

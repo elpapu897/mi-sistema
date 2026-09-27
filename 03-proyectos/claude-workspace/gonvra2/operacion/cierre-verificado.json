@@ -1,0 +1,18 @@
+{
+  "cards": {
+    "t_8c5c1e31": "done",
+    "t_9b5ff120": "done",
+    "t_f84591b6": "done",
+    "t_e2a4368c": "done"
+  },
+  "jefe_task": "t_104cb478",
+  "monitor": "6788a266bc83",
+  "monitor_state": "paused",
+  "notice_output_count": 1,
+  "last_delivery_error": null,
+  "notice_execution": "548179fb6e7b4eab9a760a9027514860",
+  "shopify_changes": false,
+  "meta_changes": false,
+  "commercial_spend": 0,
+  "jefe_summary": "/home/matiigonzz/Claude/gonvra2/jefe/2026-09-18-cierre-fase1.md"
+}

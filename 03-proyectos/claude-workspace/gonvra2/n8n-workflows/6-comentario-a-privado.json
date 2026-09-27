@@ -1,0 +1,147 @@
+{
+  "name": "GONVRA — Comentario con palabra clave → mensaje privado",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "gonvra-ig",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "wh-verif",
+      "name": "Meta verifica el webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, -200],
+      "webhookId": "gonvra-ig-verif"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": { "responseCode": 200 }
+      },
+      "id": "resp-verif",
+      "name": "Devolver el desafio",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [240, -200]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gonvra-ig",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "wh-ig",
+      "name": "Instagram avisa el comentario",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 60],
+      "webhookId": "gonvra-ig-evento"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "EVENT_RECEIVED",
+        "options": { "responseCode": 200 }
+      },
+      "id": "resp-ig",
+      "name": "Contestarle a Meta",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [240, -60]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Busca comentarios que contengan una palabra clave de compra.\n// Solo esos disparan el mensaje privado. El resto se ignora.\nconst CLAVES = ['precio', 'cuanto', 'cuánto', 'info', 'quiero', 'comprar', 'valor', 'link'];\n\nconst body = $input.first().json.body || {};\nconst salida = [];\n\nfor (const entrada of (body.entry || [])) {\n  for (const cambio of (entrada.changes || [])) {\n    if (cambio.field !== 'comments') continue;\n    const v = cambio.value || {};\n    const texto = (v.text || '').toLowerCase();\n    const autor = (v.from && v.from.username) || '';\n    const autorId = (v.from && v.from.id) || '';\n    const comentarioId = v.id || '';\n\n    // no responderse a si mismo\n    if (autor === 'gonvra1') continue;\n    if (!CLAVES.some(k => texto.includes(k))) continue;\n\n    salida.push({ json: {\n      comentario_id: comentarioId,\n      autor,\n      autor_id: autorId,\n      texto: v.text || ''\n    }});\n  }\n}\n\nreturn salida;"
+      },
+      "id": "code-filtro",
+      "name": "Tiene palabra clave?",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [240, 160]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.instagram.com/v23.0/{{ $env.GONVRA_IG_ID }}/messages",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "recipient", "value": "={{ JSON.stringify({ comment_id: $json.comentario_id }) }}" },
+            { "name": "message", "value": "={{ JSON.stringify({ text: 'Hola! Te paso el link con toda la info y los precios: https://gonvra.com/products/face-body-electric-shaver\\n\\nEnvio gratis a todo el pais. Cualquier duda escribime por aca.' }) }}" },
+            { "name": "access_token", "value": "={{ $env.GONVRA_IG_TOKEN }}" }
+          ]
+        },
+        "options": { "timeout": 30000 }
+      },
+      "id": "ig-dm",
+      "name": "Mandarle el privado",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "onError": "continueErrorOutput",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "position": [480, 160]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "chat_id", "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}" },
+            { "name": "text", "value": "=INTERESADO EN INSTAGRAM\n\n@{{ $('Tiene palabra clave?').item.json.autor }} comento:\n\"{{ $('Tiene palabra clave?').item.json.texto }}\"\n\nYa le mande el link por privado.\nEntra y seguile la charla, que esta caliente." }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "id": "tg-lead",
+      "name": "Avisarte el lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 80]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/bot{{ $env.GONVRA_TELEGRAM_TOKEN }}/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "chat_id", "value": "={{ $env.GONVRA_TELEGRAM_CHAT }}" },
+            { "name": "text", "value": "=GONVRA: alguien pregunto en Instagram pero NO se le pudo mandar el privado.\n\nComentario: \"{{ $('Tiene palabra clave?').item.json.texto }}\"\nDe: @{{ $('Tiene palabra clave?').item.json.autor }}\n\nContestale a mano, que es un cliente." }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "id": "tg-falla",
+      "name": "Avisar que fallo",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 260]
+    }
+  ],
+  "connections": {
+    "Meta verifica el webhook": { "main": [[{ "node": "Devolver el desafio", "type": "main", "index": 0 }]] },
+    "Instagram avisa el comentario": {
+      "main": [[
+        { "node": "Contestarle a Meta", "type": "main", "index": 0 },
+        { "node": "Tiene palabra clave?", "type": "main", "index": 0 }
+      ]]
+    },
+    "Tiene palabra clave?": { "main": [[{ "node": "Mandarle el privado", "type": "main", "index": 0 }]] },
+    "Mandarle el privado": {
+      "main": [
+        [{ "node": "Avisarte el lead", "type": "main", "index": 0 }],
+        [{ "node": "Avisar que fallo", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

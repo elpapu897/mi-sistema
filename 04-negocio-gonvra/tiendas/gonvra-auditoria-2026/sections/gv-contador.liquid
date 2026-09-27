@@ -1,0 +1,137 @@
+{%- comment -%}
+  GV – Contador de oferta.
+  Cuenta regresiva REAL hacia la fecha que se cargue en "fecha_fin".
+  La fecha se interpreta en hora de Argentina (UTC-3).
+  Cuando la promo vence, la sección se oculta sola (o muestra el aviso de
+  cierre, según el ajuste). No reinicia el reloj: si venció, venció.
+  Para renovar la promo hay que poner una fecha nueva Y renovar el código
+  de descuento en Shopify, para que lo que dice acá siga siendo cierto.
+{%- endcomment -%}
+
+{%- assign fin = section.settings.fecha_fin | strip -%}
+{%- if fin != blank -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .gv-cd {
+    max-width: 760px; margin: 0 auto;
+    background: linear-gradient(135deg, {{ section.settings.fondo_a }}, {{ section.settings.fondo_b }});
+    border-radius: 18px; padding: 18px 22px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 18px; flex-wrap: wrap; text-align: center;
+    box-shadow: 0 10px 30px rgba(14,43,37,.14);
+  }
+  #shopify-section-{{ section.id }} .gv-cd__txt {
+    color: {{ section.settings.color_texto }};
+    font-weight: 800; font-size: 17px; line-height: 1.35; margin: 0;
+  }
+  #shopify-section-{{ section.id }} .gv-cd__sub {
+    color: {{ section.settings.color_texto }}; opacity: .85;
+    font-size: 13.5px; margin: 3px 0 0; font-weight: 600;
+  }
+  #shopify-section-{{ section.id }} .gv-cd__reloj { display: flex; gap: 8px; }
+  #shopify-section-{{ section.id }} .gv-cd__box {
+    background: {{ section.settings.color_caja }}; border-radius: 11px;
+    min-width: 58px; padding: 8px 6px;
+  }
+  #shopify-section-{{ section.id }} .gv-cd__num {
+    display: block; font-size: 26px; font-weight: 900; line-height: 1;
+    color: {{ section.settings.color_numero }}; font-variant-numeric: tabular-nums;
+  }
+  #shopify-section-{{ section.id }} .gv-cd__lbl {
+    display: block; font-size: 10.5px; letter-spacing: .06em; margin-top: 3px;
+    text-transform: uppercase; font-weight: 700; color: {{ section.settings.color_numero }}; opacity: .7;
+  }
+  #shopify-section-{{ section.id }} .gv-cd__code {
+    display: inline-block; margin-top: 7px; padding: 5px 12px; border-radius: 8px;
+    background: {{ section.settings.color_caja }}; color: {{ section.settings.color_numero }};
+    font-weight: 900; letter-spacing: .09em; font-size: 14px;
+    border: 2px dashed {{ section.settings.color_numero }};
+  }
+  #shopify-section-{{ section.id }} .gv-cd[hidden] { display: none; }
+  @media (max-width: 560px) {
+    #shopify-section-{{ section.id }} .gv-cd { padding: 15px 14px; gap: 12px; }
+    #shopify-section-{{ section.id }} .gv-cd__txt { font-size: 15.5px; }
+    #shopify-section-{{ section.id }} .gv-cd__box { min-width: 50px; }
+    #shopify-section-{{ section.id }} .gv-cd__num { font-size: 22px; }
+  }
+{%- endstyle -%}
+
+<div class="gv-container">
+  <div class="gv-cd" id="gvcd-{{ section.id }}" data-fin="{{ fin }}" hidden>
+    <div>
+      <p class="gv-cd__txt">{{ section.settings.titulo }}</p>
+      {%- if section.settings.subtitulo != blank -%}
+        <p class="gv-cd__sub">{{ section.settings.subtitulo }}</p>
+      {%- endif -%}
+      {%- if section.settings.codigo != blank -%}
+        <span class="gv-cd__code">{{ section.settings.codigo }}</span>
+      {%- endif -%}
+    </div>
+    <div class="gv-cd__reloj" role="timer" aria-live="off">
+      <div class="gv-cd__box"><span class="gv-cd__num" data-d>00</span><span class="gv-cd__lbl">{{ section.settings.lbl_dias }}</span></div>
+      <div class="gv-cd__box"><span class="gv-cd__num" data-h>00</span><span class="gv-cd__lbl">{{ section.settings.lbl_horas }}</span></div>
+      <div class="gv-cd__box"><span class="gv-cd__num" data-m>00</span><span class="gv-cd__lbl">{{ section.settings.lbl_min }}</span></div>
+      <div class="gv-cd__box"><span class="gv-cd__num" data-s>00</span><span class="gv-cd__lbl">{{ section.settings.lbl_seg }}</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var box = document.getElementById('gvcd-{{ section.id }}');
+  if (!box) return;
+  // "2026-08-03 23:59" -> hora de Argentina (UTC-3)
+  var crudo = (box.dataset.fin || '').trim().replace(' ', 'T');
+  if (crudo.length === 16) crudo += ':00';
+  var meta = Date.parse(crudo + '-03:00');
+  if (isNaN(meta)) return;               // fecha mal escrita: no mostramos nada
+  var d = box.querySelector('[data-d]'), h = box.querySelector('[data-h]'),
+      m = box.querySelector('[data-m]'), s = box.querySelector('[data-s]');
+  var dosDig = function (n) { return n < 10 ? '0' + n : '' + n; };
+  function tick() {
+    var falta = meta - Date.now();
+    if (falta <= 0) { box.hidden = true; clearInterval(id); return; }  // venció: se oculta
+    var seg = Math.floor(falta / 1000);
+    d.textContent = dosDig(Math.floor(seg / 86400));
+    h.textContent = dosDig(Math.floor(seg % 86400 / 3600));
+    m.textContent = dosDig(Math.floor(seg % 3600 / 60));
+    s.textContent = dosDig(seg % 60);
+    box.hidden = false;
+  }
+  tick();
+  var id = setInterval(tick, 1000);
+})();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "GV – Contador de oferta",
+  "tag": "section",
+  "settings": [
+    { "type": "paragraph", "content": "El reloj cuenta hasta la fecha que pongas abajo. Cuando llega a cero, la sección se oculta sola. Importante: mantené el descuento real en Shopify con la misma fecha de vencimiento." },
+    { "type": "text", "id": "fecha_fin", "label": "Fecha y hora de fin (formato 2026-08-03 23:59)" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "La promo de lanzamiento termina en:" },
+    { "type": "text", "id": "subtitulo", "label": "Texto chico", "default": "Envío gratis a todo el país incluido." },
+    { "type": "text", "id": "codigo", "label": "Código de descuento a mostrar (dejar vacío si no hay)" },
+    { "type": "header", "content": "Etiquetas del reloj" },
+    { "type": "text", "id": "lbl_dias", "label": "Días", "default": "Días" },
+    { "type": "text", "id": "lbl_horas", "label": "Horas", "default": "Horas" },
+    { "type": "text", "id": "lbl_min", "label": "Minutos", "default": "Min" },
+    { "type": "text", "id": "lbl_seg", "label": "Segundos", "default": "Seg" },
+    { "type": "header", "content": "Colores" },
+    { "type": "color", "id": "fondo_a", "label": "Fondo (izquierda)", "default": "#0E2A47" },
+    { "type": "color", "id": "fondo_b", "label": "Fondo (derecha)", "default": "#2E7FB0" },
+    { "type": "color", "id": "color_texto", "label": "Color del texto", "default": "#FFFFFF" },
+    { "type": "color", "id": "color_caja", "label": "Fondo de los números", "default": "#FFE600" },
+    { "type": "color", "id": "color_numero", "label": "Color de los números", "default": "#0E2A47" },
+    { "type": "header", "content": "Espaciado" },
+    { "type": "range", "id": "padding_top", "label": "Espacio superior (px)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 8 },
+    { "type": "range", "id": "padding_bottom", "label": "Espacio inferior (px)", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 16 }
+  ],
+  "presets": [{ "name": "GV – Contador de oferta" }]
+}
+{% endschema %}

@@ -1,0 +1,131 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign review_rating = product.metafields.reviews.rating.value
+  assign review_count = product.metafields.reviews.rating_count.value
+%}
+
+<section class="tp-page" data-tp-page>
+  <div class="tp-wrap">
+    <div class="tp-top" data-tp-reveal>
+      <div class="tp-gallery">
+        {% for media in product.media limit: 3 %}
+          {% if media.media_type == 'image' %}
+            <figure>{{ media.preview_image | image_url: width: 1200 | image_tag: widths: '480, 720, 960, 1200', sizes: '(min-width: 900px) 52vw, 100vw', loading: 'lazy', alt: product.title }}</figure>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <aside class="tp-buy" id="comprar">
+        <p class="tp-kicker">Rostro + cuerpo</p>
+        <h1>{{ product.title | escape }}</h1>
+        {% if review_rating != blank %}
+          <div class="tp-rating" aria-label="Calificación de {{ review_rating.rating }} sobre {{ review_rating.scale_max }}">
+            <span aria-hidden="true">★★★★★</span>
+            <strong>{{ review_rating.rating | round: 1 }}</strong>
+            {% if review_count != blank %}<small>{{ review_count }} reseñas</small>{% endif %}
+          </div>
+        {% endif %}
+        <p class="tp-price">{{ current_variant.price | money }}</p>
+        <p class="tp-copy">Una herramienta compacta para mantener tu rutina de recorte clara y simple.</p>
+
+        <div class="tp-color" aria-label="Color disponible">
+          <span>Color disponible</span>
+          <strong><i aria-hidden="true"></i>{{ current_variant.title | escape }}</strong>
+        </div>
+
+        <div class="tp-offers" role="group" aria-label="Elegí tu oferta">
+          <div class="tp-offers__heading"><strong>Elegí tu oferta</strong><span>La cantidad se actualiza en el carrito.</span></div>
+          <button class="tp-offer is-selected" type="button" data-tp-unit="1" aria-pressed="true">
+            <span class="tp-offer__images" aria-hidden="true">
+              {% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 120 | image_tag: widths: '60, 120', loading: 'lazy', alt: '' }}{% endif %}
+            </span>
+            <span class="tp-offer__copy"><strong>Individual</strong><small>1 unidad</small></span>
+            <b>Elegir</b>
+          </button>
+          <button class="tp-offer" type="button" data-tp-unit="2" aria-pressed="false">
+            <span class="tp-offer__images" aria-hidden="true">
+              {% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 120 | image_tag: widths: '60, 120', loading: 'lazy', alt: '' }}{{ product.featured_image | image_url: width: 120 | image_tag: widths: '60, 120', loading: 'lazy', alt: '' }}{% endif %}
+            </span>
+            <span class="tp-offer__copy"><strong>Dúo</strong><small>2 unidades</small></span>
+            <b>Elegir</b>
+          </button>
+          <button class="tp-offer" type="button" data-tp-unit="3" aria-pressed="false">
+            <span class="tp-offer__images" aria-hidden="true">
+              {% if product.featured_image != blank %}{{ product.featured_image | image_url: width: 120 | image_tag: widths: '60, 120', loading: 'lazy', alt: '' }}{{ product.featured_image | image_url: width: 120 | image_tag: widths: '60, 120', loading: 'lazy', alt: '' }}{{ product.featured_image | image_url: width: 120 | image_tag: widths: '60, 120', loading: 'lazy', alt: '' }}{% endif %}
+            </span>
+            <span class="tp-offer__copy"><strong>Pack x3</strong><small>3 unidades</small></span>
+            <b>Elegir</b>
+          </button>
+        </div>
+
+        <ul class="tp-list">
+          <li>Peines guía de 1, 3 y 5 mm</li>
+          <li>Recargable por USB</li>
+          <li>Rasuradora, peines, cable USB y cepillo incluidos</li>
+        </ul>
+
+        {% form 'product', product, class: 'tp-form' %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          <input type="hidden" name="quantity" value="1" data-tp-quantity>
+          {% if current_variant.available %}
+            <p class="tp-stock"><i></i> Disponible para comprar</p>
+            <button type="submit">Agregar al carrito</button>
+          {% else %}
+            <p class="tp-stock">Sin stock</p>
+            <button type="submit" disabled>Sin stock</button>
+          {% endif %}
+          {% if shop.enabled_payment_types != blank %}
+            <div class="tp-payments" aria-label="Medios de pago habilitados">
+              <span>Medios de pago habilitados</span>
+              <div>{% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag: class: 'tp-pay-icon' }}{% endfor %}</div>
+            </div>
+          {% endif %}
+        {% endform %}
+
+        <div class="tp-order" aria-label="Proceso de compra">
+          <div><em>1</em><span><strong>Elegís</strong><small>La cantidad que necesitás.</small></span></div>
+          <div><em>2</em><span><strong>Revisás</strong><small>El carrito y el total.</small></span></div>
+          <div><em>3</em><span><strong>Confirmás</strong><small>Con el medio disponible.</small></span></div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="tp-how" data-tp-reveal>
+      <div><p class="tp-kicker">Cómo funciona</p><h2>Elegí el largo y seguí tu rutina.</h2></div>
+      <ol>
+        <li><span>01</span><div><strong>Elegí el peine</strong><p>Usá 1, 3 o 5 mm según el largo que quieras mantener.</p></div></li>
+        <li><span>02</span><div><strong>Recortá en seco</strong><p>Deslizala con movimientos suaves sobre piel limpia y seca.</p></div></li>
+        <li><span>03</span><div><strong>Limpiá y recargá</strong><p>Retirá los restos con el cepillo y cargala por USB cuando lo necesites.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="tp-editorial" data-tp-reveal>
+      <p class="tp-kicker">Elegí el largo</p>
+      <div><h2>Un recorte que se adapta a vos.</h2><p>Usala sin peine para un acabado cercano o elegí una guía para sostener el largo. Es una herramienta de recorte: el resultado es temporal y varía con el tipo de vello.</p></div>
+    </section>
+
+    <section class="tp-compare" data-tp-reveal>
+      <div><p class="tp-kicker">Comparación visual</p><h2>Mové la línea para mirar el largo.</h2><p>Demostración ilustrativa; no es una promesa de resultado idéntico.</p></div>
+      <div class="tp-slider" data-tp-slider style="--tp-position:50%"><img src="https://cdn.shopify.com/s/files/1/0722/4652/6067/files/rasuradora-integral-antes-v1.png?v=1788667109" alt="Demostración ilustrativa antes del recorte" loading="lazy"><div><img src="https://cdn.shopify.com/s/files/1/0722/4652/6067/files/rasuradora-integral-despues-v1.png?v=1788667116" alt="Demostración ilustrativa después del recorte" loading="lazy"></div><b class="tp-before">Antes</b><b class="tp-after">Después</b><span>↔</span><input type="range" min="0" max="100" value="50" aria-label="Mover comparación antes y después"></div>
+    </section>
+
+    <section class="tp-use" data-tp-reveal>
+      <article><span>Para retocar</span><h3>Rostro</h3><p>Barba y patillas para mantener un look prolijo.</p></article>
+      <article><span>Para ajustar</span><h3>Cuerpo</h3><p>Elegí el peine guía y avanzá con movimientos suaves.</p></article>
+      <article><span>Para llevar</span><h3>Rutina</h3><p>Formato compacto y carga USB para tenerla a mano.</p></article>
+    </section>
+  </div>
+  <a class="tp-mobile-cta" href="#comprar"><span>{{ current_variant.price | money }}</span><strong>Ver ofertas</strong></a>
+</section>
+
+{% stylesheet %}
+  .tp-page{--ink:#16231d;--paper:#fafaf6;--muted:#66716b;--line:#dfe3dc;--lime:#c8e54a;background:var(--paper);color:var(--ink);font-family:inherit}.tp-wrap{width:min(1220px,calc(100% - 38px));margin:auto;padding:74px 0 110px}.tp-top{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(32px,7vw,94px);align-items:start}.tp-gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tp-gallery figure{min-height:260px;margin:0;overflow:hidden;background:#edf0e8}.tp-gallery figure:first-child{grid-column:span 2;min-height:540px}.tp-gallery img{display:block;width:100%;height:100%;object-fit:cover}.tp-buy{position:sticky;top:114px}.tp-kicker{margin:0 0 10px;color:#718d20;font-size:.72rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}.tp-buy h1,.tp-how h2,.tp-editorial h2,.tp-compare h2{margin:0;line-height:1;letter-spacing:-.06em}.tp-buy h1{font-size:clamp(2.1rem,4vw,4rem)}.tp-rating{display:flex;align-items:center;gap:8px;margin:16px 0 0}.tp-rating>span{color:#708c20;letter-spacing:.07em;font-size:.87rem}.tp-rating strong{font-size:.88rem}.tp-rating small{color:var(--muted);font-size:.8rem}.tp-price{margin:14px 0;font-size:1.3rem;font-weight:850}.tp-copy{color:var(--muted);line-height:1.55}.tp-color{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:22px;font-size:.86rem}.tp-color>span{color:var(--muted)}.tp-color strong{display:flex;align-items:center;gap:8px}.tp-color i{width:16px;height:16px;border:1px solid #203024;border-radius:50%;background:linear-gradient(135deg,#19211e 0 49%,#a6cd26 50%)}.tp-offers{display:grid;gap:9px;margin:22px 0}.tp-offers__heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:2px}.tp-offers__heading strong{font-size:1rem}.tp-offers__heading span{color:var(--muted);font-size:.72rem;text-align:right}.tp-offer{display:grid;grid-template-columns:82px 1fr auto;gap:13px;align-items:center;width:100%;border:1px solid var(--line);padding:10px;background:#fff;color:var(--ink);text-align:left;cursor:pointer;transition:border .18s ease,background .18s ease,transform .18s ease}.tp-offer:hover,.tp-offer.is-selected{border-color:var(--ink);background:#f1f4e7}.tp-offer.is-selected{box-shadow:inset 3px 0 0 var(--lime)}.tp-offer:hover{transform:translateY(-1px)}.tp-offer__images{display:flex;align-items:center;min-width:0;height:54px}.tp-offer__images img{width:34px;height:54px;object-fit:cover;border:1px solid #d7dbd3;background:#eef0e9}.tp-offer__images img+img{margin-left:-12px}.tp-offer__copy{display:grid;gap:3px}.tp-offer__copy small{color:var(--muted);font-size:.77rem}.tp-offer>b{color:#6f8d19;font-size:.77rem}.tp-list{display:grid;gap:8px;padding:0;margin:0 0 21px;list-style:none;font-size:.9rem}.tp-list li::before{content:'✓';margin-right:9px;color:#70911b;font-weight:900}.tp-stock{display:flex;align-items:center;gap:7px;margin:0 0 10px;color:#426923;font-size:.84rem;font-weight:750}.tp-stock i{width:8px;height:8px;border-radius:50%;background:#78a83c}.tp-form>button{width:100%;border:0;padding:17px;background:var(--ink);color:#fff;font:inherit;font-size:.86rem;font-weight:850;letter-spacing:.09em;text-transform:uppercase;cursor:pointer}.tp-form>button:disabled{opacity:.5;cursor:not-allowed}.tp-payments{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:14px 0 18px;padding:0 1px}.tp-payments>span{color:var(--muted);font-size:.72rem;line-height:1.25}.tp-payments>div{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px}.tp-pay-icon{width:42px;height:27px}.tp-order{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);padding-top:19px}.tp-order div{display:grid;gap:6px}.tp-order em{display:grid;width:22px;height:22px;place-items:center;border-radius:50%;background:var(--lime);font-size:.72rem;font-style:normal;font-weight:850}.tp-order span{display:grid;gap:3px}.tp-order strong{font-size:.76rem}.tp-order small{color:var(--muted);font-size:.68rem;line-height:1.25}.tp-how{display:grid;grid-template-columns:.8fr 1.2fr;gap:11vw;margin:125px 0 0;padding:20px 0 36px;border-top:1px solid var(--ink);border-bottom:1px solid var(--line)}.tp-how h2,.tp-editorial h2,.tp-compare h2{font-size:clamp(2.1rem,5vw,5rem)}.tp-how ol{display:grid;gap:18px;padding:0;margin:0;list-style:none}.tp-how li{display:grid;grid-template-columns:42px 1fr;gap:16px}.tp-how li>span{color:#708c20;font-size:.78rem;font-weight:850}.tp-how li strong{font-size:1.08rem}.tp-how li p{margin:5px 0 0;color:var(--muted);line-height:1.5}.tp-editorial{display:grid;grid-template-columns:.8fr 1.2fr;gap:11vw;margin:68px 0;padding-top:0}.tp-editorial>div>p{max-width:550px;margin:35px 0 0;color:var(--muted);font-size:1.08rem;line-height:1.6}.tp-compare{display:grid;grid-template-columns:.75fr 1.25fr;gap:7vw;align-items:center;margin:0 0 110px}.tp-compare>div>p:last-child{color:var(--muted);line-height:1.5}.tp-slider{position:relative;aspect-ratio:4/5;overflow:hidden;background:#e8e8df}.tp-slider>img,.tp-slider>div{position:absolute;inset:0;width:100%;height:100%}.tp-slider>img,.tp-slider>div img{display:block;width:100%;height:100%;object-fit:cover}.tp-slider>div{width:var(--tp-position);overflow:hidden}.tp-slider>div img{max-width:none}.tp-slider b{position:absolute;top:15px;z-index:2;padding:7px 10px;background:rgba(22,35,29,.9);color:#fff;font-size:.75rem}.tp-before{right:15px}.tp-after{left:15px}.tp-slider>span{position:absolute;z-index:2;top:50%;left:var(--tp-position);display:grid;width:40px;height:40px;place-items:center;border:2px solid #fff;border-radius:50%;background:var(--ink);color:#fff;transform:translate(-50%,-50%);pointer-events:none}.tp-slider input{position:absolute;z-index:3;inset:0;width:100%;height:100%;margin:0;cursor:ew-resize;opacity:0}.tp-use{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:0}.tp-use article{padding:29px 24px 35px}.tp-use article+article{border-left:1px solid var(--line)}.tp-use span{color:#70911b;font-size:.78rem;font-weight:800}.tp-use h3{margin:35px 0 8px;font-size:1.23rem}.tp-use p{max-width:260px;margin:0;color:var(--muted);line-height:1.5}.tp-mobile-cta{display:none}.tp-page [data-tp-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.tp-page [data-tp-reveal].is-visible{opacity:1;transform:none}@media(max-width:800px){.tp-wrap{width:min(100% - 24px,1220px);padding:48px 0 92px}.tp-top,.tp-how,.tp-editorial,.tp-compare{grid-template-columns:1fr}.tp-buy{position:static;margin-top:30px}.tp-gallery figure:first-child{min-height:370px}.tp-offer{grid-template-columns:72px 1fr auto}.tp-how{gap:27px;margin-top:78px}.tp-editorial{gap:15px;margin:62px 0 48px}.tp-editorial>div>p{margin:0}.tp-compare{gap:28px;margin-bottom:75px}.tp-use{grid-template-columns:1fr}.tp-use article+article{border-top:1px solid var(--line);border-left:0}.tp-order{gap:11px}.tp-mobile-cta{position:fixed;right:12px;bottom:12px;left:12px;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--ink);color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.18);text-decoration:none}.tp-mobile-cta span{font-size:.8rem}.tp-mobile-cta strong{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em}}@media(max-width:480px){.tp-offers__heading{align-items:flex-start;flex-direction:column;gap:4px}.tp-offers__heading span{text-align:left}.tp-payments{align-items:flex-start;flex-direction:column}.tp-payments>div{justify-content:flex-start}.tp-order small{font-size:.63rem}}
+{% endstylesheet %}
+
+{% javascript %}
+  const productObserver = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); productObserver.unobserve(entry.target); } }); }, { threshold: .12 }); document.querySelectorAll('.tp-page [data-tp-reveal]').forEach((element) => productObserver.observe(element)); document.querySelectorAll('[data-tp-page]').forEach((page) => { const quantity = page.querySelector('[data-tp-quantity]'); page.querySelectorAll('[data-tp-unit]').forEach((button) => { button.addEventListener('click', () => { page.querySelectorAll('[data-tp-unit]').forEach((item) => { item.classList.remove('is-selected'); item.setAttribute('aria-pressed','false'); }); button.classList.add('is-selected'); button.setAttribute('aria-pressed','true'); quantity.value = button.dataset.tpUnit; }); }); page.querySelectorAll('[data-tp-slider]').forEach((slider) => { const input = slider.querySelector('input'); input.addEventListener('input', () => slider.style.setProperty('--tp-position', `${input.value}%`)); }); });
+{% endjavascript %}
+
+{% schema %}
+{"name":"Ficha de rasuradora","tag":"section","class":"section-tienda-producto","settings":[]}
+{% endschema %}

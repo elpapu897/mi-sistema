@@ -1,0 +1,206 @@
+{% liquid
+  assign p = all_products[section.settings.product_handle]
+%}
+
+<section class="gvhm" data-gvhm>
+  <div class="gvhm-hero">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: widths: '800, 1280, 1800, 2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.heading }}
+    {% else %}
+      <picture>
+        <source media="(max-width: 860px)" srcset="{{ 'gv-hero-mobile-v2.webp' | asset_url }}">
+        <img src="{{ 'gv-hero-desktop-v2.webp' | asset_url }}" width="2000" height="1125" loading="eager" fetchpriority="high" alt="{{ section.settings.heading | escape }}">
+      </picture>
+    {% endif %}
+    <div class="gvhm-hero__veil"></div>
+    {%- if section.settings.wave_top -%}
+      <div class="gvhm-wavetop">{% render 'gv-wave', from: 'transparent', fill: '#f7f6f1', accent: '#e6efc9', uid: section.id %}</div>
+    {%- endif -%}
+    {%- if section.settings.wave_bottom -%}
+      <div class="gvhm-wavebot">{% render 'gv-wave', from: 'transparent', fill: '#f7f6f1', accent: '#e6efc9', uid: section.id %}</div>
+    {%- endif -%}
+    <div class="gvhm-hero__in">
+      {% if section.settings.kicker != blank %}<p class="gvhm-kicker">{{ section.settings.kicker }}</p>{% endif %}
+      <h1>{{ section.settings.heading }}</h1>
+      {% if section.settings.sub != blank %}<p class="gvhm-sub">{{ section.settings.sub }}</p>{% endif %}
+      <div class="gvhm-actions">
+        <a class="gvhm-btn" href="{% if p != blank %}{{ p.url }}{% else %}{{ section.settings.cta_url | default: routes.all_products_collection_url }}{% endif %}">{{ section.settings.cta_label }}</a>
+        {% if section.settings.cta2_label != blank %}
+          <a class="gvhm-btn gvhm-btn--ghost" href="{{ section.settings.cta2_url | default: '#catalogo' }}">{{ section.settings.cta2_label }}</a>
+        {% endif %}
+      </div>
+      <ul class="gvhm-chips">
+        {% for block in section.blocks %}
+          {% if block.type == 'chip' %}<li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>{% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  {% if p != blank %}
+    <div class="gvhm-wrap" id="catalogo">
+      <header class="gvhm-head" data-gvhm-reveal>
+        <p class="gvhm-kicker gvhm-kicker--dark">{{ section.settings.cat_kicker }}</p>
+        <h2>{{ section.settings.cat_heading }}</h2>
+      </header>
+
+      <article class="gvhm-card" data-gvhm-reveal>
+        <a class="gvhm-card__pic" href="{{ p.url }}">
+          {% if section.settings.card_image != blank %}
+            {{ section.settings.card_image | image_url: width: 1200 | image_tag: widths: '440, 700, 1000, 1200', sizes: '(min-width: 900px) 48vw, 100vw', loading: 'lazy', alt: p.title }}
+          {% else %}
+            <img src="{{ 'gv-kit-flatlay-v2.webp' | asset_url }}" width="1600" height="1200" loading="lazy" alt="{{ p.title | escape }}">
+          {% endif %}
+          {% if section.settings.card_tag != blank %}<b>{{ section.settings.card_tag }}</b>{% endif %}
+        </a>
+        <div class="gvhm-card__body">
+          <p class="gvhm-card__eyebrow">{{ section.settings.card_eyebrow }}</p>
+          <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
+          <p class="gvhm-card__text">{{ section.settings.card_text }}</p>
+          <ul class="gvhm-card__list">
+            {% for block in section.blocks %}
+              {% if block.type == 'punto' %}<li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>{% endif %}
+            {% endfor %}
+          </ul>
+          <div class="gvhm-card__buy">
+            <span class="gvhm-price">{{ p.selected_or_first_available_variant.price | money }}</span>
+            <a class="gvhm-btn gvhm-btn--dark" href="{{ p.url }}">{{ section.settings.card_cta }}</a>
+          </div>
+          {% if shop.enabled_payment_types != blank %}
+            <div class="gvhm-pays">{% for type in shop.enabled_payment_types %}{{ type | payment_type_svg_tag: class: 'gvhm-pay' }}{% endfor %}</div>
+          {% endif %}
+        </div>
+      </article>
+    </div>
+  {% endif %}
+</section>
+
+{% stylesheet %}
+.gvhm{background:#f7f6f1;color:#101a16;font-family:inherit}
+.gvw{position:relative;line-height:0;margin-bottom:-2px;overflow:hidden}
+.gvw-svg{display:block;width:100%;height:clamp(52px,7vw,110px)}
+.gvw-p{will-change:transform}
+.gvw-p1{opacity:.34;animation:gvw-slide 19s linear infinite}
+.gvw-p2{opacity:.55;animation:gvw-slide 13s linear infinite reverse}
+.gvw-p3{animation:gvw-slide 26s linear infinite}
+@keyframes gvw-slide{from{transform:translateX(0)}to{transform:translateX(-1440px)}}
+@media (prefers-reduced-motion:reduce){.gvw-p{animation:none}}
+.gvhm-wavetop,.gvhm-wavebot{position:absolute;left:0;right:0;z-index:2;pointer-events:none}
+.gvhm-wavetop{top:0;transform:rotate(180deg)}
+.gvhm-wavebot{bottom:-1px}
+.gvhm-wavetop .gvw,.gvhm-wavebot .gvw{margin:0;background:transparent!important}
+.gvhm-wavetop .gvw-svg{height:clamp(38px,4.5vw,72px)}
+.gvhm-wavebot .gvw-svg{height:clamp(46px,5.5vw,88px)}
+.gvhm-hero{position:relative;display:grid;align-items:end;min-height:min(720px,calc(100vh - 96px));overflow:hidden}
+.gvhm-hero>picture{position:absolute;inset:0;display:block}
+.gvhm-hero>picture img,.gvhm-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% center;animation:gvhm-zoom 18s ease-out both}
+@keyframes gvhm-zoom{from{transform:scale(1.09)}to{transform:scale(1)}}
+.gvhm-hero__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,26,22,.12) 0%,rgba(16,26,22,.42) 42%,rgba(16,26,22,.86) 100%)}
+.gvhm-hero__in{position:relative;z-index:3;width:min(1280px,calc(100% - 36px));margin:auto;padding:0 0 clamp(74px,9vw,124px);color:#fff}
+.gvhm-hero__in>*{animation:gvhm-up .9s cubic-bezier(.2,.7,.3,1) both}
+.gvhm-hero__in>*:nth-child(1){animation-delay:.15s}.gvhm-hero__in>*:nth-child(2){animation-delay:.28s}.gvhm-hero__in>*:nth-child(3){animation-delay:.4s}.gvhm-hero__in>*:nth-child(4){animation-delay:.52s}.gvhm-hero__in>*:nth-child(5){animation-delay:.64s}
+@keyframes gvhm-up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.gvhm-kicker{margin:0 0 14px;color:#c8e54a;font-size:.68rem;font-weight:850;letter-spacing:.18em;text-transform:uppercase}
+.gvhm-kicker--dark{color:#6d8b1c}
+.gvhm-hero__in h1{max-width:16ch;margin:0;font-size:clamp(2.3rem,6.4vw,5.4rem);line-height:.98;letter-spacing:-.045em}
+.gvhm-sub{max-width:46ch;margin:18px 0 0;color:#d5dbd2;font-size:clamp(.95rem,1.5vw,1.12rem);line-height:1.55}
+.gvhm-actions{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0}
+.gvhm-btn{display:inline-block;padding:17px 30px;border-radius:12px;background:#c8e54a;color:#1b2410;font-size:.79rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:transform .18s}
+.gvhm-btn:hover{transform:translateY(-2px)}
+.gvhm-btn--ghost{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4);backdrop-filter:blur(6px)}
+.gvhm-btn--dark{background:#101a16;color:#fff}
+.gvhm-chips{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;padding:0;list-style:none}
+.gvhm-chips li{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.13);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);color:#eef1ea;font-size:.75rem;font-weight:600;backdrop-filter:blur(5px)}
+.gvhm-wrap{width:min(1280px,calc(100% - 36px));margin:auto;padding:clamp(50px,6vw,88px) 0}
+.gvhm-head{max-width:56ch}
+.gvhm-head h2{margin:0;font-size:clamp(1.75rem,3.6vw,3rem);line-height:1.04;letter-spacing:-.04em}
+.gvhm-card{display:grid;grid-template-columns:1fr 1fr;gap:clamp(22px,3.5vw,54px);align-items:center;margin:clamp(28px,3.5vw,48px) 0 0;padding:clamp(18px,2.4vw,30px);border:1px solid #e2e5dd;border-radius:20px;background:#fff}
+.gvhm-card__pic{position:relative;display:block;overflow:hidden;border-radius:14px;background:#eef0e9;aspect-ratio:4/3}
+.gvhm-card__pic img{display:block;width:100%;height:100%;padding:0;object-fit:cover;transition:transform .5s ease}
+.gvhm-card__pic:hover img{transform:scale(1.03)}
+.gvhm-card__pic b{position:absolute;top:13px;left:13px;padding:7px 12px;border-radius:999px;background:#101a16;color:#c8e54a;font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.gvhm-card__body{display:grid;gap:11px}
+.gvhm-card__eyebrow{margin:0;color:#6d8b1c;font-size:.68rem;font-weight:850;letter-spacing:.15em;text-transform:uppercase}
+.gvhm-card__body h3{margin:0;font-size:clamp(1.3rem,2.3vw,1.9rem);line-height:1.12;letter-spacing:-.03em}
+.gvhm-card__body h3 a{color:inherit;text-decoration:none}
+.gvhm-card__text{margin:0;color:#6b7570;font-size:.94rem;line-height:1.6}
+.gvhm-card__list{display:grid;gap:7px;margin:2px 0 0;padding:0;list-style:none;font-size:.88rem}
+.gvhm-card__list li{display:grid;grid-template-columns:18px 1fr;gap:9px;align-items:start;line-height:1.45}
+.gvhm-card__list li::before{content:"";width:18px;height:18px;margin-top:1px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236d8b1c' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 10.6l4.2 4.2L16.5 5'/%3E%3C/svg%3E") center/18px 18px no-repeat}
+.gvhm-card__buy{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:6px}
+.gvhm-price{font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
+.gvhm-pays{display:flex;flex-wrap:wrap;gap:6px}
+.gvhm-pay{width:38px;height:25px;border-radius:5px}
+.gvhm [data-gvhm-reveal]{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s ease}
+.gvhm [data-gvhm-reveal].is-in{opacity:1;transform:none}
+@media(max-width:860px){
+.gvhm-hero{min-height:min(560px,80vh)}
+.gvhm-hero>picture img,.gvhm-hero>img{object-position:70% 35%}
+.gvhm-hero__veil{background:linear-gradient(180deg,rgba(16,26,22,.1) 0%,rgba(16,26,22,.5) 30%,rgba(16,26,22,.82) 62%,rgba(16,26,22,.95) 100%)}
+.gvhm-hero__in{padding-bottom:62px}
+.gvhm-hero__in h1{max-width:none;font-size:clamp(2.1rem,9vw,3rem)}
+.gvhm-sub{font-size:.92rem}
+.gvhm-actions{gap:8px;margin-top:20px}
+.gvhm-btn{flex:1 1 100%;padding:16px 20px;text-align:center}
+.gvhm-chips{gap:6px;margin-top:18px}
+.gvhm-chips li{padding:7px 11px;font-size:.7rem}
+.gvhm-card{grid-template-columns:1fr}
+}
+{% endstylesheet %}
+
+{% javascript %}
+(() => {
+  document.querySelectorAll('[data-gvhm]').forEach((root) => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: .12 });
+    root.querySelectorAll('[data-gvhm-reveal]').forEach((el) => io.observe(el));
+  });
+})();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "GONVRA · Portada",
+  "tag": "section",
+  "class": "section-gv-home",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen del hero" },
+    { "type": "checkbox", "id": "wave_top", "label": "Ola arriba del hero", "default": true },
+    { "type": "checkbox", "id": "wave_bottom", "label": "Ola abajo del hero", "default": true },
+    { "type": "text", "id": "kicker", "label": "Bajada corta", "default": "Cuidado personal · Argentina" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Tu rutina de corte, en un solo equipo." },
+    { "type": "text", "id": "sub", "label": "Bajada", "default": "Una rasuradora para rostro y cuerpo, con peines de 1, 3 y 5 mm y carga por USB. Sin cuchillas descartables ni aparatos de más." },
+    { "type": "text", "id": "cta_label", "label": "Botón principal", "default": "Ver la rasuradora" },
+    { "type": "url", "id": "cta_url", "label": "Link botón principal" },
+    { "type": "text", "id": "cta2_label", "label": "Botón secundario", "default": "Cómo funciona" },
+    { "type": "url", "id": "cta2_url", "label": "Link botón secundario" },
+    { "type": "header", "content": "Catálogo" },
+    { "type": "text", "id": "product_handle", "label": "Handle del producto", "default": "face-body-electric-shaver" },
+    { "type": "text", "id": "cat_kicker", "label": "Bajada", "default": "Catálogo" },
+    { "type": "text", "id": "cat_heading", "label": "Título", "default": "Un producto, elegido y probado" },
+    { "type": "image_picker", "id": "card_image", "label": "Imagen de la tarjeta" },
+    { "type": "text", "id": "card_tag", "label": "Etiqueta de la tarjeta", "default": "Nuevo" },
+    { "type": "text", "id": "card_eyebrow", "label": "Bajada de la tarjeta", "default": "Rostro + cuerpo" },
+    { "type": "text", "id": "card_text", "label": "Texto de la tarjeta", "default": "Recargable, compacta y con los peines incluidos. La misma máquina para barba, patillas y cuerpo." },
+    { "type": "text", "id": "card_cta", "label": "Botón de la tarjeta", "default": "Ver producto" }
+  ],
+  "blocks": [
+    { "type": "chip", "name": "Chip del hero", "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Envío a todo el país" }] },
+    { "type": "punto", "name": "Punto de la tarjeta", "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Peines de 1, 3 y 5 mm" }] }
+  ],
+  "presets": [
+    {
+      "name": "GONVRA · Portada",
+      "blocks": [
+        { "type": "chip", "settings": { "text": "Envío a todo el país" } },
+        { "type": "chip", "settings": { "text": "Seguimiento del pedido" } },
+        { "type": "chip", "settings": { "text": "Pago protegido con Shopify" } },
+        { "type": "punto", "settings": { "text": "Peines guía de 1, 3 y 5 mm" } },
+        { "type": "punto", "settings": { "text": "Carga por USB" } },
+        { "type": "punto", "settings": { "text": "Cabezal reemplazable" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
